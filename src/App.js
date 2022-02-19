@@ -7,6 +7,7 @@ import NotFound from './pages/NotFound';
 
 const App = () => {
   return (
+    <div  style={{backgroundColor: '#0FDDFC'}}> 
     <Router>
       <Routes>
         <Route exact path="/" element={<Home/>} />
@@ -14,6 +15,7 @@ const App = () => {
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
+    </div >
   );
 };
 
