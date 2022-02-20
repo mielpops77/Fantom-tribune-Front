@@ -1,4 +1,4 @@
-import axios from 'axios';
+/* import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
 
@@ -8,7 +8,7 @@ function GetLaunch() {
 
     useEffect(() => {
         // GET request using axios inside useEffect React hook
-        axios.get('http://localhost:3000/api/v1/blog-posts/')
+        axios.get('http://localhost:3000/api/v1/launchDate/')
             .then(response => totalReactPackages = setTotalReactPackages(response.data));
 
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
@@ -26,3 +26,4 @@ function GetLaunch() {
 
 export default GetLaunch;
 
+ */

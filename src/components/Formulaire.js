@@ -23,7 +23,7 @@ function Formulaire() {
          websiteLink: inputs.websiteLink, customChartLink: inputs.customChartLink, customSwapLink: inputs.customSwapLink,
          telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord})
     };
-    fetch('http://localhost:3000/api/v1/blog-posts', requestOptions)
+    fetch('http://localhost:3000/api/v1/launchDate', requestOptions)
       .then(response => response.json())
       .then(data => this.setState({ postId: data.id }));
   }
