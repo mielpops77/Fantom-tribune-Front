@@ -32,18 +32,18 @@ function Formulaire() {
 
 
 
-    <form onSubmit={handleSubmit}>
-      <label>Name*:
+    <form className="formulaireSubmit" onSubmit={handleSubmit}>
+      <label className="FormLabel">Name*: 
 
-        <input
+        <input className="FormInput"
           type="text"
           name="name"
           value={inputs.name || ""}
           onChange={handleChange}
         />
       </label>
-      <label>Symbol*:
-        <input
+      <label className="FormLabel">Symbol*:
+        <input className="FormInput"
           type="text"
           name="symbol"
           value={inputs.symbol || ""}
@@ -51,16 +51,16 @@ function Formulaire() {
         />
       </label>
 
-      <label>LaunchDate*:
-        <input
+      <label className="FormLabel">LaunchDate*:
+        <input 
           type="text"
           name="launchDate"
           value={inputs.launchDate || ""}
           onChange={handleChange}
         />
       </label>
-      <label>Contract Address*:
-        <input
+      <label className="FormLabel">Contract Address*:
+        <input className="FormInput"
           type="text"
           name="contractAddress"
           value={inputs.contractAddress || ""}
@@ -69,9 +69,9 @@ function Formulaire() {
 
       </label>
 
-      <label>Description*:
+      <label className="FormLabel">Description*:
 
-        <textarea
+        <textarea className="FormInput"
           type="text"
           name="description"
           value={inputs.description || ""}
@@ -79,8 +79,8 @@ function Formulaire() {
         </textarea>
       </label>
 
-      <label>Website link**:
-        <input
+      <label className="FormLabel">Website link*:
+        <input className="FormInput"
           type="text"
           name="websiteLink"
           value={inputs.websiteLink || ""}
@@ -88,8 +88,8 @@ function Formulaire() {
         </input>
       </label>
 
-      <label>Custom chart link (optional):
-        <input
+      <label className="FormLabel">Custom chart link (optional):
+        <input className="FormInput"
           type="text"
           name="customChartLink"
           value={inputs.customChartLink || ""}
@@ -98,8 +98,8 @@ function Formulaire() {
       </label>
 
 
-      <label>Custom swap link (optional):
-        <input
+      <label className="FormLabel">Custom swap link (optional):
+        <input className="FormInput"
           type="text"
           name="customSwapLink"
           value={inputs.customSwapLink || ""}
@@ -107,8 +107,8 @@ function Formulaire() {
         </input>
       </label>
 
-      <label>Telegram link:
-        <input
+      <label className="FormLabel">Telegram link:
+        <input className="FormInput"
           type="text"
           name="telegram"
           value={inputs.telegram || ""}
@@ -117,8 +117,8 @@ function Formulaire() {
       </label>
 
 
-      <label>Twitter link:
-        <input
+      <label className="FormLabel">Twitter link:
+        <input className="FormInput"
           type="text"
           name="twitter"
           value={inputs.twitter || ""}
@@ -127,15 +127,16 @@ function Formulaire() {
       </label>
 
 
-      <label>Discord link:
-        <input
+      <label className="FormLabel">Discord link:
+        <input className="FormInput"
           type="text"
           name="discord"
           value={inputs.discord || ""}
           onChange={handleChange}>
         </input>
-      </label>
-      <input type="submit" />
+
+      </label   >
+      <input  className="submitInput"  type="submit" />
     </form>
   )
 }

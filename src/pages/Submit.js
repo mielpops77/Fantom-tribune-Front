@@ -19,8 +19,6 @@ const Submit = () => {
 
                 <h1 className='titleSubmit'>Submit new coin to Fantom Tribune</h1>
                 <br />
-                <br />
-                <br />
                 <Formulaire />
 
             </div>

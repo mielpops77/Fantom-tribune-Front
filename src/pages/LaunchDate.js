@@ -9,6 +9,7 @@ const About = () => {
         <div>
             <Navigation/>
             <Logo/>
+            <br /><br /><br />
             <TableauLaunch/>
         </div>
     );
