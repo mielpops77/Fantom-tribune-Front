@@ -59,31 +59,31 @@ const TableauLaunch = () => {
     console.log(totalReactPackages);
 
     for (let i = 0; i < totalReactPackages.length; i++) {
-      data.rows.push(({image: <img src={totalReactPackages[i].image}/>, name:  totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate }));
-      }
+      data.rows.push(({ image: <img src={"http://localhost:3000/" + totalReactPackages[i].image} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate }));
+    }
 
   }
 
 
 
 
-    return (
-      <div className="container">
-        <MDBDataTableV5
+  return (
+    <div className="container">
+      <MDBDataTableV5
         responsive
-          hover
-          striped
-          bordered
-          small
-          data={data}
-        />
-      </div>
-    );
-  }
+        hover
+        striped
+        bordered
+        small
+        data={data}
+      />
+    </div>
+  );
+}
 
 
 
-  export default TableauLaunch;
+export default TableauLaunch;
 
 
 
