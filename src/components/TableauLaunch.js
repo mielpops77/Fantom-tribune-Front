@@ -59,7 +59,7 @@ const TableauLaunch = () => {
     console.log(totalReactPackages);
 
     for (let i = 0; i < totalReactPackages.length; i++) {
-      data.rows.push(({ image: <img src={"http://localhost:3000/" + totalReactPackages[i].image} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate }));
+      data.rows.push(({ image: <img style={{ height: "100%", width: "95px", float: "left" }} src={"http://localhost:3000/" + totalReactPackages[i].image} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate }));
     }
 
   }
