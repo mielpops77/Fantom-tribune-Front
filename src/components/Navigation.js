@@ -25,10 +25,10 @@ const Navigation = () => {
           <li>SUBMIT PROJECT</li>
         </NavLink>
         <NavLink
-          to="/register"
+          to="/Admin"
           className={(nav) => (nav.isActive ? "nav-active" : "")}
         >
-          <li>NEWS</li>
+          <li>Admin</li>
         </NavLink>
         <NavLink
           to="/login"

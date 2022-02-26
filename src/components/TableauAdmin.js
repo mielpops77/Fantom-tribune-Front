@@ -1,20 +1,85 @@
-import "bootstrap/dist/css/bootstrap.min.css";
 import { MDBDataTableV5 } from 'mdbreact';
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useEffect, useState } from "react";
 
-const TableauAdmin = () => {
+function TableauAdmin() {
+    const [posts, setPosts] = useState([]);
+    const [usersForRender, setUsersForRender] = useState([]);
 
 
-    var [totalReactPackages, setTotalReactPackages] = useState(null);
+    function test() {
+        console.log('test');
+    }
+    test();
 
     useEffect(() => {
-        // GET request using axios inside useEffect React hook
-        axios.get('http://localhost:3000/api/v1/launchDate/')
-            .then(response => totalReactPackages = setTotalReactPackages(response.data));
+        fetch('http://localhost:3000/api/v1/launchDate/')
+            .then((res) => res.json())
+            .then((res) => {
 
-        // empty dependency array means this effect will only run once (like componentDidMount in classes)
+                setPosts(res);
+            });
     }, []);
+
+
+    let getLunch = () => {
+        fetch('http://localhost:3000/api/v1/launchDate/')
+            .then((res) => res.json())
+            .then((res) => {
+                setPosts(res);
+
+            });
+    };
+
+    let deletePost = (postId) => {
+        fetch(`http://localhost:3000/api/v1/blog-posts/${postId}`, {
+            method: "DELETE",
+        })
+            .then((res) => res.json())
+            .then((res) => {
+                var postIndex = posts.findIndex(function (o) {
+                    return o._id === postId;
+                });
+                if (postIndex !== -1) {
+                    console.log('??????????')
+                    setPosts(posts.filter((item) => item.id != postId));
+                    getLunch();
+                }
+            });
+    };
+
+    useEffect(() => {
+        let postsArray = JSON.parse(JSON.stringify(posts));
+        let userData = [];
+        postsArray.map((item, index) => {
+            item._id = (
+                <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div>
+            );
+            item.action = (
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                    <div
+                        className="uil-trash-alt"
+                        style={{
+                            cursor: "pointer",
+                            color: "black",
+                            fontSize: ".7em",
+                            padding: ".5rem",
+                            borderRadius: ".3rem",
+                            background: "#fb6262",
+                        }}
+                        onClick={() => deletePost(posts[index]._id)}
+                    >
+                        Delete
+                    </div>
+                </div>
+            );
+            item.image = (
+                <img style={{ height: "100%", width: "95px", float: "left" }} src={"http://localhost:3000/" + posts[index].image} />
+            );
+            userData.push(item);
+        });
+        setUsersForRender(userData);
+    }, [posts]);
+
     const data = {
         columns: [
             {
@@ -46,28 +111,15 @@ const TableauAdmin = () => {
                 field: 'launchDate',
                 sort: 'asc',
                 width: 150
+            }, {
+                label: 'Action',
+                field: 'action',
+                width: 100
             },
-        
-
         ],
-        rows: [
-         
-        ]
+
+        rows: usersForRender,
     };
-
-
-    if (totalReactPackages != null) {
-        console.log(data);
-        console.log(totalReactPackages);
-
-        for (let i = 0; i < totalReactPackages.length; i++) {
-            data.rows.push(({ image: <img style={{ height: "100%", width: "95px", float: "left" }} src={"http://localhost:3000/" + totalReactPackages[i].image} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate }));
-        }
-
-    }
-
-
-
 
     return (
         <div className="container">
@@ -82,8 +134,6 @@ const TableauAdmin = () => {
         </div>
     );
 }
-
-
 
 export default TableauAdmin;
 

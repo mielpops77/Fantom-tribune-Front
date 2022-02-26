@@ -5,16 +5,41 @@ import axios from 'axios';
 
 const TableauLaunch = () => {
 
-
+  const [posts, setPosts] = useState([]);
   var [totalReactPackages, setTotalReactPackages] = useState(null);
 
   useEffect(() => {
-    // GET request using axios inside useEffect React hook
-    axios.get('http://localhost:3000/api/v1/launchDate/')
-      .then(response => totalReactPackages = setTotalReactPackages(response.data));
+    fetch('http://localhost:3000/api/v1/launchDate/')
+        .then((res) => res.json())
+        .then((res) => {
+            setPosts(res);
+        });
+}, []);
 
-    // empty dependency array means this effect will only run once (like componentDidMount in classes)
-  }, []);
+
+
+  useEffect(() => {
+    let postsArray = JSON.parse(JSON.stringify(posts));
+    let userData = [];
+    postsArray.map((item, index) => {
+      item._id = (
+        <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div>
+      );
+      item.image = (
+        <img style={{ height: "100%", width: "95px", float: "left" }} src={"http://localhost:3000/" + posts[index].image} />
+      );
+      item.image = (
+        <img style={{ height: "100%", width: "95px", float: "left" }} src={"http://localhost:3000/" + posts[index].image} />
+      );
+      userData.push(item);
+    });
+    setTotalReactPackages(userData);
+  }, [posts]);
+
+
+
+
+
   const data = {
     columns: [
       {
@@ -49,21 +74,20 @@ const TableauLaunch = () => {
       },
 
     ],
-    rows: [
-    ]
+    rows: totalReactPackages
   };
 
 
-  if (totalReactPackages != null) {
-    console.log(data);
-    console.log(totalReactPackages);
-
-    for (let i = 0; i < totalReactPackages.length; i++) {
-      data.rows.push(({ image: <img style={{ height: "100%", width: "95px", float: "left" }} src={"http://localhost:3000/" + totalReactPackages[i].image} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate }));
+  /*   if (totalReactPackages != null) {
+      console.log(data);
+      console.log(totalReactPackages);
+  
+      for (let i = 0; i < totalReactPackages.length; i++) {
+        data.rows.push(({ image: <img style={{ height: "100%", width: "95px", float: "left" }} src={"http://localhost:3000/" + totalReactPackages[i].image} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate }));
+      }
+  
     }
-
-  }
-
+   */
 
 
 
