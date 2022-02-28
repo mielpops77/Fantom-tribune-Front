@@ -1,11 +1,11 @@
 .navigation {
-    background-color: #3e6aff;
+    background-image: url("../../public/img/fond_bandeau.png");
     ul {
       display: flex;
       justify-content: space-around;
-      width: 60%;
+      width: 50%;
       margin: 30px auto;
-  
+      
       a {
         text-decoration: none;
         padding: 10px;
