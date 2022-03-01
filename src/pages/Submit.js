@@ -1,5 +1,4 @@
 import React from 'react';
-import Logo from '../components/Logo';
 import Navigation from '../components/Navigation';
 import Formulaire from '../components/Formulaire';
 
@@ -8,8 +7,6 @@ const Submit = () => {
     return (
         <div>
             <Navigation />
-            <Logo />
-
             <br />
             <br />
             <br />
