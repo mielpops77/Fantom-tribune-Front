@@ -4,7 +4,7 @@ import { AiFillEdit } from 'react-icons/ai';
 import { AiOutlineCheck } from 'react-icons/ai';
 import { AiOutlineClose } from 'react-icons/ai';
 
-function TableauAdmin() {
+function ValidationAdmin() {
     const [posts, setPosts] = useState([]);
     const [usersForRender, setUsersForRender] = useState([]);
 
@@ -149,7 +149,7 @@ function TableauAdmin() {
     );
 }
 
-export default TableauAdmin;
+export default ValidationAdmin;
 
 
 

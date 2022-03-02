@@ -2,40 +2,47 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import background from "./img/fond_bandeau.png";
 
-const Navigation = () => {
+const NavigationAdmin = () => {
   return (
     // eslint-disable-next-line react/style-prop-object
 
 
     <nav className="navigation" style={{ backgroundImage: `url(${background})` }}>
       <ul>
-        <NavLink to="/" className={(nav) => (nav.isActive ? "nav-active" : "")}>
-          <li>HOME</li>
-        </NavLink>
+      
         <NavLink
-          to="/launchDate"
+          to="/Admin"
           className={(nav) => (nav.isActive ? "nav-active" : "")}
         >
-          <li>LAUNCH DATE</li>
+          <li>ADMINISTRATION</li>
         </NavLink>
         <NavLink
-          to="/submit"
+          to="/Admin/EditionNews"
           className={(nav) => (nav.isActive ? "nav-active" : "")}
         >
-          <li>SUBMIT PROJECT</li>
+          <li>NEWS EDITION</li>
         </NavLink>
+
         <NavLink
-          to="/admin"
+          to="/Admin/Tutorial"
           className={(nav) => (nav.isActive ? "nav-active" : "")}
         >
-          <li>Admin</li>
+          <li>TUTORIAL</li>
         </NavLink>
+        
+        
         <NavLink
-          to="/login"
+          to="/Admin/Promotion"
+          className={(nav) => (nav.isActive ? "nav-active" : "")}
         >
-          <button style={{ background: "#52FDFD", borderRadius: "10px", width: "100px" }}>
-            Login
-          </button>
+          <li>PROMOTION</li>
+        </NavLink>
+
+        <NavLink
+          to="/Admin/Statistique"
+          className={(nav) => (nav.isActive ? "nav-active" : "")}
+        >
+          <li>STATISTIQUE</li>
         </NavLink>
       </ul>
     </nav>
@@ -44,4 +51,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default NavigationAdmin;
