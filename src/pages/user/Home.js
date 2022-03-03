@@ -1,12 +1,12 @@
-import Navigation from '../components/Navigation';
-import Logo from '../components/Logo';
+import NavigationUserComponent from '../../components/navigation/NavigationUser.component';
+import Logo from '../../components/Logo';
 
 
 
 const Home = () => {
     return (
         <div className ="home">
-            <Navigation/>
+            <NavigationUserComponent/>
             <Logo/>
             <h1>
                 accueil

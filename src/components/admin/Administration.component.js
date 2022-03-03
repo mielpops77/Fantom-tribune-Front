@@ -1,19 +1,18 @@
 import { MDBDataTableV5 } from 'mdbreact';
 import { useEffect, useState } from "react";
-import { AiFillEdit } from 'react-icons/ai';
-import { AiOutlineCheck } from 'react-icons/ai';
-import { AiOutlineClose } from 'react-icons/ai';
-import { BsToggle2Off, BsTrash } from 'react-icons/bs';
+import { AiOutlineCheck, AiOutlineClose } from 'react-icons/ai';
 import { FaTrashRestore } from 'react-icons/fa';
+import {  BsTrash } from 'react-icons/bs';
+
 
 
 import { Menu } from 'semantic-ui-react'
 
-function AdministrationOnline() {
-
+function Administration() {
+    
     const [posts, setPosts] = useState([]);
     const [usersForRender, setUsersForRender] = useState([]);
-    const [toggle, setToggle] = useState(false);
+    const [toggle, setToggle] = useState(true);
     const [toggle2, setToggle2] = useState(false);
     const [toggle3, setToggle3] = useState(false);
 
@@ -45,45 +44,6 @@ function AdministrationOnline() {
         }
     };
 
-    /*  const changeStyle = () => {
-         console.log('toggle', toggle);
-         setToggle(!toggle)
-         if (toggle2) {
-             setToggle2(!toggle2)
-         }
- 
-         if (toggle3) {
-             setToggle3(!toggle3)
-         }
- 
-         getValidation();
- 
- 
-     }; */
-
-    /* const changeStyle2 = () => {
-        setToggle2(!toggle2)
-        if (toggle) {
-            setToggle(!toggle)
-        }
-
-        if (toggle3) {
-            setToggle3(!toggle3)
-        }
-        getLunch();
-    }; */
-
-    /*    const changeStyle3 = () => {
-           setToggle3(!toggle3);
-           if (toggle) {
-               setToggle(!toggle)
-           }
-   
-           if (toggle2) {
-               setToggle2(!toggle2)
-           }
-   
-       }; */
     useEffect(() => {
         fetch('http://localhost:3000/api/v1/launchDate/')
             .then((res) => res.json())
@@ -268,7 +228,7 @@ function AdministrationOnline() {
                 <Menu.Item
                     className={toggle3 ? "itemTabAdminClick" : "itemTabAdmin"} onClick={() => changeStyle(3)}
 
-                    name='Corbeil'
+                    name='Corbeille'
                 />
             </Menu>
 
@@ -285,7 +245,7 @@ function AdministrationOnline() {
     );
 }
 
-export default AdministrationOnline;
+export default Administration;
 
 
 

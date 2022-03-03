@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './pages/Home';
-import LaunchDate from './pages/LaunchDate';
-import Submit from './pages/Submit';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Administration from './pages/Administration';
+import Home from './pages/user/Home';
+import LaunchDate from './pages/user/LaunchDate';
+import Submit from './pages/user/Submit';
+import Login from './pages/user/Login';
+import Register from './pages/user/Register';
+import Administration from './pages/admin/Administration';
 
 
 

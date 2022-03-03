@@ -1,13 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import background from "./img/fond_bandeau.png";
 
 const Navigation = () => {
   return (
     // eslint-disable-next-line react/style-prop-object
 
 
-    <nav className="navigation" style={{ backgroundImage: `url(${background})` }}>
+    <nav className="navigation" style={{ backgroundImage: `url("http://localhost:3000/fond_bandeau.png")` }}>
       <ul>
         <NavLink to="/" className={(nav) => (nav.isActive ? "nav-active" : "")}>
           <li>HOME</li>

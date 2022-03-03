@@ -1,13 +1,13 @@
 import '/node_modules/bootstrap/dist/css/bootstrap.min.css';
-import Navigation from '../components/Navigation';
-import Logo from '../components/Logo';
+import NavigationUserComponent from '../../components/navigation/NavigationUser.component';
+import Logo from '../../components/Logo';
 import React from 'react';
 import { NavLink } from "react-router-dom";
 
 const SignIn = () => {
     return (
         <div>
-            <Navigation />
+            <NavigationUserComponent />
             <Logo />
             <br /><br /><br /><br /><br /><br /><br />
             <div className='divCorSignIn'>
