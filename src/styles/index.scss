@@ -1,4 +1,20 @@
 @import "./setting";
 @import "./navigation";
 @import "./logo";
-@import "./tableauLaunch";
+@import "./formulaire";
+@import "./submit";
+@import "./login";
+@import "./SignIn";
+@import "./navTabAdmin";
+
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800');
+
+
+body {
+  height: 1300px;
+  background: linear-gradient(#4389fc, #23b6fa, #0fddfc);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  max-width: 100%;
+  margin-top: -1.6%;
+}
