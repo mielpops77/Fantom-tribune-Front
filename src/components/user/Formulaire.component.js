@@ -13,7 +13,7 @@ function Formulaire() {
   const upload = () => {
     console.log('uploaaad');
     const inputImg = document.querySelector("input[type=file]");
-    let fileCount = inputImg.files.length; 
+    let fileCount = inputImg.files.length;
     if (fileCount > 0) {
 
 
@@ -54,7 +54,7 @@ function Formulaire() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress, description: inputs.description,
+        name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress, description: inputs.description, type: inputs.type,
         websiteLink: inputs.websiteLink, customChartLink: inputs.customChartLink, customSwapLink: inputs.customSwapLink,
         telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image
       })
@@ -114,6 +114,17 @@ function Formulaire() {
           onChange={handleChange}>
         </textarea>
       </label>
+
+      <label className="FormLabel">Type*:
+        <input className="FormInput"
+          type="text"
+          name="type"
+          value={inputs.type || ""}
+          onChange={handleChange}
+        />
+
+      </label>
+
 
       <label className="FormLabel">Website link*:
         <input className="FormInput"
