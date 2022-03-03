@@ -1,6 +1,5 @@
 @import "./setting";
 @import "./navigation";
-@import "./logo";
 @import "./formulaire";
 @import "./submit";
 @import "./login";
@@ -11,10 +10,13 @@
 
 
 body {
-  height: 1300px;
-  background: linear-gradient(#4389fc, #23b6fa, #0fddfc);
-  background-repeat: no-repeat;
+  background: linear-gradient(#1969FF, #1969FF, #6d9df7, #6eb7f3, #82adfc);
   background-attachment: fixed;
-  max-width: 100%;
-  margin-top: -1.6%;
+  width: 100%;
+  max-width: 1980px;
+  min-width: 500px;
+  height: 100%;
+  max-height: 1250px;
+  min-height: 350px;
+  margin-top: -0.3%;
 }

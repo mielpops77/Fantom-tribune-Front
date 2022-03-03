@@ -1,6 +1,5 @@
 import '/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import NavigationUserComponent from '../../components/navigation/NavigationUser.component';
-import Logo from '../../components/Logo';
 import React from 'react';
 import { NavLink } from "react-router-dom";
 
@@ -8,7 +7,6 @@ const SignIn = () => {
     return (
         <div>
             <NavigationUserComponent />
-            <Logo />
             <br /><br /><br /><br /><br /><br /><br />
             <div className='divCorSignIn'>
                 <form>

@@ -5,8 +5,11 @@ const Navigation = () => {
   return (
     // eslint-disable-next-line react/style-prop-object
 
-
-    <nav className="navigation" style={{ backgroundImage: `url("http://localhost:3000/fond_bandeau.png")` }}>
+    <nav className="navigation">
+       <div className='logo'>
+            <img  src="http://localhost:3000/fond_bandeau.png" alt="logo" />
+            <h5>Fantom Tribune</h5>
+        </div>
       <ul>
         <NavLink to="/" className={(nav) => (nav.isActive ? "nav-active" : "")}>
           <li>HOME</li>
@@ -32,9 +35,7 @@ const Navigation = () => {
         <NavLink
           to="/login"
         >
-          <button style={{ background: "#52FDFD", borderRadius: "10px", width: "100px" }}>
-            Login
-          </button>
+          <li className="login">Login</li>
         </NavLink>
       </ul>
     </nav>
