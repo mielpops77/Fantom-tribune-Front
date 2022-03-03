@@ -1,5 +1,5 @@
 import '/node_modules/bootstrap/dist/css/bootstrap.min.css';
-import Navigation from '../components/Navigation';
+import NavigationUserComponent from '../../components/navigation/NavigationUser.component';
 import React from 'react';
 import { NavLink } from "react-router-dom";
 
@@ -10,7 +10,7 @@ function Login() {
 
     return (
         <div>
-            <Navigation />
+            <NavigationUserComponent />
             <br /><br /><br /><br /><br /><br /><br />
             <div className='divCorSignIn'>
                 <form>

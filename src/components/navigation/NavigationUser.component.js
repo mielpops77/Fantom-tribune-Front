@@ -5,10 +5,9 @@ const Navigation = () => {
   return (
     // eslint-disable-next-line react/style-prop-object
 
-
     <nav className="navigation">
        <div className='logo'>
-            <img  src="../img/logo.png" alt="logo" />
+            <img  src="http://localhost:3000/fond_bandeau.png" alt="logo" />
             <h5>Fantom Tribune</h5>
         </div>
       <ul>
@@ -28,7 +27,7 @@ const Navigation = () => {
           <li>SUBMIT PROJECT</li>
         </NavLink>
         <NavLink
-          to="/Admin"
+          to="/admin"
           className={(nav) => (nav.isActive ? "nav-active" : "")}
         >
           <li>Admin</li>
