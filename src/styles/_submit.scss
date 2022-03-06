@@ -1,22 +1,23 @@
-    
-  
-        .titleSubmit {
-            padding-top: 20px;
-            text-align: center;
-            color: #F7F7F7;
-        }
-    
-        .divCorpSubmit
-        {
-        /*     color: white; */
-            background: linear-gradient(#000faf, #1969FF, #6d9df7 );   
-            background-color: #000faf;
-            margin: auto;
-            max-width: 1000px;
-            min-width: 150px;
-        }
-    
+.divCorpSubmit{
+    background: linear-gradient(#071DFF,#246ffa,#4d86e7,#82adfc);
+    width: 100%;   
+    max-width: 1000px;
+    min-width: 100px;
+    margin: 1.9% auto auto auto;
+    border-radius: 20px;
+}
 
-      
- 
+.titleSubmit{
+    font-size: max(2.5vw, 150%);
+    text-align: center;
+    color: #c7f5ca;
+    margin:0 auto;
+    padding: 2% 0 0 0;
+}
+
+hr{
+    color:#c7f5ca;
+}
+
+
    
