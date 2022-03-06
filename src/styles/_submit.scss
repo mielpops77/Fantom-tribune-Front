@@ -3,15 +3,17 @@
         .titleSubmit {
             padding-top: 20px;
             text-align: center;
-            color: black;
+            color: #F7F7F7;
         }
     
         .divCorpSubmit
         {
         /*     color: white; */
-            background-color: #428FFE;
-            margin: 0 auto;
-            width: 1000px;
+            background: linear-gradient(#000faf, #1969FF, #6d9df7 );   
+            background-color: #000faf;
+            margin: auto;
+            max-width: 1000px;
+            min-width: 150px;
         }
     
 
