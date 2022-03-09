@@ -9,7 +9,7 @@ const TableauLaunch = () => {
   var [totalReactPackages, setTotalReactPackages] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/v1/launchDate/')
+    fetch('http://localhost:3000/launchDate/')
         .then((res) => res.json())
         .then((res) => {
             setPosts(res);
