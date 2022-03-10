@@ -23,7 +23,7 @@ function Formulaire() {
       console.log('formData', formData)
       axios({
         method: "post",
-        url: "http://localhost:3000/api/v1/blog-post/images",
+        url: "http://localhost:3000/images",
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       })
@@ -59,7 +59,7 @@ function Formulaire() {
         telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image
       })
     };
-    fetch('http://localhost:3000/api/v1/launchDate', requestOptions)
+    fetch('http://localhost:3000/launchDate', requestOptions)
       .then(response => response.json())
       .then(data => this.setState({ postId: data.id }));
   }
