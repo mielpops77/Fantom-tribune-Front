@@ -2,7 +2,7 @@ nav {
   background-image: url("../../public/img/fond_bandeau.png");
   background-size: cover;
   width: 100%;
-  max-width: 1980px;
+  max-width: 1680px;
   min-width: 500px;
   height: 100%;
   max-height: 70px;
@@ -17,9 +17,7 @@ nav {
     min-width: 500px;
     margin: auto;
     left: 15%;
-    
-    
-      
+
     a {
       margin: 1%;
 
@@ -31,20 +29,38 @@ nav {
 
         &:hover {
           color: $color-1;
+
         }
       }
-      
     }
     .login {
       font-size: 0.9vw;
-      text-align: center  ;
+      text-align: center;
       color: #525252;
-      background-color: #52FDFD;
+      background-color: #52fdfd;
       border-radius: 100px;
       width: 100%;
       max-width: 100px;
-      min-width: 70px;
-      }
+      min-width: 90px;
+      margin-top: 15%;
+    }
+
+    .logOut {
+      font-size: 0.9vw;
+      text-align: center;
+      color: black;
+      background-color: #ee5656;
+      border-radius: 100px;
+      width: 100%;
+      max-width: 100px;
+      min-width: 80px;
+      margin-top: 4%;
+      margin-left: 20%;
+    }
+
+    #usernameNav {
+      margin-top: 4%;
+    }
 
     .nav-active {
       position: relative;
@@ -89,20 +105,19 @@ nav {
     align-items: center;
     justify-content: center;
   }
-  
-    h5 {
-      color: $color-2;
-      letter-spacing: 0px;
-      font-size: 1.2vw;
-    }
-  
-    img {
-      height: 100%;
-      max-height: 65px;
-      min-height: 10px;
-      width: 100%;
-      max-width: 65px;
-      min-width: 10px;
-    }
 
+  h5 {
+    color: $color-2;
+    letter-spacing: 0px;
+    font-size: 1.2vw;
+  }
+
+  img {
+    height: 100%;
+    max-height: 65px;
+    min-height: 10px;
+    width: 100%;
+    max-width: 65px;
+    min-width: 10px;
+  }
 }

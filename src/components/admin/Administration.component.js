@@ -45,7 +45,7 @@ function Administration() {
     };
 
     useEffect(() => {
-        fetch('http://localhost:3000/api/v1/launchDate/')
+        fetch('http://localhost:3000/launchDateAdmin/')
             .then((res) => res.json())
             .then((res) => {
 
@@ -55,7 +55,7 @@ function Administration() {
 
 
     let getLunch = () => {
-        fetch('http://localhost:3000/api/v1/launchDate/')
+        fetch('http://localhost:3000/launchDate/')
             .then((res) => res.json())
             .then((res) => {
                 setPosts(res);
@@ -64,7 +64,7 @@ function Administration() {
     };
 
     let getValidation = () => {
-        fetch('http://localhost:3000/api/v1/launchDateAdmin/')
+        fetch('http://localhost:3000/launchDateAdmin/')
             .then((res) => res.json())
             .then((res) => {
                 setPosts(res);
@@ -73,7 +73,7 @@ function Administration() {
     };
 
     let getTrash = () => {
-        fetch('http://localhost:3000/api/v1/trashAdmin/')
+        fetch('http://localhost:3000/trashAdmin/')
             .then((res) => res.json())
             .then((res) => {
                 setPosts(res);
@@ -82,7 +82,7 @@ function Administration() {
     };
 
     let deletePost = (postId) => {
-        fetch(`http://localhost:3000/api/v1/blog-posts/${postId}`, {
+        fetch(`http://localhost:3000/trashDef/${postId}`, {
             method: "DELETE",
         })
             .then((res) => res.json())
@@ -100,10 +100,10 @@ function Administration() {
 
 
     let validProject = (postId, status, remove) => {
-        fetch(`http://localhost:3000/api/v1/adminEdit/${postId}`, {
+        fetch(`http://localhost:3000/adminEdit/${postId}`, {
             method: "Put",
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ status: status, remove: remove })
+            body: JSON.stringify({ status: status, delete: remove })
         })
             .then((res) => res.json())
             .then((res) => {
