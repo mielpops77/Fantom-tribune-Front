@@ -136,7 +136,7 @@ function Formulaire() {
         </input>
       </label>
 
-      <label className="FormLabel">Custom chart link (optional):
+      <label className="FormLabel">Custom chart link:
         <input className="FormInput"
           type="text"
           name="customChartLink"
@@ -146,7 +146,7 @@ function Formulaire() {
       </label>
 
 
-      <label className="FormLabel">Custom swap link (optional):
+      <label className="FormLabel">Custom swap link:
         <input className="FormInput"
           type="text"
           name="customSwapLink"
