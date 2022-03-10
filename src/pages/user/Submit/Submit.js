@@ -1,6 +1,7 @@
 import React from 'react';
-import NavigationUserComponent from '../../components/navigation/NavigationUser.component';
-import FormulaireComponent from '../../components/user/Formulaire.component';
+import NavigationUserComponent from '../../../components/Navigation/NavigationUser/NavigationUser.component';
+import FormulaireComponent from '../../../components/User/Formulaire/Formulaire.component';
+import "./Submit.scss";
 
 
 const Submit = () => {

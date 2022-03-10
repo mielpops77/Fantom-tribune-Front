@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import AuthService from "../../services/auth.service";
+import AuthService from "../../../services/auth.service";
+import "./Navigation.scss";
 
 const Navigation = () => {
 
@@ -25,7 +26,7 @@ const Navigation = () => {
 
     <nav className="navbar navbar-expand ">
       <div className='logo'>
-        <img src="http://localhost:3000/fond_bandeau.png" alt="logo" />
+        <img src="http://localhost:3000/logo.png" alt="logo" />
         <h5>Fantom Tribune</h5>
       </div>
       <ul>

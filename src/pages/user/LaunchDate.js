@@ -1,5 +1,5 @@
-import NavigationUserComponent from '../../components/navigation/NavigationUser.component';
-import TableauLaunchComponent from '../../components/user/TableauLaunch.component';
+import NavigationUserComponent from '../../components/Navigation/NavigationUser/NavigationUser.component';
+import TableauLaunchComponent from '../../components/User/TableauLaunch/TableauLaunch.component';
 import React from 'react';
 
 

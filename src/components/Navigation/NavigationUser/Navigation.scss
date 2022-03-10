@@ -1,5 +1,7 @@
+@import "../../../styles/setting";
+
 nav {
-  background-image: url("../../public/img/fond_bandeau.png");
+  background-image: url("http://localhost:3000/fond_bandeau.png");
   background-size: cover;
   width: 100%;
   max-width: 1680px;
@@ -95,7 +97,7 @@ nav {
     display: flex;
     justify-content: space-around;
     position: absolute;
-    left : 9%;
+    left: 9%;
     height: 100%;
     max-height: 70px;
     min-height: 20px;
