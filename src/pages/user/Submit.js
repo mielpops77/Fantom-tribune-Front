@@ -7,16 +7,11 @@ const Submit = () => {
     return (
         <div>
             <NavigationUserComponent />
-            <br />
-            <br />
-            <br />
             <div className='divCorpSubmit'>
                 <h1 className='titleSubmit'>Submit new coin to Fantom Tribune</h1>
-                <br />
+                <hr></hr>
                 <FormulaireComponent/>
-
             </div>
-
         </div >
     );
 };
