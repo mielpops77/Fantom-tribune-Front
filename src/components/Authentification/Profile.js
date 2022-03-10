@@ -1,6 +1,6 @@
 import React from "react";
-import AuthService from "../services/auth.service";
-import NavigationUserComponent from '../components/navigation/NavigationUser.component';
+import AuthService from "../../services/auth.service";
+import NavigationUserComponent from '../Navigation/NavigationUser/NavigationUser.component';
 
 
 const Profile = (props) => {

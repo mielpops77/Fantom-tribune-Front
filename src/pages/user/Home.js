@@ -1,4 +1,4 @@
-import NavigationUserComponent from '../../components/navigation/NavigationUser.component';
+import NavigationUserComponent from '../../components/Navigation/NavigationUser/NavigationUser.component';
 
 
 

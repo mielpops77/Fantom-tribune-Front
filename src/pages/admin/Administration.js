@@ -1,7 +1,8 @@
-import NavigationAdminComponent from '../../components/navigation/NavigationAdmin.component';
-import AdministrationComponent from '../../components/admin/Administration.component'
-import React, { useState, useEffect } from "react";
+import NavigationAdminComponent from '../../components/Navigation/NavigationAdmin/NavigationAdmin.component';
+import AdministrationComponent from '../../components/Admin/Adminitration/Administration.component'
 import AuthService from "../../services/auth.service";
+import React, { useState, useEffect } from "react";
+
 const Administration = () => {
 
 

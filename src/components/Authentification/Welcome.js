@@ -1,7 +1,7 @@
 import React from "react";
-import AuthService from "../services/auth.service";
+import AuthService from "../../services/auth.service";
 import { Link } from "react-router-dom";
-import NavigationUserComponent from '../components/navigation/NavigationUser.component';
+import NavigationUserComponent from '../Navigation/NavigationUser/NavigationUser.component';
 
 const Welcome = (props) => {
   console.log(props)

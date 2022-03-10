@@ -1,10 +1,12 @@
 import React, { useState, useRef } from "react";
-import AuthService from "../../services/auth.service";
-import NavigationUserComponent from '../../components/navigation/NavigationUser.component';
+import AuthService from "../../../services/auth.service"
+import NavigationUserComponent from "../../Navigation/NavigationUser/NavigationUser.component";
 import { NavLink } from "react-router-dom";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
+import "./Login.scss";
+
 
 const required = (value) => {
     if (!value) {
@@ -18,7 +20,7 @@ const required = (value) => {
 
 const Login = (props) => {
 
-    console.log('props',props)
+    console.log('propsssssssss',props)
     const form = useRef();
     const checkBtn = useRef();
 

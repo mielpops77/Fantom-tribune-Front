@@ -1,12 +1,13 @@
-import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import NavigationUserComponent from '../../components/navigation/NavigationUser.component';
+import '../../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import NavigationUserComponent from '../../../components/Navigation/NavigationUser/NavigationUser.component';
 import React, { useState, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
-import AuthService from "../../services/auth.service";
+import AuthService from "../../../services/auth.service";
+import "./Register.scss";
 
 
 const required = (value) => {
