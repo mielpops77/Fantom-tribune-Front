@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 
 
 
+
 const TableauLaunch = () => {
 
 
@@ -27,14 +28,15 @@ const TableauLaunch = () => {
     let userData = [];
     console.log('postsArray', postsArray);
     postsArray.map((item, index) => {
+
       item.id = (
         <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div>
       );
       item.image = (
-        <img style={{ height: "100%", width: "95px", float: "left" }} src={"http://localhost:3000/" + posts[index].image} />
+        <img src={"http://localhost:3000/" + posts[index].image} />
       );
       item.image = (
-        <img style={{ height: "100%", width: "95px", float: "left" }} src={"http://localhost:3000/" + posts[index].image} />
+        <img src={"http://localhost:3000/" + posts[index].image} />
       );
       console.log('item', item);
       userData.push(item);
@@ -85,10 +87,10 @@ const TableauLaunch = () => {
   if (totalReactPackages != null) {
 
     for (let i = 0; i < totalReactPackages.length; i++) {
-      data.rows.push(({ image: <img style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id:totalReactPackages[i]._id  }));
+      data.rows.push(({ image: <img style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id }));
     }
 
-    console.log('data.rows',data.rows);
+    console.log('data.rows', data.rows);
 
 
   }
@@ -114,13 +116,13 @@ const TableauLaunch = () => {
                 to={`launchDate/${row.name}/`}
               >
               </NavLink></td>
-              <td> <NavLink 
+              <td> <NavLink
                 to={`infoCoin/${row.id}`}><img style={{ height: "100px", width: "100px" }} src={row.image.props.src} /> </NavLink></td>
-              <td><NavLink  
+              <td><NavLink
                 to={`infoCoin/${row.id}`}>{row.name}</NavLink></td>
-              <td><NavLink 
+              <td><NavLink
                 to={`infoCoin/${row.id}`}>{row.symbol}</NavLink></td>
-              <td><NavLink 
+              <td><NavLink
                 to={`infoCoin/${row.id}`}>{row.launchDate}</NavLink></td>
             </tr>
           ))}
