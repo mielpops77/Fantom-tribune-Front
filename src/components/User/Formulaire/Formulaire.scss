@@ -1,8 +1,10 @@
 label{
-    color:#260161;
+    color:#450ca0;
     font-size: max(0.84vw, 11px);
     width: 70%;
     text-shadow: -0.05em 0.03em 0.25em #c7f5ca;
+    font-weight: 500;
+    font-family: 'Fira Sans', sans-serif;
 }
 
 .formulaireSubmit
@@ -24,7 +26,7 @@ label{
     margin-left: 10px;
 }
 
-.submitInput
+#submitInput
 {
     margin-top: 20px;
     margin-bottom: 20px;
