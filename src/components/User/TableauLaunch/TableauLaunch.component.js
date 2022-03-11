@@ -90,7 +90,6 @@ const TableauLaunch = () => {
       data.rows.push(({ image: <img style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id }));
     }
 
-    console.log('data.rows', data.rows);
 
 
   }
