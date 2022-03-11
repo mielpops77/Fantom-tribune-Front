@@ -88,8 +88,8 @@ function Formulaire() {
         />
       </label>
 
-      <label className="FormLabel">LaunchDate*:
-        <input
+      <label className="FormLabel">LaunchDate*: 
+        <input className="FormInput"
           type="text"
           name="launchDate"
           value={inputs.launchDate || ""}
@@ -196,7 +196,7 @@ function Formulaire() {
       <button type="button" className="btn btn-secondary" onClick={upload}>Upload</button>
 
 
-      <input className="submitInput" type="submit" />
+      <input className="btn btn-primary btn-block" id="submitInput" type="submit"/>
     </form>
   )
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import AuthService from "../../services/auth.service";
+import AuthService from "../../services/auth/auth.service";
 import NavigationUserComponent from '../Navigation/NavigationUser/NavigationUser.component';
 
 

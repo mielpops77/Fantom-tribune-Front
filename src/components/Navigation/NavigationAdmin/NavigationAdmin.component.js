@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import AuthService from "../../../services/auth.service";
+import AuthService from "../../../services/auth/auth.service";
 import "./NavTabAdmin.scss";
 
 const NavigationAdmin = () => {
