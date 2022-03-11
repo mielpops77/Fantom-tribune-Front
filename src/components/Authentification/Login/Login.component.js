@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import AuthService from "../../../services/auth.service"
+import AuthService from "../../../services/auth/auth.service"
 import NavigationUserComponent from "../../Navigation/NavigationUser/NavigationUser.component";
 import { NavLink } from "react-router-dom";
 import Form from "react-validation/build/form";

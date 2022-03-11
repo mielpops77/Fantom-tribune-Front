@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import AuthService from "../../../services/auth.service";
+import AuthService from "../../../services/auth/auth.service";
 import "./Navigation.scss";
 
 const Navigation = () => {
@@ -74,8 +74,6 @@ const Navigation = () => {
             </li>
 
           </div>
-
-
         ) : (
           <div className='navbar-nav ml-auto'>
             <NavLink to="/login" >
