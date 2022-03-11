@@ -1,6 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { MDBDataTableV5 } from 'mdbreact';
 import React, { useState, useEffect } from 'react';
+import "./TableauLaunch.scss";
 
 
 
@@ -26,13 +27,13 @@ const TableauLaunch = () => {
     console.log('postsArray', postsArray);
     postsArray.map((item, index) => {
       item._id = (
-        <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div>
+        <div>{item._id}</div>
       );
       item.image = (
-        <img style={{ height: "100%", width: "95px", float: "left" }} src={"http://localhost:3000/" + posts[index].image} />
+        <img src={"http://localhost:3000/" + posts[index].image} />
       );
       item.image = (
-        <img style={{ height: "100%", width: "95px", float: "left" }} src={"http://localhost:3000/" + posts[index].image} />
+        <img src={"http://localhost:3000/" + posts[index].image} />
       );
       userData.push(item);
     });
