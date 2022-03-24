@@ -25,7 +25,7 @@ const Navigation = () => {
     // eslint-disable-next-line react/style-prop-object
 
     <nav>
-      <div className='imgFond' src="http://localhost:3000/header.png" />
+      <img className='imgFond' src="http://localhost:3000/header.png" />
       <ul>
         <NavLink to="/" className={(nav) => (nav.isActive ? "nav-active" : "")}>
           <li>HOME</li>
@@ -58,21 +58,15 @@ const Navigation = () => {
 
 
         {currentUser ? (
-          <div className="divLogin">
-            <NavLink to="/profile" >
-
-              <li className="nav-item" id="usernameNav">{currentUser.username}</li>
-            </NavLink>
-
+          <div>
             <li className="logOut">
-              <a href="/login" className="nav-link" onClick={logOut}>
+              <a href="/login" className="hrefLogout" onClick={logOut}>
                 LogOut
               </a>
             </li>
-
           </div>
         ) : (
-          <div className='navbar-nav ml-auto'>
+          <div className='divLoginRegister'>
             <NavLink to="/login" >
 
               <li className="login">Login</li>
@@ -80,7 +74,7 @@ const Navigation = () => {
 
             <NavLink to="/register" >
 
-              <li className="login">register</li>
+              <li className="login">Register</li>
             </NavLink>
           </div>
         )}

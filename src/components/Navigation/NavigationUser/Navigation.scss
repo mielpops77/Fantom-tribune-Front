@@ -1,9 +1,8 @@
 @import "../../../styles/setting";
 
 .imgFond{
-  background-image: url("http://localhost:3000/header.png");
   position:fixed;
-  height: 100%;
+  height: auto;
   max-height: 86px;
   min-height: 10px;
   width: 100%;
@@ -45,7 +44,7 @@ ul {
 }
 
 a { 
-  margin: 2%;
+  margin: 1%;
 }
 
 li {
@@ -59,28 +58,30 @@ li {
   }
 }
 
-.divLogin{
+.divLoginRegister{
   display: flex;
-  justify-content:flex-end;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
 .login {
-  font-size: 0.9vw;
+  font-size: 0.8vw;
+  padding: 3%;
   text-align: center;
   color: #450ca0;
   background-color: #52fdfd;
   border-radius: 100px;
-  width: 100%;
+  height: auto;
+  width: 150%;
   max-width: 100px;
-  min-width: 90px;
+  min-width: 20px;
 }
 
 .logOut {
   font-size: 0.9vw;
   text-align: center;
-  color: black;
-  background-color: #ee5656;
+  background-color: #450ca0;
   border-radius: 100px;
   width: 100%;
   max-width: 100px;
@@ -89,9 +90,10 @@ li {
   margin-left: 20%;
 }
 
-#usernameNav {
-  margin-top: 4%;
+.hrefLogout{
+  color: #52fdfd;
 }
+
 
 .nav-active {
 
@@ -99,7 +101,6 @@ li {
     content: "";
     height: 4px;
     width: 0;
-    background: $color-1;
     position: absolute;
     border-radius: 10px;
     bottom: 0px;
