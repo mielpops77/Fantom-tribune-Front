@@ -1,13 +1,4 @@
-label{
-    color:#450ca0;
-    font-size: max(0.84vw, 11px);
-    width: 70%;
-    text-shadow: -0.05em 0.03em 0.25em #c7f5ca;
-    font-weight: 500;
-    font-family: 'Fira Sans', sans-serif;
-}
-
-.formulaireSubmit
+form
 {
     margin:0 auto;
     width: 70%;
@@ -17,17 +8,26 @@ label{
     align-items: center;
 }
 
+input{
+    display: flex;
+    background-color: #e6f5ff;
+}
+
+label{
+    display: flex;
+    flex-direction: column;
+    color:#450ca0;
+    font-size: max(0.84vw, 11px);
+    width: 80%;
+    text-shadow: -0.05em 0.03em 0.25em #c7f5ca;
+    font-weight: 500;
+    font-family: 'Fira Sans', sans-serif;
+}
+
 .FormLabel{
-    margin-left: 25%;
     margin-top: 10px;
     margin-bottom: 10px;
     width: 100%;
-}
-
-.FormInput
-{
-
-    margin-left: 10px;
 }
 
 #submitInput

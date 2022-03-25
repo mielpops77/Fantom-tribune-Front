@@ -83,6 +83,7 @@ function Formulaire() {
 
 
   return (
+
     <form className="formulaireSubmit" onSubmit={handleSubmit}>
       <label className="FormLabel">Name*:
 
@@ -100,7 +101,7 @@ function Formulaire() {
           name="symbol"
           value={inputs.symbol || ""}
           onChange={handleChange}
-        />
+        ></input>
       </label>
 
       <label className="FormLabel">LaunchDate*:
@@ -124,12 +125,12 @@ function Formulaire() {
 
       <label className="FormLabel">Description*:
 
-        <textarea className="FormInput"
+        <input className="FormInput"
           type="text"
           name="description"
           value={inputs.description || ""}
-          onChange={handleChange}>
-        </textarea>
+          onChange={handleChange}
+        />
       </label>
 
       <label className="FormLabel">Type*:

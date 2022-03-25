@@ -73,11 +73,10 @@ const Login = (props) => {
     };
 
     return (
-        <div>
+        <div className="divComp">
             <NavigationUserComponent />
-            <br /><br /><br /><br /><br /><br /><br />
             <div className='divCorSignIn'>
-                <Form onSubmit={handleLogin} ref={form} >
+                <Form onSubmit={handleLogin}  >
                     <h3 className='titleSignIn'>Login</h3>
                     <div className="form-group">
                         <label className='labeSignIn'>Email address</label>
