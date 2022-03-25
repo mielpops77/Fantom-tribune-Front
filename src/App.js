@@ -26,7 +26,7 @@ const App = () => {
           <Route path="/coinDetail/:" component={Welcome} />
           <Route path="/admin" component={Administration} />
           <Route path="/confirm/:confirmationCode" component={Welcome} />
-          <Route path="/infoCoin/:name" component={InfoCoin} />
+          <Route path="/infoCoin/:id" component={InfoCoin} />
 
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />

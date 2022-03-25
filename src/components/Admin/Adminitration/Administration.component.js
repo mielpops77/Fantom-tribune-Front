@@ -3,9 +3,6 @@ import { useEffect, useState } from "react";
 import { AiOutlineCheck, AiOutlineClose } from 'react-icons/ai';
 import { FaTrashRestore } from 'react-icons/fa';
 import {  BsTrash } from 'react-icons/bs';
-
-
-
 import { Menu } from 'semantic-ui-react'
 
 function Administration() {
