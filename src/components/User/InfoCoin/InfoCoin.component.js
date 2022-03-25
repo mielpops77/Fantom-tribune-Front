@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import NavigationUserComponent from '../../Navigation/NavigationUser/NavigationUser.component';
-
+import "./InfoCoin.scss"
 const InfoCoin = () => {
     const [posts, setPosts] = useState([]);
 
@@ -22,7 +22,7 @@ const InfoCoin = () => {
     let coin = []
 
     for (let i = 0; i < postsArray.length; i++) {
-        if (postsArray[i].id = id) {
+        if (postsArray[i]._id === id) {
             coin = postsArray[i];
         }
     }
@@ -30,10 +30,13 @@ const InfoCoin = () => {
     console.log('coin', coin);
     return (
 
-        <div >
+        <div>
             <NavigationUserComponent />
             <br /><br /><br />
-            <h1>ddddddddddd</h1>
+            <div className='divCorpCoin'>
+                <p className='test'>{coin.name}</p>
+                dsss
+            </div>
         </div>
     )
 }

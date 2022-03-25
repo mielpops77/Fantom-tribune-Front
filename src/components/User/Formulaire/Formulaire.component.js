@@ -3,13 +3,31 @@ import { useState } from "react";
 import ReactDOM from "react-dom";
 import axios from 'axios';
 import "./Formulaire.scss";
+import { MultiSelect } from "react-multi-select-component";
+
+
 
 function Formulaire() {
+  const [selected, setSelected] = useState([]);
+  let date = new Date()
+  let today = date.toISOString().split('T')[0];
 
+  const options = [
+    { label: "Dex", value: "Dex" },
+    { label: "Gaming", value: "Gaming" },
+    { label: "Nft", value: "Nft" },
+    { label: "Lending", value: "Lending" },
+    { label: "Algo-Stables", value: "Algo-Stables" },
+    { label: "Derivatives", value: "Derivatives" },
+    { label: "Yield Aggregatort", value: "Yield Aggregatort" },
+    { label: "Reflect token", value: "Reflect token" },
+    { label: "Yield", value: "Yield" },
+
+
+  ];
 
 
   const [inputs, setInputs] = useState({});
-
 
   const upload = () => {
     console.log('uploaaad');
@@ -45,17 +63,14 @@ function Formulaire() {
     setInputs(values => ({ ...values, [name]: value }))
   }
 
+
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    console.log("ssss", inputs.symbol);
-    /*     const input2 = document.querySelector("input[type=file]");
-        console.log('Le lien a été cliqué.',input2.files.item(0) ); */
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress, description: inputs.description, type: inputs.type,
+        name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress, description: inputs.description, type: selected,
         websiteLink: inputs.websiteLink, customChartLink: inputs.customChartLink, customSwapLink: inputs.customSwapLink,
         telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image
       })
@@ -65,12 +80,13 @@ function Formulaire() {
       .then(data => this.setState({ postId: data.id }));
   }
 
+
+
   return (
 
-
-
-    <form onSubmit={handleSubmit}>
+    <form className="formulaireSubmit" onSubmit={handleSubmit}>
       <label className="FormLabel">Name*:
+
 
         <input className="FormInput"
           type="text"
@@ -88,11 +104,12 @@ function Formulaire() {
         ></input>
       </label>
 
-      <label className="FormLabel">LaunchDate*: 
+      <label className="FormLabel">LaunchDate*:
         <input className="FormInput"
-          type="text"
+          type="date"
           name="launchDate"
-          value={inputs.launchDate || ""}
+          min={today}
+          value={inputs.launchDate || today}
           onChange={handleChange}
         />
       </label>
@@ -117,15 +134,15 @@ function Formulaire() {
       </label>
 
       <label className="FormLabel">Type*:
-        <input className="FormInput"
-          type="text"
-          name="type"
-          value={inputs.type || ""}
-          onChange={handleChange}
+        <MultiSelect
+          options={options}
+          value={selected}
+          hasSelectAll={false}
+          onChange={setSelected}
+          labelledBy="Select"
         />
 
       </label>
-
 
       <label className="FormLabel">Website link*:
         <input className="FormInput"
@@ -196,8 +213,8 @@ function Formulaire() {
       <button type="button" className="btn btn-secondary" onClick={upload}>Upload</button>
 
 
-      <input className="btn btn-primary btn-block" id="submitInput" type="submit"/>
-    </form>
+      <input className="btn btn-primary btn-block" id="submitInput" type="submit" />
+    </form >
   )
 }
 
