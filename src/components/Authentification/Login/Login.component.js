@@ -73,11 +73,11 @@ const Login = (props) => {
     };
 
     return (
-        <div className="divComp">
+        <div className='divComp'>
             <NavigationUserComponent />
             <div className='divCorSignIn'>
-                <Form onSubmit={handleLogin}  >
-                    <h3 className='titleSignIn'>Login</h3>
+                <Form className="divForm" onSubmit={handleLogin}  >
+                    <h3>Login</h3>
                     <div className="form-group">
                         <label className='labeSignIn'>Email address</label>
                         <Input type="email" className="form-control" name="mail" value={mail} onChange={onChangeMail} validations={[required]} placeholder="Enter email" />
@@ -109,17 +109,15 @@ const Login = (props) => {
                             </div>
                         </div>
                     )}
-                    <CheckButton style={{ display: "none" }} ref={checkBtn} />
+                    <CheckButton style={{ display:"none" }} ref={checkBtn} />
 
-                    <NavLink
-                        to="/register"
-                    >
-                        <button style={{ marginTop: "8px" }} id='noAccount' className="btn btn-primary btn-block">No Account? Register Here</button>
+                    <NavLink to="/register" className="register">
+                        <button id='noAccount' className="btn btn-primary btn-block">No Account? Register Here</button>
                     </NavLink>
 
 
                     <p className="forgot-password-text-righ">
-                        Forgot <a style={{ color: "#167bff" }} href="#">password?</a>
+                        Forgot <a className="link" style={{ color: "#167bff" }} href="#"> password?</a>
                     </p>
                 </Form>
             </div>

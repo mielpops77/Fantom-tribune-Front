@@ -1,29 +1,23 @@
 @import "../../../styles/setting";
 
 .divComp{
-    margin: 8% auto;
+    margin: 12% auto;
 }
+
 .divCorSignIn {
-    border-radius: 15px;
-    width: 40%;
+    margin: auto;
     background: #ffffff;
     box-shadow: 0px 14px 80px rgb(34 35 58 / 20%);
     border-radius: 15px;
+    padding: 2%;
     transition: all 0.3s;
 }
 
-form{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 400px;
-    
+.divForm{
+    width: 80%;
 }
 
-
-.titleSignIn {
-    text-align: center;
-    margin: 0;
+h3{
     color: #450ca0;
     line-height: 1;
     padding-bottom: 20px;
@@ -33,7 +27,6 @@ form{
 }
 
 .labeSignIn{
-
     display: inline-block;
     margin-bottom: 0.5rem;
     font-weight: 500;
@@ -59,13 +52,14 @@ form{
 
 .form-group
 {
-
     margin-bottom: 1rem;
+    width:100%;
 }
 
 .forgot-password-text-righ
 {
-    text-align: right!important;
+    display: flex;
+    align-items: center;
 }
 #buttonSubmitSignIn
 {
@@ -94,16 +88,8 @@ form{
     margin: 0;
 }
 
-
-#noAccount
-{
-    
-    font-weight: 400;
-    display: block;
-    width: 50%;
-    line-height: 1.5;
-    text-align: center;
-    text-decoration: none;
-    margin: 0;
-    font-family: inherit;
+.register{
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
