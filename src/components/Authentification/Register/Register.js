@@ -107,14 +107,13 @@ const Register = (props) => {
     };
 
     return (
-        <div>
+        <div className='divComp'>
             <NavigationUserComponent />
-            <br /><br /><br /><br /><br /><br /><br />
             <div className='divCorSignIn'>
-                <Form onSubmit={handleRegister} ref={form}>
+                <Form onSubmit={handleRegister} ref={form} >
                     {!successful && (
-                        <div>
-                            <h3 className='titleSignIn'>Register</h3>
+                        <div className="divForm">
+                            <h3>Register</h3>
                             <div className="form-group">
                                 <label className='labeSignIn'>Username</label>
                                 <Input type="text"

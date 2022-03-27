@@ -149,7 +149,6 @@ const TableauLaunch = () => {
 
   return (
     <div className="container">
-
       <table className="table table-striped table-hover">
         <thead>
           <tr>
