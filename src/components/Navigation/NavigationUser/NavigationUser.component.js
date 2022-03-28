@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import AuthService from "../../../services/auth/auth.service";
-import "./Navigation.scss";
+import style from "./NavigationUser.module.scss";
 
 const Navigation = () => {
 
@@ -25,7 +25,7 @@ const Navigation = () => {
     // eslint-disable-next-line react/style-prop-object
 
     <nav>
-      <img className='imgFond' src="http://localhost:3000/header.png" />
+      <img className={style.imgFond} src="http://localhost:3000/header.png" />
       <ul>
         <NavLink to="/" className={(nav) => (nav.isActive ? "nav-active" : "")}>
           <li>HOME</li>
@@ -59,22 +59,22 @@ const Navigation = () => {
 
         {currentUser ? (
           <div>
-            <li className="logOut">
-              <a href="/login" className="hrefLogout" onClick={logOut}>
+            <li className={style.logOut}>
+              <a href="/login" className={style.hrefLogout} onClick={logOut}>
                 LogOut
               </a>
             </li>
           </div>
         ) : (
-          <div className='divLoginRegister'>
+          <div className={style.divLoginRegister}>
             <NavLink to="/login" >
 
-              <li className="login">Login</li>
+              <li className={style.login}>Login</li>
             </NavLink>
 
             <NavLink to="/register" >
 
-              <li className="login">Register</li>
+              <li className={style.login}>Register</li>
             </NavLink>
           </div>
         )}

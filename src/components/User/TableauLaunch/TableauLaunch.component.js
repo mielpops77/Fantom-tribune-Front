@@ -1,7 +1,7 @@
 import TableLaunchService from '../../../services/tableauLaunh/tableauLaunch.service'
 import React, { useState, useEffect } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./TableauLaunch.scss";
+import style from "./TableauLaunch.module.scss";
 import { useHistory } from 'react-router-dom';
 
 
@@ -148,7 +148,7 @@ const TableauLaunch = () => {
 
 
   return (
-    <div className="container">
+    <div className={style.container}>
       <table className="table table-striped table-hover">
         <thead>
           <tr>
@@ -177,12 +177,12 @@ const TableauLaunch = () => {
 
       </table>
 
-      <div className="paginationLaunchDate">
+      <div className={style.paginationLaunchDate}>
 
         <a className={pagination.pageActuel > 1 ? "" : "disable"} onClick={previous}>❮</a>
         <a className={pagination.pageActuel < TableLaunchService.totalPage ? "" : "disable"} onClick={next}>❯</a>
       </div>
-      <span className='paginationPageActuel'>1 - {TableLaunchService.totalPage} of {pagination.pageActuel}</span>
+      <span className={style.paginationPageActuel}>1 - {TableLaunchService.totalPage} of {pagination.pageActuel}</span>
 
     </div >
   );
