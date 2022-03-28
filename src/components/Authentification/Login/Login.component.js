@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-import "./Login.scss";
+import style from "./Login.module.scss";
 
 
 const required = (value) => {
@@ -73,27 +73,27 @@ const Login = (props) => {
     };
 
     return (
-        <div className="divComp">
+        <div className={style.divComp}>
             <NavigationUserComponent />
-            <div className='divCorSignIn'>
-                <Form onSubmit={handleLogin}  >
-                    <h3 className='titleSignIn'>Login</h3>
-                    <div className="form-group">
-                        <label className='labeSignIn'>Email address</label>
-                        <Input type="email" className="form-control" name="mail" value={mail} onChange={onChangeMail} validations={[required]} placeholder="Enter email" />
+            <div className={style.divCorSignIn}>
+                <Form className={style.divForm} onSubmit={handleLogin}  >
+                    <h3>Login</h3>
+                    <div className={style.formGroup}>
+                        <label className={style.labeSignIn}>Email address</label>
+                        <Input type="email" className={style.formControl} name="mail" value={mail} onChange={onChangeMail} validations={[required]} placeholder="Enter email" />
                     </div>
-                    <div className="form-group">
-                        <label className='labeSignIn'>Password</label>
-                        <Input type="password" className="form-control" placeholder="Enter password" name="password" value={password} onChange={onChangePassword} validations={[required]} />
+                    <div className={style.formGroup}>
+                        <label className={style.labeSignIn}>Password</label>
+                        <Input type="password" className={style.formControl} placeholder="Enter password" name="password" value={password} onChange={onChangePassword} validations={[required]} />
                     </div>
-                    <div className="form-group">
+                    <div className={style.formGroup}>
                         <div className="custom-control custom-checkbox">
-                            <Input type="checkbox" className="custom-control-input" id="customCheck1" />
+                            <Input type="checkbox" className={style.customControlInput} id="customCheck1" />
                             <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
                         </div>
                     </div>
 
-                    <div className="form-group">
+                    <div className={style.formGroup}>
                         <button id='buttonSubmitSignIn' className="btn btn-success btn-block" disabled={loading}>
                             {loading && (
                                 <span className="spinner-border spinner-border-sm"></span>
@@ -103,23 +103,21 @@ const Login = (props) => {
                     </div>
 
                     {message && (
-                        <div className="form-group">
+                        <div className={style.formGroup}>
                             <div className="alert alert-danger" role="alert">
                                 {message}
                             </div>
                         </div>
                     )}
-                    <CheckButton style={{ display: "none" }} ref={checkBtn} />
+                    <CheckButton style={{ display:"none" }} ref={checkBtn} />
 
-                    <NavLink
-                        to="/register"
-                    >
-                        <button style={{ marginTop: "8px" }} id='noAccount' className="btn btn-primary btn-block">No Account? Register Here</button>
+                    <NavLink to="/register" className={style.register}>
+                        <button id='noAccount' className="btn btn-primary btn-block">No Account? Register Here</button>
                     </NavLink>
 
 
-                    <p className="forgot-password-text-righ">
-                        Forgot <a style={{ color: "#167bff" }} href="#">password?</a>
+                    <p className={style.forgotPassword}>
+                        Forgot <a className={style.link} style={{ color: "#167bff" }} href="#"> password?</a>
                     </p>
                 </Form>
             </div>

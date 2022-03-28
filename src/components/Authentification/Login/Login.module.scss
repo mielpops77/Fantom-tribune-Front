@@ -1,0 +1,71 @@
+@import "../../../styles/setting";
+
+.divComp{
+    margin: 12% auto;
+}
+
+.divCorSignIn {
+    display: flex;
+    transition: all 0.3s;
+    padding: 2%;
+}
+
+.divForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}   
+
+h3{
+    color: #450ca0;
+    padding-bottom: 20px;
+    font-family: "Fira Sans", sans-serif;
+}
+
+.labeSignIn{
+    margin-bottom: 0.5rem;
+    font-family: 'Fira Sans', sans-serif;
+}
+
+.formGroup
+{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5%;
+    width:80%;
+}
+
+
+
+#buttonSubmitSignIn
+{
+    margin: 0 auto;
+    width: 35%;
+}
+
+
+.customControlInput
+{
+    font-family: 'Fira Sans', sans-serif;
+    margin-right: 5px;
+}
+
+.custom-control{
+    display: flex;
+}
+
+.custom-control-label{
+    width: 100%;
+    margin-bottom:10px;
+}
+
+.forgotPassword
+{
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    padding-top: 10px;
+    color: #7f7d7d;
+    margin: 0;
+}

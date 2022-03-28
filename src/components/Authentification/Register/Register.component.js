@@ -1,5 +1,5 @@
 import '../../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import NavigationUserComponent from '../../../components/Navigation/NavigationUser/NavigationUser.component';
+import NavigationUserComponent from '../../Navigation/NavigationUser/NavigationUser.component';
 import React, { useState, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import Form from "react-validation/build/form";
@@ -7,7 +7,7 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 import AuthService from "../../../services/auth/auth.service";
-import "./Register.scss";
+import style from "./Register.module.scss";
 
 
 const required = (value) => {
@@ -107,45 +107,44 @@ const Register = (props) => {
     };
 
     return (
-        <div>
+        <div className={style.divComp}>
             <NavigationUserComponent />
-            <br /><br /><br /><br /><br /><br /><br />
-            <div className='divCorSignIn'>
-                <Form onSubmit={handleRegister} ref={form}>
+            <div className={style.divCorSignIn}>
+                <Form onSubmit={handleRegister} ref={form} >
                     {!successful && (
-                        <div>
-                            <h3 className='titleSignIn'>Register</h3>
-                            <div className="form-group">
-                                <label className='labeSignIn'>Username</label>
+                        <div className={style.divForm}>
+                            <h3>Register</h3>
+                            <div className={style.formGroup}>
+                                <label className={style.labeSignIn}>Username</label>
                                 <Input type="text"
-                                    className="form-control"
+                                    className={style.formControl}
                                     name="username"
                                     value={username}
                                     onChange={onChangeUsername}
                                     validations={[required, vusername]} placeholder="Enter Username" />
                             </div>
 
-                            <div className="form-group">
-                                <label className='labeSignIn'>Email address</label>
+                            <div className={style.formGroup}>
+                                <label className={style.labeSignIn}>Email address</label>
                                 <Input type="email"
-                                    className="form-control"
+                                    className={style.formControl}
                                     name="email"
                                     value={email}
                                     onChange={onChangeEmail}
                                     validations={[required, validEmail]} placeholder="Enter email" />
                             </div>
-                            <div className="form-group">
-                                <label className='labeSignIn'>Password</label>
+                            <div className={style.formGroup}>
+                                <label className={style.labeSignIn}>Password</label>
                                 <Input type="password"
-                                    className="form-control"
+                                    className={style.formControl}
                                     name="password"
                                     value={password}
                                     onChange={onChangePassword}
                                     validations={[required, vpassword]} placeholder="Enter password" />
                             </div>
-                            <div className="form-group">
+                            <div className={style.formGroup}>
                                 <div className="custom-control custom-checkbox">
-                                    <Input type="checkbox" className="custom-control-input" id="customCheck1" />
+                                    <Input type="checkbox" className={style.customControlInput} id="customCheck1" />
                                     <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
                                 </div>
 
@@ -153,7 +152,7 @@ const Register = (props) => {
                             </div>
                         </div>)}
                     {message && (
-                        <div className="form-group">
+                        <div className={style.formGroup}>
                             <div
                                 className={
                                     successful ? "alert alert-success" : "alert alert-danger"
@@ -166,7 +165,7 @@ const Register = (props) => {
                     )}
                     <CheckButton style={{ display: "none" }} ref={checkBtn} />
 
-                    <NavLink to="/login"><p className="forgot-password-text-righ">
+                    <NavLink to="/login"><p className={style.forgotPassword}>
                         Already registered? <a style={{ color: "#167bff" }} href="#"> Login here</a>
                     </p></NavLink>
 

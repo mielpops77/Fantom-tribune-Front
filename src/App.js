@@ -4,7 +4,7 @@ import Home from './pages/user/Home';
 import LaunchDate from './pages/user/LaunchDate';
 import Submit from './pages/user/Submit/Submit'
 import Login from './components/Authentification/Login/Login.component';
-import Register from './components/Authentification/Register/Register';
+import Register from './components/Authentification/Register/Register.component';
 import Administration from './pages/admin/Administration';
 import Welcome from "./components/Authentification/Welcome";
 import Profile from "./components/Authentification/Profile";

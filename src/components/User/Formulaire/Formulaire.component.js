@@ -2,7 +2,7 @@
 import { useState } from "react";
 import ReactDOM from "react-dom";
 import axios from 'axios';
-import "./Formulaire.scss";
+import style from "./Formulaire.module.scss";
 import { MultiSelect } from "react-multi-select-component";
 
 
@@ -84,19 +84,17 @@ function Formulaire() {
 
   return (
 
-    <form className="formulaireSubmit" onSubmit={handleSubmit}>
-      <label className="FormLabel">Name*:
-
-
-        <input className="FormInput"
+    <form className={style.formulaireSubmit} onSubmit={handleSubmit}>
+      <label className={style.FormLabel}>Name*:
+        <input className={style.FormInput}
           type="text"
           name="name"
           value={inputs.name || ""}
           onChange={handleChange}
         />
       </label>
-      <label className="FormLabel">Symbol*:
-        <input className="FormInput"
+      <label className={style.FormLabel}>Symbol*:
+        <input className={style.FormInput}
           type="text"
           name="symbol"
           value={inputs.symbol || ""}
@@ -104,8 +102,8 @@ function Formulaire() {
         ></input>
       </label>
 
-      <label className="FormLabel">LaunchDate*:
-        <input className="FormInput"
+      <label className={style.FormLabel}>LaunchDate*:
+        <input className={style.FormInput}
           type="date"
           name="launchDate"
           min={today}
@@ -113,8 +111,8 @@ function Formulaire() {
           onChange={handleChange}
         />
       </label>
-      <label className="FormLabel">Contract Address*:
-        <input className="FormInput"
+      <label className={style.FormLabel}>Contract Address*:
+        <input className={style.FormInput}
           type="text"
           name="contractAddress"
           value={inputs.contractAddress || ""}
@@ -123,9 +121,8 @@ function Formulaire() {
 
       </label>
 
-      <label className="FormLabel">Description*:
-
-        <input className="FormInput"
+      <label className={style.FormLabel}>Description*:
+        <input className={style.FormInput}
           type="text"
           name="description"
           value={inputs.description || ""}
@@ -133,7 +130,7 @@ function Formulaire() {
         />
       </label>
 
-      <label className="FormLabel">Type*:
+      <label className={style.FormLabel}>Type*:
         <MultiSelect
           options={options}
           value={selected}
@@ -144,8 +141,8 @@ function Formulaire() {
 
       </label>
 
-      <label className="FormLabel">Website link*:
-        <input className="FormInput"
+      <label className={style.FormLabel}>Website link*:
+        <input className={style.FormInput}
           type="text"
           name="websiteLink"
           value={inputs.websiteLink || ""}
@@ -153,8 +150,8 @@ function Formulaire() {
         </input>
       </label>
 
-      <label className="FormLabel">Custom chart link:
-        <input className="FormInput"
+      <label className={style.FormLabel}>Custom chart link:
+        <input className={style.FormInput}
           type="text"
           name="customChartLink"
           value={inputs.customChartLink || ""}
@@ -163,8 +160,8 @@ function Formulaire() {
       </label>
 
 
-      <label className="FormLabel">Custom swap link:
-        <input className="FormInput"
+      <label className={style.FormLabel}>Custom swap link:
+        <input className={style.FormInput}
           type="text"
           name="customSwapLink"
           value={inputs.customSwapLink || ""}
@@ -172,8 +169,8 @@ function Formulaire() {
         </input>
       </label>
 
-      <label className="FormLabel">Telegram link:
-        <input className="FormInput"
+      <label className={style.FormLabel}>Telegram link:
+        <input className={style.FormInput}
           type="text"
           name="telegram"
           value={inputs.telegram || ""}
@@ -182,8 +179,8 @@ function Formulaire() {
       </label>
 
 
-      <label className="FormLabel">Twitter link:
-        <input className="FormInput"
+      <label className={style.FormLabel}>Twitter link:
+        <input className={style.FormInput}
           type="text"
           name="twitter"
           value={inputs.twitter || ""}
@@ -192,8 +189,8 @@ function Formulaire() {
       </label>
 
 
-      <label className="FormLabel">Discord link:
-        <input className="FormInput"
+      <label className={style.FormLabel}>Discord link:
+        <input className={style.FormInput}
           type="text"
           name="discord"
           value={inputs.discord || ""}
@@ -201,8 +198,8 @@ function Formulaire() {
         </input>
       </label>
 
-      <label className="FormLabel">Logo:
-        <input className="FormInput"
+      <label className={style.FormLabel}>Logo:
+        <input className={style.FormInput}
           type="file"
           name="image"
           value={inputs.image || ""}
