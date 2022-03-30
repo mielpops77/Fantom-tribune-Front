@@ -3,26 +3,34 @@ table tbody tr td NavLink {
   width: 100%;
   height: 100%;
 }
+
 td {
   vertical-align: middle;
 }
-div {
+
+.container {
+  margin: 5% auto;
   font-size: 1vw;
+  width: 80%;
 }
 
-.container{
-  margin: 3% auto;
-}
 img {
-  height: 100%;
   width: 100%;
-  max-width: 95px;
-  min-width: 20px;
+  max-width: 100px;
+  min-width: 30px;
+  height: auto;
+  max-height: 100px;
+  min-height: 30px;
   float: left;
+  object-fit: cover;
 }
-.paginationLaunchDate {
-  display: inline-block;
-  background-color: white;
+
+.paginationLaunchDate{
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: auto;
+  height: auto;
 }
 
 .paginationLaunchDate a {
@@ -32,16 +40,19 @@ img {
   text-decoration: none;
   transition: background-color 0.3s;
   border: 1px solid #ddd;
+
 }
 
 .paginationLaunchDate a.active {
   background-color: #4caf50;
   color: white;
   border: 1px solid #4caf50;
+
 }
 
 .paginationLaunchDate a:hover:not(.active) {
   background-color: #ddd;
+  
 }
 
 .disable {

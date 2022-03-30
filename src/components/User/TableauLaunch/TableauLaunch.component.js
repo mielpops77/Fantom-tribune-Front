@@ -2,6 +2,7 @@ import TableLaunchService from '../../../services/tableauLaunh/tableauLaunch.ser
 import React, { useState, useEffect } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import style from "./TableauLaunch.module.scss";
+import pagination from "./TableauLaunch.module.scss";
 import { useHistory } from 'react-router-dom';
 
 
@@ -163,7 +164,7 @@ const TableauLaunch = () => {
           {database.rows?.map((row, index) => (
             <tr key={index} onClick={() => history.push(`/infoCoin/${row.id}`)} style={{ cursor: 'pointer' }} >
               <td ></td>
-              <td value={row.id} > <img style={{ height: "100px", width: "100px" }} src={row.image.props.src} /> </td>
+              <td value={row.id} > <img src={row.image.props.src} /> </td>
               <td>{row.name}</td>
               <td>
                 {row.symbol}</td>

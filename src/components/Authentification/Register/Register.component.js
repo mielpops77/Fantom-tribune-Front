@@ -107,7 +107,7 @@ const Register = (props) => {
     };
 
     return (
-        <div className={style.divComp}>
+        <div>
             <NavigationUserComponent />
             <div className={style.divCorSignIn}>
                 <Form onSubmit={handleRegister} ref={form} >
@@ -142,14 +142,13 @@ const Register = (props) => {
                                     onChange={onChangePassword}
                                     validations={[required, vpassword]} placeholder="Enter password" />
                             </div>
-                            <div className={style.formGroup}>
-                                <div className="custom-control custom-checkbox">
+                            <div className={style.formCheckbox}>
+                                <div className={style.controlCheckbox}>
                                     <Input type="checkbox" className={style.customControlInput} id="customCheck1" />
-                                    <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
+                                    <label className={style.customControlLabel} htmlFor="customCheck1">Remember me</label>
                                 </div>
-
-                                <button type="submit" id='buttonSubmitSignIn' className="btn btn-primary btn-block">Submit</button>
                             </div>
+                            <button type="submit" id={style.buttonSubmitSignIn} className="btn btn-success btn-block">Submit</button>
                         </div>)}
                     {message && (
                         <div className={style.formGroup}>
@@ -164,13 +163,9 @@ const Register = (props) => {
                         </div>
                     )}
                     <CheckButton style={{ display: "none" }} ref={checkBtn} />
-
-                    <NavLink to="/login"><p className={style.forgotPassword}>
-                        Already registered? <a style={{ color: "#167bff" }} href="#"> Login here</a>
-                    </p></NavLink>
-
-
-
+                    <NavLink to="/login" className={style.forgotPassword}>
+                        <button id='loginHere' className="btn btn-primary btn-block">Already register? Login here</button>
+                    </NavLink>
                 </Form>
             </div>
         </div>

@@ -73,10 +73,10 @@ const Login = (props) => {
     };
 
     return (
-        <div className={style.divComp}>
+        <div>
             <NavigationUserComponent />
             <div className={style.divCorSignIn}>
-                <Form className={style.divForm} onSubmit={handleLogin}  >
+                <Form onSubmit={handleLogin}  >
                     <h3>Login</h3>
                     <div className={style.formGroup}>
                         <label className={style.labeSignIn}>Email address</label>
@@ -86,15 +86,15 @@ const Login = (props) => {
                         <label className={style.labeSignIn}>Password</label>
                         <Input type="password" className={style.formControl} placeholder="Enter password" name="password" value={password} onChange={onChangePassword} validations={[required]} />
                     </div>
-                    <div className={style.formGroup}>
-                        <div className="custom-control custom-checkbox">
+                    <div className={style.formCheckbox}>
+                        <div className={style.controlCheckbox}>
                             <Input type="checkbox" className={style.customControlInput} id="customCheck1" />
-                            <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
+                            <label className={style.customControlLabel} htmlFor="customCheck1">Remember me</label>
                         </div>
                     </div>
 
-                    <div className={style.formGroup}>
-                        <button id='buttonSubmitSignIn' className="btn btn-success btn-block" disabled={loading}>
+                    <div className={style.loginButton}>
+                        <button id={style.buttonSubmitSignIn} className="btn btn-success btn-block" disabled={loading}>
                             {loading && (
                                 <span className="spinner-border spinner-border-sm"></span>
                             )}
@@ -114,8 +114,7 @@ const Login = (props) => {
                     <NavLink to="/register" className={style.register}>
                         <button id='noAccount' className="btn btn-primary btn-block">No Account? Register Here</button>
                     </NavLink>
-
-
+                    
                     <p className={style.forgotPassword}>
                         Forgot <a className={style.link} style={{ color: "#167bff" }} href="#"> password?</a>
                     </p>
