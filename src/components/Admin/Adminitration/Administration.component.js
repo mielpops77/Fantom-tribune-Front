@@ -1,12 +1,13 @@
 import { MDBDataTableV5 } from 'mdbreact';
 import { useEffect, useState } from "react";
-import { AiOutlineCheck, AiOutlineClose } from 'react-icons/ai';
+import { AiOutlineCheck, AiOutlineClose, AiFillEdit } from 'react-icons/ai';
 import { FaTrashRestore } from 'react-icons/fa';
-import {  BsTrash } from 'react-icons/bs';
+import { BsTrash } from 'react-icons/bs';
 import { Menu } from 'semantic-ui-react'
+import { useHistory } from 'react-router-dom';
 
 function Administration() {
-    
+
     const [posts, setPosts] = useState([]);
     const [usersForRender, setUsersForRender] = useState([]);
     const [toggle, setToggle] = useState(true);
@@ -14,6 +15,7 @@ function Administration() {
     const [toggle3, setToggle3] = useState(false);
 
 
+    const history = useHistory();
 
     let changeStyle = (btn) => {
 
@@ -88,7 +90,6 @@ function Administration() {
                     return o._id === postId;
                 });
                 if (postIndex !== -1) {
-                    console.log('??????????')
                     setPosts(posts.filter((item) => item.id != postId));
                     getTrash();
                 }
@@ -137,6 +138,11 @@ function Administration() {
                         cursor: "pointer",
                         color: "red",
                     }} onClick={() => validProject(posts[index]._id, false, true)} />}
+
+                    {toggle && <AiFillEdit size={32} style={{
+                        cursor: "pointer",
+                        color: "blue",
+                    }} onClick={() => history.push(`/editionCoin/${posts[index]._id}`)} />}
 
                     {toggle2 && <AiOutlineClose size={32} style={{
                         cursor: "pointer",

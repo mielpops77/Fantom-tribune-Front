@@ -9,6 +9,8 @@ import Administration from './pages/admin/Administration';
 import Welcome from "./components/Authentification/Welcome";
 import Profile from "./components/Authentification/Profile";
 import InfoCoin from "./components/User/InfoCoin/InfoCoin.component";
+import EditionCoin from "./components/Admin/Adminitration/Edition";
+
 
 
 
@@ -27,7 +29,7 @@ const App = () => {
           <Route path="/admin" component={Administration} />
           <Route path="/confirm/:confirmationCode" component={Welcome} />
           <Route path="/infoCoin/:id" component={InfoCoin} />
-
+          <Route path="/editionCoin/:id" component={EditionCoin} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/submit" component={Submit} />
