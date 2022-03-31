@@ -132,6 +132,7 @@ function Formulaire() {
 
       <label className={style.formLabel}>Type*:
         <MultiSelect
+          className={style.multiSelect}
           options={options}
           value={selected}
           hasSelectAll={false}

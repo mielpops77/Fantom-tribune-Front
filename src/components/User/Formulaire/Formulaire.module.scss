@@ -39,6 +39,12 @@ label{
     width: 100%;
 }
 
+.multiSelect{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 #submitInput
 {
     margin-top: 20px;
