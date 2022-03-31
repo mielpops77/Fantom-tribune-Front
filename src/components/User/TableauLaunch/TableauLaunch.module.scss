@@ -1,3 +1,9 @@
+.container {
+  margin: 5% auto;
+  font-size: 120%;
+  width: 80%;
+}
+
 table tbody tr td NavLink {
   display: block;
   width: 100%;
@@ -6,12 +12,6 @@ table tbody tr td NavLink {
 
 td {
   vertical-align: middle;
-}
-
-.container {
-  margin: 5% auto;
-  font-size: 1vw;
-  width: 80%;
 }
 
 img {
@@ -40,19 +40,17 @@ img {
   text-decoration: none;
   transition: background-color 0.3s;
   border: 1px solid #ddd;
-
+  margin: 0.3%;
 }
 
 .paginationLaunchDate a.active {
   background-color: #4caf50;
   color: white;
   border: 1px solid #4caf50;
-
 }
 
 .paginationLaunchDate a:hover:not(.active) {
   background-color: #ddd;
-  
 }
 
 .disable {
@@ -61,7 +59,6 @@ img {
 }
 
 .paginationPageActuel {
-  float: right;
   margin-top: 1%;
   margin-right: 1%;
 }

@@ -179,12 +179,11 @@ const TableauLaunch = () => {
       </table>
 
       <div className={style.paginationLaunchDate}>
-
+        <span className={style.paginationPageActuel}>1 - {TableLaunchService.totalPage} of {pagination.pageActuel}</span>
         <a className={pagination.pageActuel > 1 ? "" : "disable"} onClick={previous}>❮</a>
         <a className={pagination.pageActuel < TableLaunchService.totalPage ? "" : "disable"} onClick={next}>❯</a>
       </div>
-      <span className={style.paginationPageActuel}>1 - {TableLaunchService.totalPage} of {pagination.pageActuel}</span>
-
+      
     </div >
   );
 }

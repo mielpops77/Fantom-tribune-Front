@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from './pages/user/Home';
 import LaunchDate from './pages/user/LaunchDate';
-import Submit from './pages/user/Submit/Submit'
+import Submit from './pages/user/Submit/Submit.component'
 import Login from './components/Authentification/Login/Login.component';
 import Register from './components/Authentification/Register/Register.component';
 import Administration from './pages/admin/Administration';
