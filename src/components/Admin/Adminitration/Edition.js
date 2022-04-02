@@ -25,15 +25,15 @@ const Edition = () => {
 
     ];
 
+    console.log('ooooooo')
 
     const [inputs, setInputs] = useState({});
 
     const upload = () => {
-        console.log('uploaaad');
+
         const inputImg = document.querySelector("input[type=file]");
         let fileCount = inputImg.files.length;
         if (fileCount > 0) {
-
 
             console.log(" inputImg.files.item(0)", inputImg.files.item(0))
             let formData = new FormData();
@@ -88,8 +88,20 @@ const Edition = () => {
             .then((res) => res.json())
             .then((res) => {
                 setPosts(res);
+                let listType = JSON.parse(JSON.stringify(res));
+                for (let i = 0; i < listType.length; i++) {
+                    if (listType[i]._id === id) {
+                        console.log(listType[i].type)
+                        console.log('selected',selected)
+                        setSelected([listType[i].type][0]);
+                    }
+
+
+                }
+
             });
     }, []);
+
 
     let postsArray = JSON.parse(JSON.stringify(posts));
     let coin = []
@@ -98,6 +110,8 @@ const Edition = () => {
         if (postsArray[i]._id === id) {
             coin = postsArray[i];
         }
+
+
     }
 
     return (
@@ -157,10 +171,10 @@ const Edition = () => {
                 <label className="FormLabel">Type*:
                     <MultiSelect
                         options={options}
-                        value={selected || coin.type.value}
+                        value={selected}
                         hasSelectAll={false}
                         onChange={setSelected}
-                        labelledBy="Select"
+                        labelledBy="Select Type"
                     />
 
                 </label>
