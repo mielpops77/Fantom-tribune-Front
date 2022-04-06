@@ -7,7 +7,7 @@ import Login from './components/Authentification/Login/Login.component';
 import Register from './components/Authentification/Register/Register.component';
 import Administration from './pages/admin/Administration';
 import Welcome from "./components/Authentification/Welcome";
-import Profile from "./components/Authentification/Profile";
+import Profile from "./components/Authentification/Profile/Profile";
 import InfoCoin from "./components/User/InfoCoin/InfoCoin.component";
 
 

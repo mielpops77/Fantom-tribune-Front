@@ -200,7 +200,7 @@ function Formulaire() {
       </label>
 
       <label className={style.formLabel}>Logo:
-        <input className={style.formInputLogo}
+        <input
           type="file"
           name="image"
           value={inputs.image || ""}
@@ -208,10 +208,10 @@ function Formulaire() {
           accept="image/png, image/jpeg">
         </input>
       </label>
-      <button type="button" className="btn btn-secondary" onClick={upload}>Upload</button>
+      <button type="button" className={style.greenButton} onClick={upload}>Upload your picture</button>
 
 
-      <input className="btn btn-primary btn-block" id="submitInput" type="submit" />
+      <input className={style.blueButton} type="submit" />
     </form >
   )
 }

@@ -148,7 +148,7 @@ const Register = (props) => {
                                     <label className={style.customControlLabel} htmlFor="customCheck1">Remember me</label>
                                 </div>
                             </div>
-                            <button type="submit" id={style.buttonSubmitSignIn} className="btn btn-success btn-block">Submit</button>
+                            <button type="submit" className={style.greenButton}>Submit</button>
                         </div>)}
                     {message && (
                         <div className={style.formGroup}>
@@ -164,7 +164,7 @@ const Register = (props) => {
                     )}
                     <CheckButton style={{ display: "none" }} ref={checkBtn} />
                     <NavLink to="/login" className={style.forgotPassword}>
-                        <button id='loginHere' className="btn btn-primary btn-block">Already register? Login here</button>
+                        <button className={style.blueButton}>Already register? Login here</button>
                     </NavLink>
                 </Form>
             </div>

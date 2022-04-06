@@ -26,44 +26,42 @@ const Navigation = () => {
 
     <nav>
       <img className={style.imgFond} src="http://localhost:3000/header.png" />
-      <ul>
+      <ul className={style.ulNavUser}>
         <NavLink to="/" className={(nav) => (nav.isActive ? "nav-active" : "")}>
-          <li>HOME</li>
+          <li className={style.liNavUser}>HOME</li>
         </NavLink>
         <NavLink
           to="/launchDate"
           className={(nav) => (nav.isActive ? "nav-active" : "")}
         >
-          <li>LAUNCH DATE</li>
+          <li className={style.liNavUser}>LAUNCH DATE</li>
         </NavLink>
         <NavLink
           to="/submit"
           className={(nav) => (nav.isActive ? "nav-active" : "")}
         >
-          <li>SUBMIT PROJECT</li>
+          <li className={style.liNavUser}>SUBMIT PROJECT</li>
         </NavLink>
 
         <NavLink
           to="/"
           className={(nav) => (nav.isActive ? "nav-active" : "")}
         >
-          <li>GUIDES</li>
+          <li className={style.liNavUser}>GUIDES</li>
         </NavLink>
         <NavLink
           to="/admin"
           className={(nav) => (nav.isActive ? "nav-active" : "")}
         > {showAdminBoard && (
-          <li>Admin</li>)}
+          <li className={style.liNavUser}>Admin</li>)}
         </NavLink>
 
 
         {currentUser ? (
-          <div>
-            <li className={style.logOut}>
-              <a href="/login" className={style.hrefLogout} onClick={logOut}>
+          <div className={style.divLoginRegister}>
+              <a href="/login" className={style.logOut} onClick={logOut}>
                 LogOut
               </a>
-            </li>
           </div>
         ) : (
           <div className={style.divLoginRegister}>

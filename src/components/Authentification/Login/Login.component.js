@@ -94,7 +94,7 @@ const Login = (props) => {
                     </div>
 
                     <div className={style.loginButton}>
-                        <button id={style.buttonSubmitSignIn} className="btn btn-success btn-block" disabled={loading}>
+                        <button className={style.greenButton} disabled={loading}>
                             {loading && (
                                 <span className="spinner-border spinner-border-sm"></span>
                             )}
@@ -112,7 +112,7 @@ const Login = (props) => {
                     <CheckButton style={{ display:"none" }} ref={checkBtn} />
 
                     <NavLink to="/register" className={style.register}>
-                        <button id='noAccount' className="btn btn-primary btn-block">No Account? Register Here</button>
+                        <button className={style.blueButton}>No Account? Register Here</button>
                     </NavLink>
                     
                     <p className={style.forgotPassword}>
