@@ -1,6 +1,7 @@
 import React from "react";
-import AuthService from "../../services/auth/auth.service";
-import NavigationUserComponent from '../Navigation/NavigationUser/NavigationUser.component';
+import AuthService from "../../../services/auth/auth.service";
+import NavigationUserComponent from '../../Navigation/NavigationUser/NavigationUser.component';
+import style from "./Profile.module.scss";
 
 
 const Profile = (props) => {
@@ -13,9 +14,8 @@ const Profile = (props) => {
   return (
     <div >
       <NavigationUserComponent />
-      <div className="container">
-        <br /><br /><br />
-        <header className="jumbotron">
+      <div className={style.container}>
+        <header className={style.jumbotron}>
           <h3>
             <strong>{currentUser.username}</strong> Profile
           </h3>
@@ -34,7 +34,7 @@ const Profile = (props) => {
           <strong>Status:</strong> {currentUser.status}
         </p>
         <strong>Authorities:</strong>
-        <ul>
+        <ul className={style.ulProfile}>
           {currentUser.roles &&
             currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
         </ul>

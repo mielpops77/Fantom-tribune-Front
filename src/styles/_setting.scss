@@ -21,11 +21,8 @@ body {
 li {
   list-style-type: none;
 }
+
 a {
   text-decoration: none;
-  color: $color-3;
   cursor: pointer;
-}
-a:visited {
-  color: $color-3;
 }

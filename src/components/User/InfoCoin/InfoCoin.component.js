@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import NavigationUserComponent from '../../Navigation/NavigationUser/NavigationUser.component';
-import "./InfoCoin.scss"
+import style from "./InfoCoin.module.scss"
 const InfoCoin = () => {
     const [posts, setPosts] = useState([]);
 
@@ -32,9 +32,8 @@ const InfoCoin = () => {
 
         <div>
             <NavigationUserComponent />
-            <br /><br /><br />
-            <div className='divCorpCoin'>
-                <p className='test'>{coin.name}</p>
+            <div className={style.divCorpCoin}>
+                <p className={style.test}>{coin.name}</p>
                 dsss
             </div>
         </div>
