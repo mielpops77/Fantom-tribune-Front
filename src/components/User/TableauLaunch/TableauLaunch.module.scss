@@ -33,7 +33,7 @@ img {
   height: auto;
 }
 
-.paginationLaunchDate a {
+.paginationLaunchDate a{
   color: black;
   float: left;
   padding: 8px 16px;
@@ -43,7 +43,7 @@ img {
   margin: 0.3%;
 }
 
-.paginationLaunchDate a.active {
+.paginationLaunchDate a.active{
   background-color: #4caf50;
   color: white;
   border: 1px solid #4caf50;
@@ -53,12 +53,12 @@ img {
   background-color: #ddd;
 }
 
-.disable {
+.disable{
   cursor: not-allowed;
   background-color: #dddd;
 }
 
-.paginationPageActuel {
+.paginationPageActuel{
   margin-top: 1%;
   margin-right: 1%;
 }
