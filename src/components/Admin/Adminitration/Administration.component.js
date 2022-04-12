@@ -54,7 +54,7 @@ function Administration() {
 
 
     let getLunch = () => {
-        fetch('http://localhost:3000/launchDate/')
+        fetch('http://localhost:3000/ecosystem/')
             .then((res) => res.json())
             .then((res) => {
                 setPosts(res);

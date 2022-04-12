@@ -1,11 +1,11 @@
 import TableLaunchService from '../../../services/tableauLaunh/tableauLaunch.service'
 import React, { useState, useEffect } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
-import style from "./TableauLaunch.module.scss";
+import style from "./Ecosystem.module.scss";
 import { useHistory } from 'react-router-dom';
 
 
-const TableauLaunch = () => {
+const Ecosystem = () => {
 
   /*  var [totalReactPackages, setTotalReactPackages] = useState(null); */
   var [database, seDatabase] = useState([])
@@ -17,7 +17,7 @@ const TableauLaunch = () => {
 
 
     var totalReactPackages;
-    TableLaunchService.getLaunchTab(limit, skip).then(function (result) {
+    TableLaunchService.getEcosystem(limit, skip).then(function (result) {
       let userData = [];
       result.map((item, index) => {
         item.id = (
@@ -62,7 +62,7 @@ const TableauLaunch = () => {
 
     /* setRoows(roows => TableLaunchService.getDatabase().rows); */
 
-    TableLaunchService.getLaunchTabLenght().then(function (result) {
+    TableLaunchService.getEcosystemLenght().then(function (result) {
 
 
       if (result / 10 < 1) {
@@ -159,6 +159,8 @@ const TableauLaunch = () => {
             <th style={{ cursor: 'pointer' }} scope="col">LaunchDate</th>
             <th style={{ cursor: 'pointer' }} scope="col">Votes</th>
             <th style={{ cursor: 'pointer' }} scope="col">  </th>
+
+
           </tr>
         </thead>
         <tbody>
@@ -171,14 +173,13 @@ const TableauLaunch = () => {
                 {row.symbol}</td>
               <td>
                 {row.launchDate}</td>
-              <td>
+                <td>
                 {row.vote}
-              </td>
-              <td>
+                </td>
+                <td>
                 <button type="button" class="btn btn-success">Vote</button>
-              </td>
+                </td>
             </tr>
-
           ))}
         </tbody>
 
@@ -199,7 +200,7 @@ const TableauLaunch = () => {
 
 
 
-export default TableauLaunch;
+export default Ecosystem;
 
 
 

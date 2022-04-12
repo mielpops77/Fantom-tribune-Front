@@ -9,8 +9,27 @@ import { MultiSelect } from "react-multi-select-component";
 
 function Formulaire() {
   const [selected, setSelected] = useState([]);
-  let date = new Date()
+  let date = new Date();
+  let mondayUtc = (date.getUTCMonth() + 1)
+  mondayUtc = parseInt(mondayUtc);
+  let dayUtc = date.getUTCMonth()
+  dayUtc = parseInt(dayUtc);
+
+  if (mondayUtc < 10) {
+    mondayUtc = '0' + mondayUtc.toString()
+    console.log('monday inférieur', mondayUtc);
+  }
+
+  if (dayUtc < 10) {
+    dayUtc = '0' + dayUtc.toString()
+    console.log('Dai inférieur', dayUtc);
+  }
+
+  let dateUtc = date.getFullYear() + '-' + mondayUtc + '-' + dayUtc;
   let today = date.toISOString().split('T')[0];
+  console.log('today', today);
+  console.log('dateUtc', dateUtc);
+
 
   const options = [
     { label: "Dex", value: "Dex" },
@@ -72,7 +91,7 @@ function Formulaire() {
       body: JSON.stringify({
         name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress, description: inputs.description, type: selected,
         websiteLink: inputs.websiteLink, customChartLink: inputs.customChartLink, customSwapLink: inputs.customSwapLink,
-        telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image
+        telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, vote : 0
       })
     };
     fetch('http://localhost:3000/launchDate', requestOptions)
@@ -102,7 +121,7 @@ function Formulaire() {
         ></input>
       </label>
 
-      <label className={style.FormLabel}>LaunchDate*:
+      <label className={style.FormLabel}>LaunchDate (UTC)*:
         <input className={style.FormInput}
           type="date"
           name="launchDate"

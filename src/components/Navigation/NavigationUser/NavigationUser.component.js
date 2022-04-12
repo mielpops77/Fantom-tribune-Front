@@ -38,10 +38,10 @@ const Navigation = () => {
         </NavLink>
 
         <NavLink
-          to="/"
+          to="/ecosystem"
           className={(nav) => (nav.isActive ? "nav-active" : "")}
         >
-          <li>ALL PROJECT</li>
+          <li>ECOSYSTEM</li>
         </NavLink>
 
 

@@ -74,10 +74,28 @@ function getLaunchTabLenght() {
 }
 
 
+function getEcosystem(limit, skip) {
+    return axios.get(`http://localhost:3000/ecosystem/?limite=${limit}&skip=${skip}`)
+        .then(response => {
+            return response.data;
+        })
+}
+
+function getEcosystemLenght() {
+    return axios.get('http://localhost:3000/ecosystemLenght/')
+        .then(response => {
+            return response.data;
+        })
+
+}
+
+
 export default {
     setDatabase,
     getDatabase,
     initDatabase,
     getLaunchTab,
-    getLaunchTabLenght
+    getLaunchTabLenght,
+    getEcosystem,
+    getEcosystemLenght
 };
