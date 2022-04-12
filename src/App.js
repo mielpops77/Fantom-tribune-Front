@@ -10,6 +10,8 @@ import Welcome from "./components/Authentification/Welcome";
 import Profile from "./components/Authentification/Profile/Profile";
 import InfoCoin from "./components/User/InfoCoin/InfoCoin.component";
 import EditionCoin from "./components/Admin/Adminitration/Edition";
+import Ecosystem from "./pages/user/Ecosystem";
+
 
 
 
@@ -34,6 +36,8 @@ const App = () => {
           <Route path="/register" component={Register} />
           <Route path="/submit" component={Submit} />
           <Route path="/Profile" component={Profile} />
+          <Route path="/Ecosystem" component={Ecosystem} />
+
 
         </Route>
         </Switch>

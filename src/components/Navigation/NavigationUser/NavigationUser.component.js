@@ -34,21 +34,28 @@ const Navigation = () => {
           to="/launchDate"
           className={(nav) => (nav.isActive ? "nav-active" : "")}
         >
+          <li>NEW PROJECT</li>
           <li className={style.liNavUser}>LAUNCH DATE</li>
         </NavLink>
+
+        <NavLink
+          to="/ecosystem"
+          className={(nav) => (nav.isActive ? "nav-active" : "")}
+        >
+          <li>ECOSYSTEM</li>
+          <li className={style.liNavUser}>SUBMIT PROJECT</li>
+        </NavLink>
+
+
         <NavLink
           to="/submit"
           className={(nav) => (nav.isActive ? "nav-active" : "")}
         >
-          <li className={style.liNavUser}>SUBMIT PROJECT</li>
-        </NavLink>
-
-        <NavLink
-          to="/"
-          className={(nav) => (nav.isActive ? "nav-active" : "")}
-        >
+          <li>SUBMIT PROJECT</li>
           <li className={style.liNavUser}>GUIDES</li>
         </NavLink>
+
+   
         <NavLink
           to="/admin"
           className={(nav) => (nav.isActive ? "nav-active" : "")}
