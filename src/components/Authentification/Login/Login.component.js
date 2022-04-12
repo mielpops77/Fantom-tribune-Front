@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import AuthService from "../../../services/auth/auth.service"
 import NavigationUserComponent from "../../Navigation/NavigationUser/NavigationUser.component";
+import FooterComponent from '../../../components/Navigation/Footer/Footer.component';
 import { NavLink } from "react-router-dom";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
@@ -77,7 +78,7 @@ const Login = (props) => {
             <NavigationUserComponent />
             <div className={style.divCorSignIn}>
                 <Form onSubmit={handleLogin}  >
-                    <h3>Login</h3>
+                    <h3 className={style.loginTitle}>Login</h3>
                     <div className={style.formGroup}>
                         <label className={style.labeSignIn}>Email address</label>
                         <Input type="email" className={style.formControl} name="mail" value={mail} onChange={onChangeMail} validations={[required]} placeholder="Enter email" />
@@ -120,7 +121,9 @@ const Login = (props) => {
                     </p>
                 </Form>
             </div>
+            <FooterComponent />
         </div>
+        
 
     );
 };
