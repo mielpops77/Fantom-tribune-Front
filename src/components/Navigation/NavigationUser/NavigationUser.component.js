@@ -34,16 +34,14 @@ const Navigation = () => {
           to="/launchDate"
           className={(nav) => (nav.isActive ? "nav-active" : "")}
         >
-          <li>NEW PROJECT</li>
-          <li className={style.liNavUser}>LAUNCH DATE</li>
+          <li className={style.liNavUser}>NEW PROJECT</li>
         </NavLink>
 
         <NavLink
           to="/ecosystem"
           className={(nav) => (nav.isActive ? "nav-active" : "")}
         >
-          <li>ECOSYSTEM</li>
-          <li className={style.liNavUser}>SUBMIT PROJECT</li>
+          <li className={style.liNavUser}>ECOSYSTEM</li>
         </NavLink>
 
 
@@ -51,11 +49,10 @@ const Navigation = () => {
           to="/submit"
           className={(nav) => (nav.isActive ? "nav-active" : "")}
         >
-          <li>SUBMIT PROJECT</li>
-          <li className={style.liNavUser}>GUIDES</li>
+          <li className={style.liNavUser}>SUBMIT PROJECT</li>
         </NavLink>
 
-   
+
         <NavLink
           to="/admin"
           className={(nav) => (nav.isActive ? "nav-active" : "")}
@@ -66,9 +63,9 @@ const Navigation = () => {
 
         {currentUser ? (
           <div className={style.divLoginRegister}>
-              <a href="/login" className={style.logOut} onClick={logOut}>
-                LogOut
-              </a>
+            <a href="/login" className={style.logOut} onClick={logOut}>
+              LogOut
+            </a>
           </div>
         ) : (
           <div className={style.divLoginRegister}>

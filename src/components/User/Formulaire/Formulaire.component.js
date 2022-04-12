@@ -12,23 +12,20 @@ function Formulaire() {
   let date = new Date();
   let mondayUtc = (date.getUTCMonth() + 1)
   mondayUtc = parseInt(mondayUtc);
-  let dayUtc = date.getUTCMonth()
+  let dayUtc = date.getUTCDate();
   dayUtc = parseInt(dayUtc);
 
   if (mondayUtc < 10) {
     mondayUtc = '0' + mondayUtc.toString()
-    console.log('monday inférieur', mondayUtc);
   }
 
   if (dayUtc < 10) {
     dayUtc = '0' + dayUtc.toString()
-    console.log('Dai inférieur', dayUtc);
   }
 
   let dateUtc = date.getFullYear() + '-' + mondayUtc + '-' + dayUtc;
-  let today = date.toISOString().split('T')[0];
-  console.log('today', today);
-  console.log('dateUtc', dateUtc);
+  console.log('dateUtc',dateUtc)
+  /* let today = date.toISOString().split('T')[0]; */
 
 
   const options = [
@@ -121,17 +118,18 @@ function Formulaire() {
         ></input>
       </label>
 
-      <label className={style.FormLabel}>LaunchDate (UTC)*:
-        <input className={style.FormInput}
-      <label className={style.formLabel}>LaunchDate*:
+      <label className={style.formLabel}>LaunchDate (UTC)*:
         <input className={style.formInput}
           type="date"
           name="launchDate"
-          min={today}
-          value={inputs.launchDate || today}
+          min={dateUtc}
+          value={inputs.launchDate || dateUtc}
           onChange={handleChange}
         />
       </label>
+
+     
+
       <label className={style.formLabel}>Contract Address*:
         <input className={style.formInput}
           type="text"
