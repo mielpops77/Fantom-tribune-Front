@@ -26,15 +26,16 @@ const Navigation = () => {
 
     <nav>
       <img className={style.imgFond} src="http://localhost:3000/header.png" />
-      <ul>
+      <ul className={style.ulNavUser}>
         <NavLink to="/" className={(nav) => (nav.isActive ? "nav-active" : "")}>
-          <li>HOME</li>
+          <li className={style.liNavUser}>HOME</li>
         </NavLink>
         <NavLink
           to="/launchDate"
           className={(nav) => (nav.isActive ? "nav-active" : "")}
         >
           <li>NEW PROJECT</li>
+          <li className={style.liNavUser}>LAUNCH DATE</li>
         </NavLink>
 
         <NavLink
@@ -42,6 +43,7 @@ const Navigation = () => {
           className={(nav) => (nav.isActive ? "nav-active" : "")}
         >
           <li>ECOSYSTEM</li>
+          <li className={style.liNavUser}>SUBMIT PROJECT</li>
         </NavLink>
 
 
@@ -50,6 +52,7 @@ const Navigation = () => {
           className={(nav) => (nav.isActive ? "nav-active" : "")}
         >
           <li>SUBMIT PROJECT</li>
+          <li className={style.liNavUser}>GUIDES</li>
         </NavLink>
 
    
@@ -57,17 +60,15 @@ const Navigation = () => {
           to="/admin"
           className={(nav) => (nav.isActive ? "nav-active" : "")}
         > {showAdminBoard && (
-          <li>Admin</li>)}
+          <li className={style.liNavUser}>Admin</li>)}
         </NavLink>
 
 
         {currentUser ? (
-          <div>
-            <li className={style.logOut}>
-              <a href="/login" className={style.hrefLogout} onClick={logOut}>
+          <div className={style.divLoginRegister}>
+              <a href="/login" className={style.logOut} onClick={logOut}>
                 LogOut
               </a>
-            </li>
           </div>
         ) : (
           <div className={style.divLoginRegister}>

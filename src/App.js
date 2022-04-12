@@ -2,12 +2,12 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from './pages/user/Home';
 import LaunchDate from './pages/user/LaunchDate';
-import Submit from './pages/user/Submit/Submit'
+import Submit from './pages/user/Submit/Submit.component'
 import Login from './components/Authentification/Login/Login.component';
 import Register from './components/Authentification/Register/Register.component';
 import Administration from './pages/admin/Administration';
 import Welcome from "./components/Authentification/Welcome";
-import Profile from "./components/Authentification/Profile";
+import Profile from "./components/Authentification/Profile/Profile";
 import InfoCoin from "./components/User/InfoCoin/InfoCoin.component";
 import EditionCoin from "./components/Admin/Adminitration/Edition";
 import Ecosystem from "./pages/user/Ecosystem";
