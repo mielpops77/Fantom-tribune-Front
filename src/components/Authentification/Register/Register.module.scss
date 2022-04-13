@@ -16,7 +16,15 @@
     padding: 2%;
 }
 
-h3{
+.divFooter{
+    position:fixed;
+    margin:0 auto;
+    left:0;
+    bottom: 0;
+    width: 100%;
+}
+
+.registerTitle{
     color: #450ca0;
     padding-bottom: 20px;
     font-family: "Fira Sans", sans-serif;

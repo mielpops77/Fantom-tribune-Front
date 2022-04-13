@@ -1,5 +1,6 @@
 import '../../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import NavigationUserComponent from '../../Navigation/NavigationUser/NavigationUser.component';
+import FooterComponent from '../../../components/Navigation/Footer/Footer.component';
 import React, { useState, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import Form from "react-validation/build/form";
@@ -113,7 +114,7 @@ const Register = (props) => {
                 <Form onSubmit={handleRegister} ref={form} >
                     {!successful && (
                         <div className={style.divForm}>
-                            <h3>Register</h3>
+                            <h3 className={style.registerTitle}>Register</h3>
                             <div className={style.formGroup}>
                                 <label className={style.labeSignIn}>Username</label>
                                 <Input type="text"
@@ -167,6 +168,9 @@ const Register = (props) => {
                         <button className={style.blueButton}>Already register? Login here</button>
                     </NavLink>
                 </Form>
+            </div>
+            <div className={style.divFooter}>
+                <FooterComponent/>
             </div>
         </div>
     );

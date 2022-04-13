@@ -1,0 +1,71 @@
+@import "../../../styles/setting";
+
+
+.footerContainer{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    background: linear-gradient(#82adfc,#518eff,#3b5fffa6, #0e3affa8 , #0e3affe8);
+    //background-color: #0e3aff79;
+    max-width: 2080px;
+
+}
+
+.h2Title{
+    margin: 1% auto;
+    width: 40%;
+    font-size: 2vw;   
+    color: #ffffff;
+    text-align: center;
+}
+
+.imgFtmTribune{
+    height: 13vw;
+    width: 13vw;
+    margin-top:-2.3vw;
+    background-color: rgba(158, 172, 255, 0.133);
+    box-shadow: 0px 2px 8px rgba(0, 9, 170, 0.221);
+    border-radius: 50px;
+    margin-bottom: 0.5%;
+}
+
+.divAllLogo{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.divLinks{
+   
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 50%;
+    font-size: 1.4vw;
+    margin-bottom: 1vw;
+}
+
+.divLink{
+    display: flex;
+    align-items: center;
+}
+
+
+.imgLogo{
+    height: 3vw;
+    width: 3vw;
+}
+
+.link{
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2vw;
+    
+    &:hover{
+        color: $color-1
+    }
+}
+
