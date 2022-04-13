@@ -14,7 +14,7 @@ const Submit = () => {
                 <hr></hr>
                 <FormulaireComponent/>
             </div>
-        <FooterComponent/>
+                <FooterComponent/>
         </div >
     );
 };

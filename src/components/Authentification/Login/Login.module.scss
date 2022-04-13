@@ -4,7 +4,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 10% auto;
+    margin: 8% auto;
     width: 50%;
     max-width: 580px;
     min-width: 100px;
@@ -13,6 +13,14 @@
     border-radius: 15px;
     transition: all 0.3s;
     padding: 2%;
+}
+
+.divFooter{
+    position:fixed;
+    margin:0 auto;
+    left:0;
+    bottom: 0;
+    width: 100%;
 }
 
 .loginTitle{
@@ -74,7 +82,6 @@ form
     display: inline-block;
     width: 70%;
     margin: 3%;
-
 }
 
 .forgotPassword
