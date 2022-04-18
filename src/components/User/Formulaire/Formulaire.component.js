@@ -22,9 +22,10 @@ function Formulaire() {
   if (dayUtc < 10) {
     dayUtc = '0' + dayUtc.toString()
   }
+  let voteTodayUtc = [];
 
   let dateUtc = date.getFullYear() + '-' + mondayUtc + '-' + dayUtc;
-  console.log('dateUtc',dateUtc)
+  voteTodayUtc[0] = dateUtc;
   /* let today = date.toISOString().split('T')[0]; */
 
 
@@ -88,7 +89,7 @@ function Formulaire() {
       body: JSON.stringify({
         name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress, description: inputs.description, type: selected,
         websiteLink: inputs.websiteLink, customChartLink: inputs.customChartLink, customSwapLink: inputs.customSwapLink,
-        telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, vote : 0
+        telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, vote : 0 , voteToday: voteTodayUtc
       })
     };
     fetch('http://localhost:3000/launchDate', requestOptions)

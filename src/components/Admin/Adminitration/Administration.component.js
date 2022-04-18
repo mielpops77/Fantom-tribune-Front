@@ -5,6 +5,7 @@ import { FaTrashRestore } from 'react-icons/fa';
 import { BsTrash } from 'react-icons/bs';
 import { Menu } from 'semantic-ui-react'
 import { useHistory } from 'react-router-dom';
+import style from "./Administration.module.scss";
 
 function Administration() {
 
@@ -215,21 +216,20 @@ function Administration() {
 
     return (
         <div className="container">
+            <Menu className={style.navTabAdmin}>
 
-            <Menu className="navTabAdmin">
-
-                <Menu.Item className={toggle ? "itemTabAdminClick" : "itemTabAdmin"} onClick={() => changeStyle(1)}
+                <Menu.Item className={toggle ? style.itemTabAdminClick : style.itemTabAdmin} onClick={() => changeStyle(1)}
                     name='À valider'
                 />
 
 
                 <Menu.Item
-                    className={toggle2 ? "itemTabAdminClick" : "itemTabAdmin"} onClick={() => changeStyle(2)}
+                    className={toggle2 ? style.itemTabAdminClick : style.itemTabAdmin} onClick={() => changeStyle(2)}
 
                     name='En ligne'
                 />
                 <Menu.Item
-                    className={toggle3 ? "itemTabAdminClick" : "itemTabAdmin"} onClick={() => changeStyle(3)}
+                    className={toggle3 ? style.itemTabAdminClick : style.itemTabAdmin} onClick={() => changeStyle(3)}
 
                     name='Corbeille'
                 />

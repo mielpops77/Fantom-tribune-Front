@@ -97,5 +97,5 @@ export default {
     getLaunchTab,
     getLaunchTabLenght,
     getEcosystem,
-    getEcosystemLenght
+    getEcosystemLenght,
 };
