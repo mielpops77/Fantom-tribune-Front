@@ -7,8 +7,6 @@ const InfoCoin = () => {
 
     let url = window.location.href;
     const id = url.substring(31, url.length);
-    console.log(id);
-
 
     useEffect(() => {
         fetch('http://localhost:3000/launchDate/')
@@ -27,7 +25,6 @@ const InfoCoin = () => {
         }
     }
 
-    console.log('coin', coin);
     return (
 
         <div>
