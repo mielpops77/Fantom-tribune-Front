@@ -1,7 +1,7 @@
 import React from 'react';
 import FooterComponent from '../../../components/Navigation/Footer/Footer.component';
 import NavigationUserComponent from '../../../components/Navigation/NavigationUser/NavigationUser.component';
-import FormulaireComponent from '../../../components/User/Formulaire/Formulaire.component';
+import FormulaireComponent from '../Submit/Formulaire/Formulaire.component';
 import style from "./Submit.module.scss";
 
 

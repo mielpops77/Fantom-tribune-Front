@@ -166,7 +166,7 @@ const TableauLaunch = () => {
           {database.rows?.map((row, index) => (
             <tr key={index} onClick={() => history.push(`/infoCoin/${row.id}`)} style={{ cursor: 'pointer' }} >
               <td ></td>
-              <td value={row.id} > <img src={row.image.props.src} /> </td>
+              <td value={row.id} > <img className={style.imgProjet} src={row.image.props.src} /> </td>
               <td>{row.name}</td>
               <td>
                 {row.symbol}</td>

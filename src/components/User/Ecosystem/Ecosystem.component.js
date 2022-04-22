@@ -167,7 +167,7 @@ const Ecosystem = () => {
           {database.rows?.map((row, index) => (
             <tr key={index} onClick={() => history.push(`/infoCoin/${row.id}`)} style={{ cursor: 'pointer' }} >
               <td ></td>
-              <td value={row.id} > <img style={{ height: "100px", width: "100px" }} src={row.image.props.src} /> </td>
+              <td value={row.id} > <img className={style.imgProjet} style={{ height: "100px", width: "100px" }} src={row.image.props.src} /> </td>
               <td>{row.name}</td>
               <td>
                 {row.symbol}</td>
@@ -188,11 +188,10 @@ const Ecosystem = () => {
       </table>
 
       <div className={style.paginationLaunchDate}>
-
+        <span className={style.paginationPageActuel}>1 - {TableLaunchService.totalPage} of {pagination.pageActuel}</span>
         <a className={pagination.pageActuel > 1 ? "" : "disable"} onClick={previous}>❮</a>
         <a className={pagination.pageActuel < TableLaunchService.totalPage ? "" : "disable"} onClick={next}>❯</a>
       </div>
-      <span className={style.paginationPageActuel}>1 - {TableLaunchService.totalPage} of {pagination.pageActuel}</span>
 
     </div >
   );

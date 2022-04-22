@@ -1,0 +1,73 @@
+.divCorpCoin{
+    background-color: #ffffffec;
+    box-shadow: 0px 14px 80px rgb(34 35 58 / 20%);
+    border-radius: 15px;
+    height: 40vw;
+    width: 80%;   
+    max-width: 800px;
+    margin: 7% auto;
+    border-radius: 20px;
+    padding: 2%;
+}
+
+.coinName{
+    color:#3a088b;
+}
+
+hr{
+    color:#450ca0;
+}
+
+
+
+.allInfoCoin{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+
+.infoCoin{
+    width: 60%;
+    padding-right: 2%;
+    border-right: 1px solid #450ca0;
+}
+
+.mainInfo{
+    background-color: #e9e9ff;
+    border-radius: 10px;
+    box-shadow: -1px 2px 10px rgb(34 35 58 / 20%);
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: flex-end;
+    margin: auto auto 5%;
+}
+
+.divImg{
+    margin: 5%;
+}
+
+.imgProjet{
+    padding:2%;
+    height: 5vw;
+    width: 5vw;
+    box-shadow: 1px 1px 7px rgba(0, 9, 170, 0.221);
+    border-radius: 3px;
+}
+
+.coinSymbol{
+    color:#5515bd;
+    text-transform: uppercase;
+    font-size: 1.4vw;
+}
+
+.coinInfoDesign{
+    display: flex;
+    flex-direction: row;
+    color:#5515bd;
+    font-size: 1.2vw;
+}
+.coinTextDesign{
+    font-weight:500;
+    color:#450ca0;
+}
