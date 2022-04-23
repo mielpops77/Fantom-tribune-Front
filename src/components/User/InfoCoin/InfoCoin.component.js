@@ -91,13 +91,18 @@ const InfoCoin = () => {
                       </div>
                     </div>
                       <p className={style.coinInfoDesign}><p className={style.coinTextDesign}>launchDate</p>: {coin.launchDate}</p>
+                      <p className={style.coinInfoDesign}><p className={style.coinTextDesign}>type</p>: {coin.launchDate}</p>
+                      <p className={style.coinInfoDesign}><p className={style.coinTextDesign}>Contract Address</p>: {coin.launchDate}</p>
+                      <p className={style.coinInfoDesign}><p className={style.coinTextDesign}>Description</p>: {coin.launchDate}</p>
                   </div>
                   <div className={style.divNewsTwitter}>
-                    <h2 className={style.titleNewsTwitter}>Project news</h2>
+                    <h1 className={style.titleNewsTwitter}>Twit-News</h1>
                   </div>
                 </div>
               </div>
-            <FooterComponent/>
+              <div className={style.divFooter}>
+                    <FooterComponent />
+              </div>
         </div>
     )
 }

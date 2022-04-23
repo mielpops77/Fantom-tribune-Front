@@ -2,23 +2,23 @@
     background-color: #ffffffec;
     box-shadow: 0px 14px 80px rgb(34 35 58 / 20%);
     border-radius: 15px;
-    height: 40vw;
+    height: 100%;
+    min-height: 40vw;
     width: 80%;   
     max-width: 800px;
     margin: 7% auto;
-    border-radius: 20px;
+    border-radius: 6px;
     padding: 2%;
 }
 
 .coinName{
     color:#3a088b;
+    font-size: 2vw;
 }
 
 hr{
     color:#450ca0;
 }
-
-
 
 .allInfoCoin{
     display: flex;
@@ -64,10 +64,22 @@ hr{
 .coinInfoDesign{
     display: flex;
     flex-direction: row;
-    color:#5515bd;
-    font-size: 1.2vw;
+    color:#450ca0;
+    font-size: 1vw;
 }
 .coinTextDesign{
-    font-weight:500;
+    font-weight:600;
     color:#450ca0;
+}
+
+.divNewsTwitter{
+    display: flex;
+    justify-content: center;
+    width: 40%;
+}
+
+.titleNewsTwitter{
+    color:#450ca0;
+    
+    font-size: 1.7vw;
 }
