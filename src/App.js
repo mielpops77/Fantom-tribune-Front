@@ -11,6 +11,8 @@ import Profile from "./components/Authentification/Profile/Profile";
 import InfoCoin from "./components/User/InfoCoin/InfoCoin.component";
 import EditionCoin from "./components/Admin/Adminitration/Edition";
 import Ecosystem from "./pages/user/Ecosystem";
+import ValidationForm from "./components/User/Formulaire/ValidationFormulaire.component";
+
 
 
 
@@ -37,6 +39,8 @@ const App = () => {
           <Route path="/submit" component={Submit} />
           <Route path="/Profile" component={Profile} />
           <Route path="/Ecosystem" component={Ecosystem} />
+          <Route path="/ValidationForm" component={ValidationForm} />
+
 
 
         </Route>

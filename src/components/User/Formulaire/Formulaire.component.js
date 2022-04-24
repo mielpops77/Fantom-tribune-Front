@@ -1,6 +1,7 @@
 
 import { MultiSelect } from "react-multi-select-component";
 import style from "./Formulaire.module.scss";
+import { useHistory } from 'react-router-dom';
 import { useState } from "react";
 import ReactDOM from "react-dom";
 import axios from 'axios';
@@ -10,6 +11,13 @@ function Formulaire() {
   const [selected, setSelected] = useState([]);
   const [urlUpload, setToggle] = useState('');
   const [prev, setPrev] = useState('');
+  const [verifUpl, setVerifUpl] = useState('');
+
+  const history = useHistory();
+
+  if (urlUpload !== '' && !verifUpl) {
+    setVerifUpl(true);
+  }
 
   let date = new Date();
   let mondayUtc = (date.getUTCMonth() + 1)
@@ -72,16 +80,13 @@ function Formulaire() {
   const [inputs, setInputs] = useState({});
 
   const upload = () => {
-    console.log('uploaaad');
     const inputImg = document.querySelector("input[type=file]");
     let fileCount = inputImg.files.length;
     if (fileCount > 0) {
 
 
-      console.log(" inputImg.files.item(0)", inputImg.files.item(0).name)
       let formData = new FormData();
       formData.append('image', inputImg.files.item(0))
-      console.log('formData', formData)
       axios({
         method: "post",
         url: "http://localhost:3000/images",
@@ -94,7 +99,6 @@ function Formulaire() {
         })
         .catch(function (response) {
           //handle error
-          /* console.log('sssss', response); */
         });
     }
   }
@@ -109,7 +113,6 @@ function Formulaire() {
   }
 
   const handleChangeFile = (event) => {
-    /* console.log('event.target.name', event.target.value); */
     const name = event.target.name;
     const value = event.target.value;
     setInputs(values => ({ ...values, [name]: value }))
@@ -137,8 +140,17 @@ function Formulaire() {
       })
     };
     fetch('http://localhost:3000/launchDate', requestOptions)
-      .then(response => response.json())
+      .then(response => response.json(), history.push(`/ValidationForm/`)
+      )
     /* .then(data => this.setState({ postId: data.id })); */
+  }
+
+
+
+  function verifUpload() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+    inputs.image === undefined ? setVerifUpl(false) : setVerifUpl(true)
   }
 
 
@@ -146,21 +158,23 @@ function Formulaire() {
   return (
 
     <form className={style.formulaireSubmit} onSubmit={handleSubmit}>
-
-      {/* <label className={style.formLabel}>Logo Upload*</label> */}
+      {
+        verifUpl === false && <div className={style.messageError} style={{ marginTop: "1rem" }}>
+          Please upload the logo for your coin.
+        </div>}
 
       <label className={style.formLabelFileEmpty} htmlFor="file-input">
         <div className={style.formLabel}>Logo Upload*</div>
         <img style={{ height: "100%", float: "left", maxWidth: "30%", maxHeight: "30%", cursor: 'pointer' }} src="http://localhost:3000/upload.png" />
         {urlUpload !== '' && <img style={{ height: "100%", float: "left", maxWidth: "25%", maxHeight: "25%" }} src={urlUpload} />}
       </label>
-      {/*     {urlUpload !== '' && <label className={style.formLabelFile} htmlFor="file-input">
-        <img style={{ height: "100%", float: "left", maxWidth: "200px", maxHeight: "200px" }} src="http://localhost:3000/upload.png" />
-        {urlUpload !== '' && <img style={{ height: "100%", float: "left", maxWidth: "200px", maxHeight: "200px" }} src={urlUpload} />}
-      </label>} */}
+
       <input id="file-input" className={style.file} type="file" name="image" value={inputs.image || ""}
         onChange={handleChangeFile}
-        accept="image/png, image/jpeg"></input>
+        accept="image/png, image/jpeg"
+        required="required"
+      >
+      </input>
 
       <label className={style.formLabel}>Name*:
         <input className={style.formInput}
@@ -310,7 +324,7 @@ function Formulaire() {
           onChange={handleChange} />
       </label>
       <br />
-      <input className={style.blueButton} type="submit" />
+      <input className={style.blueButton} type="submit" onClick={verifUpload} />
     </form >
   )
 }
