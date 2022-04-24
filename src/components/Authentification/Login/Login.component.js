@@ -1,11 +1,11 @@
-import React, { useState, useRef } from "react";
-import AuthService from "../../../services/auth/auth.service"
 import NavigationUserComponent from "../../Navigation/NavigationUser/NavigationUser.component";
 import FooterComponent from '../../../components/Navigation/Footer/Footer.component';
-import { NavLink } from "react-router-dom";
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
+import AuthService from "../../../services/auth/auth.service"
 import CheckButton from "react-validation/build/button";
+import Input from "react-validation/build/input";
+import React, { useState, useRef } from "react";
+import Form from "react-validation/build/form";
+import { NavLink } from "react-router-dom";
 import style from "./Login.module.scss";
 
 
@@ -20,11 +20,8 @@ const required = (value) => {
 };
 
 const Login = (props) => {
-
-    console.log('propsssssssss',props)
     const form = useRef();
     const checkBtn = useRef();
-
     const [mail, setMail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
@@ -42,18 +39,16 @@ const Login = (props) => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-
         setMessage("");
         setLoading(true);
 
-        console.log('form',form);
 
         /* form.current.validateAll(); */
 
         if (checkBtn.current.context._errors.length === 0) {
             AuthService.login(mail, password).then(
                 () => {
-                    props.history.push("/profile");
+                    props.history.push("/launchDate");
                     window.location.reload();
                 },
                 (error) => {
@@ -103,13 +98,13 @@ const Login = (props) => {
                         </button>
                     </div>
 
-                    {message && (
+                 {/*    {message && (
                         <div className={style.formGroup}>
                             <div className="alert alert-danger" role="alert">
                                 {message}
                             </div>
                         </div>
-                    )}
+                    )} */}
                     <CheckButton style={{ display:"none" }} ref={checkBtn} />
 
                     <NavLink to="/register" className={style.register}>
