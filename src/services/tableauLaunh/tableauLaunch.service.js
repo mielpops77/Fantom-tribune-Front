@@ -5,6 +5,10 @@ import axios from "axios";
 
 
 let totalPage = 1;
+let action = 'launchDateAsc';
+
+let typeFilter = 'All';
+
 
 var database = {
     columns: [
@@ -43,6 +47,8 @@ var database = {
     rows: [
     ]
 };
+
+
 function initDatabase() {
 
     database.rows = [];
@@ -56,14 +62,42 @@ function setDatabase(test) {
     database.rows = test;
 }
 
+function initAction() {
+    action = 'launchDateAsc';
+}
 
+
+function getAction() {
+    return action
+}
+
+function setAction(actionValue) {
+    action = actionValue;
+}
+
+
+
+function initTypeFilter() {
+    typeFilter = 'All';
+}
+
+
+function getTypeFilter() {
+    return typeFilter
+}
+
+function setTypeFilter(typeFilterValue) {
+    typeFilter = typeFilterValue;
+}
 
 function getLaunchTab(limit, skip) {
-    return axios.get(`http://localhost:3000/launchDate/?limite=${limit}&skip=${skip}`)
+    return axios.get(`http://localhost:3000/launchDate/?limite=${limit}&skip=${skip}&action=${action}&type=${typeFilter}`)
         .then(response => {
             return response.data;
         })
 }
+
+
 
 function getLaunchTabLenght() {
     return axios.get('http://localhost:3000/launchDateLenght/')
@@ -90,6 +124,10 @@ function getEcosystemLenght() {
 }
 
 
+
+
+
+
 export default {
     setDatabase,
     getDatabase,
@@ -98,4 +136,10 @@ export default {
     getLaunchTabLenght,
     getEcosystem,
     getEcosystemLenght,
+    initAction,
+    getAction,
+    setAction,
+    initTypeFilter,
+    getTypeFilter,
+    setTypeFilter,
 };

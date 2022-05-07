@@ -25,7 +25,7 @@ img {
   object-fit: cover;
 }
 
-.paginationLaunchDate{
+.paginationLaunchDate {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
@@ -33,7 +33,7 @@ img {
   height: auto;
 }
 
-.paginationLaunchDate a{
+.paginationLaunchDate a {
   color: black;
   float: left;
   padding: 8px 16px;
@@ -43,7 +43,7 @@ img {
   margin: 0.3%;
 }
 
-.paginationLaunchDate a.active{
+.paginationLaunchDate a.active {
   background-color: #4caf50;
   color: white;
   border: 1px solid #4caf50;
@@ -53,23 +53,53 @@ img {
   background-color: #ddd;
 }
 
-.disable{
+.disable {
   cursor: not-allowed;
   background-color: #dddd;
 }
 
-.paginationPageActuel{
+.paginationPageActuel {
   margin-top: 1%;
   margin-right: 1%;
 }
 
-
-.typo 
-{
-  text-align: 'center';
+.typo {
+  text-align: "center";
 }
 
-.thPointer  
-{
-  cursor: 'pointer';
+.thPointer {
+  cursor: "pointer";
+}
+
+.controlDropdown {
+  background-color: transparent !important;
+  margin-bottom: 10%;
+}
+
+.searchInput {
+ /*  font-size: inherit;
+  padding-left: 0.5rem;
+  padding-right: 1rem;
+  height: 3.3rem;
+  width: 400px;
+  overflow-wrap: break-word;
+  border: 1px solid #ccc;
+  position: absolute;
+  border-radius: 50px;
+  word-wrap: break-word;
+  background-color: transparent;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+  margin-left: 8%; */
+}
+
+.searchInput::placeholder {
+  color: #333;
+}
+
+.controlDropdownRoot {
+  display: inline-block;
+  width: 20%;
 }

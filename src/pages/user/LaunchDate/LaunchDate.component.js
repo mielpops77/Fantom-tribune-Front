@@ -11,9 +11,9 @@ const About = () => {
             <NavigationUserComponent/>
             <br /><br /><br />
             <TableauLaunchComponent/>
-            <div className={style.divFooter}>
+           {/*  <div className={style.divFooter}> */}
                 <FooterComponent/>
-            </div>
+           {/*  </div> */}
         </div>
     );
 };

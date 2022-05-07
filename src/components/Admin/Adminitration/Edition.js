@@ -1,13 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import NavigationAdminComponent from '../../Navigation/NavigationAdmin/NavigationAdmin.component';
+import editionService from "../../../services/admin/editionAdmin.service";
+import FooterComponent from '../../../components/Navigation/Footer/Footer.component';
+import style from "./Edition.module.scss";
+import Select from 'react-select'
 import axios from 'axios';
-import { MultiSelect } from "react-multi-select-component";
 
 const Edition = () => {
-    const [posts, setPosts] = useState([]);
-    const [selected, setSelected] = useState([]);
+
+    const [selected, setSelected] = useState(null);
+
     let date = new Date()
     let today = date.toISOString().split('T')[0];
+
+
+    console.log('wheeeen', editionService.getType());
+
+
 
     let url = window.location.href;
     const id = url.substring(34, url.length);
@@ -22,23 +31,30 @@ const Edition = () => {
         { label: "Reflect token", value: "Reflect token" },
         { label: "Yield", value: "Yield" },
 
-
     ];
 
-    console.log('ooooooo')
 
     const [inputs, setInputs] = useState({});
+    const [urlUpload, setToggle] = useState('');
+
+
+
+    const handleChangeFile = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        setInputs(values => ({ ...values, [name]: value }))
+        upload();
+    }
+
 
     const upload = () => {
-
         const inputImg = document.querySelector("input[type=file]");
         let fileCount = inputImg.files.length;
         if (fileCount > 0) {
 
-            console.log(" inputImg.files.item(0)", inputImg.files.item(0))
+
             let formData = new FormData();
             formData.append('image', inputImg.files.item(0))
-            console.log('formData', formData)
             axios({
                 method: "post",
                 url: "http://localhost:3000/images",
@@ -47,16 +63,41 @@ const Edition = () => {
             })
                 .then(function (response) {
                     //handle success
-                    console.log(response);
+                    setToggle("http://localhost:3000/" + inputImg.files.item(0).name);
                 })
                 .catch(function (response) {
                     //handle error
-                    console.log(response);
                 });
         }
     }
 
+    /*    const upload = () => {
+   
+           const inputImg = document.querySelector("input[type=file]");
+           let fileCount = inputImg.files.length;
+           if (fileCount > 0) {
+   
+               let formData = new FormData();
+               formData.append('image', inputImg.files.item(0))
+               axios({
+                   method: "post",
+                   url: "http://localhost:3000/images",
+                   data: formData,
+                   headers: { "Content-Type": "multipart/form-data" },
+               })
+                   .then(function (response) {
+                       //handle success
+                       console.log(response);
+                   })
+                   .catch(function (response) {
+                       //handle error
+                       console.log(response);
+                   });
+           }
+       }
+    */
     const handleChange = (event) => {
+        console.log(event.target.value);
         const name = event.target.name;
         const value = event.target.value;
         setInputs(values => ({ ...values, [name]: value }))
@@ -64,12 +105,22 @@ const Edition = () => {
 
 
     const handleSubmit = (event) => {
+        editionService.initType();
+        console.log(editionService.getType());
         event.preventDefault();
+        let type = [];
+        if (selected === null) {
+            type = editionService.getType();
+        }
+        else {
+            type = selected;
+        }
+        console.log('selected', selected);
         const requestOptions = {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress, description: inputs.description, type: selected,
+                name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress, description: inputs.description, type: type.value,
                 websiteLink: inputs.websiteLink, customChartLink: inputs.customChartLink, customSwapLink: inputs.customSwapLink,
                 telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image
             })
@@ -81,176 +132,194 @@ const Edition = () => {
 
 
 
+    function handleSelect(event) {
+        setSelected(event);
+    }
 
 
     useEffect(() => {
         fetch('http://localhost:3000/launchDateAdmin/')
             .then((res) => res.json())
             .then((res) => {
-                setPosts(res);
-                let listType = JSON.parse(JSON.stringify(res));
-                for (let i = 0; i < listType.length; i++) {
-                    if (listType[i]._id === id) {
-                        console.log(listType[i].type)
-                        console.log('selected',selected)
-                        setSelected([listType[i].type][0]);
+                editionService.initCoin();
+                editionService.initType();
+
+                let postsArray = JSON.parse(JSON.stringify(res));
+
+                for (let i = 0; i < postsArray.length; i++) {
+                    if (postsArray[i]._id === id) {
+                        editionService.setCoin(postsArray[i]);
+                        editionService.setType({ label: postsArray[i].type, value: postsArray[i].type },);
+                        console.log('hmmmm', editionService.getType());
+                        setToggle("http://localhost:3000/" + editionService.getCoin().image);
+
                     }
-
-
                 }
 
             });
     }, []);
 
 
-    let postsArray = JSON.parse(JSON.stringify(posts));
-    let coin = []
-
-    for (let i = 0; i < postsArray.length; i++) {
-        if (postsArray[i]._id === id) {
-            coin = postsArray[i];
-        }
-
-
-    }
-
     return (
 
         <div>
             <NavigationAdminComponent />
 
-            <br /><br /><br />
-            <form className="formulaireSubmit" onSubmit={handleSubmit}>
-                <label className="FormLabel">Name*:
+            <div className={style.divCorpSubmit}>
+                <h1 className={style.titleSubmit}>Modify a coin to Fantom Tribune</h1>
+                <p className={style.subtitleSubmit}>Here you can edit projects</p>
+                <p className={style.subtitleSubmit}>David likes to take cocks in the ass</p>
+                <hr></hr>
+                <div>
+                    <form className={style.formulaireSubmit} onSubmit={handleSubmit}>
 
-                    <input className="FormInput"
-                        type="text"
-                        name="name"
-                        value={inputs.name || coin.name}
-                        onChange={handleChange}
-                    />
-                </label>
-                <label className="FormLabel">Symbol*:
-                    <input className="FormInput"
-                        type="text"
-                        name="symbol"
-                        value={inputs.symbol || coin.symbol}
-                        onChange={handleChange}
-                    ></input>
-                </label>
+                        <label className={style.formLabelFileEmpty} htmlFor="file-input">
+                            <div className={style.formLabel}>Logo Upload*</div>
+                            <img style={{ height: "100%", float: "left", maxWidth: "30%", maxHeight: "30%", cursor: 'pointer' }} src="http://localhost:3000/upload.png" />
+                            <img style={{ height: "100%", float: "left", maxWidth: "25%", maxHeight: "25%" }} src={urlUpload} />
+                        </label>
 
-                <label className="FormLabel">LaunchDate*:
-                    <input className="FormInput"
-                        type="date"
-                        name="launchDate"
-                        min={today}
-                        value={inputs.launchDate || coin.launchDate}
-                        onChange={handleChange}
-                    />
-                </label>
-                <label className="FormLabel">Contract Address*:
-                    <input className="FormInput"
-                        type="text"
-                        name="contractAddress"
-                        value={inputs.contractAddress || coin.contractAddress}
-                        onChange={handleChange}
-                    />
+                        <input id="file-input" className={style.file} type="file" name="image" value={inputs.image || ""}
+                            onChange={handleChangeFile}
+                            accept="image/png, image/jpeg"
+                        >
+                        </input>
 
-                </label>
-
-                <label className="FormLabel">Description*:
-
-                    <input className="FormInput"
-                        type="text"
-                        name="description"
-                        value={inputs.description || coin.description}
-                        onChange={handleChange}
-                    />
-                </label>
-
-                <label className="FormLabel">Type*:
-                    <MultiSelect
-                        options={options}
-                        value={selected}
-                        hasSelectAll={false}
-                        onChange={setSelected}
-                        labelledBy="Select Type"
-                    />
-
-                </label>
-
-                <label className="FormLabel">Website link*:
-                    <input className="FormInput"
-                        type="text"
-                        name="websiteLink"
-                        value={inputs.websiteLink || coin.websiteLink}
-                        onChange={handleChange}>
-                    </input>
-                </label>
-
-                <label className="FormLabel">Custom chart link:
-                    <input className="FormInput"
-                        type="text"
-                        name="customChartLink"
-                        value={inputs.customChartLink || coin.customChartLink}
-                        onChange={handleChange}>
-                    </input>
-                </label>
+                        <label className={style.formLabel}>Name*:
+                            <input className={style.formInput}
+                                type="text"
+                                name="name"
+                                value={inputs.name || editionService.getCoin().name}
+                                onChange={handleChange}
+                            />
+                        </label>
+                        <label className={style.formLabel}>Symbol*:
+                            <input className={style.formInput}
+                                type="text"
+                                name="symbol"
+                                value={inputs.symbol || editionService.getCoin().symbol}
+                                onChange={handleChange}
+                            ></input>
+                        </label>
 
 
-                <label className="FormLabel">Custom swap link:
-                    <input className="FormInput"
-                        type="text"
-                        name="customSwapLink"
-                        value={inputs.customSwapLink || coin.customSwapLink}
-                        onChange={handleChange}>
-                    </input>
-                </label>
-
-                <label className="FormLabel">Telegram link:
-                    <input className="FormInput"
-                        type="text"
-                        name="telegram"
-                        value={inputs.telegram || coin.telegram}
-                        onChange={handleChange}>
-                    </input>
-                </label>
 
 
-                <label className="FormLabel">Twitter link:
-                    <input className="FormInput"
-                        type="text"
-                        name="twitter"
-                        value={inputs.twitter || coin.twitter}
-                        onChange={handleChange}>
-                    </input>
-                </label>
+                        <label className={style.formLabel}>LaunchDate (UTC)*:
+                            <input className={style.formInput}
+                                type="date"
+                                name="launchDate"
+                                value={inputs.launchDate || editionService.getCoin().launchDate}
+                                onChange={handleChange}
+                            />
+                        </label>
 
 
-                <label className="FormLabel">Discord link:
-                    <input className="FormInput"
-                        type="text"
-                        name="discord"
-                        value={inputs.discord || coin.discord}
-                        onChange={handleChange}>
-                    </input>
-                </label>
+                        <label className={style.formLabel}>Contract Address:
+                            <input className={style.formInput}
+                                type="text"
+                                name="contractAddress"
+                                value={inputs.contractAddress || editionService.getCoin().contractAddress}
+                                onChange={handleChange}
+                            />
 
-                <label className="FormLabel">Logo:
-                    <input className="FormInput"
-                        type="file"
-                        name="image"
-                        value={inputs.image}
-                        onChange={handleChange}
-                        accept="image/png, image/jpeg">
-                    </input>
-                </label>
-                <button type="button" className="btn btn-secondary" onClick={upload}>Upload</button>
+                        </label>
+
+                        <label className={style.formLabel}>Description*:
+                            <textarea className={style.formInput} style={{
+                                maxHeight: "40em",
+                                minHeight: "8em"
+                            }}
+                                type="text"
+                                name="description"
+                                value={inputs.description || editionService.getCoin().description}
+                                onChange={handleChange}
+                                required="required"
+                            />
+                        </label>
+
+                        <label className={style.formLabel}>Type*:
+                            <Select
+                                className="basic-single"
+                                classNamePrefix="select"
+                                value={selected || editionService.getType()}
+                                isSearchable={true}
+                                options={options}
+                                /* value={selected} */
+                                onChange={handleSelect}
+                                selectOption="required"
+                            />
+
+                        </label>
+
+                        <label className={style.formLabel}>Website link*:
+                            <input className={style.formInput}
+                                type="text"
+                                name="websiteLink"
+                                value={inputs.websiteLink || editionService.getCoin().websiteLink}
+                                onChange={handleChange}
+                                required="required"
+                            />
+                        </label>
+
+                        <label className={style.formLabel}>Custom chart link:
+                            <input className={style.formInput}
+                                type="text"
+                                name="customChartLink"
+                                value={inputs.customChartLink || editionService.getCoin().customChartLink}
+                                onChange={handleChange} />
+                        </label>
 
 
-                <input className="btn btn-primary btn-block" id="submitInput" type="submit" />
-            </form >
-        </div>
+                        <label className={style.formLabel}>Custom swap link:
+                            <input className={style.formInput}
+                                type="text"
+                                name="customSwapLink"
+                                value={inputs.customSwapLink || editionService.getCoin().customSwapLink}
+                                onChange={handleChange}>
+                            </input>
+                        </label>
+
+                        <label className={style.formLabel}>Telegram link:
+                            <input className={style.formInput}
+                                type="text"
+                                name="telegram"
+                                value={inputs.telegram || editionService.getCoin().telegram}
+                                onChange={handleChange}>
+                            </input>
+                        </label>
+
+
+                        <label className={style.formLabel}>Twitter link*:
+                            <input className={style.formInput}
+                                type="text"
+                                name="twitter"
+                                value={inputs.twitter || editionService.getCoin().twitter}
+                                onChange={handleChange}
+                                required="required" />
+                        </label>
+
+
+                        <label className={style.formLabel}>Discord link:
+                            <input className={style.formInput}
+                                type="text"
+                                name="discord"
+                                value={inputs.discord || editionService.getCoin().discord}
+                                onChange={handleChange} />
+                        </label>
+                        <br />
+                        <input className="btn btn-primary btn-block" id="submitInput" type="submit" />
+                    </form >
+                </div>
+            </div>
+            <FooterComponent />
+        </div >
+
+
+
+
+
+
     )
 }
 

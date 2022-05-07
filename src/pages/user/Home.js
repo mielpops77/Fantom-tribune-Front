@@ -1,14 +1,14 @@
 import NavigationUserComponent from '../../components/Navigation/NavigationUser/NavigationUser.component';
-
+import HomeComponent from '../../components/User/Home/Home.component'
 
 
 const Home = () => {
     return (
         <div className ="home">
             <NavigationUserComponent/>
-            <h1>
-                accueil
-            </h1>
+            <br /><br /><br /><br /><br /><br /><br /><br />
+            <HomeComponent/>
+
             
         </div>
     )
