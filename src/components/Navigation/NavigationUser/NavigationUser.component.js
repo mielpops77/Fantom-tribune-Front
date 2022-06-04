@@ -56,8 +56,12 @@ const Navigation = () => {
           <li className={style.liNavUser} id={style.subToken}>Submit Project +</li>
         </NavLink>
 
+      
+
+
+      </ul>
         {currentUser ? (
-          <div className={style.divLoginRegister}>
+          <div className={style.divCurrentUser}>
             <img className={style.imgUser} src="http://localhost:3000/user.png" />
           </div>
         ) : (
@@ -73,9 +77,6 @@ const Navigation = () => {
             </NavLink>
           </div>
         )}
-
-
-      </ul>
     </nav>
   );
 };
