@@ -124,6 +124,17 @@ function getEcosystemLenght() {
 }
 
 
+function global() {
+    return axios.put(`http://localhost:3000/global`)
+        .then(response => {
+            return response.data;
+        })
+}
+
+
+
+
+
 
 
 
@@ -142,4 +153,5 @@ export default {
     initTypeFilter,
     getTypeFilter,
     setTypeFilter,
+    global
 };

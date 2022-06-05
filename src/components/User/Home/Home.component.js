@@ -1,11 +1,18 @@
+import React, { useEffect } from 'react';
+import TableLaunchService from '../../../services/tableauLaunh/tableauLaunch.service'
 
-import React from 'react';
 import style from "./Home.module.scss";
 
 
 const Home = () => {
 
     const elements = ['1', '2', '3', '4', '1', '2', '3', '4', '1', '2', '3', '4', '1', '2', '3', '4'];
+
+
+    useEffect(() => {
+        TableLaunchService.global();
+
+    }, []);
 
     return (
         <div >

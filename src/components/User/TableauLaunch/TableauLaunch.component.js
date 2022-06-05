@@ -11,7 +11,6 @@ import Modal from '@mui/material/Modal';
 import Dropdown from 'react-dropdown';
 import Box from '@mui/material/Box';
 import 'react-dropdown/style.css';
-import tableauLaunchService from '../../../services/tableauLaunh/tableauLaunch.service';
 
 
 
@@ -68,7 +67,7 @@ const TableauLaunch = () => {
 
         let data = TableLaunchService.getDatabase()
         for (let i = 0; i < totalReactPackages.length; i++) {
-          data.rows.push(({ image: <img style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, vote: totalReactPackages[i].vote, voteToday: totalReactPackages[i].voteToday, type: totalReactPackages[i].type, voteTwentyHour:totalReactPackages[i].voteTwentyHour}));
+          data.rows.push(({ image: <img style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, vote: totalReactPackages[i].vote, voteToday: totalReactPackages[i].voteToday, type: totalReactPackages[i].type, voteTwentyHour: totalReactPackages[i].voteTwentyHour, voteTwentyHourCalcul: totalReactPackages[i].voteTwentyHourCalcul }));
         }
         seDatabase(TableLaunchService.getDatabase());
       }
@@ -105,12 +104,12 @@ const TableauLaunch = () => {
     e.stopPropagation();
   }
 
-  function Vote(id, voteToday, vote, voteTwentyHour) {
-    user !== null ? putVote(id, voteToday, user.email, vote, voteTwentyHour) : handleOpen();
+  function Vote(id, voteToday, vote, voteTwentyHourCalcul, voteTwentyHour) {
+    user !== null ? putVote(id, voteToday, user.email, vote, voteTwentyHourCalcul, voteTwentyHour) : handleOpen();
   }
 
 
-  function putVote(projectId, voteToday, email, vote, voteTwentyHour) {
+  function putVote(projectId, voteToday, email, vote, voteTwentyHourCalcul, voteTwentyHour) {
 
     let date = new Date();
     let mondayUtc = (date.getUTCMonth() + 1)
@@ -138,10 +137,11 @@ const TableauLaunch = () => {
         }
       }
       if (verif) {
+
         const requestOptions = {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ info: email, voteToday: voteToday, vote: vote, voteTwentyHour: voteTwentyHour })
+          body: JSON.stringify({ info: email, voteToday: voteToday, vote: vote, voteTwentyHourCalcul: voteTwentyHourCalcul, voteTwentyHour: voteTwentyHour })
         };
         fetch(`http://localhost:3000/vote/${projectId}`, requestOptions)
           .then(response => response.json())
@@ -151,12 +151,11 @@ const TableauLaunch = () => {
     }
 
     else {
-      console.log('chemin de traverse');
 
       const requestOptions = {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ info: email, voteToday: voteToday, vote: vote, voteTwentyHour: voteTwentyHour })
+        body: JSON.stringify({ info: email, voteToday: voteToday, vote: vote, voteTwentyHourCalcul: voteTwentyHourCalcul, voteTwentyHour: voteTwentyHour })
       };
       fetch(`http://localhost:3000/vote/${projectId}`, requestOptions)
         .then(response => response.json())
@@ -324,6 +323,8 @@ const TableauLaunch = () => {
             <th className={style.thPointer} scope="col">Type</th>
             <th onClick={trieLaunchDate} className={style.thPointer} style={{ cursor: 'pointer' }} scope="col">LaunchDate</th>
             <th onClick={trieVote} className={style.thPointer} style={{ cursor: 'pointer' }} scope="col">Votes</th>
+            <th className={style.thPointer} style={{ cursor: 'pointer' }} scope="col">VotesToday</th>
+
             <th className={style.thPointer} scope="col">  </th>
           </tr>
         </thead>
@@ -345,7 +346,10 @@ const TableauLaunch = () => {
                 {row.vote}
               </td>
               <td>
-                <button type="button" onClick={function (event) { Propagation(event); Vote(row.id, row.voteToday, row.vote, row.voteTwentyHour) }} className="btn btn-success">Vote</button>
+                {row.voteTwentyHour}
+              </td>
+              <td>
+                <button type="button" onClick={function (event) { Propagation(event); Vote(row.id, row.voteToday, row.vote, row.voteTwentyHourCalcul, row.voteTwentyHour) }} className="btn btn-success">Vote</button>
               </td>
             </tr>
 

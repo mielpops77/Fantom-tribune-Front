@@ -64,6 +64,135 @@ function Formulaire() {
 
   let dateUtcMax = dateMax.getFullYear() + '-' + mondayUtcMax + '-' + dayUtcMax;
 
+
+  let voteTwentyHourCalcul =
+  {
+    twentyHourCalcul: [
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      }
+    ]
+  }
+
+
+
   const options = [
     { label: "Dex", value: "Dex" },
     { label: "Gaming", value: "Gaming" },
@@ -104,7 +233,6 @@ function Formulaire() {
   }
 
   const handleChange = (event) => {
-
     const name = event.target.name;
     const value = event.target.value;
     setInputs(values => ({ ...values, [name]: value }))
@@ -145,7 +273,7 @@ function Formulaire() {
       body: JSON.stringify({
         name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress, description: inputs.description, type: type,
         websiteLink: inputs.websiteLink, customChartLink: inputs.customChartLink, customSwapLink: inputs.customSwapLink,
-        telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, vote: 0, voteToday: voteTodayUtc, voteTwentyHour: [[0,0,0],[0]]
+        telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, vote: 0, voteToday: voteTodayUtc, voteTwentyHour: 0, voteTwentyHourCalcul: voteTwentyHourCalcul,
       })
     };
     fetch('http://localhost:3000/launchDate', requestOptions)
