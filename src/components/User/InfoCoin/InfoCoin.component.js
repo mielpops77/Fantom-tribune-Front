@@ -30,8 +30,7 @@ const InfoCoin = () => {
         <div>
             <NavigationUserComponent />
             <div className={style.divCorpCoin}>
-                <p className={style.test}>{coin.name}</p>
-                dsss
+                <p className={style.test}>ssss{coin.name}</p>
             </div>
         </div>
     )

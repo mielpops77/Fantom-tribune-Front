@@ -1,5 +1,6 @@
 
 import { MultiSelect } from "react-multi-select-component";
+import Select from 'react-select'
 import style from "./Formulaire.module.scss";
 import { useHistory } from 'react-router-dom';
 import { useState } from "react";
@@ -8,7 +9,7 @@ import axios from 'axios';
 
 
 function Formulaire() {
-  const [selected, setSelected] = useState([]);
+  const [selected, setSelected] = useState('Dex');
   const [urlUpload, setToggle] = useState('');
   const [prev, setPrev] = useState('');
   const [verifUpl, setVerifUpl] = useState('');
@@ -24,6 +25,7 @@ function Formulaire() {
   mondayUtc = parseInt(mondayUtc);
   let dayUtc = date.getUTCDate();
   dayUtc = parseInt(dayUtc);
+  let type = 'Dex';
 
   if (mondayUtc < 10) {
     mondayUtc = '0' + mondayUtc.toString()
@@ -62,6 +64,135 @@ function Formulaire() {
 
   let dateUtcMax = dateMax.getFullYear() + '-' + mondayUtcMax + '-' + dayUtcMax;
 
+
+  let voteTwentyHourCalcul =
+  {
+    twentyHourCalcul: [
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      }
+    ]
+  }
+
+
+
   const options = [
     { label: "Dex", value: "Dex" },
     { label: "Gaming", value: "Gaming" },
@@ -72,8 +203,6 @@ function Formulaire() {
     { label: "Yield Aggregatort", value: "Yield Aggregatort" },
     { label: "Reflect token", value: "Reflect token" },
     { label: "Yield", value: "Yield" },
-
-
   ];
 
 
@@ -129,14 +258,22 @@ function Formulaire() {
         inputs.launchDate = dateUtcMax;
       }
     }
+
+
+    if (selected === null || selected === 'Dex') {
+      type = 'Dex'
+    }
+    else {
+      type = selected.value;
+    }
     event.preventDefault();
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress, description: inputs.description, type: selected,
+        name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress, description: inputs.description, type: type,
         websiteLink: inputs.websiteLink, customChartLink: inputs.customChartLink, customSwapLink: inputs.customSwapLink,
-        telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, vote: 0, voteToday: voteTodayUtc
+        telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, vote: 0, voteToday: voteTodayUtc, voteTwentyHour: 0, voteTwentyHourCalcul: voteTwentyHourCalcul,
       })
     };
     fetch('http://localhost:3000/launchDate', requestOptions)
@@ -256,6 +393,22 @@ function Formulaire() {
       </label>
 
       <label className={style.formLabel}>Type*:
+        <Select
+          className="basic-single"
+          classNamePrefix="select"
+          /* defaultValue={options[0]} */
+          /*  isClearable={true} */
+          defaultValue={options[0]}
+          isSearchable={true}
+          options={options}
+          /* value={selected} */
+          onChange={setSelected}
+          selectOption="required"
+        />
+
+      </label>
+
+      {/*     <label className={style.formLabel}>Type*:
         <MultiSelect
           className={style.multiSelect}
           options={options}
@@ -267,7 +420,7 @@ function Formulaire() {
         />
 
       </label>
-
+ */}
       <label className={style.formLabel}>Website link*:
         <input className={style.formInput}
           type="text"
