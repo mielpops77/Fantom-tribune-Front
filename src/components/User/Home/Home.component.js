@@ -10,7 +10,8 @@ const Home = () => {
 
 
     useEffect(() => {
-        TableLaunchService.global();
+        TableLaunchService.coinmarketCap();
+
 
     }, []);
 

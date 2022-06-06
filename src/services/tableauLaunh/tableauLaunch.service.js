@@ -127,11 +127,40 @@ function getEcosystemLenght() {
 function global() {
     return axios.put(`http://localhost:3000/global`)
         .then(response => {
+            global2();
             return response.data;
         })
 }
 
+function global2() {
+    console.log('eeeee');
+    return axios.put(`http://localhost:3000/global2`)
+        .then(response => {
+            return response.data;
+        })
+}
 
+function theGraphe() {
+    return axios.post(`https://api.thegraph.com/subgraphs/name/eerieeight/spookyswap/`,{ query: `{
+        tokenDayDatas
+        (first: 1, orderBy: date, orderDirection: desc,
+          where: { token: "0x841fad6eae12c286d1fd18d1d525dffa75c7effe"})
+        
+        { id date token { id symbol } priceUSD } }`})
+
+        .then(response => {
+            return response.data;
+        })
+
+}
+
+
+function coinmarketCap() {
+    return axios.get(`http://localhost:3000/coinmarketCap`)
+        .then(response => {
+            return response.data;
+        })
+}
 
 
 
@@ -153,5 +182,9 @@ export default {
     initTypeFilter,
     getTypeFilter,
     setTypeFilter,
-    global
+    global,
+    global2,
+    theGraphe,
+    coinmarketCap
+
 };
