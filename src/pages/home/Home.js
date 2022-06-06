@@ -1,16 +1,17 @@
 import NavigationUserComponent from '../../components/Navigation/NavigationUser/NavigationUser.component';
 import HomeComponent from '../../components/User/Home/Home.component'
-
+import style from './Home.module.scss';
 
 const Home = () => {
     return (
-        <div className ="home">
+        <div className ={style.mainDiv}>
             <NavigationUserComponent/>
-            <br /><br /><br /><br /><br /><br /><br /><br />
-            <HomeComponent/>
 
-            
+            <h1>Discover ...</h1>
+            <h2> ... your next Moon!</h2>
+            <HomeComponent/>    
         </div>
+        
     )
 }
 
