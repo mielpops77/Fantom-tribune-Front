@@ -62,7 +62,9 @@ const Navigation = () => {
       </ul>
         {currentUser ? (
           <div className={style.divCurrentUser}>
+            <a href="/login" onClick={logOut}>
             <img className={style.imgUser} src="http://localhost:3000/user.png" />
+            </a>
           </div>
         ) : (
           <div className={style.divLoginRegister}>
