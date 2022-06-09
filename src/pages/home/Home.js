@@ -7,7 +7,7 @@ const Home = () => {
         <div className ={style.mainDiv}>
             <NavigationUserComponent/>
 
-            <h1>Discover ...</h1>
+            <h1 className ={style.DavidSuceDesBites}>Discover ...</h1>
             <h2> ... your next Moon!</h2>
             <HomeComponent/>    
         </div>
