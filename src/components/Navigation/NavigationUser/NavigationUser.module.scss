@@ -1,9 +1,8 @@
 @import "../../../styles/setting";
 
-
 nav {
   background: url('http://localhost:3000/fond_bandeau.png') no-repeat padding-box;
-  background-size: contain;
+  background-size: cover;
   display: flex;
   justify-content: space-around;
   width: 100%;
@@ -17,7 +16,6 @@ nav {
 
 .imgLogo{
   width: 25%;
-  height: auto;
 }
 
 .title{

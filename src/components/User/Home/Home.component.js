@@ -18,8 +18,6 @@ const Home = () => {
     return (
         <div >
             <p className={style.topTrendingTitle}>Top Trending <span className={style.spanTokenTitle}>Tokens</span> </p>
-            <br /><br />
-
             <div className={style.all}>
                 {elements.map(() => {
                     return <div className={style.rectangle}>

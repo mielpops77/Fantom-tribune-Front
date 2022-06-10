@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Home from './pages/home/Home';
+import Home from './Home';
 import LaunchDate from './pages/user/LaunchDate/LaunchDate.component';
 import Submit from './pages/user/Submit/Submit.component'
 import Login from './components/Authentification/Login/Login.component';

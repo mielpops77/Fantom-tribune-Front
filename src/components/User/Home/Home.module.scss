@@ -1,3 +1,45 @@
+
+ .mainDiv{
+    display:flex;
+    flex-direction: column;
+}
+
+.firstPage{
+    background: url('http://localhost:3000/background_with_rocket.png') no-repeat;
+    background-size:cover;
+    width:100%;
+    height: 1000px; 
+}
+
+.titleh1{
+    margin: 5% 0% 0% 13%;
+    text-align: left;
+    letter-spacing: -2px;
+    color: #FFFFFF;
+    font-size: 5vw;
+}
+
+.titleh2{
+    margin: 0% 0% 0% 35%;
+    text-align: left;
+    letter-spacing: -2px;
+    color: #FFFFFF;
+    font-size: 3vw;
+}
+
+.filter{
+    display: flex;
+    flex-direction: row;
+    margin: 5% 0% 0% 13%;
+    top: 492px;
+    left: 240px;
+    width: 948px;
+    height: 117px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 10px;
+    opacity: 1;
+}
+
 .topTrendingTitle {
     top: 2465px;
     left: 812px;
