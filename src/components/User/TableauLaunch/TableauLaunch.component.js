@@ -271,7 +271,6 @@ const TableauLaunch = () => {
   }
 
   const handleOnFocus = () => {
-    console.log('Focused')
   }
 
   const formatResult = (item) => {
