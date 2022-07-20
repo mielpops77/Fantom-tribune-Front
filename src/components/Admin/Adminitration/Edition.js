@@ -14,7 +14,6 @@ const Edition = () => {
     let today = date.toISOString().split('T')[0];
 
 
-    console.log('wheeeen', editionService.getType());
 
 
 
@@ -97,7 +96,6 @@ const Edition = () => {
        }
     */
     const handleChange = (event) => {
-        console.log(event.target.value);
         const name = event.target.name;
         const value = event.target.value;
         setInputs(values => ({ ...values, [name]: value }))

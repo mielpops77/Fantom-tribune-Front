@@ -3,6 +3,8 @@ import AuthService from "../../../services/auth/auth.service";
 import TableLaunchService from '../../../services/tableauLaunh/tableauLaunch.service'
 import { useHistory } from 'react-router-dom';
 import style from "./Home.module.scss";
+import HolderBalance from '../../../services/tableauLaunh/HolderBalance'
+import tableauLaunchService from '../../../services/tableauLaunh/tableauLaunch.service';
 
 
 const Home = () => {
@@ -131,11 +133,26 @@ const Home = () => {
         history.push(`/login/`)
       }
     
+    const list = [
+        { key: 1, value: 10 },
+        { key: 2, value: 20 },
+        { key: 3, value: 30 },
+        { key: 4, value: 10 },
+        { key: 5, value: 20 },
+        { key: 6, value: 30 },
+        { key: 7, value: 10 },
+        { key: 8, value: 20 }
+    ];
 
     useEffect(() => {
-        TableLaunchService.coinmarketCap();
+        
+        TableLaunchService.coinmarketCap('ethereum');
+        console.log('okokokk');
 
-
+        //On initialise listAllContract 
+       /*  TableLaunchService.initListAllContract(); */
+        //On add la liste des contract des projet non prevente dans listAllContract
+       
     }, []);
 
     const history = useHistory();
@@ -180,6 +197,7 @@ const Home = () => {
 
                                 ))}
                         </div>
+                    {/* tableauLaunchService.initPriceList(TableLaunchService.getListAllContract().length) */}    
                     </div>
                 })}
 
@@ -189,8 +207,6 @@ const Home = () => {
 
     );
 }
-
-
 
 export default Home;
 

@@ -8,6 +8,55 @@ let totalPage = 1;
 let action = 'launchDateAsc';
 
 let typeFilter = 'All';
+let priceList = { info: [] };
+let supply = 0;
+let compteur = 0;
+
+function initCompteur() {
+    compteur = 0;
+}
+function getCompteur() {
+    return compteur;
+}
+function setCompteurImplementation() {
+    compteur++;
+}
+
+
+
+function initPriceList(lenght) {
+
+    if (priceList.info.length === 0) {
+        for (let i = 0; i < lenght; i++) {
+            priceList.info.push({
+                price: 0,
+                contract: 0,
+                supply: 0,
+                coinMarket: 0
+            })
+        }
+
+    }
+
+}
+
+function getPriceList() {
+    return priceList
+}
+
+function setPriceList(index, price, contract, supply) {
+    console.log("setPriceList", index);
+    priceList.info[index].price = price;
+    priceList.info[index].contract = contract;
+    priceList.info[index].supply = supply;
+
+    setCompteurImplementation()
+    if (getCompteur() === getListAllContract().length) {
+        coinMarketCalcul();
+        initCompteur();
+    }
+}
+
 
 
 var database = {
@@ -48,6 +97,26 @@ var database = {
     ]
 };
 
+let listAllContract = [];
+
+
+
+
+
+function initSupply() {
+
+    supply = 0;
+}
+
+function getSupply() {
+    return supply
+}
+
+function setSupply(supp) {
+    supply = supp;
+}
+
+
 
 function initDatabase() {
 
@@ -75,6 +144,17 @@ function setAction(actionValue) {
     action = actionValue;
 }
 
+function initListAllContract() {
+    listAllContract = [];
+}
+
+function getListAllContract() {
+    return listAllContract;
+}
+
+function setListAllContract(listAllContractValue) {
+    listAllContract = listAllContractValue;
+}
 
 
 function initTypeFilter() {
@@ -133,7 +213,6 @@ function global() {
 }
 
 function global2() {
-    console.log('eeeee');
     return axios.put(`http://localhost:3000/global2`)
         .then(response => {
             return response.data;
@@ -141,7 +220,8 @@ function global2() {
 }
 
 function theGraphe() {
-    return axios.post(`https://api.thegraph.com/subgraphs/name/eerieeight/spookyswap/`,{ query: `{
+    return axios.get(`https://api.thegraph.com/subgraphs/name/eerieeight/spookyswap/QmPJbGjktGa7c4UYWXvDRajPxpuJBSZxeQK5siNT3VpthP/spookyswap`, {
+        query: `{
         tokenDayDatas
         (first: 1, orderBy: date, orderDirection: desc,
           where: { token: "0x841fad6eae12c286d1fd18d1d525dffa75c7effe"})
@@ -154,15 +234,96 @@ function theGraphe() {
 
 }
 
-
-function coinmarketCap() {
-    return axios.get(`http://localhost:3000/coinmarketCap`)
+function contractSpooky() {
+    return axios.get(`http://localhost:3000/contractSpooky/`)
         .then(response => {
+            setListAllContract(response.data)
             return response.data;
         })
 }
 
 
+function coinmarketCap(slug, coinMarketCapLink) {
+    return axios.get(`http://localhost:3000/coinmarketCap?slug=${slug}&coinMarketCapLink=${coinMarketCapLink}`)
+        .then(response => {
+          /*   if (response.status === 200) {
+                console.log('ici status 200 lets goooo')
+                coinmarketCapStatus(coinMarketCapLink,"success");
+
+            }
+
+            else {
+                console.log('ici status 220 lets goooo')
+
+                coinmarketCapStatus(coinMarketCapLink,"fail");
+
+            } */
+            
+            return response.data;
+        })
+}
+
+
+
+/* function coinmarketCapStatus(coinMarketCapLink, status) {
+    return axios.put(`http://localhost:3000/coinmarketCapStatus?coinMarketCapLink=${coinMarketCapLink}&status=${status}`)
+        .then(response => {
+
+            console.log("??????Response", response)
+            return response.data;
+        })
+}
+ */
+
+function configContract(configContract) {
+    console.log("configContraaaaaaaaaact");
+    return axios.put(`http://localhost:3000/configContract`, {
+        configContract: configContract
+    })
+        .then(response => {
+            updatePrice(getPriceList())
+            return response.data;
+        })
+}
+
+function updatePrice(priceList) {
+    return axios.put(`http://localhost:3000/updatePrice`, {
+        priceList: priceList
+    })
+        .then(response => {
+            return response.data;
+        })
+}
+
+function ftmScanTotalSupply(contract) {
+    return axios.get(`https://api.ftmscan.com/api?module=stats&action=tokensupply&contractaddress=${contract}&apikey=HVJ8CKBSZGI6CQJD8PKS5EU4SJUZ5CH4JX`)
+        .then(response => {
+            const str = response.data.result.toString();
+            const strEntier = str.substring(0, str.length - 18);
+            const resultat = parseFloat(strEntier);
+            setSupply(resultat);
+            return resultat;
+        })
+}
+
+function resolveAfter2Seconds() {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve('resolved');
+        }, 10000);
+    });
+}
+
+function coinMarketCalcul() {
+    for (let i = 0; i < getPriceList().info.length; i++) {
+        getPriceList().info[i].coinMarket = (getPriceList().info[i].price * getPriceList().info[i].supply);
+    }
+    console.log('priceList', priceList);
+    priceList = getPriceList();
+
+    configContract(priceList);
+
+}
 
 
 
@@ -185,6 +346,21 @@ export default {
     global,
     global2,
     theGraphe,
-    coinmarketCap
-
+    coinmarketCap,
+    contractSpooky,
+    initListAllContract,
+    getListAllContract,
+    setListAllContract,
+    initPriceList,
+    getPriceList,
+    setPriceList,
+    updatePrice,
+    configContract,
+    ftmScanTotalSupply,
+    initSupply,
+    getSupply,
+    setSupply,
+    coinMarketCalcul,
+    resolveAfter2Seconds,
+    
 };

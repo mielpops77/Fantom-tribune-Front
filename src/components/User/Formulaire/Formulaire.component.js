@@ -1,8 +1,7 @@
-
-import { MultiSelect } from "react-multi-select-component";
-import Select from 'react-select'
-import style from "./Formulaire.module.scss";
+import TableLaunchService from '../../../services/tableauLaunh/tableauLaunch.service'
 import { useHistory } from 'react-router-dom';
+import style from "./Formulaire.module.scss";
+import Select from 'react-select'
 import { useState } from "react";
 import ReactDOM from "react-dom";
 import axios from 'axios';
@@ -250,6 +249,20 @@ function Formulaire() {
 
 
   const handleSubmit = (event) => {
+    let coinMarketCapLink;
+    let coinMarketCapStatus;
+    if (inputs.coinMarketCapLink == undefined) {
+      coinMarketCapLink = 'none';
+      coinMarketCapStatus = 'none';
+
+    }
+    else {
+      coinMarketCapStatus ="en cours de validation"
+      const searchTerm = '/currencies/'
+      const slug = inputs.coinMarketCapLink.substring(inputs.coinMarketCapLink.lastIndexOf(searchTerm) + 12, inputs.coinMarketCapLink.length - 1)
+      coinMarketCapLink = inputs.coinMarketCapLink;
+      TableLaunchService.coinmarketCap(slug,coinMarketCapLink);
+    }
     if (inputs.launchDate === undefined) {
       if (prev === 'yes') {
         inputs.launchDate = dateUtc;
@@ -258,6 +271,7 @@ function Formulaire() {
         inputs.launchDate = dateUtcMax;
       }
     }
+
 
 
     if (selected === null || selected === 'Dex') {
@@ -271,15 +285,19 @@ function Formulaire() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress, description: inputs.description, type: type,
-        websiteLink: inputs.websiteLink, customChartLink: inputs.customChartLink, customSwapLink: inputs.customSwapLink,
-        telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, vote: 0, voteToday: voteTodayUtc, voteTwentyHour: 0, voteTwentyHourCalcul: voteTwentyHourCalcul,
+        name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress.toLowerCase(), description: inputs.description, type: type,
+        websiteLink: inputs.websiteLink, coinMarketCapLink: coinMarketCapLink, customSwapLink: inputs.customSwapLink,
+        telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, vote: 0, voteToday: voteTodayUtc, voteTwentyHour: 0, voteTwentyHourCalcul: voteTwentyHourCalcul, price: 0, marketCap: 0, supply: 0, coinMarketCapStatus: coinMarketCapStatus
       })
     };
     fetch('http://localhost:3000/launchDate', requestOptions)
       .then(response => response.json(), history.push(`/ValidationForm/`)
       )
+
     /* .then(data => this.setState({ postId: data.id })); */
+
+
+
   }
 
 
@@ -431,11 +449,11 @@ function Formulaire() {
         />
       </label>
 
-      <label className={style.formLabel}>Custom chart link:
+      <label className={style.formLabel}>coinmarketcap link:
         <input className={style.formInput}
           type="text"
-          name="customChartLink"
-          value={inputs.customChartLink || ""}
+          name="coinMarketCapLink"
+          value={inputs.coinMarketCapLink || ""}
           onChange={handleChange} />
       </label>
 

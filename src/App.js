@@ -15,11 +15,6 @@ import ValidationForm from "./components/User/Formulaire/ValidationFormulaire.co
 
 
 
-
-
-
-
-
 const App = () => {
   return (
     <div>
