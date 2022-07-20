@@ -1,22 +1,17 @@
-import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import Home from './pages/home/Home';
-import LaunchDate from './pages/user/LaunchDate/LaunchDate.component';
-import Submit from './pages/user/Submit/Submit.component'
-import Login from './components/Authentification/Login/Login.component';
-import Register from './components/Authentification/Register/Register.component';
-import Administration from './pages/admin/Administration';
-import Welcome from "./components/Authentification/Welcome";
-import Profile from "./components/Authentification/Profile/Profile";
-import InfoCoin from "./components/User/InfoCoin/InfoCoin.component";
-import EditionCoin from "./components/Admin/Adminitration/Edition";
-import Ecosystem from "./pages/user/Ecosystem";
 import ValidationForm from "./components/User/Formulaire/ValidationFormulaire.component";
-
-
-
-
-
+import Register from './components/Authentification/Register/Register.component';
+import Login from './components/Authentification/Login/Login.component';
+import LaunchDate from './pages/user/LaunchDate/LaunchDate.component';
+import InfoCoin from "./components/User/InfoCoin/InfoCoin.component";
+import Profile from "./components/Authentification/Profile/Profile";
+import EditionCoin from "./components/Admin/Adminitration/Edition";
+import Welcome from "./components/Authentification/Welcome";
+import Administration from './pages/admin/Administration';
+import Submit from './pages/user/Submit/Submit.component'
+import { Switch, Route } from 'react-router-dom';
+import Ecosystem from "./pages/user/Ecosystem";
+import Home from './pages/home/Home';
+import React from 'react';
 
 
 

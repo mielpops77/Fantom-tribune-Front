@@ -55,7 +55,7 @@ const Ecosystem = () => {
 
         let data = TableLaunchService.getDatabase()
         for (let i = 0; i < totalReactPackages.length; i++) {
-          data.rows.push(({ image: <img style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, vote: totalReactPackages[i].vote, voteToday: totalReactPackages[i].voteToday }));
+          data.rows.push(({ image: <img style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, vote: totalReactPackages[i].vote, voteToday: totalReactPackages[i].voteToday, price: totalReactPackages[i].price , coinMarket:totalReactPackages[i].marketCap,supply:totalReactPackages[i].supply}));
         }
 
 
@@ -234,6 +234,9 @@ const Ecosystem = () => {
             <th className={style.thPointer} scope="col">Name</th>
             <th className={style.thPointer} scope="col">Symbol</th>
             <th className={style.thPointer} scope="col">LaunchDate</th>
+            <th className={style.thPointer} scope="col">Price</th>
+            <th className={style.thPointer} scope="col">MarketCap</th>
+            <th className={style.thPointer} scope="col">Supply</th>
             <th className={style.thPointer} scope="col">Votes</th>
             <th className={style.thPointer} scope="col">  </th>
           </tr>
@@ -249,10 +252,19 @@ const Ecosystem = () => {
               <td>
                 {row.launchDate}</td>
               <td>
+                {row.price}
+              </td>
+              <td>
+                {row.coinMarket}
+              </td>
+              <td>
+                {row.supply}
+              </td>
+              <td>
                 {row.vote}
               </td>
               <td>
-              <button type="button" onClick={function (event) { Propagation(event); Vote(row.id, row.voteToday, row.vote) }} className="btn btn-success">Vote</button>
+                <button type="button" onClick={function (event) { Propagation(event); Vote(row.id, row.voteToday, row.vote) }} className="btn btn-success">Vote</button>
               </td>
             </tr>
 
