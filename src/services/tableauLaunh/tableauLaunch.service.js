@@ -204,16 +204,16 @@ function getEcosystemLenght() {
 }
 
 
-function global() {
-    return axios.put(`http://localhost:3000/global`)
+function voteHourVerif() {
+    return axios.put(`http://localhost:3000/voteHourVerif`)
         .then(response => {
-            global2();
+            voteHourApplication();
             return response.data;
         })
 }
 
-function global2() {
-    return axios.put(`http://localhost:3000/global2`)
+function voteHourApplication() {
+    return axios.put(`http://localhost:3000/voteHourApplication`)
         .then(response => {
             return response.data;
         })
@@ -343,8 +343,8 @@ export default {
     initTypeFilter,
     getTypeFilter,
     setTypeFilter,
-    global,
-    global2,
+    voteHourVerif,
+    voteHourApplication,
     theGraphe,
     coinmarketCap,
     contractSpooky,

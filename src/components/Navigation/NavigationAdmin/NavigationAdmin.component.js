@@ -31,39 +31,26 @@ const NavigationAdmin = () => {
        <img className={style.imgFond} src="http://localhost:3000/header.png" />
       {showAdminBoard && (<ul className={style.ulNavUser}>
         <NavLink
-          to="/Admin"
+          to="/administration"
           className={(nav) => (nav.isActive ? "nav-active" : "")}
         >
           <li className={style.liNavUser}>ADMINISTRATION</li>
+        </NavLink>
+    
+
+        <NavLink
+          to="/apiConfig"
+          className={(nav) => (nav.isActive ? "nav-active" : "")}
+        >
+          <li className={style.liNavUser}>API-CONFIG</li>
         </NavLink>
         <NavLink
           to="/"
           className={(nav) => (nav.isActive ? "nav-active" : "")}
         >
-          <li className={style.liNavUser}>NEWS EDITION</li>
-        </NavLink>
-
-        <NavLink
-          to="/Admin/Tutorial"
-          className={(nav) => (nav.isActive ? "nav-active" : "")}
-        >
-          <li className={style.liNavUser}>TUTORIAL</li>
+          <li className={style.liNavUser}>HOME</li>
         </NavLink>
         
-        
-        <NavLink
-          to="/Admin/Promotion"
-          className={(nav) => (nav.isActive ? "nav-active" : "")}
-        >
-          <li className={style.liNavUser}>PROMOTION</li>
-        </NavLink>
-
-        <NavLink
-          to="/Admin/Statistique"
-          className={(nav) => (nav.isActive ? "nav-active" : "")}
-        >
-          <li className={style.liNavUser}>STATISTIQUE</li>
-        </NavLink>
 
         {currentUser ? (
           <div className={style.divLoginRegister}>

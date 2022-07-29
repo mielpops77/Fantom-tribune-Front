@@ -26,9 +26,9 @@ const Navigation = () => {
 
     <nav>
       <div className={style.fantom_tribune}>
-        
-      <img className={style.imgLogo} src="http://localhost:3000/logo.png" />
-      <h1 className={style.title}>FANTOM TRIBUNE</h1>
+
+        <img className={style.imgLogo} src="http://localhost:3000/logo.png" />
+        <h1 className={style.title}>FANTOM TRIBUNE</h1>
       </div>
       <ul className={style.ulNavUser}>
         <NavLink to="/" className={(nav) => (nav.isActive ? "nav-active" : "")}>
@@ -49,6 +49,15 @@ const Navigation = () => {
         </NavLink>
 
 
+        {showAdminBoard && <NavLink
+          to="/administration"
+          className={(nav) => (nav.isActive ? "nav-active" : "")}
+        >
+          <li className={style.liNavUser}>ADMIN</li>
+        </NavLink>
+        }
+
+
         <NavLink
           to="/submit"
           className={(nav) => (nav.isActive ? "nav-active" : "")}
@@ -56,29 +65,29 @@ const Navigation = () => {
           <li className={style.liNavUser} id={style.subToken}>Submit Project +</li>
         </NavLink>
 
-      
+
 
 
       </ul>
-        {currentUser ? (
-          <div className={style.divCurrentUser}>
-            <a href="/login" onClick={logOut}>
+      {currentUser ? (
+        <div className={style.divCurrentUser}>
+          <a href="/login" onClick={logOut}>
             <img className={style.imgUser} src="http://localhost:3000/user.png" />
-            </a>
-          </div>
-        ) : (
-          <div className={style.divLoginRegister}>
-            <NavLink to="/login" >
+          </a>
+        </div>
+      ) : (
+        <div className={style.divLoginRegister}>
+          <NavLink to="/login" >
 
-              <li className={style.login}>Login</li>
-            </NavLink>
+            <li className={style.login}>Login</li>
+          </NavLink>
 
-            <NavLink to="/register" >
+          <NavLink to="/register" >
 
-              <li className={style.login}>Register</li>
-            </NavLink>
-          </div>
-        )}
+            <li className={style.login}>Register</li>
+          </NavLink>
+        </div>
+      )}
     </nav>
   );
 };
