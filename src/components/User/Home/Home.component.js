@@ -19,6 +19,7 @@ const Home = () => {
 
     
     function tableLaunch(limit, skip) {
+      
   
   
       var totalReactPackages;
@@ -145,10 +146,13 @@ const Home = () => {
     ];
 
     useEffect(() => {
-        
-        TableLaunchService.coinmarketCap('ethereum');
-        console.log('okokokk');
 
+      tableauLaunchService.voteHourVerif()
+
+        
+   /*      TableLaunchService.coinmarketCap('ethereum');
+        console.log('okokokk');
+ */
         //On initialise listAllContract 
        /*  TableLaunchService.initListAllContract(); */
         //On add la liste des contract des projet non prevente dans listAllContract

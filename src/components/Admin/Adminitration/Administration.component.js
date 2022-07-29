@@ -217,8 +217,7 @@ function Administration() {
     return (
         <div className="container">
             <Menu className={style.navTabAdmin}>
-
-                <Menu.Item className={toggle ? style.itemTabAdminClick : style.itemTabAdmin} onClick={() => changeStyle(1)}
+                <Menu.Item className={toggle ? style.itemTabAdminClick : style.itemTabAdmin} onClick={() => changeStyle(1)} 
                     name='À valider'
                 />
 
@@ -229,7 +228,7 @@ function Administration() {
                     name='En ligne'
                 />
                 <Menu.Item
-                    className={toggle3 ? style.itemTabAdminClick : style.itemTabAdmin} onClick={() => changeStyle(3)}
+                    className={toggle3 ? style.itemTabAdminClick : style.itemTabAdmin} onClick={() => changeStyle(3)} 
 
                     name='Corbeille'
                 />

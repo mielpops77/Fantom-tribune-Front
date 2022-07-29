@@ -34,11 +34,21 @@ function setType(typeTarget) {
 }
 
 
+function setGlobalVoteTwentyHourStatus(status) {
+    return axios.put(`http://localhost:3000/globalVoteTwentyHourStatus?status=${status}`)
+        .then(response => {
+            return response.data;
+        })
+}
+
+
+
 export default {
+    setGlobalVoteTwentyHourStatus,
     initCoin,
+    initType,
     getCoin,
     setCoin,
-    initType,
     getType,
-    setType
+    setType,
 };
