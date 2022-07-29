@@ -164,12 +164,12 @@ const Home = () => {
                 {elements.map(() => {
                     return <div className={style.rectangle}>
                         <div className={style.divAllInfo}>
-                          <div className={style.infoTop}>
-                            <p className={style.blueButton}>KYC</p>
-                            <img src="http://localhost:3000/crown.png" className={style.imgCrown}></img>
-                          </div>
+                            <p className={style.KYCButton}>KYC</p>
+                            <div className={style.imgCrown}></div>
                           <img src="http://localhost:3000/planet9.png" className={style.imgProjectLogo}></img>
-                          <h1 className={style.projectName}>BLAZE</h1>
+                            <h1 className={style.projectName}>BLAZE</h1>
+                            <p className={style.presaleButton}>PreSale</p>
+
                           <p className={style.thPointer} scope="col">Type</p>
                           <p className={style.thPointer} scope="col">Market Cap</p>
                           <p className={style.thPointer} scope="col">Price</p>
@@ -177,7 +177,10 @@ const Home = () => {
                           <p className={style.thPointer} scope="col">Launch</p>
                           <p className={style.thPointer} scope="col">Votes</p>
                           <p className={style.thPointer} scope="col">Votes in 24h</p>
-
+                          <div className={style.cardFooter}>
+                            <button className={style.voteButton}>Vote</button>
+                            <button className={style.buyButton}>Buy</button>
+                          </div>
                                 {database.rows?.map((row, index) => (
                                     <tr key={index} onClick={() => history.push(`/infoCoin/${row.id}`)} style={{ cursor: 'pointer' }} >
                                     <td ></td>
@@ -196,7 +199,10 @@ const Home = () => {
                                     </tr>
 
                                 ))}
+                         
+                          
                         </div>
+                      
                     {/* tableauLaunchService.initPriceList(TableLaunchService.getListAllContract().length) */}    
                     </div>
                 })}
