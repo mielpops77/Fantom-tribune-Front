@@ -5,11 +5,12 @@ let coin = [];
 
 let type = [];
 
+let promotedProjectLenght;
+
 
 function initCoin() {
     coin = [];
 }
-
 
 function getCoin() {
     return coin
@@ -17,6 +18,18 @@ function getCoin() {
 
 function setCoin(coinTarget) {
     coin = coinTarget;
+}
+
+function initPromotedProjectLenght() {
+    promotedProjectLenght = 0;
+}
+
+function getPromotedProjectLenght() {
+    return promotedProjectLenght
+}
+
+function setPromotedProjectLenght(promotedProjectLenghtValue) {
+    promotedProjectLenght = promotedProjectLenghtValue;
 }
 
 
@@ -42,9 +55,25 @@ function setGlobalVoteTwentyHourStatus(status) {
 }
 
 
+function setCoinMarketCapStatus(status, listId) {
+    console.log('yolosssssss',listId);
+    return axios.put(`http://localhost:3000/coinMarketCapBoucleStatus?status=${status}`,
+    {
+        data: { listId }
+    })
+        .then(response => {
+            return response.data;
+        })
+}
+
+
 
 export default {
     setGlobalVoteTwentyHourStatus,
+    initPromotedProjectLenght,
+    getPromotedProjectLenght,
+    setPromotedProjectLenght,
+    setCoinMarketCapStatus,
     initCoin,
     initType,
     getCoin,

@@ -63,6 +63,14 @@ function Formulaire() {
 
   let dateUtcMax = dateMax.getFullYear() + '-' + mondayUtcMax + '-' + dayUtcMax;
 
+  let listePriceIdCoinMarketCap = {
+    priceId: [
+      {
+        price: 0,
+        id: 0,
+      }
+    ]
+  };
 
   let voteTwentyHourCalcul =
   {
@@ -202,6 +210,7 @@ function Formulaire() {
     { label: "Yield Aggregatort", value: "Yield Aggregatort" },
     { label: "Reflect token", value: "Reflect token" },
     { label: "Yield", value: "Yield" },
+    { label: "Bridge", value: "Bridge" },
   ];
 
 
@@ -257,11 +266,11 @@ function Formulaire() {
 
     }
     else {
-      coinMarketCapStatus ="en cours de validation"
+      coinMarketCapStatus = "en cours de validation"
       const searchTerm = '/currencies/'
       const slug = inputs.coinMarketCapLink.substring(inputs.coinMarketCapLink.lastIndexOf(searchTerm) + 12, inputs.coinMarketCapLink.length - 1)
       coinMarketCapLink = inputs.coinMarketCapLink;
-      TableLaunchService.coinmarketCap(slug,coinMarketCapLink);
+      TableLaunchService.coinmarketCap(slug, coinMarketCapLink);
     }
     if (inputs.launchDate === undefined) {
       if (prev === 'yes') {
@@ -287,7 +296,7 @@ function Formulaire() {
       body: JSON.stringify({
         name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress.toLowerCase(), description: inputs.description, type: type,
         websiteLink: inputs.websiteLink, coinMarketCapLink: coinMarketCapLink, customSwapLink: inputs.customSwapLink,
-        telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, vote: 0, voteToday: voteTodayUtc, voteTwentyHour: 0, voteTwentyHourCalcul: voteTwentyHourCalcul, price: 0, marketCap: 0, supply: 0, coinMarketCapStatus: coinMarketCapStatus
+        telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, vote: 0, voteToday: voteTodayUtc, voteTwentyHour: 0, voteTwentyHourCalcul: voteTwentyHourCalcul, price: 0, marketCap: 0, supply: 0, coinMarketCapStatus: coinMarketCapStatus, idCoinMarketCap: 0, listePriceIdCoinMarketCap: listePriceIdCoinMarketCap, percent_change_24h: 0, promotedStatus: false
       })
     };
     fetch('http://localhost:3000/launchDate', requestOptions)

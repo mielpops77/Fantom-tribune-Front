@@ -1,6 +1,8 @@
 import { MDBDataTableV5 } from 'mdbreact';
 import { useEffect, useState } from "react";
-import { AiOutlineCheck, AiOutlineClose, AiFillEdit } from 'react-icons/ai';
+import { AiOutlineCheck, AiOutlineClose, AiFillEdit, AiFillStar } from 'react-icons/ai';
+import editionAdminService from "../../../services/admin/editionAdmin.service";
+
 import { FaTrashRestore } from 'react-icons/fa';
 import { BsTrash } from 'react-icons/bs';
 import { Menu } from 'semantic-ui-react'
@@ -14,41 +16,55 @@ function Administration() {
     const [toggle, setToggle] = useState(true);
     const [toggle2, setToggle2] = useState(false);
     const [toggle3, setToggle3] = useState(false);
+    const [toggle4, setToggle4] = useState(false);
 
+
+    /* const [promotedStatus, setpromotedStatus] = useState(false); */
+
+
+    let promotedProjectLenght = 0;
 
     const history = useHistory();
 
     let changeStyle = (btn) => {
-
-        console.log(btn)
         switch (btn) {
             case 1:
                 setToggle(true);
                 setToggle2(false);
                 setToggle3(false);
+                setToggle4(false);
                 getValidation();
                 break;
             case 2:
                 setToggle2(true);
                 setToggle(false);
                 setToggle3(false);
+                setToggle4(false);
                 getLunch();
                 break;
             case 3:
                 setToggle3(true);
                 setToggle(false);
                 setToggle2(false);
+                setToggle4(false);
                 getTrash();
+                break;
+            case 4:
+                setToggle3(false);
+                setToggle(false);
+                setToggle2(false);
+                setToggle4(true);
+                getPromoted();
                 break;
             default:
         }
     };
 
+
     useEffect(() => {
         fetch('http://localhost:3000/launchDateAdmin/')
             .then((res) => res.json())
             .then((res) => {
-
                 setPosts(res);
             });
     }, []);
@@ -59,7 +75,7 @@ function Administration() {
             .then((res) => res.json())
             .then((res) => {
                 setPosts(res);
-
+                getPromotedProjectLenght();
             });
     };
 
@@ -97,6 +113,23 @@ function Administration() {
             });
     };
 
+    let getPromoted = () => {
+        fetch('http://localhost:3000/getPromotedProject/')
+            .then((res) => res.json())
+            .then((res) => {
+                setPosts(res);
+            });
+    };
+
+    let getPromotedProjectLenght = () => {
+        fetch('http://localhost:3000/getPromotedProjectLenght/')
+            .then((res) => res.json())
+            .then((res) => {
+                editionAdminService.initPromotedProjectLenght();
+                editionAdminService.setPromotedProjectLenght(res);
+            });
+    };
+
 
     let validProject = (postId, status, remove) => {
         fetch(`http://localhost:3000/adminEdit/${postId}`, {
@@ -118,6 +151,58 @@ function Administration() {
                 }
             });
     };
+
+
+    let promotedChangeRequest = (postId, promotedStatus) => {
+
+
+        if (promotedStatus) {
+            editionAdminService.setPromotedProjectLenght(editionAdminService.getPromotedProjectLenght() - 1);
+            console.log('editionAdminService.getPromotedProjectLenght()', editionAdminService.getPromotedProjectLenght());
+        }
+
+        if (!promotedStatus) {
+
+            editionAdminService.setPromotedProjectLenght(editionAdminService.getPromotedProjectLenght() + 1);
+        }
+
+        console.log('editionAdminService.getPromotedProjectLenght()', editionAdminService.getPromotedProjectLenght());
+
+        if (editionAdminService.getPromotedProjectLenght() <= 8 || promotedStatus || toggle4) {
+
+
+
+            fetch(`http://localhost:3000/promotedChange/${postId}`, {
+                method: "Put",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ promotedStatus: promotedStatus })
+
+            })
+                .then((res) => res.json())
+
+                .then((res) => {
+
+                    console.log('hmmmm', editionAdminService.getPromotedProjectLenght());
+
+                    if (toggle2) {
+                        console.log('toggle2 Avant', editionAdminService.getPromotedProjectLenght());
+                        getPromotedProjectLenght();
+                        getLunch();
+
+                    }
+                    if (toggle4) {
+                        getPromoted();
+                        getPromotedProjectLenght();
+                    }
+                });
+
+        }
+
+        else {
+            alert('You can only promote 8 projects at the same time');
+        }
+    };
+
 
 
     useEffect(() => {
@@ -150,6 +235,20 @@ function Administration() {
                         color: "red",
                     }} onClick={() => validProject(posts[index]._id, false, false)} />}
 
+                    {toggle2 && <div>{!posts[index].promotedStatus && <AiFillStar size={32}
+                        style={{
+                            cursor: "pointer",
+                            color: "black",
+                        }} onClick={() => promotedChangeRequest(posts[index]._id, posts[index].promotedStatus)} />}</div>}
+
+
+
+                    {toggle2 && <div>{posts[index].promotedStatus && <AiFillStar size={32}
+                        style={{
+                            cursor: "pointer",
+                            color: "yellow",
+                        }} onClick={() => promotedChangeRequest(posts[index]._id, posts[index].promotedStatus)} />}</div>}
+
 
                     {toggle3 && <FaTrashRestore size={32} style={{
                         cursor: "pointer",
@@ -160,6 +259,22 @@ function Administration() {
                         cursor: "pointer",
                         color: "red",
                     }} onClick={() => deletePost(posts[index]._id)} />}
+
+
+                    {toggle4 && <div>{!posts[index].promotedStatus && <AiFillStar size={32}
+                        style={{
+                            cursor: "pointer",
+                            color: "black",
+                        }} onClick={() => promotedChangeRequest(posts[index]._id, posts[index].promotedStatus)} />}</div>}
+
+
+
+                    {toggle4 && <div>{posts[index].promotedStatus && <AiFillStar size={32}
+                        style={{
+                            cursor: "pointer",
+                            color: "yellow",
+                        }} onClick={() => promotedChangeRequest(posts[index]._id, posts[index].promotedStatus)} />}</div>}
+
 
                 </div>
 
@@ -217,7 +332,7 @@ function Administration() {
     return (
         <div className="container">
             <Menu className={style.navTabAdmin}>
-                <Menu.Item className={toggle ? style.itemTabAdminClick : style.itemTabAdmin} onClick={() => changeStyle(1)} 
+                <Menu.Item className={toggle ? style.itemTabAdminClick : style.itemTabAdmin} onClick={() => changeStyle(1)}
                     name='À valider'
                 />
 
@@ -228,9 +343,15 @@ function Administration() {
                     name='En ligne'
                 />
                 <Menu.Item
-                    className={toggle3 ? style.itemTabAdminClick : style.itemTabAdmin} onClick={() => changeStyle(3)} 
+                    className={toggle3 ? style.itemTabAdminClick : style.itemTabAdmin} onClick={() => changeStyle(3)}
 
                     name='Corbeille'
+                />
+
+                <Menu.Item
+                    className={toggle4 ? style.itemTabAdminClick : style.itemTabAdmin} onClick={() => changeStyle(4)}
+
+                    name='Promoted'
                 />
             </Menu>
 

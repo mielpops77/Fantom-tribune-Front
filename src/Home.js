@@ -1,5 +1,6 @@
 import NavigationUserComponent from './components/Navigation/NavigationUser/NavigationUser.component';
-import HomeComponent from './components/User/Home/Home.component';
+import PromotedTokenComponent from './components/User/Home/PromotedToken/PromotedToken.component';
+import TopRankedTokens from './components/User/Home/TopRankedTokens/TopRankedTokens.component';
 import FooterComponent from './components/Navigation/Footer/Footer.component';
 import style from './components/User/Home/Home.module.scss';
 
@@ -56,13 +57,13 @@ const Home = () => {
             <img src="http://localhost:3000/star.png" className={style.imgLogoSection}></img>
             <p className={style.sectionTitle}>Promoted <span className={style.tokensTitle}>Tokens</span> </p>
         </div>
-        <HomeComponent/>
+        <PromotedTokenComponent/>
 
         <div className={style.divSectionTitle}>
                 <img src="http://localhost:3000/ranked_arrows.png" className={style.imgLogoSection}></img>
                 <p className={style.sectionTitle}>Top Ranked <span className={style.tokensTitle}>Tokens</span> </p>
             </div>
-        <HomeComponent/><br/><br/><br/><br/><br/><br/>
+        <TopRankedTokens/><br/><br/><br/><br/><br/><br/>
         <FooterComponent/>
         </div>
     )
