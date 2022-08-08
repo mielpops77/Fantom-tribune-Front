@@ -9,7 +9,7 @@ const InfoCoin = () => {
     const id = url.substring(31, url.length);
 
     useEffect(() => {
-        fetch('http://localhost:3000/launchDate/')
+        fetch('http://localhost:3000/ecosystem/')
             .then((res) => res.json())
             .then((res) => {
                 setPosts(res);
@@ -24,13 +24,17 @@ const InfoCoin = () => {
             coin = postsArray[i];
         }
     }
+    let src = "https://kek.tools/t/";
+    src = src + coin.contractAddress +"/chart";
+  
 
     return (
 
         <div>
             <NavigationUserComponent />
             <div className={style.divCorpCoin}>
-                <p className={style.test}>ssss{coin.name}</p>
+                <p className={style.test}>{coin.name}</p>
+                <iframe loading="lazy" src={src} width="50%" height="600px" frameborder="0" scrolling="no" align="center"> </iframe>
             </div>
         </div>
     )
