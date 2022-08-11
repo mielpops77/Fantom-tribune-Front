@@ -75,11 +75,11 @@
   border: none;
 
   &:hover {
-    .imgSearch {
-      max-width: 2.4vw;
-    }
+    transition-duration: 600ms;
+    background: #189481;
     .textSearch {
-      font-size: 1.4vw;
+      transition-duration: 600ms;
+      font-size: 1.35vw;
     }
   }
 }
@@ -185,6 +185,7 @@
 
 .divAllInfo {
   height: 100%;
+  width:100%;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -215,6 +216,13 @@
   opacity: 1;
   filter: blur(0px);
   margin: 10px;
+
+  &:hover{
+    transition-duration: 500ms;
+    background: #222c4e 0% 0% no-repeat padding-box;
+    width: 400px;
+    height: 590px;
+  }
 }
 
 .sectionBackground {
@@ -236,14 +244,29 @@
   text-align: center;
 }
 
-.thPointer {
-  padding: 0% 7% 1% 7%;
-  text-align: justify;
+
+
+.list{
+  margin-bottom:4%
+}
+
+.pointer{
+  width:170px;
+  padding: 2% 7% 2% 7%;
   text-align: left;
   font: normal normal medium 14px/29px Poppins;
   letter-spacing: -0.56px;
   color: #ffffff;
-  opacity: 1;
+}
+
+
+.pointedItem {
+  width:220px;
+  padding: 2% 7% 2% 7%;
+  text-align: right;
+  font: normal normal medium 14px/29px Poppins;
+  letter-spacing: -0.56px;
+  color: #ffffff;
 }
 
 .greenButton {
