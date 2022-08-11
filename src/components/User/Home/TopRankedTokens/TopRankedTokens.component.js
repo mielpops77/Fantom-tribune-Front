@@ -149,13 +149,15 @@ const TopRankedTokens = () => {
                             <img src="http://localhost:3000/planet9.png" className={style.imgProjectLogo}></img>
                             <h1 className={style.projectName}>{item.name}</h1>
                             {item.launchDate >= dateUtc && <p className={style.presaleButton}>PreSale</p>}
-                            <p className={style.thPointer} scope="col">Type: {item.type}</p>
-                            <p className={style.thPointer} scope="col">Market Cap: {item.marketCap}</p>
-                            <p className={style.thPointer} scope="col">Price: {item.price}</p>
-                            <p className={style.thPointer} scope="col">Change in 24h: {item.percent_change_24h}%</p>
-                            <p className={style.thPointer} scope="col">Launch: {item.launchDate}</p>
-                            <p className={style.thPointer} scope="col">Votes: {item.vote}</p>
-                            <p className={style.thPointer} scope="col">Votes in 24h: {item.voteTwentyHour}</p>
+                            <div className={style.list}>
+                                <tr><td className={style.pointer}>Type: </td><td>{item.type}</td></tr>
+                                <tr><td className={style.pointer}>Market Cap: </td><td className={style.pointedItem}>{item.marketCap}</td></tr>
+                                <tr><td className={style.pointer}>Price: </td><td className={style.pointedItem}>{item.price}</td></tr>
+                                <tr><td className={style.pointer}>Change in 24h: </td><td className={style.pointedItem}>{item.percent_change_24h}%</td></tr>
+                                <tr><td className={style.pointer}>Launch: </td><td className={style.pointedItem}>{item.launchDate}</td></tr>
+                                <tr><td className={style.pointer}>Votes: </td><td className={style.pointedItem}>{item.vote}</td></tr> 
+                                <tr><td className={style.pointer}>Votes in 24h: </td><td className={style.pointedItem}>{item.voteTwentyHour}</td></tr>
+                            </div> 
                             <div className={style.cardFooter}>
                                 <button onClick={() => Vote(item._id, item.voteToday, item.vote, item.voteTwentyHourCalcul, item.voteTwentyHour)} className={style.voteButton}>Vote</button>
                                 <button className={style.buyButton}>Buy</button>
