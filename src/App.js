@@ -9,7 +9,7 @@ import Welcome from "./components/Authentification/Welcome";
 import Administration from './pages/admin/Administration';
 import ApiConfig from './pages/admin/ApiConfig';
 import Submit from './pages/user/Submit/Submit.component'
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Routes } from 'react-router-dom';
 import Ecosystem from "./pages/user/Ecosystem";
 import React from 'react';
 import Home from './Home';
@@ -19,26 +19,26 @@ import Home from './Home';
 const App = () => {
   return (
     <div>
-      <Switch>
-        <Route>
-        <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/confirm/:confirmationCode" component={Welcome} />
-          <Route path="/ValidationForm" component={ValidationForm} />
-          <Route path="/editionCoin/:id" component={EditionCoin} />
-          <Route path="/launchDate" component={LaunchDate} />
-          <Route path="/infoCoin/:id" component={InfoCoin} />
-          <Route path="/coinDetail/:" component={Welcome} />
-          <Route path="/apiConfig" component={ApiConfig} />
-          <Route path="/administration" component={Administration} />
-          <Route path="/Ecosystem" component={Ecosystem} />
-          <Route path="/register" component={Register} />
-          <Route path="/Profile" component={Profile} />
-          <Route path="/submit" component={Submit} />
-          <Route path="/login" component={Login} />
-        </Route>
-        </Switch>
+
+
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/confirm/:confirmationCode" element={<Welcome />} />
+        <Route path="/ValidationForm" element={<ValidationForm />} />
+        <Route path="/editionCoin/:id" element={<EditionCoin />} />
+        <Route path="/launchDate" element={<LaunchDate />} />
+        <Route path="//infoCoin/:id" element={<InfoCoin />} />
+        <Route path="/coinDetail/" element={<Welcome />} />
+        <Route path="/apiConfig/" element={<ApiConfig />} />
+        <Route path="/administration" element={<Administration />} />
+        <Route path="/Ecosystem" element={<Ecosystem />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/Profile" element={<Profile />} />
+        <Route path="/submit" element={<Submit />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+
     </div >
   );
 };

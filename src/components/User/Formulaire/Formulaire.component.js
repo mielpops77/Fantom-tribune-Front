@@ -1,5 +1,5 @@
 import TableLaunchService from '../../../services/tableauLaunh/tableauLaunch.service'
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import style from "./Formulaire.module.scss";
 import Select from 'react-select'
 import { useState } from "react";
@@ -13,7 +13,7 @@ function Formulaire() {
   const [prev, setPrev] = useState('');
   const [verifUpl, setVerifUpl] = useState('');
 
-  const history = useHistory();
+  // const history = useHistory();
 
   if (urlUpload !== '' && !verifUpl) {
     setVerifUpl(true);
@@ -300,7 +300,7 @@ function Formulaire() {
       })
     };
     fetch('http://localhost:3000/launchDate', requestOptions)
-      .then(response => response.json(), history.push(`/ValidationForm/`)
+      .then(response => response.json(),/*  history.push(`/ValidationForm/`) */
       )
 
     /* .then(data => this.setState({ postId: data.id })); */
@@ -509,5 +509,5 @@ function Formulaire() {
   )
 }
 
-ReactDOM.render(<Formulaire />, document.getElementById('root'));
+/* ReactDOM.render(<Formulaire />, document.getElementById('root')); */
 export default Formulaire; 

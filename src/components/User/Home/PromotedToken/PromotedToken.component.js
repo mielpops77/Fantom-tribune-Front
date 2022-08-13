@@ -1,7 +1,7 @@
 import AuthService from "../../../../services/auth/auth.service";
 import React, { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import style from "../Home.module.scss";
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
@@ -49,11 +49,11 @@ const PromotedToken = () => {
     };
 
 
-    const history = useHistory();
+    // const history = useHistory();
 
 
     function login() {
-        history.push(`/login/`)
+        // history.push(`/login/`)
     }
 
 

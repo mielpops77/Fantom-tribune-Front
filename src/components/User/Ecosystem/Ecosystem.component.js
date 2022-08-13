@@ -3,7 +3,7 @@ import AuthService from "../../../services/auth/auth.service";
 import React, { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import style from "./Ecosystem.module.scss";
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
@@ -163,7 +163,7 @@ const Ecosystem = () => {
 
 
   function login() {
-    history.push(`/login/`)
+    // history.push(`/login/`)
   }
 
 
@@ -221,7 +221,7 @@ const Ecosystem = () => {
       var x = tedt.rows.sort(function (a, b) { return a[2] > b[2] ? 1 : -1; });
       setValid(true);
     } */
-  const history = useHistory();
+  // const history = useHistory();
 
 
   return (
@@ -243,7 +243,7 @@ const Ecosystem = () => {
         </thead>
         <tbody>
           {database.rows?.map((row, index) => (
-            <tr key={index} onClick={() => history.push(`/infoCoin/${row.id}`)} style={{ cursor: 'pointer' }} >
+            <tr key={index} /* onClick={() => history.push(`/infoCoin/${row.id}`)} */ style={{ cursor: 'pointer' }} >
               <td ></td>
               <td value={row.id} > <img src={row.image.props.src} /> </td>
               <td>{row.name}</td>
