@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
 import "bootstrap/dist/css/bootstrap.min.css";
 // import { useHistory } from 'react-router-dom';
+/* import { useNavigate } from 'react-router-dom'; */
 import style from "./Ecosystem.module.scss";
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
@@ -55,7 +56,7 @@ const Ecosystem = () => {
 
         let data = TableLaunchService.getDatabase()
         for (let i = 0; i < totalReactPackages.length; i++) {
-          data.rows.push(({ image: <img style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, vote: totalReactPackages[i].vote, voteToday: totalReactPackages[i].voteToday, price: totalReactPackages[i].price , coinMarket:totalReactPackages[i].marketCap,supply:totalReactPackages[i].supply}));
+          data.rows.push(({ image: <img style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, vote: totalReactPackages[i].vote, voteToday: totalReactPackages[i].voteToday, price: totalReactPackages[i].price, coinMarket: totalReactPackages[i].marketCap, supply: totalReactPackages[i].supply }));
         }
 
 
@@ -164,6 +165,7 @@ const Ecosystem = () => {
 
   function login() {
     // history.push(`/login/`)
+    /*  navigate('/login/'); */
   }
 
 
@@ -221,9 +223,10 @@ const Ecosystem = () => {
       var x = tedt.rows.sort(function (a, b) { return a[2] > b[2] ? 1 : -1; });
       setValid(true);
     } */
-  // const history = useHistory();
 
-
+  /* const history = useHistory(); */
+  /*   const navigate = useNavigate();
+   */
   return (
     <div className={style.container}>
       <table className="table table-striped table-hover">
@@ -244,32 +247,32 @@ const Ecosystem = () => {
         <tbody>
           {database.rows?.map((row, index) => (
             <tr key={index} /* onClick={() => history.push(`/infoCoin/${row.id}`)} */ style={{ cursor: 'pointer' }} >
-              <td ></td>
-              <td value={row.id} > <img src={row.image.props.src} /> </td>
-              <td>{row.name}</td>
-              <td>
-                {row.symbol}</td>
-              <td>
-                {row.launchDate}</td>
-              <td>
-                {row.price}
-              </td>
-              <td>
-                {row.coinMarket}
-              </td>
-              <td>
-                {row.supply}
-              </td>
-              <td>
-                {row.vote}
-              </td>
-              <td>
-                <button type="button" onClick={function (event) { Propagation(event); Vote(row.id, row.voteToday, row.vote) }} className="btn btn-success">Vote</button>
-              </td>
-            </tr>
+                <td ></td>
+                <td value={row.id} > <img src={row.image.props.src} /> </td>
+                <td>{row.name}</td>
+                <td>
+                  {row.symbol}</td>
+                <td>
+                  {row.launchDate}</td>
+                <td>
+                  {row.price}
+                </td>
+                <td>
+                  {row.coinMarket}
+                </td>
+                <td>
+                  {row.supply}
+                </td>
+                <td>
+                  {row.vote}
+                </td>
+                <td>
+                  <button type="button" onClick={function (event) { Propagation(event); Vote(row.id, row.voteToday, row.vote) }} className="btn btn-success">Vote</button>
+                </td>
+              </tr>
 
           ))}
-        </tbody>
+            </tbody>
 
 
 

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-undef */
 import ValidationForm from "./components/User/Formulaire/ValidationFormulaire.component";
 import Register from './components/Authentification/Register/Register.component';
 import Login from './components/Authentification/Login/Login.component';
@@ -19,11 +20,7 @@ import Home from './Home';
 const App = () => {
   return (
     <div>
-
-
-
       <Routes>
-        <Route path="/" element={<Home />} />
         <Route path="/confirm/:confirmationCode" element={<Welcome />} />
         <Route path="/ValidationForm" element={<ValidationForm />} />
         <Route path="/editionCoin/:id" element={<EditionCoin />} />

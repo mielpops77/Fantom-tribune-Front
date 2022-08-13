@@ -6,7 +6,8 @@ import React, { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
 import style from "./TableauLaunch.module.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import { useHistory } from 'react-router-dom';
+/* import { useHistory } from 'react-router-dom'; */
+// import { useNavigate } from 'react-router-dom';
 import Modal from '@mui/material/Modal';
 import Dropdown from 'react-dropdown';
 import Box from '@mui/material/Box';
@@ -167,6 +168,7 @@ const TableauLaunch = () => {
 
   function login() {
     // history.push(`/login/`)
+    // navigate.push(`/login/`)
   }
 
 
@@ -233,7 +235,8 @@ const TableauLaunch = () => {
       name: 'Java'
     }
   ]
-  // const history = useHistory();
+ /*  const history = useHistory(); */
+  // const navigate = useNavigate();
   function trieVote() {
     seDatabase([]);
 
