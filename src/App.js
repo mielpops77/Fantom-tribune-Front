@@ -21,6 +21,7 @@ const App = () => {
   return (
     <div>
       <Routes>
+      <Route path="/" element={<Home />} />
         <Route path="/confirm/:confirmationCode" element={<Welcome />} />
         <Route path="/ValidationForm" element={<ValidationForm />} />
         <Route path="/editionCoin/:id" element={<EditionCoin />} />
