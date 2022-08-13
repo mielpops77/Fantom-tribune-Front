@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-undef */
 import ValidationForm from "./components/User/Formulaire/ValidationFormulaire.component";
 import Register from './components/Authentification/Register/Register.component';
 import Login from './components/Authentification/Login/Login.component';
@@ -19,26 +20,23 @@ import Home from './Home';
 const App = () => {
   return (
     <div>
-      <Switch>
-        <Route>
-        <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/confirm/:confirmationCode" component={Welcome} />
-          <Route path="/ValidationForm" component={ValidationForm} />
-          <Route path="/editionCoin/:id" component={EditionCoin} />
-          <Route path="/launchDate" component={LaunchDate} />
-          <Route path="/infoCoin/:id" component={InfoCoin} />
-          <Route path="/coinDetail/:" component={Welcome} />
-          <Route path="/apiConfig" component={ApiConfig} />
-          <Route path="/administration" component={Administration} />
-          <Route path="/Ecosystem" component={Ecosystem} />
-          <Route path="/register" component={Register} />
-          <Route path="/Profile" component={Profile} />
-          <Route path="/submit" component={Submit} />
-          <Route path="/login" component={Login} />
-        </Route>
-        </Switch>
+
+      <Routes>
+        <Route path="/confirm/:confirmationCode" element={<Welcome />} />
+        <Route path="/ValidationForm" element={<ValidationForm />} />
+        <Route path="/editionCoin/:id" element={<EditionCoin />} />
+        <Route path="/launchDate" element={<LaunchDate />} />
+        <Route path="//infoCoin/:id" element={<InfoCoin />} />
+        <Route path="/coinDetail/" element={<Welcome />} />
+        <Route path="/apiConfig/" element={<ApiConfig />} />
+        <Route path="/administration" element={<Administration />} />
+        <Route path="/Ecosystem" element={<Ecosystem />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/Profile" element={<Profile />} />
+        <Route path="/submit" element={<Submit />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+
     </div >
   );
 };
