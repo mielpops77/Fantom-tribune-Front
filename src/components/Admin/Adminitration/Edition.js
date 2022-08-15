@@ -11,7 +11,7 @@ const Edition = () => {
     const [selected, setSelected] = useState(null);
 
     let date = new Date()
-    let today = date.toISOString().split('T')[0];
+    //let today = date.toISOString().split('T')[0];
 
 
 
@@ -173,8 +173,8 @@ const Edition = () => {
 
                         <label className={style.formLabelFileEmpty} htmlFor="file-input">
                             <div className={style.formLabel}>Logo Upload*</div>
-                            <img style={{ height: "100%", float: "left", maxWidth: "30%", maxHeight: "30%", cursor: 'pointer' }} src="https://fantom-tribune-back.herokuapp.com/upload.png" />
-                            <img style={{ height: "100%", float: "left", maxWidth: "25%", maxHeight: "25%" }} src={urlUpload} />
+                            <img style={{ height: "100%", float: "left", maxWidth: "30%", maxHeight: "30%", cursor: 'pointer' }} src="https://fantom-tribune-back.herokuapp.com/upload.png" alt='img' />
+                            <img style={{ height: "100%", float: "left", maxWidth: "25%", maxHeight: "25%" }} src={urlUpload} alt='img' />
                         </label>
 
                         <input id="file-input" className={style.file} type="file" name="image" value={inputs.image || ""}

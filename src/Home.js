@@ -46,7 +46,7 @@ const Home = () => {
                         </div>
                     </div>
                     <button className={style.searchButton}>
-                        <img src="https://fantom-tribune-back.herokuapp.com/search.png" className={style.imgSearch}></img>
+                        <img src="https://fantom-tribune-back.herokuapp.com/search.png" className={style.imgSearch} alt='search_img'></img>
                         <p className={style.textSearch}>Search</p>
                     </button>
                 </div>
@@ -54,13 +54,13 @@ const Home = () => {
 
             <br/><br/><br/><br/><br/><br/>
         <div className={style.divSectionTitle}>
-            <img src="https://fantom-tribune-back.herokuapp.com/star.png" className={style.imgLogoSection}></img>
+            <img src="https://fantom-tribune-back.herokuapp.com/star.png" className={style.imgLogoSection} alt='star'></img>
             <p className={style.sectionTitle}>Promoted <span className={style.tokensTitle}>Tokens</span> </p>
         </div>
         <PromotedTokenComponent/>
 
         <div className={style.divSectionTitle}>
-                <img src="https://fantom-tribune-back.herokuapp.com/ranked_arrows.png" className={style.imgLogoSection}></img>
+                <img src="https://fantom-tribune-back.herokuapp.com/ranked_arrows.png" className={style.imgLogoSection} alt='ranked_arrow'></img>
                 <p className={style.sectionTitle}>Top Ranked <span className={style.tokensTitle}>Tokens</span> </p>
             </div>
         <TopRankedTokens/><br/><br/><br/><br/><br/><br/>

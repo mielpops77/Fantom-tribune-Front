@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import style from "./Formulaire.module.scss";
 import Select from 'react-select'
 import { useState } from "react";
-import ReactDOM from "react-dom";
 import axios from 'axios';
 
 
@@ -267,7 +266,7 @@ function Formulaire() {
   const handleSubmit = (event) => {
     let coinMarketCapLink;
     let coinMarketCapStatus;
-    if (inputs.coinMarketCapLink == undefined) {
+    if (inputs.coinMarketCapLink === undefined) {
       coinMarketCapLink = 'none';
       coinMarketCapStatus = 'none';
 
@@ -336,8 +335,8 @@ function Formulaire() {
 
       <label className={style.formLabelFileEmpty} htmlFor="file-input">
         <div className={style.formLabel}>Logo Upload*</div>
-        <img style={{ height: "100%", float: "left", maxWidth: "30%", maxHeight: "30%", cursor: 'pointer' }} src="https://fantom-tribune-back.herokuapp.com/upload.png" />
-        {urlUpload !== '' && <img style={{ height: "100%", float: "left", maxWidth: "25%", maxHeight: "25%" }} src={urlUpload} />}
+        <img alt='img' style={{ height: "100%", float: "left", maxWidth: "30%", maxHeight: "30%", cursor: 'pointer' }} src="https://fantom-tribune-back.herokuapp.com/upload.png" />
+        {urlUpload !== '' && <img alt='img' style={{ height: "100%", float: "left", maxWidth: "25%", maxHeight: "25%" }} src={urlUpload} />}
       </label>
 
       <input id="file-input" className={style.file} type="file" name="image" value={inputs.image || ""}
