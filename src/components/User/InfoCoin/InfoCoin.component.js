@@ -34,7 +34,7 @@ const InfoCoin = () => {
             <NavigationUserComponent />
             <div className={style.divCorpCoin}>
                 <p className={style.test}>{coin.name}</p>
-                <iframe loading="lazy" src={src} width="50%" height="600px" frameborder="0" scrolling="no" align="center"> </iframe>
+                <iframe loading="lazy" src={src} width="50%" height="600px" frameborder="0" scrolling="no" align="center">status</iframe>
             </div>
         </div>
     )

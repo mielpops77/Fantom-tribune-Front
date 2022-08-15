@@ -28,7 +28,7 @@ const NavigationAdmin = () => {
 
 
     <nav>
-       <img className={style.imgFond} src="https://fantom-tribune-back.herokuapp.com/header.png" />
+       <img className={style.imgFond} src="https://fantom-tribune-back.herokuapp.com/header.png" alt='header'/>
       {showAdminBoard && (<ul className={style.ulNavUser}>
         <NavLink
           to="/administration"

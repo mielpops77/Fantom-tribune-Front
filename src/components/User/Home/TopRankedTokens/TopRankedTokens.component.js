@@ -149,7 +149,7 @@ const TopRankedTokens = () => {
                         <div className={style.divAllInfo}>
                             <p className={style.KYCButton}>KYC</p>
                             <div className={style.imgCrown}></div>
-                            <img src={"https://fantom-tribune-back.herokuapp.com/" + item.image} className={style.imgProjectLogo}></img>
+                            <img src="https://fantom-tribune-back.herokuapp.com/planet9.png" className={style.imgProjectLogo}></img>
                             <h1 className={style.projectName}>{item.name}</h1>
                             {item.launchDate >= dateUtc && <p className={style.presaleButton}>PreSale</p>}
                             <div className={style.list}>

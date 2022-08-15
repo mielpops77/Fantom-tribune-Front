@@ -43,7 +43,7 @@ const Ecosystem = () => {
           {/* <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div> */ }
         );
         item.image = (
-          <img src={"https://fantom-tribune-back.herokuapp.com/" + result[index].image} />
+          <img src={"https://fantom-tribune-back.herokuapp.com/" + result[index].image} alt='img'/>
         );
 
         userData.push(item);
@@ -56,7 +56,7 @@ const Ecosystem = () => {
 
         let data = TableLaunchService.getDatabase()
         for (let i = 0; i < totalReactPackages.length; i++) {
-          data.rows.push(({ image: <img style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, vote: totalReactPackages[i].vote, voteToday: totalReactPackages[i].voteToday, price: totalReactPackages[i].price, coinMarket: totalReactPackages[i].marketCap, supply: totalReactPackages[i].supply }));
+          data.rows.push(({ image: <img alt='img' style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, vote: totalReactPackages[i].vote, voteToday: totalReactPackages[i].voteToday, price: totalReactPackages[i].price, coinMarket: totalReactPackages[i].marketCap, supply: totalReactPackages[i].supply }));
         }
 
 
@@ -253,7 +253,7 @@ const Ecosystem = () => {
           {database.rows?.map((row, index) => (
             <tr key={index} onClick={() => nav(`/infoCoin/${row.id}`)} style={{ cursor: 'pointer' }} >
                 <td ></td>
-                <td value={row.id} > <img src={row.image.props.src} /> </td>
+                <td value={row.id} > <img src={row.image.props.src} alt='img' /> </td>
                 <td>{row.name}</td>
                 <td>
                   {row.symbol}</td>

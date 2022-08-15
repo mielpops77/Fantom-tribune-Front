@@ -21,9 +21,7 @@ function Administration() {
 
 
     /* const [promotedStatus, setpromotedStatus] = useState(false); */
-
-
-    let promotedProjectLenght = 0;
+    //let promotedProjectLenght = 0;
 
     // const history = useHistory();
     const navigate = useNavigate();
@@ -114,7 +112,7 @@ function Administration() {
                     return o._id === postId;
                 });
                 if (postIndex !== -1) {
-                    setPosts(posts.filter((item) => item.id != postId));
+                    setPosts(posts.filter((item) => item.id !== postId));
                     getTrash();
                 }
             });
