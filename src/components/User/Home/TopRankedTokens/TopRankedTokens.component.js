@@ -58,7 +58,7 @@ const TopRankedTokens = () => {
     const navigate = useNavigate();
 
     function login() {
-       /*  history.push(`/login/`) */
+        /*  history.push(`/login/`) */
         navigate(`/login/`);
     }
 
@@ -149,7 +149,7 @@ const TopRankedTokens = () => {
                         <div className={style.divAllInfo}>
                             <p className={style.KYCButton}>KYC</p>
                             <div className={style.imgCrown}></div>
-                            <img src="https://fantom-tribune-back.herokuapp.com/planet9.png" className={style.imgProjectLogo}></img>
+                            <img src={"https://fantom-tribune-back.herokuapp.com/" + item.image} className={style.imgProjectLogo} alt='img'></img>
                             <h1 className={style.projectName}>{item.name}</h1>
                             {item.launchDate >= dateUtc && <p className={style.presaleButton}>PreSale</p>}
                             <div className={style.list}>
@@ -158,9 +158,9 @@ const TopRankedTokens = () => {
                                 <tr><td className={style.pointer}>Price: </td><td className={style.pointedItem}>{item.price}</td></tr>
                                 <tr><td className={style.pointer}>Change in 24h: </td><td className={style.pointedItem}>{item.percent_change_24h}%</td></tr>
                                 <tr><td className={style.pointer}>Launch: </td><td className={style.pointedItem}>{item.launchDate}</td></tr>
-                                <tr><td className={style.pointer}>Votes: </td><td className={style.pointedItem}>{item.vote}</td></tr> 
+                                <tr><td className={style.pointer}>Votes: </td><td className={style.pointedItem}>{item.vote}</td></tr>
                                 <tr><td className={style.pointer}>Votes in 24h: </td><td className={style.pointedItem}>{item.voteTwentyHour}</td></tr>
-                            </div> 
+                            </div>
                             <div className={style.cardFooter}>
                                 <button onClick={() => Vote(item._id, item.voteToday, item.vote, item.voteTwentyHourCalcul, item.voteTwentyHour)} className={style.voteButton}>Vote</button>
                                 <button className={style.buyButton}>Buy</button>
