@@ -8,7 +8,7 @@ const Home = () => {
 
   useEffect(() => {
 
-    fetch('http://localhost:3000/getPromotedProject')
+    fetch('https://fantom-tribune-back.herokuapp.com/getPromotedProject')
       .then((res) => res.json())
       .then((res) => {
         setElements(res);
@@ -24,7 +24,7 @@ const Home = () => {
             <div className={style.divAllInfo}>
               <p className={style.KYCButton}>KYC</p>
               <div className={style.imgCrown}></div>
-              <img src="http://localhost:3000/planet9.png" className={style.imgProjectLogo}></img>
+              <img src="https://fantom-tribune-back.herokuapp.com/planet9.png" className={style.imgProjectLogo}></img>
               <h1 className={style.projectName}>{item.name}</h1>
               <p className={style.presaleButton}>PreSale</p>
               <div className={style.list}>

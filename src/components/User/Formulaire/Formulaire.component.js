@@ -233,13 +233,13 @@ function Formulaire() {
       formData.append('image', inputImg.files.item(0))
       axios({
         method: "post",
-        url: "http://localhost:3000/images",
+        url: "https://fantom-tribune-back.herokuapp.com/images",
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       })
         .then(function (response) {
           //handle success
-          setToggle("http://localhost:3000/" + inputImg.files.item(0).name);
+          setToggle("https://fantom-tribune-back.herokuapp.com/" + inputImg.files.item(0).name);
         })
         .catch(function (response) {
           //handle error
@@ -306,7 +306,7 @@ function Formulaire() {
         telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, vote: 0, voteToday: voteTodayUtc, voteTwentyHour: 0, voteTwentyHourCalcul: voteTwentyHourCalcul, price: 0, marketCap: 0, supply: 0, coinMarketCapStatus: coinMarketCapStatus, idCoinMarketCap: 0, listePriceIdCoinMarketCap: listePriceIdCoinMarketCap, percent_change_24h: 0, promotedStatus: false
       })
     };
-    fetch('http://localhost:3000/launchDate', requestOptions)
+    fetch('https://fantom-tribune-back.herokuapp.com/launchDate', requestOptions)
       .then(response => response.json(),nav(`/ValidationForm/`)/*  history.push(`/ValidationForm/`) */
       )
 
@@ -336,7 +336,7 @@ function Formulaire() {
 
       <label className={style.formLabelFileEmpty} htmlFor="file-input">
         <div className={style.formLabel}>Logo Upload*</div>
-        <img style={{ height: "100%", float: "left", maxWidth: "30%", maxHeight: "30%", cursor: 'pointer' }} src="http://localhost:3000/upload.png" />
+        <img style={{ height: "100%", float: "left", maxWidth: "30%", maxHeight: "30%", cursor: 'pointer' }} src="https://fantom-tribune-back.herokuapp.com/upload.png" />
         {urlUpload !== '' && <img style={{ height: "100%", float: "left", maxWidth: "25%", maxHeight: "25%" }} src={urlUpload} />}
       </label>
 

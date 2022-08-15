@@ -69,7 +69,7 @@ function Administration() {
 
 
     useEffect(() => {
-        fetch('http://localhost:3000/launchDateAdmin/')
+        fetch('https://fantom-tribune-back.herokuapp.com/launchDateAdmin/')
             .then((res) => res.json())
             .then((res) => {
                 setPosts(res);
@@ -78,7 +78,7 @@ function Administration() {
 
 
     let getLunch = () => {
-        fetch('http://localhost:3000/ecosystem/')
+        fetch('https://fantom-tribune-back.herokuapp.com/ecosystem/')
             .then((res) => res.json())
             .then((res) => {
                 setPosts(res);
@@ -87,7 +87,7 @@ function Administration() {
     };
 
     let getValidation = () => {
-        fetch('http://localhost:3000/launchDateAdmin/')
+        fetch('https://fantom-tribune-back.herokuapp.com/launchDateAdmin/')
             .then((res) => res.json())
             .then((res) => {
                 setPosts(res);
@@ -96,7 +96,7 @@ function Administration() {
     };
 
     let getTrash = () => {
-        fetch('http://localhost:3000/trashAdmin/')
+        fetch('https://fantom-tribune-back.herokuapp.com/trashAdmin/')
             .then((res) => res.json())
             .then((res) => {
                 setPosts(res);
@@ -105,7 +105,7 @@ function Administration() {
     };
 
     let deletePost = (postId) => {
-        fetch(`http://localhost:3000/trashDef/${postId}`, {
+        fetch(`https://fantom-tribune-back.herokuapp.com/trashDef/${postId}`, {
             method: "DELETE",
         })
             .then((res) => res.json())
@@ -121,7 +121,7 @@ function Administration() {
     };
 
     let getPromoted = () => {
-        fetch('http://localhost:3000/getPromotedProject/')
+        fetch('https://fantom-tribune-back.herokuapp.com/getPromotedProject/')
             .then((res) => res.json())
             .then((res) => {
                 setPosts(res);
@@ -129,7 +129,7 @@ function Administration() {
     };
 
     let getPromotedProjectLenght = () => {
-        fetch('http://localhost:3000/getPromotedProjectLenght/')
+        fetch('https://fantom-tribune-back.herokuapp.com/getPromotedProjectLenght/')
             .then((res) => res.json())
             .then((res) => {
                 editionAdminService.initPromotedProjectLenght();
@@ -139,7 +139,7 @@ function Administration() {
 
 
     let validProject = (postId, status, remove) => {
-        fetch(`http://localhost:3000/adminEdit/${postId}`, {
+        fetch(`https://fantom-tribune-back.herokuapp.com/adminEdit/${postId}`, {
             method: "Put",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ status: status, delete: remove })
@@ -179,7 +179,7 @@ function Administration() {
 
 
 
-            fetch(`http://localhost:3000/promotedChange/${postId}`, {
+            fetch(`https://fantom-tribune-back.herokuapp.com/promotedChange/${postId}`, {
                 method: "Put",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ promotedStatus: promotedStatus })
@@ -288,7 +288,7 @@ function Administration() {
 
             );
             item.image = (
-                <img style={{ height: "100%", width: "95px", float: "left" }} src={"http://localhost:3000/" + posts[index].image} />
+                <img style={{ height: "100%", width: "95px", float: "left" }} src={"https://fantom-tribune-back.herokuapp.com/" + posts[index].image} />
             );
             userData.push(item);
         });

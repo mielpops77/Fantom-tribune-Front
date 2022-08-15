@@ -9,7 +9,7 @@ const InfoCoin = () => {
     const id = url.substring(31, url.length);
 
     useEffect(() => {
-        fetch('http://localhost:3000/ecosystem/')
+        fetch('https://fantom-tribune-back.herokuapp.com/ecosystem/')
             .then((res) => res.json())
             .then((res) => {
                 setPosts(res);

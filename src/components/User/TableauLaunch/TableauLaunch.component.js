@@ -59,7 +59,7 @@ const TableauLaunch = () => {
           {/* <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div> */ }
         );
         item.image = (
-          <img src={"http://localhost:3000/" + result[index].image} />
+          <img src={"https://fantom-tribune-back.herokuapp.com/" + result[index].image} />
         );
         userData.push(item);
       });
@@ -147,7 +147,7 @@ const TableauLaunch = () => {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ info: email, voteToday: voteToday, vote: vote, voteTwentyHourCalcul: voteTwentyHourCalcul, voteTwentyHour: voteTwentyHour })
         };
-        fetch(`http://localhost:3000/vote/${projectId}`, requestOptions)
+        fetch(`https://fantom-tribune-back.herokuapp.com/vote/${projectId}`, requestOptions)
           .then(response => response.json())
           /* .then(data => this.setState({ postId: data.id })) */
           .finally(() => { seDatabase([]); tableLaunch(pagination.limit, pagination.skip); })
@@ -161,7 +161,7 @@ const TableauLaunch = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ info: email, voteToday: voteToday, vote: vote, voteTwentyHourCalcul: voteTwentyHourCalcul, voteTwentyHour: voteTwentyHour })
       };
-      fetch(`http://localhost:3000/vote/${projectId}`, requestOptions)
+      fetch(`https://fantom-tribune-back.herokuapp.com/vote/${projectId}`, requestOptions)
         .then(response => response.json())
         .finally(() => { seDatabase([]); tableLaunch(pagination.limit, pagination.skip); })
 

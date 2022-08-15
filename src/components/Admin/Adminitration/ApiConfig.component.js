@@ -11,7 +11,7 @@ function ApiConfig() {
 
 
     useEffect(() => {
-        fetch('http://localhost:3000/globalList')
+        fetch('https://fantom-tribune-back.herokuapp.com/globalList')
             .then((res) => res.json())
             .then((res) => {
                 setTwentyHour(res[0].VoteTwentyHour);

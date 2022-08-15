@@ -48,7 +48,7 @@ function setType(typeTarget) {
 
 
 function setGlobalVoteTwentyHourStatus(status) {
-    return axios.put(`http://localhost:3000/globalVoteTwentyHourStatus?status=${status}`)
+    return axios.put(`https://fantom-tribune-back.herokuapp.com/globalVoteTwentyHourStatus?status=${status}`)
         .then(response => {
             return response.data;
         })
@@ -57,7 +57,7 @@ function setGlobalVoteTwentyHourStatus(status) {
 
 function setCoinMarketCapStatus(status, listId) {
     console.log('yolosssssss',listId);
-    return axios.put(`http://localhost:3000/coinMarketCapBoucleStatus?status=${status}`,
+    return axios.put(`https://fantom-tribune-back.herokuapp.com/coinMarketCapBoucleStatus?status=${status}`,
     {
         data: { listId }
     })

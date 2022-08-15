@@ -14,7 +14,7 @@ const PromotedToken = () => {
     const [elements, setElements] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3000/getPromotedProject')
+        fetch('https://fantom-tribune-back.herokuapp.com/getPromotedProject')
             .then((res) => res.json())
             .then((res) => {
                 setElements(res);
@@ -24,7 +24,7 @@ const PromotedToken = () => {
 
 
     function getPromotedProjecRequest() {
-        fetch('http://localhost:3000/getPromotedProject')
+        fetch('https://fantom-tribune-back.herokuapp.com/getPromotedProject')
             .then((res) => res.json())
             .then((res) => {
                 setElements(res);
@@ -99,7 +99,7 @@ const PromotedToken = () => {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ info: email, voteToday: voteToday, vote: vote, voteTwentyHourCalcul: voteTwentyHourCalcul, voteTwentyHour: voteTwentyHour })
                 };
-                fetch(`http://localhost:3000/vote/${projectId}`, requestOptions)
+                fetch(`https://fantom-tribune-back.herokuapp.com/vote/${projectId}`, requestOptions)
                     .then(response => response.json())
                     /* .then(data => this.setState({ postId: data.id })) */
                     .finally(() => { setElements([]); getPromotedProjecRequest(); })
@@ -113,7 +113,7 @@ const PromotedToken = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ info: email, voteToday: voteToday, vote: vote, voteTwentyHourCalcul: voteTwentyHourCalcul, voteTwentyHour: voteTwentyHour })
             };
-            fetch(`http://localhost:3000/vote/${projectId}`, requestOptions)
+            fetch(`https://fantom-tribune-back.herokuapp.com/vote/${projectId}`, requestOptions)
                 .then(response => response.json())
                 .finally(() => { setElements([]); getPromotedProjecRequest(); })
 
@@ -143,7 +143,7 @@ const PromotedToken = () => {
                         <div className={style.divAllInfo}>
                             <p className={style.KYCButton}>KYC</p>
                             <div className={style.imgCrown}></div>
-                            <img src="http://localhost:3000/planet9.png" className={style.imgProjectLogo}></img>
+                            <img src="https://fantom-tribune-back.herokuapp.com/planet9.png" className={style.imgProjectLogo}></img>
                             <h1 className={style.projectName}>{item.name}</h1>
                             {item.launchDate >= dateUtc && <p className={style.presaleButton}>PreSale</p>}
                             <div className={style.list}>

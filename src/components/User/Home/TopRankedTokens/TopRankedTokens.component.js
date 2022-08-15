@@ -18,7 +18,7 @@ const TopRankedTokens = () => {
 
     useEffect(() => {
 
-        fetch('http://localhost:3000/getTopRanked')
+        fetch('https://fantom-tribune-back.herokuapp.com/getTopRanked')
             .then((res) => res.json())
             .then((res) => {
                 setElements(res);
@@ -28,7 +28,7 @@ const TopRankedTokens = () => {
 
 
     function getTopRankedRequest() {
-        fetch('http://localhost:3000/getTopRanked')
+        fetch('https://fantom-tribune-back.herokuapp.com/getTopRanked')
             .then((res) => res.json())
             .then((res) => {
                 setElements(res);
@@ -118,7 +118,7 @@ const TopRankedTokens = () => {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ info: email, voteToday: voteToday, vote: vote, voteTwentyHourCalcul: voteTwentyHourCalcul, voteTwentyHour: voteTwentyHour })
                 };
-                fetch(`http://localhost:3000/vote/${projectId}`, requestOptions)
+                fetch(`https://fantom-tribune-back.herokuapp.com/vote/${projectId}`, requestOptions)
                     .then(response => response.json())
                     /* .then(data => this.setState({ postId: data.id })) */
                     .finally(() => { setElements([]); getTopRankedRequest(); })
@@ -132,7 +132,7 @@ const TopRankedTokens = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ info: email, voteToday: voteToday, vote: vote, voteTwentyHourCalcul: voteTwentyHourCalcul, voteTwentyHour: voteTwentyHour })
             };
-            fetch(`http://localhost:3000/vote/${projectId}`, requestOptions)
+            fetch(`https://fantom-tribune-back.herokuapp.com/vote/${projectId}`, requestOptions)
                 .then(response => response.json())
                 .finally(() => { setElements([]); getTopRankedRequest(); })
 
@@ -149,7 +149,7 @@ const TopRankedTokens = () => {
                         <div className={style.divAllInfo}>
                             <p className={style.KYCButton}>KYC</p>
                             <div className={style.imgCrown}></div>
-                            <img src="http://localhost:3000/planet9.png" className={style.imgProjectLogo}></img>
+                            <img src="https://fantom-tribune-back.herokuapp.com/planet9.png" className={style.imgProjectLogo}></img>
                             <h1 className={style.projectName}>{item.name}</h1>
                             {item.launchDate >= dateUtc && <p className={style.presaleButton}>PreSale</p>}
                             <div className={style.list}>

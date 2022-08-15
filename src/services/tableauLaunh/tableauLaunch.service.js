@@ -171,7 +171,7 @@ function setTypeFilter(typeFilterValue) {
 }
 
 function getLaunchTab(limit, skip) {
-    return axios.get(`http://localhost:3000/launchDate/?limite=${limit}&skip=${skip}&action=${action}&type=${typeFilter}`)
+    return axios.get(`https://fantom-tribune-back.herokuapp.com/?limite=${limit}&skip=${skip}&action=${action}&type=${typeFilter}`)
         .then(response => {
             return response.data;
         })
@@ -180,7 +180,7 @@ function getLaunchTab(limit, skip) {
 
 
 function getLaunchTabLenght() {
-    return axios.get('http://localhost:3000/launchDateLenght/')
+    return axios.get('https://fantom-tribune-back.herokuapp.com/launchDateLenght/')
         .then(response => {
             return response.data;
         })
@@ -189,14 +189,14 @@ function getLaunchTabLenght() {
 
 
 function getEcosystem(limit, skip) {
-    return axios.get(`http://localhost:3000/ecosystem/?limite=${limit}&skip=${skip}`)
+    return axios.get(`https://fantom-tribune-back.herokuapp.com/ecosystem/?limite=${limit}&skip=${skip}`)
         .then(response => {
             return response.data;
         })
 }
 
 function getEcosystemLenght() {
-    return axios.get('http://localhost:3000/ecosystemLenght/')
+    return axios.get('https://fantom-tribune-back.herokuapp.com/ecosystemLenght/')
         .then(response => {
             return response.data;
         })
@@ -205,7 +205,7 @@ function getEcosystemLenght() {
 
 
 function voteHourVerif() {
-    return axios.put(`http://localhost:3000/voteHourVerif`)
+    return axios.put(`https://fantom-tribune-back.herokuapp.com/voteHourVerif`)
         .then(response => {
             voteHourApplication();
             return response.data;
@@ -213,7 +213,7 @@ function voteHourVerif() {
 }
 
 function voteHourApplication() {
-    return axios.put(`http://localhost:3000/voteHourApplication`)
+    return axios.put(`https://fantom-tribune-back.herokuapp.com/voteHourApplication`)
         .then(response => {
             return response.data;
         })
@@ -235,7 +235,7 @@ function theGraphe() {
 }
 
 function contractSpooky() {
-    return axios.get(`http://localhost:3000/contractSpooky/`)
+    return axios.get(`https://fantom-tribune-back.herokuapp.com/contractSpooky/`)
         .then(response => {
             setListAllContract(response.data)
             return response.data;
@@ -244,7 +244,7 @@ function contractSpooky() {
 
 
 function coinmarketCap(slug, coinMarketCapLink) {
-    return axios.get(`http://localhost:3000/coinmarketCap?slug=${slug}&coinMarketCapLink=${coinMarketCapLink}`)
+    return axios.get(`https://fantom-tribune-back.herokuapp.com/coinmarketCap?slug=${slug}&coinMarketCapLink=${coinMarketCapLink}`)
         .then(response => {
           /*   if (response.status === 200) {
                 console.log('ici status 200 lets goooo')
@@ -266,7 +266,7 @@ function coinmarketCap(slug, coinMarketCapLink) {
 
 
 /* function coinmarketCapStatus(coinMarketCapLink, status) {
-    return axios.put(`http://localhost:3000/coinmarketCapStatus?coinMarketCapLink=${coinMarketCapLink}&status=${status}`)
+    return axios.put(`https://fantom-tribune-back.herokuapp.com/coinmarketCapStatus?coinMarketCapLink=${coinMarketCapLink}&status=${status}`)
         .then(response => {
 
             console.log("??????Response", response)
@@ -277,7 +277,7 @@ function coinmarketCap(slug, coinMarketCapLink) {
 
 function configContract(configContract) {
     console.log("configContraaaaaaaaaact");
-    return axios.put(`http://localhost:3000/configContract`, {
+    return axios.put(`https://fantom-tribune-back.herokuapp.com/configContract`, {
         configContract: configContract
     })
         .then(response => {
@@ -287,7 +287,7 @@ function configContract(configContract) {
 }
 
 function updatePrice(priceList) {
-    return axios.put(`http://localhost:3000/updatePrice`, {
+    return axios.put(`https://fantom-tribune-back.herokuapp.com/updatePrice`, {
         priceList: priceList
     })
         .then(response => {

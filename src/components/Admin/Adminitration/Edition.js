@@ -56,13 +56,13 @@ const Edition = () => {
             formData.append('image', inputImg.files.item(0))
             axios({
                 method: "post",
-                url: "http://localhost:3000/images",
+                url: "https://fantom-tribune-back.herokuapp.com/images",
                 data: formData,
                 headers: { "Content-Type": "multipart/form-data" },
             })
                 .then(function (response) {
                     //handle success
-                    setToggle("http://localhost:3000/" + inputImg.files.item(0).name);
+                    setToggle("https://fantom-tribune-back.herokuapp.com/" + inputImg.files.item(0).name);
                 })
                 .catch(function (response) {
                     //handle error
@@ -80,7 +80,7 @@ const Edition = () => {
                formData.append('image', inputImg.files.item(0))
                axios({
                    method: "post",
-                   url: "http://localhost:3000/images",
+                   url: "https://fantom-tribune-back.herokuapp.com/images",
                    data: formData,
                    headers: { "Content-Type": "multipart/form-data" },
                })
@@ -123,7 +123,7 @@ const Edition = () => {
                 telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image
             })
         };
-        fetch(`http://localhost:3000/adminEdit/${id}`, requestOptions)
+        fetch(`https://fantom-tribune-back.herokuapp.com/adminEdit/${id}`, requestOptions)
             .then(response => response.json())
             .then(data => this.setState({ postId: data.id }));
     }
@@ -136,7 +136,7 @@ const Edition = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:3000/launchDateAdmin/')
+        fetch('https://fantom-tribune-back.herokuapp.com/launchDateAdmin/')
             .then((res) => res.json())
             .then((res) => {
                 editionService.initCoin();
@@ -149,7 +149,7 @@ const Edition = () => {
                         editionService.setCoin(postsArray[i]);
                         editionService.setType({ label: postsArray[i].type, value: postsArray[i].type },);
                         console.log('hmmmm', editionService.getType());
-                        setToggle("http://localhost:3000/" + editionService.getCoin().image);
+                        setToggle("https://fantom-tribune-back.herokuapp.com/" + editionService.getCoin().image);
 
                     }
                 }
@@ -173,7 +173,7 @@ const Edition = () => {
 
                         <label className={style.formLabelFileEmpty} htmlFor="file-input">
                             <div className={style.formLabel}>Logo Upload*</div>
-                            <img style={{ height: "100%", float: "left", maxWidth: "30%", maxHeight: "30%", cursor: 'pointer' }} src="http://localhost:3000/upload.png" />
+                            <img style={{ height: "100%", float: "left", maxWidth: "30%", maxHeight: "30%", cursor: 'pointer' }} src="https://fantom-tribune-back.herokuapp.com/upload.png" />
                             <img style={{ height: "100%", float: "left", maxWidth: "25%", maxHeight: "25%" }} src={urlUpload} />
                         </label>
 

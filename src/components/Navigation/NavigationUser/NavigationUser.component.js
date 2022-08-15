@@ -27,7 +27,7 @@ const Navigation = () => {
     <nav>
       <div className={style.fantom_tribune}>
 
-        <img className={style.imgLogo} src="http://localhost:3000/logo.png" />
+        <img className={style.imgLogo} src="https://fantom-tribune-back.herokuapp.com/logo.png" />
         <h1 className={style.title}>FANTOM TRIBUNE</h1>
       </div>
       <ul className={style.ulNavUser}>
@@ -72,7 +72,7 @@ const Navigation = () => {
       {currentUser ? (
         <div className={style.divCurrentUser}>
           <a href="/login" onClick={logOut}>
-            <img className={style.imgUser} src="http://localhost:3000/user.png" />
+            <img className={style.imgUser} src="https://fantom-tribune-back.herokuapp.com/user.png" />
           </a>
         </div>
       ) : (

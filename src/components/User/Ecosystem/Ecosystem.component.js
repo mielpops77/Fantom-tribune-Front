@@ -43,7 +43,7 @@ const Ecosystem = () => {
           {/* <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div> */ }
         );
         item.image = (
-          <img src={"http://localhost:3000/" + result[index].image} />
+          <img src={"https://fantom-tribune-back.herokuapp.com/" + result[index].image} />
         );
 
         userData.push(item);
@@ -138,7 +138,7 @@ const Ecosystem = () => {
           body: JSON.stringify({ info: email, voteToday: voteToday, vote: vote })
 
         };
-        fetch(`http://localhost:3000/vote/${projectId}`, requestOptions)
+        fetch(`https://fantom-tribune-back.herokuapp.com/vote/${projectId}`, requestOptions)
           .then(response => response.json())
           /* .then(data => this.setState({ postId: data.id })) */
           .finally(() => { seDatabase([]); tableLaunch(pagination.limit, pagination.skip); })
@@ -154,7 +154,7 @@ const Ecosystem = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ info: email, voteToday: voteToday, vote: vote })
       };
-      fetch(`http://localhost:3000/vote/${projectId}`, requestOptions)
+      fetch(`https://fantom-tribune-back.herokuapp.com/vote/${projectId}`, requestOptions)
         .then(response => response.json())
         .finally(() => { seDatabase([]); tableLaunch(pagination.limit, pagination.skip); })
 
