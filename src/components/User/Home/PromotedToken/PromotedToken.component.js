@@ -147,7 +147,7 @@ const PromotedToken = () => {
                             <h1 className={style.projectName}>{item.name}</h1>
                             {item.launchDate >= dateUtc && <p className={style.presaleButton}>PreSale</p>}
                             <div className={style.list}>
-                                <tr><td className={style.pointer}>Type: </td><td>{item.type}</td></tr>
+                                <tr><td className={style.pointer}>Type: </td><td className={style.pointedItem}>{item.type}</td></tr>
                                 <tr><td className={style.pointer}>Market Cap: </td><td className={style.pointedItem}>{item.marketCap}</td></tr>
                                 <tr><td className={style.pointer}>Price: </td><td className={style.pointedItem}>{item.price}</td></tr>
                                 <tr><td className={style.pointer}>Change in 24h: </td><td className={style.pointedItem}>{item.percent_change_24h}%</td></tr>
