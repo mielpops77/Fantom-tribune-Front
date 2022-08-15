@@ -2,7 +2,7 @@ import AuthService from "../../../../services/auth/auth.service";
 import React, { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
 // import { useHistory } from 'react-router-dom';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import style from "../Home.module.scss";
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
@@ -51,12 +51,12 @@ const PromotedToken = () => {
 
 
     // const history = useHistory();
-/*     const navigate = useNavigate(); */
+    const navigate = useNavigate();
 
 
     function login() {
         // history.push(`/login/`)
-        /* navigate(`/login/`); */
+        navigate(`/login/`);
     }
 
 
@@ -152,9 +152,9 @@ const PromotedToken = () => {
                                 <tr><td className={style.pointer}>Price: </td><td className={style.pointedItem}>{item.price}</td></tr>
                                 <tr><td className={style.pointer}>Change in 24h: </td><td className={style.pointedItem}>{item.percent_change_24h}%</td></tr>
                                 <tr><td className={style.pointer}>Launch: </td><td className={style.pointedItem}>{item.launchDate}</td></tr>
-                                <tr><td className={style.pointer}>Votes: </td><td className={style.pointedItem}>{item.vote}</td></tr> 
+                                <tr><td className={style.pointer}>Votes: </td><td className={style.pointedItem}>{item.vote}</td></tr>
                                 <tr><td className={style.pointer}>Votes in 24h: </td><td className={style.pointedItem}>{item.voteTwentyHour}</td></tr>
-                            </div> 
+                            </div>
 
                             <div className={style.cardFooter}>
                                 <button onClick={() => Vote(item._id, item.voteToday, item.vote, item.voteTwentyHourCalcul, item.voteTwentyHour)} className={style.voteButton}>Vote</button>

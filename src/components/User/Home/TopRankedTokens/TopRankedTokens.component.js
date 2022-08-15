@@ -2,7 +2,7 @@ import AuthService from "../../../../services/auth/auth.service";
 import React, { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
 // import { useHistory } from 'react-router-dom';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import style from "../Home.module.scss";
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
@@ -55,11 +55,11 @@ const TopRankedTokens = () => {
 
     /* const history = useHistory(); */
 
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     function login() {
        /*  history.push(`/login/`) */
-        // navigate(`/login/`);
+        navigate(`/login/`);
     }
 
 

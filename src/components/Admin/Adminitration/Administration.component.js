@@ -7,7 +7,7 @@ import { FaTrashRestore } from 'react-icons/fa';
 import { BsTrash } from 'react-icons/bs';
 import { Menu } from 'semantic-ui-react'
 // import { useHistory } from 'react-router-dom';
-/* import { useNavigate } from 'react-router-dom'; */
+import { useNavigate } from 'react-router-dom';
 import style from "./Administration.module.scss";
 
 function Administration() {
@@ -26,7 +26,12 @@ function Administration() {
     let promotedProjectLenght = 0;
 
     // const history = useHistory();
-    /* const navigate = useNavigate(); */
+    const navigate = useNavigate();
+
+
+    function nav(url) {
+        navigate(url)
+    }
 
     let changeStyle = (btn) => {
         switch (btn) {
@@ -230,8 +235,8 @@ function Administration() {
                     {toggle && <AiFillEdit size={32} style={{
                         cursor: "pointer",
                         color: "blue",
-                    }} /* onClick={() => history.push(`/editionCoin/${posts[index]._id}`)} */ />}
-                 
+                    }} onClick={() => nav(`/editionCoin/${posts[index]._id}`)} />}
+
                     {toggle2 && <AiOutlineClose size={32} style={{
                         cursor: "pointer",
                         color: "red",

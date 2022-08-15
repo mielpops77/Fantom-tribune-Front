@@ -15,7 +15,12 @@ function Formulaire() {
   const [verifUpl, setVerifUpl] = useState('');
 
   // const history = useHistory();
-  /* const navigate = useNavigate(); */
+  const navigate = useNavigate();
+
+  function nav(url)
+  {
+    navigate(url);
+  }
 
   if (urlUpload !== '' && !verifUpl) {
     setVerifUpl(true);
@@ -302,7 +307,7 @@ function Formulaire() {
       })
     };
     fetch('http://localhost:3000/launchDate', requestOptions)
-      .then(response => response.json(),/*  history.push(`/ValidationForm/`) */
+      .then(response => response.json(),nav(`/ValidationForm/`)/*  history.push(`/ValidationForm/`) */
       )
 
     /* .then(data => this.setState({ postId: data.id })); */

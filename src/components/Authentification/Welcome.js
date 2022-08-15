@@ -4,11 +4,12 @@ import { Link } from "react-router-dom";
 import NavigationUserComponent from '../Navigation/NavigationUser/NavigationUser.component';
 
 const Welcome = (props) => {
-  console.log(props)
+  let url = window.location.href;
+  AuthService.verifyUser(url.substr(30));
+/*   console.log(props)
   if (props.match.path === "/confirm/:confirmationCode") {
     AuthService.verifyUser(props.match.params.confirmationCode);
-  }
-
+  } */
   return (
     <div>
       <NavigationUserComponent />

@@ -7,6 +7,8 @@ import React, { useState, useRef } from "react";
 import Form from "react-validation/build/form";
 import { NavLink } from "react-router-dom";
 import style from "./Login.module.scss";
+import { useNavigate } from 'react-router-dom';
+
 
 
 const required = (value) => {
@@ -20,6 +22,7 @@ const required = (value) => {
 };
 
 const Login = (props) => {
+    let navigate = useNavigate();
     const form = useRef();
     const checkBtn = useRef();
     const [mail, setMail] = useState("");
@@ -46,9 +49,11 @@ const Login = (props) => {
         /* form.current.validateAll(); */
 
         if (checkBtn.current.context._errors.length === 0) {
+
             AuthService.login(mail, password).then(
                 () => {
-                    props.history.push("/launchDate");
+                    navigate("/launchDate");
+                    /*  props.history.push("/launchDate"); */
                     window.location.reload();
                 },
                 (error) => {
@@ -98,29 +103,29 @@ const Login = (props) => {
                         </button>
                     </div>
 
-                 {/*    {message && (
+                    {message && (
                         <div className={style.formGroup}>
                             <div className="alert alert-danger" role="alert">
                                 {message}
                             </div>
                         </div>
-                    )} */}
-                    <CheckButton style={{ display:"none" }} ref={checkBtn} />
+                    )}
+                    <CheckButton style={{ display: "none" }} ref={checkBtn} />
 
                     <NavLink to="/register" className={style.register}>
                         <button className={style.blueButton}>No Account? Register Here</button>
                     </NavLink>
-                    
+
                     <p className={style.forgotPassword}>
                         Forgot <a className={style.link} style={{ color: "#167bff" }} href="#"> password?</a>
                     </p>
                 </Form>
-            <div className={style.divFooter}>
-                <FooterComponent />
-            </div>
+                <div className={style.divFooter}>
+                    <FooterComponent />
+                </div>
             </div>
         </div>
-        
+
 
     );
 };
