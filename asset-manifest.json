@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/mielpops77.github.io/Fantom-tribune-Front/static/css/main.e9627f24.css",
-    "main.js": "/mielpops77.github.io/Fantom-tribune-Front/static/js/main.b486d703.js",
-    "static/media/dozen-regular.otf": "/mielpops77.github.io/Fantom-tribune-Front/static/media/dozen-regular.89ffdfc86f05f1f60784.otf",
-    "index.html": "/mielpops77.github.io/Fantom-tribune-Front/index.html",
-    "main.e9627f24.css.map": "/mielpops77.github.io/Fantom-tribune-Front/static/css/main.e9627f24.css.map",
-    "main.b486d703.js.map": "/mielpops77.github.io/Fantom-tribune-Front/static/js/main.b486d703.js.map"
+    "main.css": "/mielpops77.github.io/Fantom-tribune-Front/build/static/css/main.b916e7c8.css",
+    "main.js": "/mielpops77.github.io/Fantom-tribune-Front/build/static/js/main.7ca58eab.js",
+    "static/media/dozen-regular.otf": "/mielpops77.github.io/Fantom-tribune-Front/build/static/media/dozen-regular.89ffdfc86f05f1f60784.otf",
+    "index.html": "/mielpops77.github.io/Fantom-tribune-Front/build/index.html",
+    "main.b916e7c8.css.map": "/mielpops77.github.io/Fantom-tribune-Front/build/static/css/main.b916e7c8.css.map",
+    "main.7ca58eab.js.map": "/mielpops77.github.io/Fantom-tribune-Front/build/static/js/main.7ca58eab.js.map"
   },
   "entrypoints": [
-    "static/css/main.e9627f24.css",
-    "static/js/main.b486d703.js"
+    "static/css/main.b916e7c8.css",
+    "static/js/main.7ca58eab.js"
   ]
 }
