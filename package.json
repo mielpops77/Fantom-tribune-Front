@@ -2,8 +2,6 @@
   "name": "entrainement-react",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/mielpops77.github.io/Fantom-tribune-Front",
-
   "dependencies": {
     "@apollo/client": "^3.6.9",
     "@emotion/react": "^11.10.0",
@@ -50,10 +48,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy":"gh-pages -d build"
-
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -74,7 +69,6 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^4.0.0",
     "sass": "^1.54.4"
   }
 }
