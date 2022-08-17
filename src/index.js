@@ -2,14 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import './styles/index.scss';
 import App from "./App";
-import { HashRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 // import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <HashRouter>
+  <BrowserRouter>
     <App />
-    </HashRouter>
+    </BrowserRouter>
 );
 
 // reportWebVitals();
