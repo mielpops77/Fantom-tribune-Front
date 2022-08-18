@@ -38,7 +38,7 @@ const Ecosystem = () => {
     var totalReactPackages;
     TableLaunchService.getEcosystem(limit, skip).then(function (result) {
       let userData = [];
-      result.map((item, index) => {
+      result.foreach((item, index) => {
         item.id = (
           {/* <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div> */ }
         );
@@ -285,8 +285,8 @@ const Ecosystem = () => {
 
       <div className={style.paginationLaunchDate}>
         <span className={style.paginationPageActuel}>1 - {TableLaunchService.totalPage} of {pagination.pageActuel}</span>
-        <a className={pagination.pageActuel > 1 ? "" : "disable"} onClick={previous}>❮</a>
-        <a className={pagination.pageActuel < TableLaunchService.totalPage ? "" : "disable"} onClick={next}>❯</a>
+        <a className={pagination.pageActuel > 1 ? "" : "disable"} onClick={previous} href="#">❮</a>
+        <a className={pagination.pageActuel < TableLaunchService.totalPage ? "" : "disable"} onClick={next} href="#">❯</a>
       </div>
 
       <Modal

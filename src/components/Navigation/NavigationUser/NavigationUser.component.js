@@ -72,7 +72,7 @@ const Navigation = () => {
       {currentUser ? (
         <div className={style.divCurrentUser}>
           <a href="/login" onClick={logOut}>
-            <img className={style.imgUser} src="https://fantom-tribune-back.herokuapp.com/user.png" alt='user'/>
+            <img className={style.imgUser} src="https://fantom-tribune-back.herokuapp.com/user.png" alt="user"/>
           </a>
         </div>
       ) : (

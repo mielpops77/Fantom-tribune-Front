@@ -8,7 +8,7 @@ const Administration = () => {
 
     
   const [showAdminBoard, setShowAdminBoard] = useState(false);
-  const [currentUser, setCurrentUser] = useState(undefined);
+  const [setCurrentUser] = useState(undefined);
 
   useEffect(() => {
     const user = AuthService.getCurrentUser();
@@ -17,7 +17,7 @@ const Administration = () => {
       setCurrentUser(user);
       setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
     }
-  }, []);
+  }, [setCurrentUser]);
 
     return (
         
