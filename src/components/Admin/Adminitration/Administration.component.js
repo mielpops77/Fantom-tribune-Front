@@ -213,7 +213,7 @@ function Administration() {
     useEffect(() => {
         let postsArray = JSON.parse(JSON.stringify(posts));
         let userData = [];
-        postsArray.map((item, index) => {
+        postsArray.foreach((item, index) => {
             item._id = (
                 <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div>
             );
@@ -286,7 +286,7 @@ function Administration() {
 
             );
             item.image = (
-                <img style={{ height: "100%", width: "95px", float: "left" }} src={"https://fantom-tribune-back.herokuapp.com/" + posts[index].image} />
+                <img style={{ height: "100%", width: "95px", float: "left" }} src={"https://fantom-tribune-back.herokuapp.com/" + posts[index].image} alt="img"/>
             );
             userData.push(item);
         });

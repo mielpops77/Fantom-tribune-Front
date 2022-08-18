@@ -10,7 +10,7 @@ const Edition = () => {
 
     const [selected, setSelected] = useState(null);
 
-    let date = new Date()
+    //let date = new Date()
     //let today = date.toISOString().split('T')[0];
 
 
@@ -155,7 +155,7 @@ const Edition = () => {
                 }
 
             });
-    }, []);
+    }, [id]);
 
 
     return (

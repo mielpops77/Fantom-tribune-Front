@@ -9,7 +9,7 @@ const ApiConfig = () => {
 
     
   const [showAdminBoard, setShowAdminBoard] = useState(false);
-  const [currentUser, setCurrentUser] = useState(undefined);
+  const [setCurrentUser] = useState(undefined);
 
   useEffect(() => {
     const user = AuthService.getCurrentUser();

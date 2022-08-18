@@ -4,7 +4,7 @@ import axios from "axios";
 
 
 
-let totalPage = 1;
+//let totalPage = 1;
 let action = 'launchDateAsc';
 
 let typeFilter = 'All';
