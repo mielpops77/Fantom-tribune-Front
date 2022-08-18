@@ -10,7 +10,7 @@ import Welcome from "./components/Authentification/Welcome";
 import Administration from './pages/admin/Administration';
 import ApiConfig from './pages/admin/ApiConfig';
 import Submit from './pages/user/Submit/Submit.component'
-import { Switch, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Ecosystem from "./pages/user/Ecosystem";
 import React from 'react';
 import Home from './Home';
