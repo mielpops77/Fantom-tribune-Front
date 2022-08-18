@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/da00ef32-030a-4cc2-995e-44fffc132600/microsoft.web/sites/subscriptions/da00ef32-030a-4cc2-995e-44fffc132600/resourceGroups/grpRessources/providers/Microsoft.Web/sites/FantomTribune",
+    "appService.deploySubpath": "."
+}
