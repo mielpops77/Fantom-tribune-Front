@@ -44,7 +44,7 @@ function ApiConfig() {
                 <button className={!CoinMarketCap ? "btn btn-danger" : "btn btn-dark"} style={{ marginLeft: "10px" }} onClick={() => coinMarketCapStatus(false, listIdCoinMarket)}>désactiver</button></h3>
             <br />
             <h3>Subgraph Spookyswap   <button class="btn btn-dark">Activer</button>
-                <button class="btn btn-dark" style={{ marginLeft: "10px" }}>désactiver</button></h3>
+                <button className="btn btn-dark" style={{ marginLeft: "10px" }}>désactiver</button></h3>
         </div >
     );
 }

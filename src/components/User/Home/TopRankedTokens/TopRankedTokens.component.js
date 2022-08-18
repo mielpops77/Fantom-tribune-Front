@@ -144,7 +144,7 @@ const TopRankedTokens = () => {
         <div >
             <div className={style.divSingleBlock}>
                 <div className={style.sectionBackground}></div>
-                {elements.map((item) => {
+     {/*            {elements.map((item) => {
                     return <div className={style.rectangle}>
                         <div className={style.divAllInfo}>
                             <p className={style.KYCButton}>KYC</p>
@@ -167,7 +167,7 @@ const TopRankedTokens = () => {
                             </div>
                         </div>
                     </div>
-                })}
+                })} */}
 
             </div>
 
