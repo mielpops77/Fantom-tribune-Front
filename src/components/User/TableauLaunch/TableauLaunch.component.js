@@ -54,7 +54,7 @@ const TableauLaunch = () => {
     var totalReactPackages;
     TableLaunchService.getLaunchTab(limit, skip, TableLaunchService.getAction(), TableLaunchService.getTypeFilter()).then(function (result) {
       let userData = [];
-      result.map((item, index) => {
+      result.foreach((item, index) => {
         item.id = (
           {/* <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div> */ }
         );
