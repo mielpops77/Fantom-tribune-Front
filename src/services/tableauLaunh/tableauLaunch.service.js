@@ -171,7 +171,7 @@ function setTypeFilter(typeFilterValue) {
 }
 
 function getLaunchTab(limit, skip) {
-    return axios.get(`https://fantom-tribune-back.herokuapp.com/?limite=${limit}&skip=${skip}&action=${action}&type=${typeFilter}`)
+    return axios.get(`https://fantom-tribune-back.herokuapp.com/launchDate/?limite=${limit}&skip=${skip}&action=${action}&type=${typeFilter}`)
         .then(response => {
             return response.data;
         })

@@ -213,7 +213,7 @@ function Administration() {
     useEffect(() => {
         let postsArray = JSON.parse(JSON.stringify(posts));
         let userData = [];
-        postsArray.foreach((item, index) => {
+        postsArray.map((item, index) => {
             item._id = (
                 <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div>
             );

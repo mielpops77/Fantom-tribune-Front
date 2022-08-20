@@ -38,7 +38,7 @@ const Ecosystem = () => {
     var totalReactPackages;
     TableLaunchService.getEcosystem(limit, skip).then(function (result) {
       let userData = [];
-      result.foreach((item, index) => {
+      result.map((item, index) => {
         item.id = (
           {/* <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div> */ }
         );

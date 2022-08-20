@@ -9,13 +9,13 @@ const ApiConfig = () => {
 
     
   const [showAdminBoard, setShowAdminBoard] = useState(false);
-  const [setCurrentUser] = useState(undefined);
+  // const [setCurrentUser] = useState(undefined);
 
   useEffect(() => {
     const user = AuthService.getCurrentUser();
 
     if (user) {
-      setCurrentUser(user);
+      // setCurrentUser(user);
       setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
     }
   }, []);

@@ -1,4 +1,4 @@
 {
-    "appService.defaultWebAppToDeploy": "/subscriptions/da00ef32-030a-4cc2-995e-44fffc132600/microsoft.web/sites/subscriptions/da00ef32-030a-4cc2-995e-44fffc132600/resourceGroups/grpRessources/providers/Microsoft.Web/sites/FantomTribune",
-    "appService.deploySubpath": "."
+    "appService.defaultWebAppToDeploy": "/subscriptions/cd4ba5c6-fb60-45d8-b743-9293108b62c7/microsoft.web/sites/subscriptions/cd4ba5c6-fb60-45d8-b743-9293108b62c7/resourceGroups/FtmRessources/providers/Microsoft.Web/sites/fantom-tribune",
+    "appService.deploySubpath": "build"
 }
