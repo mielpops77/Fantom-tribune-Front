@@ -6,7 +6,7 @@ import NavigationUserComponent from '../Navigation/NavigationUser/NavigationUser
 const Welcome = (props) => {
   let url = window.location.href;
   /* AuthService.verifyUser(url.substr(30));  pour local seulement*/ 
-   AuthService.verifyUser(url.substr(50))
+   AuthService.verifyUser(url.substr(49))
 
   /*   console.log(props)
     if (props.match.path === "/confirm/:confirmationCode") {
