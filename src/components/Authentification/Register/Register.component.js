@@ -168,9 +168,7 @@ const Register = (props) => {
                     </NavLink>
                 </Form>
             </div>
-            <div className={style.divFooter}>
                 <FooterComponent/>
-            </div>
         </div>
     );
 };

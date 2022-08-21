@@ -4,7 +4,7 @@
 $font-1: "Poppins", sans-serif;
 
 $color-1: #61dafb;
-$color-2: #f7f7f7;
+$color-2: #FEFEFE;
 $color-3: #282c34;
 $color-4: rgb(32, 35, 42);
 
@@ -13,11 +13,13 @@ $color-4: rgb(32, 35, 42);
   margin: 0;
   padding: 0;
 }
-body {
+body { 
   font-family: $font-1;
   color: $color-3;
   background-color: $color-2;
 }
+
+
 li {
   list-style-type: none;
 }

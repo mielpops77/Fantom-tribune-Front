@@ -120,10 +120,8 @@ const Login = (props) => {
                         Forgot <a className={style.link} style={{ color: "#167bff" }} href="#"> password?</a>
                     </p>
                 </Form>
-                <div className={style.divFooter}>
-                    <FooterComponent />
-                </div>
             </div>
+            <FooterComponent />
         </div>
 
 

@@ -11,7 +11,7 @@ import Administration from './pages/admin/Administration';
 import ApiConfig from './pages/admin/ApiConfig';
 import Submit from './pages/user/Submit/Submit.component'
 import { Route, Routes } from 'react-router-dom';
-import Ecosystem from "./pages/user/Ecosystem";
+import Ecosystem from "./pages/user/Ecosystem/Ecosystem";
 import React from 'react';
 import Home from './Home';
 

@@ -2,23 +2,23 @@
 
 
 .footerContainer{
-    position: relative;
+    background: url("https://fantom-tribune-back.herokuapp.com/fond_bandeau.png") no-repeat padding-box;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
-    background: url("https://fantom-tribune-back.herokuapp.com/fond_bandeau.png") no-repeat padding-box;
-    background-size: cover;
     margin: auto;
-    max-width: 2080px;
+    width: 100%;
     height: auto;
     max-height: 100px;
     opacity: 0.6;
     padding: 1.3%;
     bottom:0px;
-    margin-top:-5%;
+    right:0px;
+    left:0px;
     opacity: 0.6;
-
+    position: relative;
 }
 
 .h2Title{
