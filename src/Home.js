@@ -63,7 +63,8 @@ const Home = () => {
                 <img src="https://fantom-tribune-back.herokuapp.com/ranked_arrows.png" className={style.imgLogoSection} alt='ranked_arrow'></img>
                 <p className={style.sectionTitle}>Top Ranked <span className={style.tokensTitle}>Tokens</span> </p>
             </div>
-        <TopRankedTokens/><br/><br/><br/><br/><br/><br/>
+        <TopRankedTokens/>
+        <br/><br/><br/><br/><br/>
         <FooterComponent/>
         </div>
     )

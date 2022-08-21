@@ -1,20 +1,21 @@
 import NavigationUserComponent from '../../../components/Navigation/NavigationUser/NavigationUser.component';
-import TableauLaunchComponent from '../../../components/User/TableauLaunch/TableauLaunch.component';
+import EcosystemComponent from '../../../components/User/Ecosystem/Ecosystem.component';
 import FooterComponent from '../../../components/Navigation/Footer/Footer.component';
-import style from './LaunchDate.module.scss';
+import style from './Ecosystem.module.scss';
 import React from 'react';
 
 
-const About = () => {
+const Ecosystem = () => {
     return (
         <div>
             <NavigationUserComponent/>
-            <TableauLaunchComponent/>
-            <div className={style.divFooter}> 
+            <EcosystemComponent/>
+            <div className={style.divFooter}>
                 <FooterComponent/>
-            </div> 
+            </div >
+            
         </div>
     );
 };
 
-export default About;
+export default Ecosystem;

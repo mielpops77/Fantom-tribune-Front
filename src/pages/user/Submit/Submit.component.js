@@ -17,7 +17,8 @@ const Submit = () => {
             
                 <FormulaireComponent/>
             </div>
-                <FooterComponent/>
+            <div className={style.FooterComponent}><FooterComponent/></div>
+                
         </div >
     );
 };
