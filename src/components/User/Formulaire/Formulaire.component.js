@@ -1,5 +1,4 @@
 import TableLaunchService from '../../../services/tableauLaunh/tableauLaunch.service'
-// import { useHistory } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import style from "./Formulaire.module.scss";
 import Select from 'react-select'
@@ -13,7 +12,6 @@ function Formulaire() {
   const [prev, setPrev] = useState('');
   const [verifUpl, setVerifUpl] = useState('');
 
-  // const history = useHistory();
   const navigate = useNavigate();
 
   function nav(url)
@@ -301,8 +299,7 @@ function Formulaire() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress.toLowerCase(), description: inputs.description, type: type,
-        websiteLink: inputs.websiteLink, coinMarketCapLink: coinMarketCapLink, customSwapLink: inputs.customSwapLink,
-        telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, vote: 0, voteToday: voteTodayUtc, voteTwentyHour: 0, voteTwentyHourCalcul: voteTwentyHourCalcul, price: 0, marketCap: 0, supply: 0, coinMarketCapStatus: coinMarketCapStatus, idCoinMarketCap: 0, listePriceIdCoinMarketCap: listePriceIdCoinMarketCap, percent_change_24h: 0, promotedStatus: false
+        websiteLink: inputs.websiteLink, coinMarketCapLink: coinMarketCapLink,telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, vote: 0, voteToday: voteTodayUtc, voteTwentyHour: 0, voteTwentyHourCalcul: voteTwentyHourCalcul, price: 0, marketCap: 0, supply: 0, coinMarketCapStatus: coinMarketCapStatus, idCoinMarketCap: 0, listePriceIdCoinMarketCap: listePriceIdCoinMarketCap, percent_change_24h: 0, promotedStatus: false
       })
     };
     fetch('https://fantom-tribune-back.herokuapp.com/launchDate', requestOptions)
@@ -470,16 +467,6 @@ function Formulaire() {
           name="coinMarketCapLink"
           value={inputs.coinMarketCapLink || ""}
           onChange={handleChange} />
-      </label>
-
-
-      <label className={style.formLabel}>Custom swap link:
-        <input className={style.formInput}
-          type="text"
-          name="customSwapLink"
-          value={inputs.customSwapLink || ""}
-          onChange={handleChange}>
-        </input>
       </label>
 
       <label className={style.formLabel}>Telegram link:
