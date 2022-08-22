@@ -7,6 +7,7 @@ import style from "../Home.module.scss";
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 
+
 const user = AuthService.getCurrentUser();
 
 const PromotedToken = () => {
@@ -21,6 +22,10 @@ const PromotedToken = () => {
             })
     }, []);
 
+
+    function buy(contractAdress) {
+        window.open('https://spooky.fi/#/swap?outputCurrency=' + contractAdress, '_blank');
+    }
 
 
     function getPromotedProjecRequest() {
@@ -53,17 +58,23 @@ const PromotedToken = () => {
     // const history = useHistory();
     const navigate = useNavigate();
 
+    const Propagation = e => {
+        e.stopPropagation();
+    }
+
 
     function login() {
         // history.push(`/login/`)
         navigate(`/login/`);
     }
 
-
-    function Vote(id, voteToday, vote, voteTwentyHourCalcul, voteTwentyHour) {
+    function vote(id, voteToday, vote, voteTwentyHourCalcul, voteTwentyHour) {
         user !== null ? putVote(id, voteToday, user.email, vote, voteTwentyHourCalcul, voteTwentyHour) : handleOpen();
     }
 
+    function nav(url) {
+        navigate(url);
+    }
 
     function putVote(projectId, voteToday, email, vote, voteTwentyHourCalcul, voteTwentyHour) {
 
@@ -138,7 +149,7 @@ const PromotedToken = () => {
             <div className={style.divSingleBlock}>
                 <div className={style.sectionBackground}></div>
                 {elements.map((item, key) => {
-                    return <div className={style.rectangle}>
+                    return <div onClick={() => nav(`/infoCoin/${item._id}`)} className={style.card}>
                         <div className={style.divAllInfo}>
                             <p className={style.KYCButton}>KYC</p>
                             <div className={style.imgCrown}></div>
@@ -155,8 +166,8 @@ const PromotedToken = () => {
                                 <tr><td className={style.pointer}>Votes in 24h: </td><td className={style.pointedItem}>{item.voteTwentyHour}</td></tr>
                             </div>
                             <div className={style.cardFooter}>
-                                <button onClick={() => Vote(item._id, item.voteToday, item.vote, item.voteTwentyHourCalcul, item.voteTwentyHour)} className={style.voteButton}>Vote</button>
-                                <button className={style.buyButton}>Buy</button>
+                                <button onClick={function (event) { Propagation(event); vote(item._id, item.voteToday, item.vote, item.voteTwentyHourCalcul, item.voteTwentyHour) }} className={style.voteButton}>Vote</button>
+                                <button onClick={function (event) { Propagation(event); buy(item.contractAddress) }} className={style.buyButton}>Buy</button>
                             </div>
                         </div>
                     </div>

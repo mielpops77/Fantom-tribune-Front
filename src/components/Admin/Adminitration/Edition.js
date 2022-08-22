@@ -119,8 +119,7 @@ const Edition = () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress, description: inputs.description, type: type.value,
-                websiteLink: inputs.websiteLink, customChartLink: inputs.customChartLink, customSwapLink: inputs.customSwapLink,
-                telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image
+                websiteLink: inputs.websiteLink,telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image
             })
         };
         fetch(`https://fantom-tribune-back.herokuapp.com/adminEdit/${id}`, requestOptions)
@@ -258,24 +257,6 @@ const Edition = () => {
                                 onChange={handleChange}
                                 required="required"
                             />
-                        </label>
-
-                        <label className={style.formLabel}>Custom chart link:
-                            <input className={style.formInput}
-                                type="text"
-                                name="customChartLink"
-                                value={inputs.customChartLink || editionService.getCoin().customChartLink}
-                                onChange={handleChange} />
-                        </label>
-
-
-                        <label className={style.formLabel}>Custom swap link:
-                            <input className={style.formInput}
-                                type="text"
-                                name="customSwapLink"
-                                value={inputs.customSwapLink || editionService.getCoin().customSwapLink}
-                                onChange={handleChange}>
-                            </input>
                         </label>
 
                         <label className={style.formLabel}>Telegram link:

@@ -27,6 +27,11 @@ const TopRankedTokens = () => {
 
 
 
+    function buy(contractAdress) {
+        window.open('https://spooky.fi/#/swap?outputCurrency=' + contractAdress, '_blank');
+    }
+
+
     function getTopRankedRequest() {
         fetch('https://fantom-tribune-back.herokuapp.com/getTopRanked')
             .then((res) => res.json())
@@ -79,10 +84,17 @@ const TopRankedTokens = () => {
 
 
 
-    function Vote(id, voteToday, vote, voteTwentyHourCalcul, voteTwentyHour) {
+    function vote(id, voteToday, vote, voteTwentyHourCalcul, voteTwentyHour) {
         user !== null ? putVote(id, voteToday, user.email, vote, voteTwentyHourCalcul, voteTwentyHour) : handleOpen();
     }
 
+    const Propagation = e => {
+        e.stopPropagation();
+    }
+
+    function nav(url) {
+        navigate(url);
+    }
 
     function putVote(projectId, voteToday, email, vote, voteTwentyHourCalcul, voteTwentyHour) {
 
@@ -144,7 +156,7 @@ const TopRankedTokens = () => {
             <div className={style.divSingleBlock}>
                 <div className={style.sectionBackground}></div>
                 {elements.map((item) => {
-                    return <div className={style.rectangle}>
+                    return <div onClick={() => nav(`/infoCoin/${item._id}`)} className={style.card}>
                         <div className={style.divAllInfo}>
                             <p className={style.KYCButton}>KYC</p>
                             <div className={style.imgCrown}></div>
@@ -161,8 +173,8 @@ const TopRankedTokens = () => {
                                 <tr><td className={style.pointer}>Votes in 24h: </td><td className={style.pointedItem}>{item.voteTwentyHour}</td></tr>
                             </div>
                             <div className={style.cardFooter}>
-                                <button onClick={() => Vote(item._id, item.voteToday, item.vote, item.voteTwentyHourCalcul, item.voteTwentyHour)} className={style.voteButton}>Vote</button>
-                                <button className={style.buyButton}>Buy</button>
+                                <button onClick={function (event) { Propagation(event); vote(item._id, item.voteToday, item.vote, item.voteTwentyHourCalcul, item.voteTwentyHour) }} className={style.voteButton}>Vote</button>
+                                <button onClick={function (event) { Propagation(event); buy(item.contractAddress) }} className={style.buyButton}>Buy</button>
                             </div>
                         </div>
                     </div>

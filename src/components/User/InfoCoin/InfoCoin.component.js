@@ -6,7 +6,10 @@ const InfoCoin = () => {
 
 
     let url = window.location.href;
-    const id = url.substring(31, url.length);
+    const id = url.substring(50, url.length);
+
+    // Version Local 
+    /* const id = url.substring(31, url.length); */
 
     useEffect(() => {
         fetch('https://fantom-tribune-back.herokuapp.com/ecosystem/')
