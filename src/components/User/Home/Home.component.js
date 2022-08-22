@@ -20,7 +20,7 @@ const Home = () => {
       <div className={style.divSingleBlock}>
         <div className={style.sectionBackground}></div>
         {elements.map((item) => {
-          return <div className={style.rectangle}>
+          return <div className={style.card}>
             <div className={style.divAllInfo}>
               <p className={style.KYCButton}>KYC</p>
               <div className={style.imgCrown}></div>
