@@ -141,7 +141,6 @@ const TopRankedTokens = () => {
 
 
     return (
-        <div >
             <div className={style.divSingleBlock}>
                 <div className={style.sectionBackground}></div>
                 {elements.map((item) => {
@@ -168,9 +167,6 @@ const TopRankedTokens = () => {
                         </div>
                     </div>
                 })}
-
-            </div>
-
             <Modal
                 open={open}
                 onClose={handleClose}

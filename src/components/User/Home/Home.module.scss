@@ -5,7 +5,6 @@
   background-size: cover;
   width: 100%;
   height: 1000px;
-  position: relative;
 }
 
 .typo {
@@ -116,6 +115,7 @@
   display: flex;
   justify-content: center;
   align-items: baseline;
+  position: inherit;
 }
 
 .imgLogoSection {
@@ -184,14 +184,6 @@
   left: 44px;
 }
 
-.divAllInfo {
-  height: 100%;
-  width:100%;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
-
 .imgCrown {
   display: flex;
   align-self: center;
@@ -204,6 +196,31 @@
 .imgProjectLogo {
   display: flex;
   align-self: center;
+}
+
+.divSingleBlock {
+  position: relative;
+  text-align: center;
+  color: #FEFEFE;
+}
+
+.sectionBackground {
+  background: #101e39 0% 0% ;
+  width: 100%;
+  height: 80%;
+  opacity: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+
+.divAllInfo {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
 
 .rectangle {
@@ -226,27 +243,11 @@
   }
 }
 
-.sectionBackground {
-  width: 1920px;
-  min-height: 80px;
-  max-height: 781px;
-  background: #101e39 0% 0% no-repeat padding-box;
-  opacity: 1;
-  margin-top: 10%;
-}
-
 .projectName {
   text-align: center;
   letter-spacing: -0.96px;
   color: #ffffff;
 }
-
-.divSingleBlock {
-  text-align: center;
-  color: #FEFEFE;
-}
-
-
 
 .list{
   margin-bottom:4%

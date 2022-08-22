@@ -135,7 +135,6 @@ const PromotedToken = () => {
     let dateUtc = date.getFullYear() + '-' + mondayUtc + '-' + dayUtc;
 
     return (
-        <div >
             <div className={style.divSingleBlock}>
                 <div className={style.sectionBackground}></div>
                 {elements.map((item, key) => {
@@ -162,7 +161,6 @@ const PromotedToken = () => {
                         </div>
                     </div>
                 })}
-            </div>
             <Modal
                 open={open}
                 onClose={handleClose}
