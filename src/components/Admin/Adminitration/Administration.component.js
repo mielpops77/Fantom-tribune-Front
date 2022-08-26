@@ -1,8 +1,8 @@
-import { MDBDataTableV5 } from 'mdbreact';
-import { useEffect, useState } from "react";
 import { AiOutlineCheck, AiOutlineClose, AiFillEdit, AiFillStar } from 'react-icons/ai';
 import editionAdminService from "../../../services/admin/editionAdmin.service";
-
+import AuthService from "../../../services/auth/auth.service";
+import { MDBDataTableV5 } from 'mdbreact';
+import { useEffect, useState } from "react";
 import { FaTrashRestore } from 'react-icons/fa';
 import { BsTrash } from 'react-icons/bs';
 import { Menu } from 'semantic-ui-react'
@@ -11,6 +11,8 @@ import { useNavigate } from 'react-router-dom';
 import style from "./Administration.module.scss";
 
 function Administration() {
+
+    const url = AuthService.getUrl();
 
     const [posts, setPosts] = useState([]);
     const [usersForRender, setUsersForRender] = useState([]);
@@ -27,8 +29,8 @@ function Administration() {
     const navigate = useNavigate();
 
 
-    function nav(url) {
-        navigate(url)
+    function nav(path) {
+        navigate(path)
     }
 
     let changeStyle = (btn) => {
@@ -67,7 +69,7 @@ function Administration() {
 
 
     useEffect(() => {
-        fetch('https://fantom-tribune-back.herokuapp.com/launchDateAdmin/')
+        fetch(url + 'launchDateAdmin/')
             .then((res) => res.json())
             .then((res) => {
                 setPosts(res);
@@ -76,7 +78,7 @@ function Administration() {
 
 
     let getLunch = () => {
-        fetch('https://fantom-tribune-back.herokuapp.com/ecosystem/')
+        fetch(url + 'ecosystem/')
             .then((res) => res.json())
             .then((res) => {
                 setPosts(res);
@@ -85,7 +87,7 @@ function Administration() {
     };
 
     let getValidation = () => {
-        fetch('https://fantom-tribune-back.herokuapp.com/launchDateAdmin/')
+        fetch(url + 'launchDateAdmin/')
             .then((res) => res.json())
             .then((res) => {
                 setPosts(res);
@@ -94,7 +96,7 @@ function Administration() {
     };
 
     let getTrash = () => {
-        fetch('https://fantom-tribune-back.herokuapp.com/trashAdmin/')
+        fetch(url + 'trashAdmin/')
             .then((res) => res.json())
             .then((res) => {
                 setPosts(res);
@@ -103,7 +105,7 @@ function Administration() {
     };
 
     let deletePost = (postId) => {
-        fetch(`https://fantom-tribune-back.herokuapp.com/trashDef/${postId}`, {
+        fetch(url + `trashDef/${postId}`, {
             method: "DELETE",
         })
             .then((res) => res.json())
@@ -119,7 +121,7 @@ function Administration() {
     };
 
     let getPromoted = () => {
-        fetch('https://fantom-tribune-back.herokuapp.com/getPromotedProject/')
+        fetch(url + 'getPromotedProject/')
             .then((res) => res.json())
             .then((res) => {
                 setPosts(res);
@@ -127,7 +129,7 @@ function Administration() {
     };
 
     let getPromotedProjectLenght = () => {
-        fetch('https://fantom-tribune-back.herokuapp.com/getPromotedProjectLenght/')
+        fetch(url + 'getPromotedProjectLenght/')
             .then((res) => res.json())
             .then((res) => {
                 editionAdminService.initPromotedProjectLenght();
@@ -137,7 +139,7 @@ function Administration() {
 
 
     let validProject = (postId, status, remove) => {
-        fetch(`https://fantom-tribune-back.herokuapp.com/adminEdit/${postId}`, {
+        fetch(url + `adminEdit/${postId}`, {
             method: "Put",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ status: status, delete: remove })
@@ -177,7 +179,7 @@ function Administration() {
 
 
 
-            fetch(`https://fantom-tribune-back.herokuapp.com/promotedChange/${postId}`, {
+            fetch(url + `promotedChange/${postId}`, {
                 method: "Put",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ promotedStatus: promotedStatus })
@@ -286,7 +288,7 @@ function Administration() {
 
             );
             item.image = (
-                <img style={{ height: "100%", width: "95px", float: "left" }} src={"https://fantom-tribune-back.herokuapp.com/" + posts[index].image} alt="img"/>
+                <img style={{ height: "100%", width: "95px", float: "left" }} src={url + posts[index].image} alt="img" />
             );
             userData.push(item);
         });

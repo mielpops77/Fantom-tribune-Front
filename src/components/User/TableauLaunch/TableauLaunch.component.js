@@ -16,6 +16,8 @@ import 'react-dropdown/style.css';
 
 
 const TableauLaunch = () => {
+
+  const url = AuthService.getUrl();
   var [database, seDatabase] = useState([])
   var [pagination, setLimit] = useState({ pageActuel: 1, limit: 10, skip: 0 })
   const user = AuthService.getCurrentUser();
@@ -33,8 +35,8 @@ const TableauLaunch = () => {
 
 
 
-  function nav(url) {
-    navigate(url);
+  function nav(nav) {
+    navigate(nav);
   }
 
 
@@ -59,7 +61,7 @@ const TableauLaunch = () => {
           {/* <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div> */ }
         );
         item.image = (
-          <img src={"https://fantom-tribune-back.herokuapp.com/" + result[index].image} alt='img'/>
+          <img src={url + result[index].image} alt='img' />
         );
         userData.push(item);
       });
@@ -147,7 +149,7 @@ const TableauLaunch = () => {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ info: email, voteToday: voteToday, vote: vote, voteTwentyHourCalcul: voteTwentyHourCalcul, voteTwentyHour: voteTwentyHour })
         };
-        fetch(`https://fantom-tribune-back.herokuapp.com/vote/${projectId}`, requestOptions)
+        fetch(url + `vote/${projectId}`, requestOptions)
           .then(response => response.json())
           /* .then(data => this.setState({ postId: data.id })) */
           .finally(() => { seDatabase([]); tableLaunch(pagination.limit, pagination.skip); })
@@ -161,7 +163,7 @@ const TableauLaunch = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ info: email, voteToday: voteToday, vote: vote, voteTwentyHourCalcul: voteTwentyHourCalcul, voteTwentyHour: voteTwentyHour })
       };
-      fetch(`https://fantom-tribune-back.herokuapp.com/vote/${projectId}`, requestOptions)
+      fetch(url + `vote/${projectId}`, requestOptions)
         .then(response => response.json())
         .finally(() => { seDatabase([]); tableLaunch(pagination.limit, pagination.skip); })
 

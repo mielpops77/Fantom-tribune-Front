@@ -1,4 +1,5 @@
 import TableLaunchService from '../../../services/tableauLaunh/tableauLaunch.service'
+import AuthService from "../../../services/auth/auth.service";
 import { useNavigate } from 'react-router-dom';
 import style from "./Formulaire.module.scss";
 import Select from 'react-select'
@@ -7,6 +8,10 @@ import axios from 'axios';
 
 
 function Formulaire() {
+
+
+  const url = AuthService.getUrl();
+
   const [selected, setSelected] = useState('Dex');
   const [urlUpload, setToggle] = useState('');
   const [prev, setPrev] = useState('');
@@ -14,9 +19,8 @@ function Formulaire() {
 
   const navigate = useNavigate();
 
-  function nav(url)
-  {
-    navigate(url);
+  function nav(path) {
+    navigate(path);
   }
 
   if (urlUpload !== '' && !verifUpl) {
@@ -230,13 +234,13 @@ function Formulaire() {
       formData.append('image', inputImg.files.item(0))
       axios({
         method: "post",
-        url: "https://fantom-tribune-back.herokuapp.com/images",
+        url: url + "images",
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       })
         .then(function (response) {
           //handle success
-          setToggle("https://fantom-tribune-back.herokuapp.com/" + inputImg.files.item(0).name);
+          setToggle(url + inputImg.files.item(0).name);
         })
         .catch(function (response) {
           //handle error
@@ -299,11 +303,11 @@ function Formulaire() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress.toLowerCase(), description: inputs.description, type: type,
-        websiteLink: inputs.websiteLink, coinMarketCapLink: coinMarketCapLink,telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, vote: 0, voteToday: voteTodayUtc, voteTwentyHour: 0, voteTwentyHourCalcul: voteTwentyHourCalcul, price: 0, marketCap: 0, supply: 0, coinMarketCapStatus: coinMarketCapStatus, idCoinMarketCap: 0, listePriceIdCoinMarketCap: listePriceIdCoinMarketCap, percent_change_24h: 0, promotedStatus: false
+        websiteLink: inputs.websiteLink, coinMarketCapLink: coinMarketCapLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, vote: 0, voteToday: voteTodayUtc, voteTwentyHour: 0, voteTwentyHourCalcul: voteTwentyHourCalcul, price: 0, marketCap: 0, supply: 0, coinMarketCapStatus: coinMarketCapStatus, idCoinMarketCap: 0, listePriceIdCoinMarketCap: listePriceIdCoinMarketCap, percent_change_24h: 0, promotedStatus: false
       })
     };
-    fetch('https://fantom-tribune-back.herokuapp.com/launchDate', requestOptions)
-      .then(response => response.json(),nav(`/ValidationForm/`)/*  history.push(`/ValidationForm/`) */
+    fetch(url + 'launchDate', requestOptions)
+      .then(response => response.json(), nav(`/ValidationForm/`)/*  history.push(`/ValidationForm/`) */
       )
 
     /* .then(data => this.setState({ postId: data.id })); */
@@ -332,7 +336,7 @@ function Formulaire() {
 
       <label className={style.formLabelFileEmpty} htmlFor="file-input">
         <div className={style.formLabel}>Logo Upload*</div>
-        <img alt='img' style={{ height: "100%", float: "left", maxWidth: "30%", maxHeight: "30%", cursor: 'pointer' }} src="https://fantom-tribune-back.herokuapp.com/upload.png" />
+        <img alt='img' style={{ height: "100%", float: "left", maxWidth: "30%", maxHeight: "30%", cursor: 'pointer' }} src={url+"upload.png"} />
         {urlUpload !== '' && <img alt='img' style={{ height: "100%", float: "left", maxWidth: "25%", maxHeight: "25%" }} src={urlUpload} />}
       </label>
 

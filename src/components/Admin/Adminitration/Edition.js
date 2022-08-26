@@ -1,24 +1,23 @@
-import React, { useState, useEffect } from 'react';
 import NavigationAdminComponent from '../../Navigation/NavigationAdmin/NavigationAdmin.component';
-import editionService from "../../../services/admin/editionAdmin.service";
 import FooterComponent from '../../../components/Navigation/Footer/Footer.component';
+import editionService from "../../../services/admin/editionAdmin.service";
+import AuthService from "../../../services/auth/auth.service";
+import React, { useState, useEffect } from 'react';
 import style from "./Edition.module.scss";
 import Select from 'react-select'
 import axios from 'axios';
 
 const Edition = () => {
-
     const [selected, setSelected] = useState(null);
+
+    const url = AuthService.getUrl();
 
     //let date = new Date()
     //let today = date.toISOString().split('T')[0];
 
 
-
-
-
-    let url = window.location.href;
-    const id = url.substring(34, url.length);
+    let paths = window.location.href;
+    const id = paths.substring(34, paths.length);
     const options = [
         { label: "Dex", value: "Dex" },
         { label: "Gaming", value: "Gaming" },
@@ -56,13 +55,13 @@ const Edition = () => {
             formData.append('image', inputImg.files.item(0))
             axios({
                 method: "post",
-                url: "https://fantom-tribune-back.herokuapp.com/images",
+                url: { url } + "images",
                 data: formData,
                 headers: { "Content-Type": "multipart/form-data" },
             })
                 .then(function (response) {
                     //handle success
-                    setToggle("https://fantom-tribune-back.herokuapp.com/" + inputImg.files.item(0).name);
+                    setToggle({ url } + inputImg.files.item(0).name);
                 })
                 .catch(function (response) {
                     //handle error
@@ -70,31 +69,6 @@ const Edition = () => {
         }
     }
 
-    /*    const upload = () => {
-   
-           const inputImg = document.querySelector("input[type=file]");
-           let fileCount = inputImg.files.length;
-           if (fileCount > 0) {
-   
-               let formData = new FormData();
-               formData.append('image', inputImg.files.item(0))
-               axios({
-                   method: "post",
-                   url: "https://fantom-tribune-back.herokuapp.com/images",
-                   data: formData,
-                   headers: { "Content-Type": "multipart/form-data" },
-               })
-                   .then(function (response) {
-                       //handle success
-                       console.log(response);
-                   })
-                   .catch(function (response) {
-                       //handle error
-                       console.log(response);
-                   });
-           }
-       }
-    */
     const handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -119,10 +93,10 @@ const Edition = () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress, description: inputs.description, type: type.value,
-                websiteLink: inputs.websiteLink,telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image
+                websiteLink: inputs.websiteLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image
             })
         };
-        fetch(`https://fantom-tribune-back.herokuapp.com/adminEdit/${id}`, requestOptions)
+        fetch(url + `adminEdit/${id}`, requestOptions)
             .then(response => response.json())
             .then(data => this.setState({ postId: data.id }));
     }
@@ -135,7 +109,7 @@ const Edition = () => {
 
 
     useEffect(() => {
-        fetch('https://fantom-tribune-back.herokuapp.com/launchDateAdmin/')
+        fetch(url + 'launchDateAdmin/')
             .then((res) => res.json())
             .then((res) => {
                 editionService.initCoin();
@@ -148,7 +122,7 @@ const Edition = () => {
                         editionService.setCoin(postsArray[i]);
                         editionService.setType({ label: postsArray[i].type, value: postsArray[i].type },);
                         console.log('hmmmm', editionService.getType());
-                        setToggle("https://fantom-tribune-back.herokuapp.com/" + editionService.getCoin().image);
+                        setToggle(url + editionService.getCoin().image);
 
                     }
                 }
@@ -172,7 +146,7 @@ const Edition = () => {
 
                         <label className={style.formLabelFileEmpty} htmlFor="file-input">
                             <div className={style.formLabel}>Logo Upload*</div>
-                            <img style={{ height: "100%", float: "left", maxWidth: "30%", maxHeight: "30%", cursor: 'pointer' }} src="https://fantom-tribune-back.herokuapp.com/upload.png" alt='img' />
+                            <img style={{ height: "100%", float: "left", maxWidth: "30%", maxHeight: "30%", cursor: 'pointer' }} src={url + "upload.png"} alt='img' />
                             <img style={{ height: "100%", float: "left", maxWidth: "25%", maxHeight: "25%" }} src={urlUpload} alt='img' />
                         </label>
 

@@ -2,6 +2,10 @@ import axios from "axios";
 
 const API_URL = "https://fantom-tribune-back.herokuapp.com/api/auth/";
 
+function getUrl() {
+  const url = "https://fantom-tribune-back.herokuapp.com/";
+  return url;
+}
 
 const register = (username, email, password) => {
   return axios.post(API_URL + "signup", {
@@ -45,4 +49,5 @@ export default {
   logout,
   getCurrentUser,
   verifyUser,
+  getUrl
 };

@@ -9,13 +9,15 @@ import Box from '@mui/material/Box';
 
 
 const user = AuthService.getCurrentUser();
+const url = AuthService.getUrl();
+
 
 const PromotedToken = () => {
 
     const [elements, setElements] = useState([]);
 
     useEffect(() => {
-        fetch('https://fantom-tribune-back.herokuapp.com/getPromotedProject')
+        fetch(url + 'getPromotedProject')
             .then((res) => res.json())
             .then((res) => {
                 setElements(res);
@@ -29,7 +31,7 @@ const PromotedToken = () => {
 
 
     function getPromotedProjecRequest() {
-        fetch('https://fantom-tribune-back.herokuapp.com/getPromotedProject')
+        fetch(url + 'getPromotedProject')
             .then((res) => res.json())
             .then((res) => {
                 setElements(res);
@@ -110,7 +112,7 @@ const PromotedToken = () => {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ info: email, voteToday: voteToday, vote: vote, voteTwentyHourCalcul: voteTwentyHourCalcul, voteTwentyHour: voteTwentyHour })
                 };
-                fetch(`https://fantom-tribune-back.herokuapp.com/vote/${projectId}`, requestOptions)
+                fetch(url + `vote/${projectId}`, requestOptions)
                     .then(response => response.json())
                     /* .then(data => this.setState({ postId: data.id })) */
                     .finally(() => { setElements([]); getPromotedProjecRequest(); })
@@ -124,7 +126,7 @@ const PromotedToken = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ info: email, voteToday: voteToday, vote: vote, voteTwentyHourCalcul: voteTwentyHourCalcul, voteTwentyHour: voteTwentyHour })
             };
-            fetch(`https://fantom-tribune-back.herokuapp.com/vote/${projectId}`, requestOptions)
+            fetch(url + `vote/${projectId}`, requestOptions)
                 .then(response => response.json())
                 .finally(() => { setElements([]); getPromotedProjecRequest(); })
 
@@ -146,32 +148,32 @@ const PromotedToken = () => {
     let dateUtc = date.getFullYear() + '-' + mondayUtc + '-' + dayUtc;
 
     return (
-            <div className={style.divSingleBlock}>
-                <div className={style.sectionBackground}></div>
-                {elements.map((item, key) => {
-                    return <div onClick={() => nav(`/infoCoin/${item._id}`)} className={style.card}>
-                        <div className={style.divAllInfo}>
-                            <p className={style.KYCButton}>KYC</p>
-                            <div className={style.imgCrown}></div>
-                            <img src={"https://fantom-tribune-back.herokuapp.com/" + item.image} className={style.imgProjectLogo} alt='project_logo'></img>
-                            <h1 className={style.projectName}>{item.name}</h1>
-                            {item.launchDate >= dateUtc && <p className={style.presaleButton}>PreSale</p>}
-                            <div className={style.list}>
-                                <tr><td className={style.pointer}>Type: </td><td className={style.pointedItem}>{item.type}</td></tr>
-                                <tr><td className={style.pointer}>Market Cap: </td><td className={style.pointedItem}>{item.marketCap}</td></tr>
-                                <tr><td className={style.pointer}>Price: </td><td className={style.pointedItem}>{item.price}</td></tr>
-                                <tr><td className={style.pointer}>Change in 24h: </td><td className={style.pointedItem}>{item.percent_change_24h}%</td></tr>
-                                <tr><td className={style.pointer}>Launch: </td><td className={style.pointedItem}>{item.launchDate}</td></tr>
-                                <tr><td className={style.pointer}>Votes: </td><td className={style.pointedItem}>{item.vote}</td></tr>
-                                <tr><td className={style.pointer}>Votes in 24h: </td><td className={style.pointedItem}>{item.voteTwentyHour}</td></tr>
-                            </div>
-                            <div className={style.cardFooter}>
-                                <button onClick={function (event) { Propagation(event); vote(item._id, item.voteToday, item.vote, item.voteTwentyHourCalcul, item.voteTwentyHour) }} className={style.voteButton}>Vote</button>
-                                <button onClick={function (event) { Propagation(event); buy(item.contractAddress) }} className={style.buyButton}>Buy</button>
-                            </div>
+        <div className={style.divSingleBlock}>
+            <div className={style.sectionBackground}></div>
+            {elements.map((item, key) => {
+                return <div onClick={() => nav(`/infoCoin/${item._id}`)} className={style.card}>
+                    <div className={style.divAllInfo}>
+                        <p className={style.KYCButton}>KYC</p>
+                        <div className={style.imgCrown}></div>
+                        <img src={url + item.image} className={style.imgProjectLogo} alt='project_logo'></img>
+                        <h1 className={style.projectName}>{item.name}</h1>
+                        {item.launchDate >= dateUtc && <p className={style.presaleButton}>PreSale</p>}
+                        <div className={style.list}>
+                            <tr><td className={style.pointer}>Type: </td><td className={style.pointedItem}>{item.type}</td></tr>
+                            <tr><td className={style.pointer}>Market Cap: </td><td className={style.pointedItem}>{item.marketCap}</td></tr>
+                            <tr><td className={style.pointer}>Price: </td><td className={style.pointedItem}>{item.price}</td></tr>
+                            <tr><td className={style.pointer}>Change in 24h: </td><td className={style.pointedItem}>{item.percent_change_24h}%</td></tr>
+                            <tr><td className={style.pointer}>Launch: </td><td className={style.pointedItem}>{item.launchDate}</td></tr>
+                            <tr><td className={style.pointer}>Votes: </td><td className={style.pointedItem}>{item.vote}</td></tr>
+                            <tr><td className={style.pointer}>Votes in 24h: </td><td className={style.pointedItem}>{item.voteTwentyHour}</td></tr>
+                        </div>
+                        <div className={style.cardFooter}>
+                            <button onClick={function (event) { Propagation(event); vote(item._id, item.voteToday, item.vote, item.voteTwentyHourCalcul, item.voteTwentyHour) }} className={style.voteButton}>Vote</button>
+                            <button onClick={function (event) { Propagation(event); buy(item.contractAddress) }} className={style.buyButton}>Buy</button>
                         </div>
                     </div>
-                })}
+                </div>
+            })}
             <Modal
                 open={open}
                 onClose={handleClose}

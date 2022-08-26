@@ -1,6 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from 'react';
 import editionAdminService from "../../../services/admin/editionAdmin.service";
+import AuthService from "../../../services/auth/auth.service";
+import React, { useState, useEffect } from 'react';
+
+
 
 
 function ApiConfig() {
@@ -8,10 +11,11 @@ function ApiConfig() {
     const [CoinMarketCap, setCoinMarketCap] = useState(true);
     const [listIdCoinMarket, setListIdCoinMarket] = useState([]);
 
+    const url = AuthService.getUrl();
 
 
     useEffect(() => {
-        fetch('https://fantom-tribune-back.herokuapp.com/globalList')
+        fetch(url + 'globalList')
             .then((res) => res.json())
             .then((res) => {
                 setTwentyHour(res[0].VoteTwentyHour);
@@ -26,13 +30,9 @@ function ApiConfig() {
     }
 
     function coinMarketCapStatus(status, listIdCoinMarket) {
-        console.log('jjijij', listIdCoinMarket)
         editionAdminService.setCoinMarketCapStatus(status, listIdCoinMarket);
         setCoinMarketCap(status);
     }
-
-
-
 
     return (
         <div className="container">

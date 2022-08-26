@@ -5,6 +5,8 @@ import style from "../NavigationUser/NavigationUser.module.scss";
 
 const NavigationAdmin = () => {
 
+  const url = AuthService.getUrl();
+
 
   const [showAdminBoard, setShowAdminBoard] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -17,7 +19,7 @@ const NavigationAdmin = () => {
       setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
     }
   }, []);
-  
+
   const logOut = () => {
     AuthService.logout();
   };
@@ -28,7 +30,7 @@ const NavigationAdmin = () => {
 
 
     <nav>
-       <img className={style.imgFond} src="https://fantom-tribune-back.herokuapp.com/header.png" alt='header'/>
+      <img className={style.imgFond} src={url + "header.png"} alt='header' />
       {showAdminBoard && (<ul className={style.ulNavUser}>
         <NavLink
           to="/administration"
@@ -36,7 +38,7 @@ const NavigationAdmin = () => {
         >
           <li className={style.liNavUser}>ADMINISTRATION</li>
         </NavLink>
-    
+
 
         <NavLink
           to="/apiConfig"
@@ -50,13 +52,13 @@ const NavigationAdmin = () => {
         >
           <li className={style.liNavUser}>HOME</li>
         </NavLink>
-        
+
 
         {currentUser ? (
           <div className={style.divLoginRegister}>
-              <a href="/login" className={style.logOut} onClick={logOut}>
-                LogOut
-              </a>
+            <a href="/login" className={style.logOut} onClick={logOut}>
+              LogOut
+            </a>
           </div>
         ) : (
           <div className={style.divLoginRegister}>

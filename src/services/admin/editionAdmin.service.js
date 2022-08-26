@@ -1,4 +1,5 @@
 import axios from "axios";
+import AuthService from "../auth/auth.service";
 
 
 let coin = [];
@@ -48,7 +49,7 @@ function setType(typeTarget) {
 
 
 function setGlobalVoteTwentyHourStatus(status) {
-    return axios.put(`https://fantom-tribune-back.herokuapp.com/globalVoteTwentyHourStatus?status=${status}`)
+    return axios.put(AuthService.getUrl() + `globalVoteTwentyHourStatus?status=${status}`)
         .then(response => {
             return response.data;
         })
@@ -56,11 +57,11 @@ function setGlobalVoteTwentyHourStatus(status) {
 
 
 function setCoinMarketCapStatus(status, listId) {
-    console.log('yolosssssss',listId);
-    return axios.put(`https://fantom-tribune-back.herokuapp.com/coinMarketCapBoucleStatus?status=${status}`,
-    {
-        data: { listId }
-    })
+    console.log('yolosssssss', listId);
+    return axios.put(AuthService.getUrl() + `coinMarketCapBoucleStatus?status=${status}`,
+        {
+            data: { listId }
+        })
         .then(response => {
             return response.data;
         })

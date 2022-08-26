@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from 'react';
 import NavigationUserComponent from '../../Navigation/NavigationUser/NavigationUser.component';
+import AuthService from "../../../services/auth/auth.service";
+import React, { useState, useEffect } from 'react';
 import style from "./InfoCoin.module.scss"
 const InfoCoin = () => {
     const [posts, setPosts] = useState([]);
 
 
-    let url = window.location.href;
-    const id = url.substring(50, url.length);
+    const url = AuthService.getUrl()
+    let path = window.location.href;
+    const id = path.substring(50, path.length);
 
     // Version Local 
-    /* const id = url.substring(31, url.length); */
+    /* const id = path.substring(31, path.length); */
 
     useEffect(() => {
-        fetch('https://fantom-tribune-back.herokuapp.com/ecosystem/')
+        fetch(url + 'ecosystem/')
             .then((res) => res.json())
             .then((res) => {
                 setPosts(res);
@@ -28,8 +30,8 @@ const InfoCoin = () => {
         }
     }
     let src = "https://kek.tools/t/";
-    src = src + coin.contractAddress +"/chart";
-  
+    src = src + coin.contractAddress + "/chart";
+
 
     return (
 

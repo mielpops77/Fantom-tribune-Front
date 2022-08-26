@@ -1,13 +1,16 @@
-import { NavLink } from "react-router-dom";
-import React, { useState, useEffect } from "react";
 import AuthService from "../../../services/auth/auth.service";
+import React, { useState, useEffect } from "react";
 import style from "./NavigationUser.module.scss";
+import { NavLink } from "react-router-dom";
 
 const Navigation = () => {
 
 
   const [showAdminBoard, setShowAdminBoard] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined);
+
+  const url = AuthService.getUrl();
+
 
   useEffect(() => {
     const user = AuthService.getCurrentUser();
@@ -27,7 +30,7 @@ const Navigation = () => {
     <nav>
       <div className={style.fantom_tribune}>
 
-        <img className={style.imgLogo} src="https://fantom-tribune-back.herokuapp.com/logo.png" alt='logo'/>
+        <img className={style.imgLogo} src={url + "logo.png"} alt='logo' />
         <h1 className={style.title}>FANTOM TRIBUNE</h1>
       </div>
       <ul className={style.ulNavUser}>
@@ -72,7 +75,7 @@ const Navigation = () => {
       {currentUser ? (
         <div className={style.divCurrentUser}>
           <a href="/login" onClick={logOut}>
-            <img className={style.imgUser} src="https://fantom-tribune-back.herokuapp.com/user.png" alt="user"/>
+            <img className={style.imgUser} src={url+"user.png"} alt="user" />
           </a>
         </div>
       ) : (

@@ -1,7 +1,10 @@
 import axios from "axios";
 import authHeader from "./auth-header";
+import AuthService from "../auth/auth.service";
 
-const API_URL = "https://fantom-tribune-back.herokuapp.com/api/test/";
+const url = AuthService.getUrl();
+
+const API_URL = url + "api/test/";
 
 const getPublicContent = () => {
   return axios.get(API_URL + "all");
@@ -17,6 +20,6 @@ const getAdminBoard = () => {
 
 export default {
   getPublicContent,
-  getUserBoard,
   getAdminBoard,
+  getUserBoard,
 };

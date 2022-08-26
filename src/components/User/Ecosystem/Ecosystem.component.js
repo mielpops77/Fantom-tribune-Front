@@ -2,14 +2,17 @@ import TableLaunchService from '../../../services/tableauLaunh/tableauLaunch.ser
 import AuthService from "../../../services/auth/auth.service";
 import React, { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
-import "bootstrap/dist/css/bootstrap.min.css";
-// import { useHistory } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import "bootstrap/dist/css/bootstrap.min.css";
 import style from "./Ecosystem.module.scss";
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 
 const Ecosystem = () => {
+
+
+  const url = AuthService.getUrl();
+
 
   /*  var [totalReactPackages, setTotalReactPackages] = useState(null); */
   var [database, seDatabase] = useState([])
@@ -43,7 +46,7 @@ const Ecosystem = () => {
           {/* <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div> */ }
         );
         item.image = (
-          <img src={"https://fantom-tribune-back.herokuapp.com/" + result[index].image} alt='img'/>
+          <img src={url + result[index].image} alt='img' />
         );
 
         userData.push(item);
@@ -138,7 +141,7 @@ const Ecosystem = () => {
           body: JSON.stringify({ info: email, voteToday: voteToday, vote: vote })
 
         };
-        fetch(`https://fantom-tribune-back.herokuapp.com/vote/${projectId}`, requestOptions)
+        fetch(url + `vote/${projectId}`, requestOptions)
           .then(response => response.json())
           /* .then(data => this.setState({ postId: data.id })) */
           .finally(() => { seDatabase([]); tableLaunch(pagination.limit, pagination.skip); })
@@ -154,7 +157,7 @@ const Ecosystem = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ info: email, voteToday: voteToday, vote: vote })
       };
-      fetch(`https://fantom-tribune-back.herokuapp.com/vote/${projectId}`, requestOptions)
+      fetch(url + `vote/${projectId}`, requestOptions)
         .then(response => response.json())
         .finally(() => { seDatabase([]); tableLaunch(pagination.limit, pagination.skip); })
 
@@ -165,7 +168,7 @@ const Ecosystem = () => {
 
   function login() {
     // history.push(`/login/`)
-     navigate('/login/');
+    navigate('/login/');
   }
 
 
@@ -225,13 +228,12 @@ const Ecosystem = () => {
     } */
 
   /* const history = useHistory(); */
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    function nav(url)
-    {
-      navigate(url);
-    }
-  
+  function nav(path) {
+    navigate(path);
+  }
+
   return (
     <div className={style.container}>
       <table className="table table-striped table-hover">
@@ -252,32 +254,32 @@ const Ecosystem = () => {
         <tbody>
           {database.rows?.map((row, index) => (
             <tr key={index} onClick={() => nav(`/infoCoin/${row.id}`)} style={{ cursor: 'pointer' }} >
-                <td ></td>
-                <td value={row.id} > <img src={row.image.props.src} alt='img' /> </td>
-                <td>{row.name}</td>
-                <td>
-                  {row.symbol}</td>
-                <td>
-                  {row.launchDate}</td>
-                <td>
-                  {row.price}
-                </td>
-                <td>
-                  {row.coinMarket}
-                </td>
-                <td>
-                  {row.supply}
-                </td>
-                <td>
-                  {row.vote}
-                </td>
-                <td>
-                  <button type="button" onClick={function (event) { Propagation(event); Vote(row.id, row.voteToday, row.vote) }} className="btn btn-success">Vote</button>
-                </td>
-              </tr>
+              <td ></td>
+              <td value={row.id} > <img src={row.image.props.src} alt='img' /> </td>
+              <td>{row.name}</td>
+              <td>
+                {row.symbol}</td>
+              <td>
+                {row.launchDate}</td>
+              <td>
+                {row.price}
+              </td>
+              <td>
+                {row.coinMarket}
+              </td>
+              <td>
+                {row.supply}
+              </td>
+              <td>
+                {row.vote}
+              </td>
+              <td>
+                <button type="button" onClick={function (event) { Propagation(event); Vote(row.id, row.voteToday, row.vote) }} className="btn btn-success">Vote</button>
+              </td>
+            </tr>
 
           ))}
-            </tbody>
+        </tbody>
 
 
 
