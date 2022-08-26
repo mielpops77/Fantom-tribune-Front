@@ -10,7 +10,7 @@ const Ecosystem = () => {
         <div>
             <NavigationUserComponent/>
             <EcosystemComponent/>
-            <div className={style.divFooter}>
+            <div /* className={style.divFooter} */>
                 <FooterComponent/>
             </div >
             
