@@ -44,10 +44,10 @@ const verifyUser = (code) => {
 };
 
 export default {
-  register,
-  login,
-  logout,
   getCurrentUser,
   verifyUser,
-  getUrl
+  register,
+  logout,
+  getUrl,
+  login
 };

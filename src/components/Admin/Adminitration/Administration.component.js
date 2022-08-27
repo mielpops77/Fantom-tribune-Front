@@ -237,10 +237,6 @@ function Administration() {
                         color: "blue",
                     }} onClick={() => nav(`/editionCoin/${posts[index]._id}`)} />}
 
-                    {toggle2 && <AiOutlineClose size={32} style={{
-                        cursor: "pointer",
-                        color: "red",
-                    }} onClick={() => validProject(posts[index]._id, false, false)} />}
 
                     {toggle2 && <div>{!posts[index].promotedStatus && <AiFillStar size={32}
                         style={{
@@ -248,6 +244,10 @@ function Administration() {
                             color: "black",
                         }} onClick={() => promotedChangeRequest(posts[index]._id, posts[index].promotedStatus)} />}</div>}
 
+                    {(toggle2 && !posts[index].promotedStatus) && <AiOutlineClose size={32} style={{
+                        cursor: "pointer",
+                        color: "red",
+                    }} onClick={() => validProject(posts[index]._id, false, false)} />}
 
 
                     {toggle2 && <div>{posts[index].promotedStatus && <AiFillStar size={32}

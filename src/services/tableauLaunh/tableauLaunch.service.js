@@ -267,7 +267,7 @@ function coinmarketCap(slug, coinMarketCapLink) {
 
 
 /* function coinmarketCapStatus(coinMarketCapLink, status) {
-    return axios.put(`https://fantom-tribune-back.herokuapp.com/coinmarketCapStatus?coinMarketCapLink=${coinMarketCapLink}&status=${status}`)
+    return axios.put(AuthService.getUrl()+`coinmarketCapStatus?coinMarketCapLink=${coinMarketCapLink}&status=${status}`)
         .then(response => {
 
             console.log("??????Response", response)
@@ -277,8 +277,7 @@ function coinmarketCap(slug, coinMarketCapLink) {
  */
 
 function configContract(configContract) {
-    console.log("configContraaaaaaaaaact");
-    return axios.put(`https://fantom-tribune-back.herokuapp.com/configContract`, {
+    return axios.put(AuthService.getUrl() + `configContract`, {
         configContract: configContract
     })
         .then(response => {
@@ -288,7 +287,7 @@ function configContract(configContract) {
 }
 
 function updatePrice(priceList) {
-    return axios.put(`https://fantom-tribune-back.herokuapp.com/updatePrice`, {
+    return axios.put(AuthService.getUrl() + `updatePrice`, {
         priceList: priceList
     })
         .then(response => {
