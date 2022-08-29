@@ -4,9 +4,62 @@ import TopRankedTokens from './components/User/Home/TopRankedTokens/TopRankedTok
 import FooterComponent from './components/Navigation/Footer/Footer.component';
 import AuthService from "../src/services/auth/auth.service";
 import style from './components/User/Home/Home.module.scss';
+import MultiRangeSlider from "multi-range-slider-react";
+
+
+import { useState } from "react";
 
 const Home = () => {
     const url = AuthService.getUrl();
+    const [presaleCheckbox, setPresaleCheckbox] = useState(true);
+    const [kyc, setKyc] = useState(false);
+    const [categorySelect, setCategorySelect] = useState("All token");
+    const [typeSelect, setTypeSelect] = useState("All");
+    const [minValue, set_minValue] = useState(-1000);
+    const [maxValue, set_maxValue] = useState(1000);
+
+
+
+    const changePresaleCheckbox = (event) => {
+        if (presaleCheckbox) {
+            setKyc(true);
+        }
+        setPresaleCheckbox(!presaleCheckbox);
+
+    }
+
+
+    const changePresaleKyc = (event) => {
+        if (!presaleCheckbox) {
+            setPresaleCheckbox(true);
+        }
+        setKyc(!kyc);
+    }
+
+
+    function changeCategory() {
+        let element = document.getElementById("category");
+        if (element !== null) {
+            document.getElementById("category").onchange = function () {
+                setCategorySelect(document.getElementById("category").value);
+            };
+        }
+    }
+
+    function changeType() {
+        let element = document.getElementById("type");
+        if (element !== null) {
+            document.getElementById("type").onchange = function () {
+                setTypeSelect(document.getElementById("type").value);
+            };
+        }
+    }
+
+    const handleInput = (e) => {
+        set_minValue(e.minValue);
+        set_maxValue(e.maxValue);
+    };
+
 
     return (
         <div className={style.mainDiv}>
@@ -20,32 +73,78 @@ const Home = () => {
                         <div>
                             <p>Presale</p>
                             <label className={style.switch}>
-                                <input type="checkbox" />
+                                <input type="checkbox"
+                                    /* name="presaleCheckbox" */
+                                    /* value={inputs.presaleCheckbox || "checked"} */
+                                    value={presaleCheckbox}
+                                    checked={presaleCheckbox}
+                                    onChange={changePresaleCheckbox} >
+                                </input>
+
                                 <span></span>
                             </label>
                         </div>
                         <div>
                             <p>KYC</p>
                             <label className={style.switch}>
-                                <input type="checkbox" />
+                                <input type="checkbox"
+                                    value={kyc}
+                                    checked={kyc}
+                                    onChange={changePresaleKyc} />
                                 <span></span>
                             </label>
                         </div>
                         <div>
                             <p>24h price change</p>
-                            <p className={style.priceChange}> place for numbers</p>
+                            <MultiRangeSlider
+                                min={-1000}
+                                max={1000}
+                                step={20}
+                                ruler={false}
+                                label={true}
+                                preventWheel={false}
+                                minValue={minValue}
+                                maxValue={maxValue}
+                                onInput={(e) => {
+                                    handleInput(e);
+                                }}
+                            />
+                            {/* <p className={style.priceChange}> place for numbers</p> */}
                         </div>
                         <div>
                             <div className={style.category}>
-                                <p>Category</p> <select className={style.selectClass}>{/*<svg height="20" width="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false" class="css-tj5bde-Svg"><path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path></svg>*/}</select>
+                                <p>Category</p>
+
+                                {/* <Select className={style.selectClass} onchange={onChangeCategory} options={options} /> */}
+                                <select
+                                    onClick={changeCategory}
+                                    id="category"
+                                    className={style.selectClass}>
+                                    <option value="topTrending">Top trending</option>
+                                    <option value="allToken">All Token</option>
+                                    <option value="presale" >Presale</option>
+
+                                </select>
                             </div>
-                            <p className={style.priceChange}> place for value</p>
+                            <p className={style.priceChange}>{categorySelect}</p>
                         </div>
                         <div>
                             <div className={style.category}>
-                                <p>Type</p> <select className={style.selectClass}>{/* <svg height="20" width="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false" class="css-tj5bde-Svg"><path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path></svg> */}</select>
+                                <p>Type</p> <select className={style.selectClass}
+                                    id="type"
+                                    onClick={changeType}>
+                                    <option value="All">All</option>
+                                    <option value="Dex">Dex</option>
+                                    <option value="Nft" >Nft</option>
+                                    <option value="Lending">Lending</option>
+                                    <option value="Algo-Stables">Algo-Stables</option>
+                                    <option value="Yield Aggregatort">Yield Aggregatort</option>
+                                    <option value="Reflect token">Reflect token</option>
+                                    <option value="Yield">Yield</option>
+                                    <option value="Bridge">Bridge</option>
+                                </select>
                             </div>
-                            <p className={style.priceChange}> place for value</p>
+                            <p className={style.priceChange}>{typeSelect}</p>
                         </div>
                     </div>
                     <button className={style.searchButton}>
