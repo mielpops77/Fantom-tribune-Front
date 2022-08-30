@@ -15,26 +15,31 @@ const Home = () => {
     const [kyc, setKyc] = useState(false);
     const [categorySelect, setCategorySelect] = useState("All token");
     const [typeSelect, setTypeSelect] = useState("All");
-    const [minValue, set_minValue] = useState(-1000);
-    const [maxValue, set_maxValue] = useState(1000);
+    const [minValue, set_minValue] = useState(-100);
+    const [maxValue, set_maxValue] = useState(100);
 
 
 
     const changePresaleCheckbox = (event) => {
-        if (presaleCheckbox) {
-            setKyc(true);
-        }
-        setPresaleCheckbox(!presaleCheckbox);
 
+        if(document.getElementById("category").value !== "presale")
+        {
+            if (presaleCheckbox) {
+                setKyc(true);
+            }
+            setPresaleCheckbox(!presaleCheckbox);
+        }
     }
 
-
     const changePresaleKyc = (event) => {
+        if(document.getElementById("category").value !== "presale")
+        {
         if (!presaleCheckbox) {
             setPresaleCheckbox(true);
         }
         setKyc(!kyc);
     }
+}
 
 
     function changeCategory() {
@@ -42,6 +47,12 @@ const Home = () => {
         if (element !== null) {
             document.getElementById("category").onchange = function () {
                 setCategorySelect(document.getElementById("category").value);
+                if (document.getElementById("category").value == "presale")
+                {
+                    setPresaleCheckbox(false);
+                    setKyc(true);
+                }
+                
             };
         }
     }
@@ -50,7 +61,10 @@ const Home = () => {
         let element = document.getElementById("type");
         if (element !== null) {
             document.getElementById("type").onchange = function () {
+
                 setTypeSelect(document.getElementById("type").value);
+
+              
             };
         }
     }
@@ -58,6 +72,7 @@ const Home = () => {
     const handleInput = (e) => {
         set_minValue(e.minValue);
         set_maxValue(e.maxValue);
+        console.log('koo0');
     };
 
 
@@ -97,9 +112,9 @@ const Home = () => {
                         <div>
                             <p>24h price change</p>
                             <MultiRangeSlider
-                                min={-1000}
-                                max={1000}
-                                step={20}
+                                min={-100}
+                                max={100} 
+                                /* step={0} */
                                 ruler={false}
                                 label={true}
                                 preventWheel={false}
