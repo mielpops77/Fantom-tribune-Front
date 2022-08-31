@@ -4,7 +4,9 @@ import TopRankedTokens from './components/User/Home/TopRankedTokens/TopRankedTok
 import FooterComponent from './components/Navigation/Footer/Footer.component';
 import AuthService from "../src/services/auth/auth.service";
 import style from './components/User/Home/Home.module.scss';
-import MultiRangeSlider from "multi-range-slider-react";
+// import MultiRangeSlider from "multi-range-slider-react";
+import MultiRangeSlider from "./package/MultiRangeSlider";
+
 
 
 import { useState } from "react";
@@ -22,8 +24,7 @@ const Home = () => {
 
     const changePresaleCheckbox = (event) => {
 
-        if(document.getElementById("category").value !== "presale")
-        {
+        if (document.getElementById("category").value !== "presale") {
             if (presaleCheckbox) {
                 setKyc(true);
             }
@@ -32,14 +33,13 @@ const Home = () => {
     }
 
     const changePresaleKyc = (event) => {
-        if(document.getElementById("category").value !== "presale")
-        {
-        if (!presaleCheckbox) {
-            setPresaleCheckbox(true);
+        if (document.getElementById("category").value !== "presale") {
+            if (!presaleCheckbox) {
+                setPresaleCheckbox(true);
+            }
+            setKyc(!kyc);
         }
-        setKyc(!kyc);
     }
-}
 
 
     function changeCategory() {
@@ -47,12 +47,11 @@ const Home = () => {
         if (element !== null) {
             document.getElementById("category").onchange = function () {
                 setCategorySelect(document.getElementById("category").value);
-                if (document.getElementById("category").value == "presale")
-                {
+                if (document.getElementById("category").value == "presale") {
                     setPresaleCheckbox(false);
                     setKyc(true);
                 }
-                
+
             };
         }
     }
@@ -64,17 +63,24 @@ const Home = () => {
 
                 setTypeSelect(document.getElementById("type").value);
 
-              
+
             };
         }
     }
 
-    const handleInput = (e) => {
-        set_minValue(e.minValue);
-        set_maxValue(e.maxValue);
-        console.log('koo0');
-    };
+    function changePrice(min, max) {
+        console.log('min:', min, "max:", max);
+        set_minValue(min);
+        set_maxValue(max);
 
+    }
+
+    /*     const handleInput = (e) => {
+            set_minValue(e.minValue);
+            set_maxValue(e.maxValue);
+            console.log('koo0');
+        };
+     */
 
     return (
         <div className={style.mainDiv}>
@@ -111,10 +117,16 @@ const Home = () => {
                         </div>
                         <div>
                             <p>24h price change</p>
+                            <p className={style.priceChange}>{minValue}% to {maxValue}%</p>
                             <MultiRangeSlider
                                 min={-100}
+                                max={100}
+                                onChange={({ min, max }) => changePrice(min, max)}
+                            />
+                            {/* <MultiRangeSlider
+                                min={-100}
                                 max={100} 
-                                /* step={0} */
+                                step={0}
                                 ruler={false}
                                 label={true}
                                 preventWheel={false}
@@ -123,7 +135,7 @@ const Home = () => {
                                 onInput={(e) => {
                                     handleInput(e);
                                 }}
-                            />
+                            /> */}
                             {/* <p className={style.priceChange}> place for numbers</p> */}
                         </div>
                         <div>
