@@ -17,7 +17,7 @@ const Home = () => {
     const url = AuthService.getUrl();
     const [presaleCheckbox, setPresaleCheckbox] = useState(true);
     const [kyc, setKyc] = useState(false);
-    const [categorySelect, setCategorySelect] = useState("All token");
+    const [categorySelect, setCategorySelect] = useState("All Tokens");
     const [typeSelect, setTypeSelect] = useState("All");
     const [minValue, set_minValue] = useState(-100);
     const [maxValue, set_maxValue] = useState(100);
@@ -36,7 +36,7 @@ const Home = () => {
     }
 
     const changePresaleKyc = (event) => {
-        if (document.getElementById("category").value !== "presale") {
+        if (document.getElementById("category").value !== "Presales") {
             if (presaleCheckbox) {
                 setPresaleCheckbox(false);
             }
@@ -50,7 +50,7 @@ const Home = () => {
         if (element !== null) {
             document.getElementById("category").onchange = function () {
                 setCategorySelect(document.getElementById("category").value);
-                if (document.getElementById("category").value == "presale") {
+                if (document.getElementById("category").value == "Presales") {
                     setPresaleCheckbox(true);
                     setKyc(false);
                 }
@@ -77,23 +77,22 @@ const Home = () => {
 
     }
 
-    function searchButton ()
-    {
+    function searchButton() {
         switch (categorySelect) {
-            case 'presale':
+            case 'Presales':
                 navigate(`/presales/`)
-              break;
-            case 'All token':
+                break;
+            case 'All Tokens':
                 navigate(`/allTokens/`)
-              break;
-            case 'topTrending':
+                break;
+            case 'Top Trending':
                 navigate(`/topTrending/`)
 
-              break;
+                break;
             default:
-              console.log(`Sorry, unknown page`);
-          }
-          
+                console.log(`Sorry, unknown page`);
+        }
+
         // navigate(`/login/`);
 
     }
@@ -146,9 +145,9 @@ const Home = () => {
                                     onClick={changeCategory}
                                     id="category"
                                     className={style.selectClass}>
-                                    <option value="topTrending">Top trending</option>
-                                    <option value="allToken">All Token</option>
-                                    <option value="presale" >Presale</option>
+                                    <option value="All Tokens">All Tokens</option>
+                                    <option value="Top Trending">Top Trending</option>
+                                    <option value="Presales" >Presales</option>
 
                                 </select>
                             </div>
