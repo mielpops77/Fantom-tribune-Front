@@ -6,6 +6,8 @@ import AuthService from "../src/services/auth/auth.service";
 import style from './components/User/Home/Home.module.scss';
 // import MultiRangeSlider from "multi-range-slider-react";
 import MultiRangeSlider from "./package/MultiRangeSlider";
+import { useNavigate } from 'react-router-dom';
+
 
 
 
@@ -19,6 +21,7 @@ const Home = () => {
     const [typeSelect, setTypeSelect] = useState("All");
     const [minValue, set_minValue] = useState(-100);
     const [maxValue, set_maxValue] = useState(100);
+    const navigate = useNavigate();
 
 
 
@@ -69,9 +72,29 @@ const Home = () => {
     }
 
     function changePrice(min, max) {
-        console.log('min:', min, "max:", max);
         set_minValue(min);
         set_maxValue(max);
+
+    }
+
+    function searchButton ()
+    {
+        switch (categorySelect) {
+            case 'presale':
+                navigate(`/presales/`)
+              break;
+            case 'All token':
+                navigate(`/allTokens/`)
+              break;
+            case 'topTrending':
+                navigate(`/topTrending/`)
+
+              break;
+            default:
+              console.log(`Sorry, unknown page`);
+          }
+          
+        // navigate(`/login/`);
 
     }
 
@@ -89,8 +112,6 @@ const Home = () => {
                             <p>Presale</p>
                             <label className={style.switch}>
                                 <input type="checkbox"
-                                    /* name="presaleCheckbox" */
-                                    /* value={inputs.presaleCheckbox || "checked"} */
                                     value={presaleCheckbox}
                                     checked={presaleCheckbox}
                                     onChange={changePresaleCheckbox} >
@@ -117,26 +138,10 @@ const Home = () => {
                                 max={100}
                                 onChange={({ min, max }) => changePrice(min, max)}
                             />
-                            {/* <MultiRangeSlider
-                                min={-100}
-                                max={100} 
-                                step={0}
-                                ruler={false}
-                                label={true}
-                                preventWheel={false}
-                                minValue={minValue}
-                                maxValue={maxValue}
-                                onInput={(e) => {
-                                    handleInput(e);
-                                }}
-                            /> */}
-                            {/* <p className={style.priceChange}> place for numbers</p> */}
                         </div>
                         <div>
                             <div className={style.category}>
                                 <p>Category</p>
-
-                                {/* <Select className={style.selectClass} onchange={onChangeCategory} options={options} /> */}
                                 <select
                                     onClick={changeCategory}
                                     id="category"
@@ -168,7 +173,7 @@ const Home = () => {
                             <p className={style.priceChange}>{typeSelect}</p>
                         </div>
                     </div>
-                    <button className={style.searchButton}>
+                    <button onClick={searchButton} className={style.searchButton}>
                         <img src={url + "search.png"} className={style.imgSearch} alt='search_img'></img>
                         <p className={style.textSearch}>Search</p>
                     </button>
