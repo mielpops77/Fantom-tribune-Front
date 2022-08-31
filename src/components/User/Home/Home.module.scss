@@ -162,7 +162,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: #30d0b8;
+  background: #cbcbcb;
   border-radius: 20px;
 }
 .switch input + span:before {
@@ -179,7 +179,7 @@
   transition: all 0.5s;
 }
 .switch input:checked + span {
-  background: #fe4b4b;
+  background: #30d0b8;
 }
 .switch input:checked + span:before {
   left: 44px;

@@ -25,8 +25,8 @@ const Home = () => {
     const changePresaleCheckbox = (event) => {
 
         if (document.getElementById("category").value !== "presale") {
-            if (presaleCheckbox) {
-                setKyc(true);
+            if (!presaleCheckbox) {
+                setKyc(false);
             }
             setPresaleCheckbox(!presaleCheckbox);
         }
@@ -34,8 +34,8 @@ const Home = () => {
 
     const changePresaleKyc = (event) => {
         if (document.getElementById("category").value !== "presale") {
-            if (!presaleCheckbox) {
-                setPresaleCheckbox(true);
+            if (presaleCheckbox) {
+                setPresaleCheckbox(false);
             }
             setKyc(!kyc);
         }
@@ -48,8 +48,8 @@ const Home = () => {
             document.getElementById("category").onchange = function () {
                 setCategorySelect(document.getElementById("category").value);
                 if (document.getElementById("category").value == "presale") {
-                    setPresaleCheckbox(false);
-                    setKyc(true);
+                    setPresaleCheckbox(true);
+                    setKyc(false);
                 }
 
             };
@@ -75,12 +75,6 @@ const Home = () => {
 
     }
 
-    /*     const handleInput = (e) => {
-            set_minValue(e.minValue);
-            set_maxValue(e.maxValue);
-            console.log('koo0');
-        };
-     */
 
     return (
         <div className={style.mainDiv}>
