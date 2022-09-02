@@ -40,75 +40,6 @@
   font-weight: 600;
 }
 
-.searchFilter {
-  margin: 3% 0% 0% 13%;
-  display: flex;
-  flex-direction: row;
-}
-
-.filter {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: flex-start;
-  top: 492px;
-  left: 240px;
-  width: 948px;
-  height: 135px;
-  background: #ffffff 0% 0% no-repeat padding-box;
-  border-radius: 10px;
-  opacity: 1;
-  text-align: center;
-  padding: 1% 2% 0 2%;
-}
-
-.searchButton {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  margin-left: 0.5%;
-  width: 155px;
-  height: 135px;
-  background: #30d0b8;
-  border-radius: 10px;
-  border: none;
-
-  &:hover {
-    transition-duration: 600ms;
-    background: #189481;
-    .textSearch {
-      transition-duration: 600ms;
-      font-size: 1.35vw;
-    }
-  }
-}
-
-.imgSearch {
-  max-width: 2.3vw;
-  height: auto;
-}
-
-.textSearch {
-  text-align: center;
-  letter-spacing: -0.96px;
-  color: #ffffff;
-  font-size: 1.3vw;
-}
-
-.priceChange {
-  background-color: #c6c6c6;
-  border-radius: 10px;
-  padding: 5px 20px 5px 20px;
-  text-align: center;
-}
-
-.category {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
 
 .divSectionTitle {
   margin-top: 10%;
@@ -133,56 +64,6 @@
 
 .tokensTitle {
   color: #30d0b8;
-}
-
-.selectClass {
-  width: 20px;
-  border: 0;
-  margin-bottom: 10%;
-}
-
-.switch {
-  display: inline-block;
-  position: relative;
-  width: 68px;
-  height: 25px;
-  cursor: pointer;
-  overflow: hidden;
-}
-.switch input {
-  position: absolute;
-  top: -30px;
-  top: -30px;
-  width: 0;
-  height: 0;
-}
-.switch input + span {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #cbcbcb;
-  border-radius: 20px;
-}
-.switch input + span:before {
-  content: "";
-  display: inline-block;
-  position: absolute;
-  top: 50%;
-  left: 2px;
-  width: 21px;
-  height: 21px;
-  background: white;
-  border-radius: 50%;
-  transform: translateY(-50%);
-  transition: all 0.5s;
-}
-.switch input:checked + span {
-  background: #30d0b8;
-}
-.switch input:checked + span:before {
-  left: 44px;
 }
 
 .imgCrown {

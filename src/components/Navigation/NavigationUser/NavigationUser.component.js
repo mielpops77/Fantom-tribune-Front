@@ -79,10 +79,6 @@ const Navigation = () => {
         >
           <li className={style.liNavUser} id={style.subToken}>Submit Project +</li>
         </NavLink>
-
-
-
-
       </ul>
       {currentUser ? (
         <div className={style.divCurrentUser}>
