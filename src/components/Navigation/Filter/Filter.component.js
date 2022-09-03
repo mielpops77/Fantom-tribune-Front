@@ -20,20 +20,20 @@ const Filter = () => {
     const changePresaleCheckbox = (event) => {
 
         if (document.getElementById("category").value !== "presale") {
-            if (!presaleCheckbox) {
+           /*  if (!presaleCheckbox) {
                 setKyc(false);
-            }
+            } */
             setPresaleCheckbox(!presaleCheckbox);
         }
     }
 
     const changePresaleKyc = (event) => {
-        if (document.getElementById("category").value !== "Presales") {
+      /*   if (document.getElementById("category").value !== "Presales") {
             if (presaleCheckbox) {
                 setPresaleCheckbox(false);
-            }
+            } */
             setKyc(!kyc);
-        }
+     /*    } */
     }
 
 
@@ -42,10 +42,10 @@ const Filter = () => {
         if (element !== null) {
             document.getElementById("category").onchange = function () {
                 setCategorySelect(document.getElementById("category").value);
-                if (document.getElementById("category").value === "Presales") {
+              /*   if (document.getElementById("category").value === "Presales") {
                     setPresaleCheckbox(true);
                     setKyc(false);
-                }
+                } */
 
             };
         }
