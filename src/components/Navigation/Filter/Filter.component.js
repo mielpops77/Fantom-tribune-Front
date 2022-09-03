@@ -115,7 +115,7 @@ const Filter = () => {
             </div>
             <div>
                 <p>24h price change</p>
-                <p className={style.priceChange}>{minValue}% to {maxValue}%</p>
+                {/* <p className={style.priceChange}>{minValue}% to {maxValue}%</p> */}
                 <MultiRangeSlider
                     min={-100}
                     max={100}
