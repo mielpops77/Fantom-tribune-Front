@@ -125,21 +125,25 @@ const Filter = () => {
             <div>
                 <div className={style.category}>
                     <p>Category</p>
-                    <select
+
+                </div>
+                <select className={style.priceChange}
                         onClick={changeCategory}
                         id="category"
-                        className={style.selectClass}>
+                        /* className={style.selectClass} */>
                         <option value="All Tokens">All Tokens</option>
                         <option value="Top Trending">Top Trending</option>
                         <option value="Presales" >Presales</option>
 
                     </select>
-                </div>
-                <p className={style.priceChange}>{categorySelect}</p>
+               {/*  <p className={style.priceChange}>{categorySelect}</p> */}
             </div>
             <div>
                 <div className={style.category}>
-                    <p>Type</p> <select className={style.selectClass}
+                    <p>Type</p> 
+                </div>
+                <select className={style.priceChange} 
+                /* className={style.selectClass} */
                         id="type"
                         onClick={changeType}>
                         <option value="All">All</option>
@@ -152,8 +156,7 @@ const Filter = () => {
                         <option value="Yield">Yield</option>
                         <option value="Bridge">Bridge</option>
                     </select>
-                </div>
-                <p className={style.priceChange}>{typeSelect}</p>
+                {/* <p className={style.priceChange}>{typeSelect}</p> */}
             </div>
         </div>
         <button onClick={searchButton} className={style.searchButton}>
