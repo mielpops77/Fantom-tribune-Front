@@ -151,7 +151,7 @@ const Filter = () => {
                         <option value="Nft" >Nft</option>
                         <option value="Lending">Lending</option>
                         <option value="Algo-Stables">Algo-Stables</option>
-                        <option value="Yield Aggregatort">Yield Aggregatort</option>
+                        <option value="Aggregator">Aggregator</option>
                         <option value="Reflect token">Reflect token</option>
                         <option value="Yield">Yield</option>
                         <option value="Bridge">Bridge</option>
