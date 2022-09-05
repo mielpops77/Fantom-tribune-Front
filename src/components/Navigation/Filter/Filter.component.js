@@ -91,7 +91,7 @@ const Filter = () => {
   return (
     <div className={style.searchFilter}>
         <div className={style.filter}>
-            <div>
+            <div className={style.fullCategoryContainer}>
                 <p>Presale</p>
                 <label className={style.switch}>
                     <input type="checkbox"
@@ -103,7 +103,7 @@ const Filter = () => {
                     <span></span>
                 </label>
             </div>
-            <div>
+            <div className={style.fullCategoryContainer}>
                 <p>KYC</p>
                 <label className={style.switch}>
                     <input type="checkbox"
@@ -122,7 +122,7 @@ const Filter = () => {
                     onChange={({ min, max }) => changePrice(min, max)}
                 />
             </div>
-            <div>
+            <div className={style.fullCategoryContainer}>
                 <div className={style.category}>
                     <p>Category</p>
 
@@ -138,7 +138,7 @@ const Filter = () => {
                     </select>
                {/*  <p className={style.priceChange}>{categorySelect}</p> */}
             </div>
-            <div>
+            <div className={style.fullCategoryContainer}>
                 <div className={style.category}>
                     <p>Type</p> 
                 </div>
