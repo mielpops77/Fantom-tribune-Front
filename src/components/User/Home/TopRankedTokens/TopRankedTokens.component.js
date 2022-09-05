@@ -169,9 +169,9 @@ const TopRankedTokens = () => {
                             <table>
                                 <tbody>
                                     <tr><td className={style.pointer}>Type: </td><td className={style.pointedItem}>{item.type}</td></tr>
-                                    <tr><td className={style.pointer}>Market Cap: </td><td className={style.pointedItem}>{item.marketCap}</td></tr>
-                                    <tr><td className={style.pointer}>Price: </td><td className={style.pointedItem}>{item.price}</td></tr>
-                                    <tr><td className={style.pointer}>Change in 24h: </td><td className={style.pointedItem}>{item.percent_change_24h}%</td></tr>
+                                    <tr><td className={style.pointer}>Market Cap: </td><td className={style.pointedItem}>$ {item.marketCap.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</td></tr>
+                                    <tr><td className={style.pointer}>Price: </td><td className={style.pointedItem}>$ {item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</td></tr>
+                                    <tr><td className={style.pointer}>Change in 24h: </td><td className={style.pointedItem}>{item.percent_change_24h} %</td></tr>
                                     <tr><td className={style.pointer}>Launch: </td><td className={style.pointedItem}>{item.launchDate}</td></tr>
                                     <tr><td className={style.pointer}>Votes: </td><td className={style.pointedItem}>{item.vote}</td></tr>
                                     <tr><td className={style.pointer}>Votes in 24h: </td><td className={style.pointedItem}>{item.voteTwentyHour}</td></tr>
