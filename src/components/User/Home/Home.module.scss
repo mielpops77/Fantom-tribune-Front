@@ -78,6 +78,12 @@
 .imgProjectLogo {
   display: flex;
   align-self: center;
+  width: 100%;
+  max-width: 100px;
+  min-width: 30px;
+  height: auto;
+  max-height: 100px;
+  min-height: 30px;
 }
 
 .divSingleBlock {
