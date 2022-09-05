@@ -38,19 +38,31 @@ const Navigation = () => {
           <li className={style.liNavUser}>HOME</li>
         </NavLink>
         <NavLink
-          to="/launchDate"
+          to="/topTrending"
           className={(nav) => (nav.isActive ? "nav-active" : "")}
         >
-          <li className={style.liNavUser}>NEW PROJECT</li>
+          <li className={style.liNavUser}>TOP TRENDING</li>
+        </NavLink>
+        <NavLink
+          to="/presales"
+          className={(nav) => (nav.isActive ? "nav-active" : "")}
+        >
+          <li className={style.liNavUser}>PRESALES</li>
         </NavLink>
 
         <NavLink
-          to="/ecosystem"
+          to="/allTokens"
           className={(nav) => (nav.isActive ? "nav-active" : "")}
         >
-          <li className={style.liNavUser}>ECOSYSTEM</li>
+          <li className={style.liNavUser}>ALL TOKENS</li>
         </NavLink>
 
+        <NavLink
+          to="/giveaways"
+          className={(nav) => (nav.isActive ? "nav-active" : "")}
+        >
+          <li className={style.liNavUser}>GIVEAWAYS</li>
+        </NavLink>
 
         {showAdminBoard && <NavLink
           to="/administration"
@@ -67,15 +79,11 @@ const Navigation = () => {
         >
           <li className={style.liNavUser} id={style.subToken}>Submit Project +</li>
         </NavLink>
-
-
-
-
       </ul>
       {currentUser ? (
         <div className={style.divCurrentUser}>
           <a href="/login" onClick={logOut}>
-            <img className={style.imgUser} src={url+"user.png"} alt="user" />
+            <img className={style.imgUser} src={url + "user.png"} alt="user" />
           </a>
         </div>
       ) : (
