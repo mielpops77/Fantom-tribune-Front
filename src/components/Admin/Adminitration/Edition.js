@@ -146,7 +146,7 @@ const Edition = () => {
 
                         <label className={style.formLabelFileEmpty} htmlFor="file-input">
                             <div className={style.formLabel}>Logo Upload*</div>
-                            <img style={{ height: "100%", float: "left", maxWidth: "30%", maxHeight: "30%", cursor: 'pointer' }} src={url + "upload.png"} alt='img' />
+                            <img style={{ height: "100%", float: "left", maxWidth: "30%", maxHeight: "30%", cursor: 'pointer' }} src={url + "assets/upload.png"} alt='img' />
                             <img style={{ height: "100%", float: "left", maxWidth: "25%", maxHeight: "25%" }} src={urlUpload} alt='img' />
                         </label>
 

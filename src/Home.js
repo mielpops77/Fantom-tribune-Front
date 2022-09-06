@@ -22,13 +22,13 @@ const Home = () => {
 
             <br /><br /><br /><br /><br /><br />
             <div className={style.divSectionTitle}>
-                <img src={url + "star.png"} className={style.imgLogoSection} alt='star'></img>
+                <img src={url + "assets/star.png"} className={style.imgLogoSection} alt='star'></img>
                 <p className={style.sectionTitle}>Promoted <span className={style.tokensTitle}>Tokens</span> </p>
             </div>
             <PromotedTokenComponent />
 
             <div className={style.divSectionTitle}>
-                <img src={url + "ranked_arrows.png"} className={style.imgLogoSection} alt='ranked_arrow'></img>
+                <img src={url + "assets/ranked_arrows.png"} className={style.imgLogoSection} alt='ranked_arrow'></img>
                 <p className={style.sectionTitle}>Top Ranked <span className={style.tokensTitle}>Tokens</span> </p>
             </div>
             <TopRankedTokens />

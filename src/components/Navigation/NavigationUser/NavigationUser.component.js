@@ -30,7 +30,7 @@ const Navigation = () => {
     <nav>
       <div className={style.fantom_tribune}>
 
-        <img className={style.imgLogo} src={url + "logo.png"} alt='logo' />
+        <img className={style.imgLogo} src={url + "assets/logo.png"} alt='logo' />
         <h1 className={style.title}>FANTOM TRIBUNE</h1>
       </div>
       <ul className={style.ulNavUser}>
@@ -83,7 +83,7 @@ const Navigation = () => {
       {currentUser ? (
         <div className={style.divCurrentUser}>
           <a href="/login" onClick={logOut}>
-            <img className={style.imgUser} src={url + "user.png"} alt="user" />
+            <img className={style.imgUser} src={url + "assets/user.png"} alt="user" />
           </a>
         </div>
       ) : (

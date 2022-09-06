@@ -160,7 +160,7 @@ const Filter = () => {
             </div>
         </div>
         <button onClick={searchButton} className={style.searchButton}>
-            <img src={url + "search.png"} className={style.imgSearch} alt='search_img'></img>
+            <img src={url + "assets/search.png"} className={style.imgSearch} alt='search_img'></img>
             <p className={style.textSearch}>Search</p>
         </button>
     </div>
