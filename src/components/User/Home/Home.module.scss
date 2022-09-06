@@ -11,7 +11,6 @@
   text-align: "center";
 }
 
-
 .titleh1 {
   margin: 5% 0% 0% 13%;
   text-align: left;
@@ -39,7 +38,6 @@
   opacity: 0.8;
   font-weight: 600;
 }
-
 
 .divSectionTitle {
   margin-top: 10%;
@@ -86,23 +84,28 @@
   min-height: 30px;
 }
 
+.imgUpArrow {
+  margin-bottom: 3px;
+  max-width: 10px;
+  max-height: 20px;
+}
+
 .divSingleBlock {
   position: relative;
   text-align: center;
-  color: #FEFEFE;
+  color: #fefefe;
 }
 
 .sectionBackground {
-  background: #101e39 0% 0% ;
+  background: #101e39 0% 0%;
   width: 100%;
   height: 80%;
   opacity: 1;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 }
-
 
 .divAllInfo {
   height: 100%;
@@ -111,7 +114,7 @@
   text-align: center;
 }
 
-.card{
+.card {
   cursor: pointer;
   width: 387px;
   height: 582px;
@@ -124,7 +127,7 @@
   filter: blur(0px);
   margin: 10px;
 
-  &:hover{
+  &:hover {
     transition-duration: 500ms;
     background: #222c4e 0% 0% no-repeat padding-box;
     width: 400px;
@@ -138,12 +141,12 @@
   color: #ffffff;
 }
 
-.list{
-  margin-bottom:4%
+.list {
+  margin-bottom: 4%;
 }
 
-.pointer{
-  width:170px;
+.pointer {
+  width: 170px;
   padding: 2% 7% 2% 7%;
   text-align: left;
   font: normal normal medium 14px/29px Poppins;
@@ -151,9 +154,8 @@
   color: #ffffff;
 }
 
-
 .pointedItem {
-  width:220px;
+  width: 220px;
   padding: 2% 7% 2% 7%;
   text-align: right;
   font: normal normal medium 14px/29px Poppins;
@@ -287,6 +289,3 @@
     font-size: 19px;
   }
 }
-
-
-
