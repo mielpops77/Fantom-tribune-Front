@@ -59,7 +59,7 @@ const Ecosystem = () => {
 
         let data = TableLaunchService.getDatabase()
         for (let i = 0; i < totalReactPackages.length; i++) {
-          data.rows.push(({ image: <img className={style.allTokenPage_img} alt='img' style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, vote: totalReactPackages[i].vote, voteToday: totalReactPackages[i].voteToday, price: totalReactPackages[i].price, coinMarket: totalReactPackages[i].marketCap, supply: totalReactPackages[i].supply }));
+          data.rows.push(({ image: <img className={style.allTokenPage_img} alt='img' style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, vote: totalReactPackages[i].vote, voteToday: totalReactPackages[i].voteToday, price: totalReactPackages[i].price, coinMarket: totalReactPackages[i].marketCap, supply: totalReactPackages[i].supply, voteTwentyHourCalcul: totalReactPackages[i].voteTwentyHourCalcul, voteTwentyHour: totalReactPackages[i].voteTwentyHour }));
         }
 
 
@@ -100,12 +100,14 @@ const Ecosystem = () => {
     e.stopPropagation();
   }
 
-  function Vote(id, voteToday, vote) {
-    user !== null ? putVote(id, voteToday, user.email, vote) : handleOpen();
+
+
+  function vote(id, voteToday, vote, voteTwentyHourCalcul, voteTwentyHour) {
+    console.log(id, voteToday, vote, voteTwentyHourCalcul, voteTwentyHour)
+    user !== null ? putVote(id, voteToday, user.email, vote, voteTwentyHourCalcul, voteTwentyHour) : handleOpen();
   }
 
-
-  function putVote(projectId, voteToday, email, vote) {
+  function putVote(projectId, voteToday, email, vote, voteTwentyHourCalcul, voteTwentyHour) {
 
     let date = new Date();
     let mondayUtc = (date.getUTCMonth() + 1)
@@ -126,36 +128,32 @@ const Ecosystem = () => {
     if (voteToday[0] === dateUtc) {
       let verif = true;
       for (let i = 0; i < voteToday.length; i++) {
-
         if (voteToday[i] === email) {
           verif = false;
           alert(' You can vote only once a day');
           return 0
         }
       }
-
       if (verif) {
+
         const requestOptions = {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ info: email, voteToday: voteToday, vote: vote })
-
+          body: JSON.stringify({ info: email, voteToday: voteToday, vote: vote, voteTwentyHourCalcul: voteTwentyHourCalcul, voteTwentyHour: voteTwentyHour })
         };
         fetch(url + `vote/${projectId}`, requestOptions)
           .then(response => response.json())
           /* .then(data => this.setState({ postId: data.id })) */
           .finally(() => { seDatabase([]); tableLaunch(pagination.limit, pagination.skip); })
       }
-
     }
 
     else {
-      console.log('chemin de traverse');
 
       const requestOptions = {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ info: email, voteToday: voteToday, vote: vote })
+        body: JSON.stringify({ info: email, voteToday: voteToday, vote: vote, voteTwentyHourCalcul: voteTwentyHourCalcul, voteTwentyHour: voteTwentyHour })
       };
       fetch(url + `vote/${projectId}`, requestOptions)
         .then(response => response.json())
@@ -274,7 +272,7 @@ const Ecosystem = () => {
                 {row.vote}
               </td>
               <td>
-                <button type="button" onClick={function (event) { Propagation(event); Vote(row.id, row.voteToday, row.vote) }} className="btn btn-success">Vote</button>
+                <button type="button" onClick={function (event) { Propagation(event); vote(row.id, row.voteToday, row.vote, row.voteTwentyHourCalcul, row.voteTwentyHour) }} className="btn btn-success">Vote</button>
               </td>
             </tr>
 
