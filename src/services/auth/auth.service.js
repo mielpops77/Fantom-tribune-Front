@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3000/api/auth/";
+const API_URL = "https://fantom-tribune-back.herokuapp.com/api/auth/";
 
 function getUrl() {
-  const url = "http://localhost:3000/";
+  const url = "https://fantom-tribune-back.herokuapp.com/";
   return url;
 }
 
