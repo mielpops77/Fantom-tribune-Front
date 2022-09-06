@@ -1,7 +1,7 @@
 .mainDiv {
   display: flex;
   flex-direction: column;
-  background: url("https://fantom-tribune-back.herokuapp.com/background_with_rocket2.png") no-repeat;
+  background: url("https://fantom-tribune-back.herokuapp.com/assets/background_with_rocket2.png") no-repeat;
   background-size: cover;
   width: 100%;
   height: 1000px;
@@ -69,7 +69,7 @@
   align-self: center;
   width: 160px;
   height: 43px;
-  background: transparent url("https://fantom-tribune-back.herokuapp.com/crown.png") 0% 0% no-repeat padding-box;
+  background: transparent url("https://fantom-tribune-back.herokuapp.com/assets/crown.png") 0% 0% no-repeat padding-box;
   margin: 2%;
 }
 
