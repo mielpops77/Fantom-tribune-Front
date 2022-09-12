@@ -1,8 +1,9 @@
 @media all and (max-width:1024px){
     .searchFilter {
-        margin: 3% auto;
+        margin: 3% auto auto auto;
         display: flex;
         flex-direction: column;
+        align-items:center ;
         width:80%;
         height: 80%;
 
@@ -58,11 +59,11 @@
             }
             
             .switch input:checked + span {
-                background: #30d0b8;
+                background: #30d085;
             }
             
             .switch input:checked + span:before {
-                left: 25px;
+                left: 26px;
             }
 
             .fullCategoryContainer{
@@ -74,8 +75,8 @@
                 .priceChange {
                     margin-top: -4%;
                     background-color: #c6c6c6;
-                    border-radius: 10px;
-                    padding: 5px 20px 5px 20px;
+                    border-radius: 10px;                
+                    padding: 5px;
                     text-align: center;
                     width:70%;
                 }
@@ -103,13 +104,13 @@
             margin-top: 1%;
             width: 80%;
             height: 20%;
-            background: #30d0b8;
+            background: #30d085;
             border-radius: 10px;
             border: none;
         
             &:hover {
             transition-duration: 600ms;
-            background: #189481;
+            background: #1da063;
                 .textSearch {
                     transition-duration: 600ms;
                     font-size: 1.35vw;
@@ -117,7 +118,7 @@
             }
         
             .imgSearch {
-                max-width: 2.3vw;
+                max-width: 4vw;
                 margin-top: 3%;
             }
             
@@ -125,7 +126,7 @@
                 text-align: center;
                 letter-spacing: -0.96px;
                 color: #ffffff;
-                font-size: 1.3vw;
+                font-size: 3vw;
 
             }
         }
@@ -199,7 +200,7 @@
             }
             
             .switch input:checked + span {
-                background: #30d0b8;
+                background: #30d085;
             }
             
             .switch input:checked + span:before {
@@ -209,7 +210,7 @@
             .priceChange {
                 background-color: #c6c6c6;
                 border-radius: 10px;
-                padding: 5px 20px 5px 20px;
+                padding: 5px;
                 text-align: center;
             }
             
@@ -235,13 +236,13 @@
             margin-left: 0.5%;
             width: 155px;
             height: 135px;
-            background: #30d0b8;
+            background: #24d381;
             border-radius: 10px;
             border: none;
         
             &:hover {
             transition-duration: 600ms;
-            background: #189481;
+            background: #1da063;
                 .textSearch {
                     transition-duration: 600ms;
                     font-size: 1.35vw;

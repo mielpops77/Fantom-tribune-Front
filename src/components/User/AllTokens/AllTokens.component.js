@@ -1,26 +1,24 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import TableLaunchService from '../../../services/tableauLaunh/tableauLaunch.service'
-import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 import AuthService from "../../../services/auth/auth.service";
 import React, { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
-import style from "./TableauLaunch.module.scss";
-import "bootstrap/dist/css/bootstrap.min.css";
-/* import { useHistory } from 'react-router-dom'; */
 import { useNavigate } from 'react-router-dom';
+import "bootstrap/dist/css/bootstrap.min.css";
+import style from "./AllTokens.module.scss";
 import Modal from '@mui/material/Modal';
-import Dropdown from 'react-dropdown';
 import Box from '@mui/material/Box';
-import 'react-dropdown/style.css';
 
+const AllTokens = () => {
 
-
-const TableauLaunch = () => {
 
   const url = AuthService.getUrl();
+
+
+  /*  var [totalReactPackages, setTotalReactPackages] = useState(null); */
   var [database, seDatabase] = useState([])
   var [pagination, setLimit] = useState({ pageActuel: 1, limit: 10, skip: 0 })
   const user = AuthService.getCurrentUser();
+
   const styleBox = {
     position: 'absolute',
     top: '50%',
@@ -33,36 +31,24 @@ const TableauLaunch = () => {
     p: 4,
   };
 
-
-
-  function nav(nav) {
-    navigate(nav);
-  }
-
-
-
-  const options = [
-    "All", "Dex", "Gaming", "Nft", "Lending", "Algo-Stables", "Derivatives", "Yield Aggregatort", "Reflect token", "Yield"
-  ];
-
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
 
   function tableLaunch(limit, skip) {
 
 
     var totalReactPackages;
-    TableLaunchService.getLaunchTab(limit, skip, TableLaunchService.getAction(), TableLaunchService.getTypeFilter()).then(function (result) {
+    TableLaunchService.getEcosystem(limit, skip).then(function (result) {
       let userData = [];
       result.map((item, index) => {
         item.id = (
           {/* <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div> */ }
         );
         item.image = (
-          <img src={url + result[index].image} alt='img' />
+          <img className={style.allTokenPage_img} src={url + result[index].image} alt='img' />
         );
+
         userData.push(item);
       });
       totalReactPackages = userData;
@@ -73,10 +59,18 @@ const TableauLaunch = () => {
 
         let data = TableLaunchService.getDatabase()
         for (let i = 0; i < totalReactPackages.length; i++) {
-          data.rows.push(({ image: <img alt='img' style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, vote: totalReactPackages[i].vote, voteToday: totalReactPackages[i].voteToday, type: totalReactPackages[i].type, voteTwentyHour: totalReactPackages[i].voteTwentyHour, voteTwentyHourCalcul: totalReactPackages[i].voteTwentyHourCalcul }));
+          data.rows.push(({ image: <img className={style.allTokenPage_img} alt='img' style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, vote: totalReactPackages[i].vote, voteToday: totalReactPackages[i].voteToday, price: totalReactPackages[i].price, coinMarket: totalReactPackages[i].marketCap, supply: totalReactPackages[i].supply, voteTwentyHourCalcul: totalReactPackages[i].voteTwentyHourCalcul, voteTwentyHour: totalReactPackages[i].voteTwentyHour }));
         }
+
+
+
         seDatabase(TableLaunchService.getDatabase());
+
+
+
       }
+
+
 
     }, err => {
       console.log(err);
@@ -86,9 +80,6 @@ const TableauLaunch = () => {
 
 
   useEffect(() => {
-
-    TableLaunchService.initAction();
-    TableLaunchService.initTypeFilter();
 
     TableLaunchService.getLaunchTabLenght().then(function (result) {
 
@@ -101,7 +92,6 @@ const TableauLaunch = () => {
     });
 
     tableLaunch(10, 0);
-
   }, []);
 
 
@@ -110,10 +100,12 @@ const TableauLaunch = () => {
     e.stopPropagation();
   }
 
-  function Vote(id, voteToday, vote, voteTwentyHourCalcul, voteTwentyHour) {
+
+
+  function vote(id, voteToday, vote, voteTwentyHourCalcul, voteTwentyHour) {
+    console.log(id, voteToday, vote, voteTwentyHourCalcul, voteTwentyHour)
     user !== null ? putVote(id, voteToday, user.email, vote, voteTwentyHourCalcul, voteTwentyHour) : handleOpen();
   }
-
 
   function putVote(projectId, voteToday, email, vote, voteTwentyHourCalcul, voteTwentyHour) {
 
@@ -171,22 +163,33 @@ const TableauLaunch = () => {
   }
 
 
+
   function login() {
     // history.push(`/login/`)
-    navigate(`/login/`)
+    navigate('/login/');
   }
+
+
+
+
+
 
 
   function next() {
     if (pagination.pageActuel < TableLaunchService.totalPage) {
+
       seDatabase([]);
+
       setLimit({
         pageActuel: pagination.pageActuel + 1,
         limit: pagination.limit,
         skip: pagination.skip + 10
       });
+
+
       tableLaunch(pagination.limit, pagination.skip + 10);
     }
+
   }
 
   function previous() {
@@ -201,7 +204,11 @@ const TableauLaunch = () => {
 
       tableLaunch(pagination.limit, pagination.skip - 10);
     }
+
   }
+
+
+
 
   /*   const SortArray = (x, y) => {
       return x.name.localeCompare(y.name);
@@ -218,121 +225,27 @@ const TableauLaunch = () => {
       setValid(true);
     } */
 
-  const items = [
-    {
-      id: 0,
-      name: 'Cobol'
-    },
-    {
-      id: 1,
-      name: 'JavaScript'
-    },
-    {
-      id: 2,
-      name: 'Basic'
-    },
-    {
-      id: 3,
-      name: 'PHP'
-    },
-    {
-      id: 4,
-      name: 'Java'
-    }
-  ]
-  /*  const history = useHistory(); */
+  /* const history = useHistory(); */
   const navigate = useNavigate();
 
-  function trieVote() {
-    seDatabase([]);
-
-    TableLaunchService.getAction() !== 'votesAsc' ? TableLaunchService.setAction('votesAsc') : TableLaunchService.setAction('votesDesc');
-    tableLaunch(pagination.limit, pagination.skip);
+  function nav(path) {
+    navigate(path);
   }
 
-  function trieLaunchDate() {
-    seDatabase([]);
-    TableLaunchService.getAction() !== 'launchDateAsc' ? TableLaunchService.setAction('launchDateAsc') : TableLaunchService.setAction('launchDateDesc');
-    tableLaunch(pagination.limit, pagination.skip);
-  }
-
-  function changeType(event) {
-    seDatabase([]);
-    TableLaunchService.setTypeFilter(event.value)
-    tableLaunch(pagination.limit, pagination.skip);
-  }
-
-
-  const handleOnSearch = (string, results) => {
-    // onSearch will have as the first callback parameter
-    // the string searched and for the second the results.
-    console.log(string, results)
-  }
-
-  const handleOnHover = (result) => {
-    // the item hovered
-    console.log(result)
-  }
-
-  const handleOnSelect = (item) => {
-    // the item selected
-    console.log(item)
-  }
-
-  const handleOnFocus = () => {
-  }
-
-  const formatResult = (item) => {
-    return (
-      <>
-        <span style={{ display: 'block', textAlign: 'left', }}>id: {item.id}</span>
-        <span style={{ display: 'block', textAlign: 'left' }}>name: {item.name}</span>
-      </>
-    )
-  }
   return (
-
     <div className={style.container}>
-      <div >
-        <Dropdown className={style.controlDropdownRoot} controlClassName={style.controlDropdown} options={options} onChange={changeType} value={options[0]} placeholder="Select an option" />
-        <div style={{ width: " 60%", display: "inline-block", marginBottom: "2%", marginLeft: "3%" }}>
-          <ReactSearchAutocomplete
-            styling={
-              {
-                backgroundColor: "transparant",
-                border: "1px solid #ccc",
-                width: "50% !important"
-
-              }
-            }
-            items={items}
-            onSearch={handleOnSearch}
-            onHover={handleOnHover}
-            onSelect={handleOnSelect}
-            onFocus={handleOnFocus}
-            autoFocus
-            formatResult={formatResult}
-          />
-        </div>
-        {/*   <input className= {style.searchInput}
-        type="text"
-        name="search-bar"
-        id="search-bar"
-        placeholder="Search..."
-      /> */}
-      </div>
       <table className="table table-striped table-hover">
         <thead>
           <tr>
             <th className={style.thPointer} scope="col">#</th>
             <th className={style.thPointer} scope="col"> </th>
-            <th className={style.thPointer} style={{ cursor: 'pointer' }} scope="col">Name</th>
-            <th className={style.thPointer} style={{ cursor: 'pointer' }} scope="col">Symbol</th>
-            <th className={style.thPointer} scope="col">Type</th>
-            <th onClick={trieLaunchDate} className={style.thPointer} style={{ cursor: 'pointer' }} scope="col">LaunchDate</th>
-            <th onClick={trieVote} className={style.thPointer} style={{ cursor: 'pointer' }} scope="col">Votes</th>
-            <th className={style.thPointer} style={{ cursor: 'pointer' }} scope="col">VotesToday</th>
-
+            <th className={style.thPointer} scope="col">Name</th>
+            <th className={style.thPointer} scope="col">Symbol</th>
+            <th className={style.thPointer} scope="col">LaunchDate</th>
+            <th className={style.thPointer} scope="col">Price</th>
+            <th className={style.thPointer} scope="col">MarketCap</th>
+            <th className={style.thPointer} scope="col">Supply</th>
+            <th className={style.thPointer} scope="col">Votes</th>
             <th className={style.thPointer} scope="col">  </th>
           </tr>
         </thead>
@@ -340,35 +253,42 @@ const TableauLaunch = () => {
           {database.rows?.map((row, index) => (
             <tr key={index} onClick={() => nav(`/infoCoin/${row.id}`)} style={{ cursor: 'pointer' }} >
               <td ></td>
-              <td value={row.id} > <img src={row.image.props.src} alt='img' /> </td>
+              <td value={row.id} > <img className={style.allTokenPage_img} src={row.image.props.src} alt='img' /> </td>
               <td>{row.name}</td>
               <td>
                 {row.symbol}</td>
               <td>
-                {row.type}
+                {row.launchDate}</td>
+              <td>
+                {row.price}
               </td>
               <td>
-                {row.launchDate}</td>
-
+                {row.coinMarket}
+              </td>
+              <td>
+                {row.supply}
+              </td>
               <td>
                 {row.vote}
               </td>
               <td>
-                {row.voteTwentyHour}
-              </td>
-              <td>
-                <button type="button" onClick={function (event) { Propagation(event); Vote(row.id, row.voteToday, row.vote, row.voteTwentyHourCalcul, row.voteTwentyHour) }} className="btn btn-success">Vote</button>
+                <button type="button" onClick={function (event) { Propagation(event); vote(row.id, row.voteToday, row.vote, row.voteTwentyHourCalcul, row.voteTwentyHour) }} className="btn btn-success">Vote</button>
               </td>
             </tr>
 
           ))}
         </tbody>
+
+
+
       </table>
+
       <div className={style.paginationLaunchDate}>
         <span className={style.paginationPageActuel}>1 - {TableLaunchService.totalPage} of {pagination.pageActuel}</span>
-        <a className={pagination.pageActuel > 1 ? "" : "disable"} onClick={previous}>❮</a>
-        <a className={pagination.pageActuel < TableLaunchService.totalPage ? "" : "disable"} onClick={next}>❯</a>
+        <a className={pagination.pageActuel > 1 ? "" : "disable"} onClick={previous} href="#">❮</a>
+        <a className={pagination.pageActuel < TableLaunchService.totalPage ? "" : "disable"} onClick={next} href="#">❯</a>
       </div>
+
       <Modal
         open={open}
         onClose={handleClose}
@@ -386,11 +306,14 @@ const TableauLaunch = () => {
           </Typography>
         </Box>
       </Modal>
+
     </div >
   );
 }
 
-export default TableauLaunch;
+
+
+export default AllTokens;
 
 
 

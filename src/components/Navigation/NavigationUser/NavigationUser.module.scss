@@ -2,7 +2,7 @@
 
 @media all and (max-width: 1024px){ 
   nav { 
-    background: url('https://fantom-tribune-back.herokuapp.com/fond_bandeau.png') no-repeat padding-box;
+    background: url('https://fantom-tribune-back.herokuapp.com/assets/fond_bandeau.png') no-repeat padding-box;
     background-size: cover;
     display: flex;
     align-items: center;
@@ -16,7 +16,10 @@
       width:10%;
   
       .imgLogo{
-        width: 25%;
+        width: 80%;
+        height: auto;
+        float: left;
+        object-fit: cover;
       }
   
       .title{
@@ -70,7 +73,7 @@
 @media all and (min-width: 1024px){ 
 
   nav {
-    background: url('https://fantom-tribune-back.herokuapp.com/fond_bandeau.png') no-repeat padding-box;
+    background: url('https://fantom-tribune-back.herokuapp.com/assets/fond_bandeau.png') no-repeat padding-box;
     background-size: cover;
     display: flex;
     align-items: center;
@@ -84,6 +87,17 @@
       
       width:28%;
       
+      .imgLogo{
+        width: 100%;
+        max-width: 100px;
+        min-width: 30px;
+        height: auto;
+        max-height: 100px;
+        min-height: 30px;
+        float: left;
+        object-fit: cover;
+      }
+
       .title{
         margin-left: 5%;
         max-width: 75%;

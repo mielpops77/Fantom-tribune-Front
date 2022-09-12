@@ -1,21 +1,20 @@
 import NavigationUserComponent from '../../../components/Navigation/NavigationUser/NavigationUser.component';
-import EcosystemComponent from '../../../components/User/Ecosystem/Ecosystem.component';
+import PresalesComponent from '../../../components/User/Presales/Presales.component';
 import FooterComponent from '../../../components/Navigation/Footer/Footer.component';
-import style from './Ecosystem.module.scss';
+import style from './Presales.module.scss';
 import React from 'react';
 
 
-const Ecosystem = () => {
+const Presales = () => {
     return (
         <div>
             <NavigationUserComponent/>
-            <EcosystemComponent/>
-            <div /* className={style.divFooter} */>
+            <PresalesComponent/>
+            <div className={style.divFooter}> 
                 <FooterComponent/>
-            </div >
-            
+            </div> 
         </div>
     );
 };
 
-export default Ecosystem;
+export default Presales;

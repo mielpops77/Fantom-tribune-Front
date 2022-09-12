@@ -1,20 +1,21 @@
 import NavigationUserComponent from '../../../components/Navigation/NavigationUser/NavigationUser.component';
-import TableauLaunchComponent from '../../../components/User/TableauLaunch/TableauLaunch.component';
+import AllTokensComponent from '../../../components/User/AllTokens/AllTokens.component';
 import FooterComponent from '../../../components/Navigation/Footer/Footer.component';
-import style from './LaunchDate.module.scss';
+import style from './AllTokens.module.scss';
 import React from 'react';
 
 
-const About = () => {
+const AllTokens = () => {
     return (
         <div>
             <NavigationUserComponent/>
-            <TableauLaunchComponent/>
-            <div className={style.divFooter}> 
+            <AllTokensComponent/>
+            <div /* className={style.divFooter} */>
                 <FooterComponent/>
-            </div> 
+            </div >
+            
         </div>
     );
 };
 
-export default About;
+export default AllTokens;
