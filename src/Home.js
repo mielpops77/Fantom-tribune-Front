@@ -13,14 +13,10 @@ const Home = () => {
     return (
         <div className={style.mainDiv}>
             <NavigationUserComponent />
-            <div className={style.firstPage}>
-                <h1 className={style.titleh1}>Discover ...</h1>
-                <h2 className={style.titleh2}> .... your next Moon!</h2>
-                <h3 className={style.titleh3}>Browse through the platform to find your next big project in the presale phase.</h3>
-                <FilterComponent />
-            </div>
-
-            <br /><br /><br /><br /><br /><br />
+            <h1 className={style.titleh1}>Discover ...</h1>
+            <h2 className={style.titleh2}> .... your next Moon!</h2>
+            <h3 className={style.titleh3}>Browse through the platform to find your next big project in the presale phase.</h3>
+            <FilterComponent />
             <div className={style.divSectionTitle}>
                 <img src={url + "assets/star.png"} className={style.imgLogoSection} alt='star'></img>
                 <p className={style.sectionTitle}>Promoted <span className={style.tokensTitle}>Tokens</span> </p>
