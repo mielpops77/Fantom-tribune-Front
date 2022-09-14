@@ -252,26 +252,18 @@ const AllTokens = () => {
         <tbody>
           {database.rows?.map((row, index) => (
             <tr key={index} onClick={() => nav(`/infoCoin/${row.id}`)} style={{ cursor: 'pointer' }} >
-              <td ></td>
-              <td value={row.id} > <img className={style.allTokenPage_img} src={row.image.props.src} alt='img' /> </td>
-              <td>{row.name}</td>
-              <td>
-                {row.symbol}</td>
-              <td>
-                {row.launchDate}</td>
-              <td>
-                {row.price}
+              <td className={style.allTokenPageTd}></td>
+              <td className={style.allTokenPageTd} value={row.id}> 
+                <img className={style.allTokenPage_img} src={row.image.props.src} alt='img' /> 
               </td>
-              <td>
-                {row.coinMarket}
-              </td>
-              <td>
-                {row.supply}
-              </td>
-              <td>
-                {row.vote}
-              </td>
-              <td>
+              <td className={style.allTokenPageTd}>{row.name}</td>
+              <td className={style.allTokenPageTd}>{row.symbol}</td>
+              <td className={style.allTokenPageTd}>{row.launchDate}</td>
+              <td className={style.allTokenPageTd}>{row.price}</td>
+              <td className={style.allTokenPageTd}>{row.coinMarket}</td>
+              <td className={style.allTokenPageTd}>{row.supply}</td>
+              <td className={style.allTokenPageTd}>{row.vote}</td>
+              <td className={style.allTokenPageTd}>
                 <button type="button" onClick={function (event) { Propagation(event); vote(row.id, row.voteToday, row.vote, row.voteTwentyHourCalcul, row.voteTwentyHour) }} className="btn btn-success">Vote</button>
               </td>
             </tr>

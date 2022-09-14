@@ -1,74 +1,62 @@
-.container {
+.container{
   margin: 5% auto;
   font-size: 120%;
   width: 80%;
+
+  .thPointer{ cursor: 'pointer'; }
+  
+  .allTokenPageTd Navlink{
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .allTokenPage_img{
+    width: 100%;
+    max-width: 100px;
+    min-width: 30px;
+    height: auto;
+    max-height: 100px;
+    min-height: 30px;
+    float: left;
+    object-fit: cover;
+  }
+
+  .paginationLaunchDate{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: auto;
+    height: auto;
+  
+    .paginationLaunchDate a{
+      color: black;
+      float: left;
+      padding: 8px 16px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+      border: 1px solid #ddd;
+      margin: 0.3%;
+    }
+    .paginationLaunchDate a.active{
+      background-color: #4caf50;
+      color: white;
+      border: 1px solid #4caf50;
+    }
+    .paginationLaunchDate a:hover:not(.active) {
+      background-color: #ddd;
+    }
+  
+    .paginationPageActuel{
+      margin-top: 1%;
+      margin-right: 1%;
+    }
+  }
+  
+  .typo { text-align: 'center'; }
 }
 
-table tbody tr td NavLink {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
 
-td {
-  vertical-align: middle;
-}
 
-.allTokenPage_img {
-  width: 100%;
-  max-width: 100px;
-  min-width: 30px;
-  height: auto;
-  max-height: 100px;
-  min-height: 30px;
-  float: left;
-  object-fit: cover;
-}
 
-.paginationLaunchDate{
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  width: auto;
-  height: auto;
-}
 
-.paginationLaunchDate a{
-  color: black;
-  float: left;
-  padding: 8px 16px;
-  text-decoration: none;
-  transition: background-color 0.3s;
-  border: 1px solid #ddd;
-  margin: 0.3%;
-}
-
-.paginationLaunchDate a.active{
-  background-color: #4caf50;
-  color: white;
-  border: 1px solid #4caf50;
-}
-
-.paginationLaunchDate a:hover:not(.active) {
-  background-color: #ddd;
-}
-
-.disable{
-  cursor: not-allowed;
-  background-color: #dddd;
-}
-
-.paginationPageActuel{
-  margin-top: 1%;
-  margin-right: 1%;
-}
-
-.typo 
-{
-  text-align: 'center';
-}
-
-.thPointer  
-{
-  cursor: 'pointer';
-}

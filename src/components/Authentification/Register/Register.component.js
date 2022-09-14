@@ -110,7 +110,7 @@ const Register = (props) => {
         <div>
             <NavigationUserComponent />
             <div className={style.divCorSignIn}>
-                <Form onSubmit={handleRegister} ref={form} >
+                <Form onSubmit={handleRegister} ref={form} className={style.form}>
                     {!successful && (
                         <div className={style.divForm}>
                             <h3 className={style.registerTitle}>Register</h3>
