@@ -252,18 +252,16 @@ const AllTokens = () => {
         <tbody>
           {database.rows?.map((row, index) => (
             <tr key={index} onClick={() => nav(`/infoCoin/${row.id}`)} style={{ cursor: 'pointer' }} >
-              <td className={style.allTokenPageTd}></td>
-              <td className={style.allTokenPageTd} value={row.id}> 
-                <img className={style.allTokenPage_img} src={row.image.props.src} alt='img' /> 
-              </td>
-              <td className={style.allTokenPageTd}>{row.name}</td>
-              <td className={style.allTokenPageTd}>{row.symbol}</td>
-              <td className={style.allTokenPageTd}>{row.launchDate}</td>
-              <td className={style.allTokenPageTd}>{row.price}</td>
-              <td className={style.allTokenPageTd}>{row.coinMarket}</td>
-              <td className={style.allTokenPageTd}>{row.supply}</td>
-              <td className={style.allTokenPageTd}>{row.vote}</td>
-              <td className={style.allTokenPageTd}>
+              <td className={style.allTokensPageTd}></td>
+              <td className={style.allTokensPageTd} value={row.id}><img className={style.allTokenPage_img} src={row.image.props.src} alt='img' /></td>
+              <td className={style.allTokensPageTd}>{row.name}</td>
+              <td className={style.allTokensPageTd}>{row.symbol}</td>
+              <td className={style.allTokensPageTd}>{row.launchDate}</td>
+              <td className={style.allTokensPageTd}>{row.price}</td>
+              <td className={style.allTokensPageTd}>{row.coinMarket}</td>
+              <td className={style.allTokensPageTd}>{row.supply}</td>
+              <td className={style.allTokensPageTd}>{row.vote}</td>
+              <td className={style.allTokensPageTd}>
                 <button type="button" onClick={function (event) { Propagation(event); vote(row.id, row.voteToday, row.vote, row.voteTwentyHourCalcul, row.voteTwentyHour) }} className="btn btn-success">Vote</button>
               </td>
             </tr>
@@ -275,7 +273,7 @@ const AllTokens = () => {
 
       </table>
 
-      <div className={style.paginationLaunchDate}>
+      <div className={style.paginationAllTokens}>
         <span className={style.paginationPageActuel}>1 - {TableLaunchService.totalPage} of {pagination.pageActuel}</span>
         <a className={pagination.pageActuel > 1 ? "" : "disable"} onClick={previous} href="#">❮</a>
         <a className={pagination.pageActuel < TableLaunchService.totalPage ? "" : "disable"} onClick={next} href="#">❯</a>

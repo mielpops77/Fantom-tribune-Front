@@ -59,7 +59,7 @@ const Presales = () => {
           {/* <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div> */ }
         );
         item.image = (
-          <img className={style.presalePage_img} src={url + result[index].image} alt='img' />
+          <img className={style.presalesPage_img} src={url + result[index].image} alt='img' />
         );
         userData.push(item);
       });
@@ -71,7 +71,7 @@ const Presales = () => {
 
         let data = TableLaunchService.getDatabase()
         for (let i = 0; i < totalReactPackages.length; i++) {
-          data.rows.push(({ image: <img className={style.presalePage_img} alt='img' style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, vote: totalReactPackages[i].vote, voteToday: totalReactPackages[i].voteToday, type: totalReactPackages[i].type, voteTwentyHour: totalReactPackages[i].voteTwentyHour, voteTwentyHourCalcul: totalReactPackages[i].voteTwentyHourCalcul }));
+          data.rows.push(({ image: <img className={style.presalesPage_img} alt='img' style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, vote: totalReactPackages[i].vote, voteToday: totalReactPackages[i].voteToday, type: totalReactPackages[i].type, voteTwentyHour: totalReactPackages[i].voteTwentyHour, voteTwentyHourCalcul: totalReactPackages[i].voteTwentyHourCalcul }));
         }
         seDatabase(TableLaunchService.getDatabase());
       }
@@ -296,11 +296,10 @@ const Presales = () => {
         <div style={{ width: " 60%", display: "inline-block", marginBottom: "2%", marginLeft: "3%" }}>
           <ReactSearchAutocomplete
             styling={
-              {
+              { 
                 backgroundColor: "transparant",
                 border: "1px solid #ccc",
                 width: "50% !important"
-
               }
             }
             items={items}
@@ -337,24 +336,15 @@ const Presales = () => {
         <tbody>
           {database.rows?.map((row, index) => (
             <tr key={index} onClick={() => nav(`/infoCoin/${row.id}`)} style={{ cursor: 'pointer' }} >
-              <td ></td>
-              <td value={row.id} > <img className={style.presalePage_img} src={row.image.props.src} alt='img' /> </td>
-              <td>{row.name}</td>
-              <td>
-                {row.symbol}</td>
-              <td>
-                {row.type}
-              </td>
-              <td>
-                {row.launchDate}</td>
-
-              <td>
-                {row.vote}
-              </td>
-              <td>
-                {row.voteTwentyHour}
-              </td>
-              <td>
+              <td className={style.presalesPageTd}></td>
+              <td className={style.presalesPageTd} value={row.id} ><img className={style.presalesPage_img} src={row.image.props.src} alt='img' /> </td>
+              <td className={style.presalesPageTd}>{row.name}</td>
+              <td className={style.presalesPageTd}>{row.symbol}</td>
+              <td className={style.presalesPageTd}>{row.type}</td>
+              <td className={style.presalesPageTd}>{row.launchDate}</td>
+              <td className={style.presalesPageTd}>{row.vote}</td>
+              <td className={style.presalesPageTd}>{row.voteTwentyHour}</td>
+              <td className={style.presalesPageTd}>
                 <button type="button" onClick={function (event) { Propagation(event); Vote(row.id, row.voteToday, row.vote, row.voteTwentyHourCalcul, row.voteTwentyHour) }} className="btn btn-success">Vote</button>
               </td>
             </tr>
@@ -362,7 +352,7 @@ const Presales = () => {
           ))}
         </tbody>
       </table>
-      <div className={style.paginationLaunchDate}>
+      <div className={style.paginationPresales}>
         <span className={style.paginationPageActuel}>1 - {TableLaunchService.totalPage} of {pagination.pageActuel}</span>
         <a className={pagination.pageActuel > 1 ? "" : "disable"} onClick={previous}>❮</a>
         <a className={pagination.pageActuel < TableLaunchService.totalPage ? "" : "disable"} onClick={next}>❯</a>

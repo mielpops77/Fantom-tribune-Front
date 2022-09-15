@@ -7,28 +7,30 @@
     min-width: 100px;
     margin: 7% auto;
     border-radius: 20px;
+
+    .titleSubmit{
+        font-size: max(2.2vw, 170%);
+        text-align: center;
+        color: #450ca0;
+        margin:0 auto;
+        padding: 2% 0 0 0;
+    }
+    
+    .subtitleSubmit
+    {
+       /*  font-size: max(2.2vw, 170%); */
+        text-align: center;
+        color: #450ca0;
+        margin:0 auto;
+        padding: 2% 0 0 0;  
+    }
+
+    hr{
+        color:#450ca0;
+    }
 }
 
-.titleSubmit{
-    font-size: max(2.2vw, 170%);
-    text-align: center;
-    color: #450ca0;
-    margin:0 auto;
-    padding: 2% 0 0 0;
-}
 
-.subtitleSubmit
-{
-   /*  font-size: max(2.2vw, 170%); */
-    text-align: center;
-    color: #450ca0;
-    margin:0 auto;
-    padding: 2% 0 0 0;  
-}
-
-hr{
-    color:#450ca0;
-}
 
 
    
