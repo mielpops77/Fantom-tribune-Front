@@ -77,7 +77,7 @@ const Login = (props) => {
         <div>
             <NavigationUserComponent />
             <div className={style.divCorSignIn}>
-                <Form onSubmit={handleLogin}  >
+                <Form onSubmit={handleLogin} className={style.form}>
                     <h3 className={style.loginTitle}>Login</h3>
                     <div className={style.formGroup}>
                         <label className={style.labeSignIn}>Email address</label>
