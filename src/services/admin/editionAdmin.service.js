@@ -8,6 +8,33 @@ let type = [];
 
 let promotedProjectLenght;
 
+let coinMarketCapLink;
+let coinMarketCapStatus;
+
+
+function initCoinMarketCapLink() {
+    coinMarketCapLink = "";
+}
+
+function getCoinMarketCapLink() {
+    return coinMarketCapLink
+}
+
+function setCoinMarketCapLink(coinMarketCapLinkNew) {
+    coinMarketCapLink = coinMarketCapLinkNew;
+}
+
+function initMarketCapStatus() {
+    coinMarketCapStatus = "";
+}
+
+function getMarketCapStatus() {
+    return coinMarketCapStatus
+}
+
+function setMarketCapStatus(setCoinMarketCapStatusNew) {
+    coinMarketCapStatus = setCoinMarketCapStatusNew;
+}
 
 function initCoin() {
     coin = [];
@@ -75,6 +102,12 @@ export default {
     getPromotedProjectLenght,
     setPromotedProjectLenght,
     setCoinMarketCapStatus,
+    initCoinMarketCapLink,
+    getCoinMarketCapLink,
+    setCoinMarketCapLink,
+    initMarketCapStatus,
+    getMarketCapStatus,
+    setMarketCapStatus,
     initCoin,
     initType,
     getCoin,
