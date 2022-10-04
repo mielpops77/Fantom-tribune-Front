@@ -59,7 +59,7 @@ const AllTokens = () => {
 
         let data = TableLaunchService.getDatabase()
         for (let i = 0; i < totalReactPackages.length; i++) {
-          data.rows.push(({ image: <img className={style.allTokenPage_img} alt='img' style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, vote: totalReactPackages[i].vote, voteToday: totalReactPackages[i].voteToday, price: totalReactPackages[i].price, coinMarket: totalReactPackages[i].marketCap, supply: totalReactPackages[i].supply, voteTwentyHourCalcul: totalReactPackages[i].voteTwentyHourCalcul, voteTwentyHour: totalReactPackages[i].voteTwentyHour }));
+          data.rows.push(({ image: <img className={style.allTokenPage_img} alt='img' style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, vote: totalReactPackages[i].vote, voteToday: totalReactPackages[i].voteToday, price: totalReactPackages[i].price, coinMarket: totalReactPackages[i].marketCap, supply: totalReactPackages[i].supply, voteTwentyHourCalcul: totalReactPackages[i].voteTwentyHourCalcul, voteTwentyHour: totalReactPackages[i].voteTwentyHour, percent_change_24h: totalReactPackages[i].percent_change_24h }));
         }
 
 
@@ -244,7 +244,7 @@ const AllTokens = () => {
             <th className={style.thPointer} scope="col">LaunchDate</th>
             <th className={style.thPointer} scope="col">Price</th>
             <th className={style.thPointer} scope="col">MarketCap</th>
-            <th className={style.thPointer} scope="col">Supply</th>
+            <th className={style.thPointer} scope="col">Change in 24h:</th>
             <th className={style.thPointer} scope="col">Votes</th>
             <th className={style.thPointer} scope="col">  </th>
           </tr>
@@ -259,7 +259,7 @@ const AllTokens = () => {
               <td className={style.allTokensPageTd}>{row.launchDate}</td>
               <td className={style.allTokensPageTd}>$ {row.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}</td>
               <td className={style.allTokensPageTd}>$ {row.coinMarket.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</td>
-              <td className={style.allTokensPageTd}>{row.supply}</td>
+              <td className={style.allTokensPageTd}> {row.percent_change_24h} %   {row.percent_change_24h > 0 &&<img src={url + "assets/Up-arrow.png"} className={style.allTokensImgUpArrow} alt='Up-arrow'></img>}  {row.percent_change_24h < 0 &&<img src={url + "assets/Down-arrow.png"} className={style.allTokensImgUpArrow} alt='Down-arrow'></img>} </td>
               <td className={style.allTokensPageTd}>{row.vote}</td>
               <td className={style.allTokensPageTd}>
                 <button type="button" onClick={function (event) { Propagation(event); vote(row.id, row.voteToday, row.vote, row.voteTwentyHourCalcul, row.voteTwentyHour) }} className="btn btn-success">Vote</button>

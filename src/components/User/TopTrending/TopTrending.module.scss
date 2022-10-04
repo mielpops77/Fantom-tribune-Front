@@ -1,75 +1,73 @@
-@media all and (max-width:1024px){
-    
+.topTrendingImgUpArrow {
+  margin-bottom: 3px;
+  max-width: 10px;
+  max-height: 20px;
+}
 
-    .topTrending_mainDiv {
+@media all and (max-width: 1024px) {
+  .topTrending_mainDiv {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* height: 1000px; */
+
+    .topTrending_divSectionTitle {
+      margin-top: 5%;
       display: flex;
-      flex-direction: column;
-      width: 100%;
-      /* height: 1000px; */
-  
-      .topTrending_divSectionTitle {
-        margin-top: 5%;
-        display: flex;
-        justify-content: center;
-        align-items: baseline;
-        position: inherit;
-  
-        .topTrending_imgLogoSection {
-          max-width: 13vw;
-          height: auto;
-        }
-        
-        .topTrending_sectionTitle {
-          margin-left: 1%;
-          letter-spacing: -1.6px;
-          color: #1b1b1b;
-          font-size: 8vw;
-          font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        .topTrending_tokensTitle {
-          color: #30d0b8;
-        }
-      }
-      
+      justify-content: center;
+      align-items: baseline;
+      position: inherit;
 
+      .topTrending_imgLogoSection {
+        max-width: 13vw;
+        height: auto;
+      }
+
+      .topTrending_sectionTitle {
+        margin-left: 1%;
+        letter-spacing: -1.6px;
+        color: #1b1b1b;
+        font-size: 8vw;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .topTrending_tokensTitle {
+        color: #30d0b8;
+      }
     }
   }
-  
-  @media all and (min-width:1024px){
-  
-    .topTrending_mainDiv {
+}
+
+@media all and (min-width: 1024px) {
+  .topTrending_mainDiv {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* height: 1000px; */
+
+    .topTrending_divSectionTitle {
+      margin-top: 6%;
       display: flex;
-      flex-direction: column;
-      width: 100%;
-      /* height: 1000px; */
-  
-      .topTrending_divSectionTitle {
-        margin-top: 6%;
-        display: flex;
-        justify-content: center;
-        align-items: baseline;
-        position: inherit;
-  
-        .topTrending_imgLogoSection {
-          max-width: 4vw;
-          height: auto;
-        }
-        
-        .topTrending_sectionTitle {
-          margin-left: 1%;
-          letter-spacing: -1.6px;
-          color: #1b1b1b;
-          font-size: 3.2vw;
-          font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        .topTrending_tokensTitle {
-          color: #30d0b8;
-        }
+      justify-content: center;
+      align-items: baseline;
+      position: inherit;
+
+      .topTrending_imgLogoSection {
+        max-width: 4vw;
+        height: auto;
       }
-      
-      
-    }  
-  
+
+      .topTrending_sectionTitle {
+        margin-left: 1%;
+        letter-spacing: -1.6px;
+        color: #1b1b1b;
+        font-size: 3.2vw;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .topTrending_tokensTitle {
+        color: #30d0b8;
+      }
+    }
   }
+}
