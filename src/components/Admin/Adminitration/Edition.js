@@ -142,6 +142,7 @@ const Edition = () => {
     const handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
+        editionService.setCoinEdit("", name);
 
         if (name == "coinMarketCapLink") {
             editionService.initCoinMarketCapLink();
@@ -156,8 +157,7 @@ const Edition = () => {
                 editionService.setMarketCapStatus('none');
 
             }
-            if(inputs.coinMarketCapLink === undefined)
-            {
+            if (inputs.coinMarketCapLink === undefined) {
                 editionService.setCoinMarketCapStatus(editionService.getCoin().coinMarketCapStatus);
 
             }
@@ -214,6 +214,7 @@ const Edition = () => {
                 editionService.initType();
 
                 let postsArray = JSON.parse(JSON.stringify(res));
+                console.log('poooooaaaaa', postsArray);
 
                 for (let i = 0; i < postsArray.length; i++) {
                     if (postsArray[i]._id === id) {
