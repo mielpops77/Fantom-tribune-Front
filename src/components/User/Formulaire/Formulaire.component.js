@@ -15,6 +15,7 @@ function Formulaire() {
   const [selected, setSelected] = useState('Dex');
   const [urlUpload, setToggle] = useState('');
   const [prev, setPrev] = useState('');
+  const [kyc, setKyc] = useState('');
   const [verifUpl, setVerifUpl] = useState('');
 
   const navigate = useNavigate();
@@ -257,6 +258,10 @@ function Formulaire() {
     setPrev(event.target.value);
   }
 
+  const kycEdit = (event) => {
+    setKyc(event.target.value);
+  }
+
   const handleChangeFile = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -303,7 +308,7 @@ function Formulaire() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress.toLowerCase(), description: inputs.description, type: type,
-        websiteLink: inputs.websiteLink, coinMarketCapLink: coinMarketCapLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, vote: 0, voteToday: voteTodayUtc, voteTwentyHour: 0, voteTwentyHourCalcul: voteTwentyHourCalcul, price: 0, marketCap: 0, supply: 0, coinMarketCapStatus: coinMarketCapStatus, idCoinMarketCap: 0, listePriceIdCoinMarketCap: listePriceIdCoinMarketCap, percent_change_24h: 0, promotedStatus: false
+        websiteLink: inputs.websiteLink, coinMarketCapLink: coinMarketCapLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, vote: 0, voteToday: voteTodayUtc, voteTwentyHour: 0, voteTwentyHourCalcul: voteTwentyHourCalcul, price: 0, marketCap: 0, supply: 0, coinMarketCapStatus: coinMarketCapStatus, idCoinMarketCap: 0, listePriceIdCoinMarketCap: listePriceIdCoinMarketCap, percent_change_24h: 0, promotedStatus: false, kyc: kyc
       })
     };
     fetch(url + 'launchDate', requestOptions)
@@ -336,7 +341,7 @@ function Formulaire() {
 
       <label className={style.formLabelFileEmpty} htmlFor="file-input">
         <div className={style.formLabel}>Logo Upload*</div>
-        <img alt='img' style={{ height: "100%", float: "left", maxWidth: "30%", maxHeight: "30%", cursor: 'pointer' }} src={url+"assets/upload.png"} />
+        <img alt='img' style={{ height: "100%", float: "left", maxWidth: "30%", maxHeight: "30%", cursor: 'pointer' }} src={url + "assets/upload.png"} />
         {urlUpload !== '' && <img alt='img' style={{ height: "100%", float: "left", maxWidth: "25%", maxHeight: "25%" }} src={urlUpload} />}
       </label>
 
@@ -365,6 +370,9 @@ function Formulaire() {
           required="required"
         ></input>
       </label>
+
+
+
 
 
       <label className={style.formLabel}>Project in the launch phase?*:
@@ -400,7 +408,6 @@ function Formulaire() {
           />
         </label>
       }
-
 
 
       <label className={style.formLabel}>Contract Address:
@@ -500,7 +507,16 @@ function Formulaire() {
           value={inputs.discord || ""}
           onChange={handleChange} />
       </label>
+      <label className={style.formLabel}>Kyc? *:
+        <div>
+          <input onChange={kycEdit} type="radio" name="questionKyc" value="yes" id="yes" required="required"
+          /> <label style={{ marginRight: "1%" }} htmlFor="yes">yes</label>
+          <input onChange={kycEdit} type="radio" name="questionKyc" value="no" id="no" required="required"
+          /> <label htmlFor="no">no</label>
+        </div>
+      </label>
       <br />
+
       <input className={style.blueButton} type="submit" onClick={verifUpload} />
     </form >
   )

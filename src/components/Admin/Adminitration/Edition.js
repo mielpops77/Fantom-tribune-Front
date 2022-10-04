@@ -156,9 +156,15 @@ const Edition = () => {
                 editionService.setMarketCapStatus('none');
 
             }
+            if(inputs.coinMarketCapLink === undefined)
+            {
+                editionService.setCoinMarketCapStatus(editionService.getCoin().coinMarketCapStatus);
+
+            }
             else {
                 editionService.setMarketCapStatus("en cours de validation");
                 const searchTerm = '/currencies/'
+                console.log('yolo', inputs.coinMarketCapLink);
                 const slug = inputs.coinMarketCapLink.substring(inputs.coinMarketCapLink.lastIndexOf(searchTerm) + 12, inputs.coinMarketCapLink.length - 1)
                 TableLaunchService.coinmarketCap(slug, editionService.getCoinMarketCapLink());
             }
