@@ -90,7 +90,6 @@ function setGlobalVoteTwentyHourStatus(status) {
 
 
 function setCoinMarketCapStatus(status, listId) {
-    console.log('yolosssssss', listId);
     return axios.put(AuthService.getUrl() + `coinMarketCapBoucleStatus?status=${status}`,
         {
             data: { listId }
