@@ -1,12 +1,12 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import NavigationUserComponent from '../../Navigation/NavigationUser/NavigationUser.component';
 import TableLaunchService from '../../../services/tableauLaunh/tableauLaunch.service'
 import AuthService from "../../../services/auth/auth.service";
-import style from "../AllTokens/AllTokens.module.scss";
 import React, { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
-import style2 from './TopTrending.module.scss';
+import style from './TopTrending.module.scss';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 
@@ -47,7 +47,7 @@ const TopTrending = () => {
           {/* <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div> */ }
         );
         item.image = (
-          <img className={style.allTokenPage_img} src={url + result[index].image} alt='img' />
+          <img className={style.topTrending_img} src={url + result[index].image} alt='img' />
         );
 
         userData.push(item);
@@ -61,7 +61,7 @@ const TopTrending = () => {
         let data = TableLaunchService.getDatabase()
         console.log("skip", skip)
         for (let i = 0; i < totalReactPackages.length; i++) {
-          data.rows.push(({ image: <img className={style.allTokenPage_img} alt='img' style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, vote: totalReactPackages[i].vote, voteToday: totalReactPackages[i].voteToday, price: totalReactPackages[i].price, coinMarket: totalReactPackages[i].marketCap, supply: totalReactPackages[i].supply, voteTwentyHourCalcul: totalReactPackages[i].voteTwentyHourCalcul, voteTwentyHour: totalReactPackages[i].voteTwentyHour, rank: i + 1 + skip, percent_change_24h: totalReactPackages[i].percent_change_24h }));
+          data.rows.push(({ image: <img className={style.topTrending_img} alt='img' style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, vote: totalReactPackages[i].vote, voteToday: totalReactPackages[i].voteToday, price: totalReactPackages[i].price, coinMarket: totalReactPackages[i].marketCap, supply: totalReactPackages[i].supply, voteTwentyHourCalcul: totalReactPackages[i].voteTwentyHourCalcul, voteTwentyHour: totalReactPackages[i].voteTwentyHour, rank: i + 1 + skip, percent_change_24h: totalReactPackages[i].percent_change_24h }));
         }
 
         seDatabase(TableLaunchService.getDatabase());
@@ -211,43 +211,43 @@ const TopTrending = () => {
   }
 
   return (
-    <div className={style2.topTrending_fond}>
+    <div className={style.topTrending_fond}>
       <NavigationUserComponent />
-      <div className={style2.topTrending_mainDiv}>
-        <div className={style2.topTrending_divSectionTitle}>
-          <img src={url + "assets/ranked_arrows.png"} className={style2.topTrending_imgLogoSection} alt='ranked_arrow'></img>
-          <p className={style2.topTrending_sectionTitle}>Top Ranked <span className={style2.topTrending_tokensTitle}>Tokens</span> </p>
+      <div className={style.topTrending_mainDiv}>
+        <div className={style.topTrending_divSectionTitle}>
+          <img src={url + "assets/ranked_arrows.png"} className={style.topTrending_imgLogoSection} alt='ranked_arrow'></img>
+          <p className={style.topTrending_sectionTitle}>Top Ranked <span className={style.topTrending_tokensTitle}>Tokens</span> </p>
         </div>
       </div>
-      <div className={style.container}>
+      <div className={style.topTrending_container}>
         <table className="table table-striped table-hover">
           <thead>
             <tr>
-              <th className={style.thPointer} scope="col">Rank</th>
-              <th className={style.thPointer} scope="col"> </th>
-              <th className={style.thPointer} scope="col">Name</th>
-              <th className={style.thPointer} scope="col">Symbol</th>
-              <th className={style.thPointer} scope="col">LaunchDate</th>
-              <th className={style.thPointer} scope="col">Price</th>
-              <th className={style.thPointer} scope="col">MarketCap</th>
-              <th className={style.thPointer} scope="col">Change in 24h:</th>
-              <th className={style.thPointer} scope="col">Votes</th>
-              <th className={style.thPointer} scope="col">  </th>
+              <th className={style.topTrending_thPointer} scope="col">Rank</th>
+              <th className={style.topTrending_thPointer} scope="col"> </th>
+              <th className={style.topTrending_thPointer} scope="col">Name</th>
+              <th className={style.topTrending_thPointer} scope="col">Symbol</th>
+              <th className={style.topTrending_thPointer} scope="col">LaunchDate</th>
+              <th className={style.topTrending_thPointer} scope="col">Price</th>
+              <th className={style.topTrending_thPointer} scope="col">MarketCap</th>
+              <th className={style.topTrending_thPointer} scope="col">Change in 24h:</th>
+              <th className={style.topTrending_thPointer} scope="col">Votes</th>
+              <th className={style.topTrending_thPointer} scope="col">  </th>
             </tr>
           </thead>
           <tbody>
             {database.rows?.map((row, index) => (
               <tr key={index} onClick={() => nav(`/infoCoin/${row.id}`)} style={{ cursor: 'pointer' }} >
-                <td className={style.allTokensPageTd}>{row.rank}</td>
-                <td className={style.allTokensPageTd} value={row.id}><img className={style.allTokenPage_img} src={row.image.props.src} alt='img' /></td>
-                <td className={style.allTokensPageTd}>{row.name}</td>
-                <td className={style.allTokensPageTd}>{row.symbol}</td>
-                <td className={style.allTokensPageTd}>{row.launchDate}</td>
-                <td className={style.allTokensPageTd}>$ {row.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}</td>
-                <td className={style.allTokensPageTd}>$ {row.coinMarket.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</td>
-                <td className={style.allTokensPageTd}> {row.percent_change_24h} %   {row.percent_change_24h > 0 &&<img src={url + "assets/Up-arrow.png"} className={style2.topTrendingImgUpArrow} alt='Up-arrow'></img>}  {row.percent_change_24h < 0 &&<img src={url + "assets/Down-arrow.png"} className={style2.topTrendingImgUpArrow} alt='Down-arrow'></img>} </td>
-                <td className={style.allTokensPageTd}>{row.vote}</td>
-                <td className={style.allTokensPageTd}>
+                <td className={style.topTrending_PageTd}>{row.rank}</td>
+                <td className={style.topTrending_PageTd} value={row.id}><img className={style.topTrending_img} src={row.image.props.src} alt='img' /></td>
+                <td className={style.topTrending_PageTd}>{row.name}</td>
+                <td className={style.topTrending_PageTd}>{row.symbol}</td>
+                <td className={style.topTrending_PageTd}>{row.launchDate}</td>
+                <td className={style.topTrending_PageTd}>$ {row.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}</td>
+                <td className={style.topTrending_PageTd}>$ {row.coinMarket.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</td>
+                <td className={style.topTrending_PageTd}> {row.percent_change_24h} %   {row.percent_change_24h > 0 &&<img src={url + "assets/Up-arrow.png"} className={style.topTrending_imgUpArrow} alt='Up-arrow'></img>}  {row.percent_change_24h < 0 &&<img src={url + "assets/Down-arrow.png"} className={style.topTrending_imgUpArrow} alt='Down-arrow'></img>} </td>
+                <td className={style.topTrending_PageTd}>{row.vote}</td>
+                <td className={style.topTrending_PageTd}>
                   <button type="button" onClick={function (event) { Propagation(event); vote(row.id, row.voteToday, row.vote, row.voteTwentyHourCalcul, row.voteTwentyHour) }} className="btn btn-success">Vote</button>
                 </td>
               </tr>
@@ -259,10 +259,10 @@ const TopTrending = () => {
 
         </table>
 
-        <div className={style.paginationAllTokens}>
-          <span className={style.paginationPageActuel}>1 - {TableLaunchService.totalPage} of {pagination.pageActuel}</span>
-          <a className={pagination.pageActuel > 1 ? "" : "disable"} onClick={previous} href="#">❮</a>
-          <a className={pagination.pageActuel < TableLaunchService.totalPage ? "" : "disable"} onClick={next} href="#">❯</a>
+        <div className={style.topTrending_pagination}>
+          <span className={style.topTrending_paginationPageActuel}>1 - {TableLaunchService.totalPage} of {pagination.pageActuel}</span>
+          <a className={style.topTrending_paginationPageActuel > 1 ? "" : "disable"} onClick={previous} href="#">❮</a>
+          <a className={style.topTrending_paginationPageActuel< TableLaunchService.totalPage ? "" : "disable"} onClick={next} href="#">❯</a>
         </div>
 
         <Modal
@@ -294,27 +294,4 @@ export default TopTrending;
 
 
 
-/* 
 
-
-import React from 'react';
-
-const TopTrending = () => {
-  const url = AuthService.getUrl();
-
-  return (
-    <div className={style2.topTrending_mainDiv}>
-      <NavigationUserComponent />
-      <div className={style2.topTrending_divSectionTitle}>
-        <img src={url + "assets/ranked_arrows.png"} className={style2.topTrending_imgLogoSection} alt='ranked_arrow'></img>
-        <p className={style2.topTrending_sectionTitle}>Top Ranked <span className={style2.topTrending_tokensTitle}>Tokens</span> </p>
-      </div>
-    </div>
-
-  )
-}
-
-export default TopTrending;
-
-
- */
