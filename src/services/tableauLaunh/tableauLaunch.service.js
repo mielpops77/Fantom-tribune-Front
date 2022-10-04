@@ -196,13 +196,22 @@ function getEcosystem(limit, skip) {
         })
 }
 
-function getEcosystemLenght() {
+/* function getEcosystemLenght() {
     return axios.get(AuthService.getUrl() + 'ecosystemLenght/')
         .then(response => {
             return response.data;
         })
 
+} */
+
+
+function getTopTrending(limit, skip) {
+    return axios.get(AuthService.getUrl() + `topTrending/?limite=${limit}&skip=${skip}`)
+        .then(response => {
+            return response.data;
+        })
 }
+
 
 
 function voteHourVerif() {
@@ -332,7 +341,7 @@ export default {
     voteHourApplication,
     ftmScanTotalSupply,
     getLaunchTabLenght,
-    getEcosystemLenght,
+    /* getEcosystemLenght, */
     getListAllContract,
     setListAllContract,
     coinMarketCalcul,
@@ -359,4 +368,5 @@ export default {
     theGraphe,
     getSupply,
     setSupply,
+    getTopTrending
 };
