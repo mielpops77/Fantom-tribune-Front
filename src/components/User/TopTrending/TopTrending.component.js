@@ -243,8 +243,8 @@ const TopTrending = () => {
                 <td className={style.allTokensPageTd}>{row.name}</td>
                 <td className={style.allTokensPageTd}>{row.symbol}</td>
                 <td className={style.allTokensPageTd}>{row.launchDate}</td>
-                <td className={style.allTokensPageTd}>{row.price}</td>
-                <td className={style.allTokensPageTd}>{row.coinMarket}</td>
+                <td className={style.allTokensPageTd}>$ {row.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}</td>
+                <td className={style.allTokensPageTd}>$ {row.coinMarket.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</td>
                 <td className={style.allTokensPageTd}>{row.supply}</td>
                 <td className={style.allTokensPageTd}>{row.vote}</td>
                 <td className={style.allTokensPageTd}>
