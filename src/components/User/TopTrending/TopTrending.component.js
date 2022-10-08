@@ -18,7 +18,15 @@ const TopTrending = () => {
 
   var [database, seDatabase] = useState([])
   var [pagination, setLimit] = useState({ pageActuel: 1, limit: 10, skip: 0 })
+  const [toggle1, setToggle1] = useState(true);
+  const [toggle2, setToggle2] = useState(false);
+  const [toggle3, setToggle3] = useState(false);
+  const [toggle4, setToggle4] = useState(false);
+
   const user = AuthService.getCurrentUser();
+
+
+
 
   const styleBox = {
     position: 'absolute',
@@ -210,6 +218,38 @@ const TopTrending = () => {
     navigate(path);
   }
 
+
+
+  let changeStyle = (btn) => {
+    switch (btn) {
+      case 1:
+        setToggle1(true);
+        setToggle2(false);
+        setToggle3(false);
+        setToggle4(false);
+        break;
+      case 2:
+        setToggle2(true);
+        setToggle1(false);
+        setToggle3(false);
+        setToggle4(false);
+        break;
+      case 3:
+        setToggle3(true);
+        setToggle1(false);
+        setToggle2(false);
+        setToggle4(false);
+        break;
+      case 4:
+        setToggle3(false);
+        setToggle1(false);
+        setToggle2(false);
+        setToggle4(true);
+        break;
+      default:
+    }
+  };
+
   return (
     <div className={style.topTrending_fond}>
       <NavigationUserComponent />
@@ -222,12 +262,14 @@ const TopTrending = () => {
       <div className={style.topTrending_container}>
 
         <div className={style.topTrending_filterContainer}>
-          <div className={style.topTrending_filterOne}>
+
+
+          <div className={toggle1 ? style.topTrending_filterOneClick : style.topTrending_filterOne} onClick={() => changeStyle(1)}>
             <p className={style.topTrending__filterTitle}>All Time</p>
           </div>
-          <div className={style.topTrending_filter}> <p className={style.topTrending__filterTitle}>Today</p> </div>
-          <div className={style.topTrending_filter}> <p className={style.topTrending__filterTitle}>Presale</p> </div>
-          <div className={style.topTrending_filter}> <p className={style.topTrending__filterTitle}>Premium</p> </div>
+          <div className={toggle2 ? style.topTrending_filterClick : style.topTrending_filter} onClick={() => changeStyle(2)}> <p className={style.topTrending__filterTitle}>Today</p> </div>
+          <div className={toggle3 ? style.topTrending_filterClick : style.topTrending_filter} onClick={() => changeStyle(3)}> <p className={style.topTrending__filterTitle}>Presale</p> </div>
+          <div className={toggle4 ? style.topTrending_filterClick : style.topTrending_filter} onClick={() => changeStyle(4)}> <p className={style.topTrending__filterTitle}>Premium</p> </div>
 
         </div>
 
