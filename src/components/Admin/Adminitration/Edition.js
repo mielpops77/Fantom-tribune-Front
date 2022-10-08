@@ -14,6 +14,7 @@ const Edition = () => {
     const [inputs, setInputs] = useState({});
     const [urlUpload, setToggle] = useState('');
     const [prev, setPrev] = useState('');
+    const [kyc, setKyc] = useState('');
     const [stat, setStat] = useState({
         name: "drgerrzdadaz",
         symbol: "",
@@ -102,6 +103,10 @@ const Edition = () => {
     const prevente = (event) => {
         setPrev(event.target.value);
     }
+    const kycChange = (event) => {
+        setKyc(event.target.value);
+    }
+
 
     function prevCheck(dateProject) {
         if (dateProject >= dateUtc) {
@@ -114,6 +119,7 @@ const Edition = () => {
         }
 
     }
+
 
     const handleChangeFile = (event) => {
         const name = event.target.name;
@@ -196,7 +202,7 @@ const Edition = () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress, description: inputs.description, type: type.value,
-                websiteLink: inputs.websiteLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, coinMarketCapLink: inputs.coinMarketCapLink, coinMarketCapStatus: editionService.getMarketCapStatus()
+                websiteLink: inputs.websiteLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, coinMarketCapLink: inputs.coinMarketCapLink, coinMarketCapStatus: editionService.getMarketCapStatus(), kyc: kyc
             })
         };
         fetch(url + `adminEdit/${id}`, requestOptions)
@@ -234,6 +240,8 @@ const Edition = () => {
                 editionService.setMarketCapStatus(editionService.getCoin().coinMarketCapStatus);
 
                 prevCheck(editionService.getCoin().launchDate);
+                setKyc(editionService.getCoin().kyc.toString());
+
 
 
 
@@ -424,6 +432,37 @@ const Edition = () => {
                                 value={inputs.discord || stat.discord}
                                 onChange={handleChange} />
                         </label>
+                        <label className={style.formLabel}>Kyc? *:
+                            <div>
+                                {
+                                    kyc === "true" &&
+                                    < input onChange={kycChange} type="radio" name="questionKyc" value="true" id="true" required="required" checked
+                                    />}
+                                {
+                                    kyc === "false" &&
+                                    <input onChange={kycChange} type="radio" name="questionKyc" value="true" id="true" required="required"
+                                    />}
+                                <label style={{ marginRight: "1%" }} htmlFor="yes">yes</label>
+
+                                {
+                                    kyc === "false" &&
+                                    <input onChange={kycChange} type="radio" name="questionKyc" value="false" id="false" required="required" checked
+                                    />
+                                }
+                                {
+                                    kyc === "true" &&
+                                    <input onChange={kycChange} type="radio" name="questionKyc" value="false" id="false" required="required"
+                                    />
+                                }
+                                <label htmlFor="no">no</label>
+                            </div>
+                        </label>
+
+
+
+
+
+
                         <br />
                         <input className="btn btn-primary btn-block" id="submitInput" type="submit" />
                     </form >
