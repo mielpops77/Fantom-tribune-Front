@@ -100,7 +100,7 @@ const Edition = () => {
 
 
     const prevente = (event) => {
-        setPrev("yes");
+        setPrev(event.target.value);
     }
 
     function prevCheck(dateProject) {
