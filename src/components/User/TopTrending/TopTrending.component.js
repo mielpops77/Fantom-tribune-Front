@@ -220,7 +220,19 @@ const TopTrending = () => {
         </div>
       </div>
       <div className={style.topTrending_container}>
+
+        <div className={style.topTrending_filterContainer}>
+          <div className={style.topTrending_filterOne}>
+            <p className={style.topTrending__filterTitle}>All Time</p>
+          </div>
+          <div className={style.topTrending_filter}> <p className={style.topTrending__filterTitle}>Today</p> </div>
+          <div className={style.topTrending_filter}> <p className={style.topTrending__filterTitle}>Presale</p> </div>
+          <div className={style.topTrending_filter}> <p className={style.topTrending__filterTitle}>Premium</p> </div>
+
+        </div>
+
         <table className="table table-striped table-hover">
+
           <thead>
             <tr>
               <th className={style.topTrending_thPointer} scope="col">Rank</th>
@@ -245,7 +257,7 @@ const TopTrending = () => {
                 <td className={style.topTrending_PageTd}>{row.launchDate}</td>
                 <td className={style.topTrending_PageTd}>$ {row.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}</td>
                 <td className={style.topTrending_PageTd}>$ {row.coinMarket.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</td>
-                <td className={style.topTrending_PageTd}> {row.percent_change_24h} %   {row.percent_change_24h > 0 &&<img src={url + "assets/Up-arrow.png"} className={style.topTrending_imgUpArrow} alt='Up-arrow'></img>}  {row.percent_change_24h < 0 &&<img src={url + "assets/Down-arrow.png"} className={style.topTrending_imgUpArrow} alt='Down-arrow'></img>} </td>
+                <td className={style.topTrending_PageTd}> {row.percent_change_24h} %   {row.percent_change_24h > 0 && <img src={url + "assets/Up-arrow.png"} className={style.topTrending_imgUpArrow} alt='Up-arrow'></img>}  {row.percent_change_24h < 0 && <img src={url + "assets/Down-arrow.png"} className={style.topTrending_imgUpArrow} alt='Down-arrow'></img>} </td>
                 <td className={style.topTrending_PageTd}>{row.vote}</td>
                 <td className={style.topTrending_PageTd}>
                   <button type="button" onClick={function (event) { Propagation(event); vote(row.id, row.voteToday, row.vote, row.voteTwentyHourCalcul, row.voteTwentyHour) }} className="btn btn-success">Vote</button>
@@ -262,7 +274,7 @@ const TopTrending = () => {
         <div className={style.topTrending_pagination}>
           <span className={style.topTrending_paginationPageActuel}>1 - {TableLaunchService.totalPage} of {pagination.pageActuel}</span>
           <a className={style.topTrending_paginationPageActuel > 1 ? "" : "disable"} onClick={previous} href="#">❮</a>
-          <a className={style.topTrending_paginationPageActuel< TableLaunchService.totalPage ? "" : "disable"} onClick={next} href="#">❯</a>
+          <a className={style.topTrending_paginationPageActuel < TableLaunchService.totalPage ? "" : "disable"} onClick={next} href="#">❯</a>
         </div>
 
         <Modal
