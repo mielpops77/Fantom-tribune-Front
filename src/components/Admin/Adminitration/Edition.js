@@ -241,10 +241,6 @@ const Edition = () => {
 
                 prevCheck(editionService.getCoin().launchDate);
                 setKyc(editionService.getCoin().kyc.toString());
-
-
-
-
             });
     }, [id]);
 

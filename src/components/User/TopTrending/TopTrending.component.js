@@ -44,12 +44,12 @@ const TopTrending = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  var totalReactPackages;
+  let userData = [];
+
   function tableLaunch(limit, skip) {
-
-
-    var totalReactPackages;
+  
     TableLaunchService.getTopTrending(limit, skip).then(function (result) {
-      let userData = [];
       result.map((item, index) => {
         item.id = (
           {/* <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div> */ }
@@ -82,6 +82,127 @@ const TopTrending = () => {
 
   }
 
+
+
+
+  function getTopTrending(limit, skip)
+  {
+
+    seDatabase([]);
+    TableLaunchService.getTopTrending(limit, skip).then(function (result) {
+      result.map((item, index) => {
+        item.id = (
+          {/* <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div> */ }
+        );
+        item.image = (
+          <img className={style.topTrending_img} src={url + result[index].image} alt='img' />
+        );
+
+        userData.push(item);
+      });
+      totalReactPackages = userData;
+
+      TableLaunchService.setDatabase(userData)
+      if (totalReactPackages != null) {
+        TableLaunchService.initDatabase();
+
+        let data = TableLaunchService.getDatabase()
+        console.log("skip", skip)
+        for (let i = 0; i < totalReactPackages.length; i++) {
+          data.rows.push(({ image: <img className={style.topTrending_img} alt='img' style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, vote: totalReactPackages[i].vote, voteToday: totalReactPackages[i].voteToday, price: totalReactPackages[i].price, coinMarket: totalReactPackages[i].marketCap, supply: totalReactPackages[i].supply, voteTwentyHourCalcul: totalReactPackages[i].voteTwentyHourCalcul, voteTwentyHour: totalReactPackages[i].voteTwentyHour, rank: i + 1 + skip, percent_change_24h: totalReactPackages[i].percent_change_24h }));
+        }
+
+        seDatabase(TableLaunchService.getDatabase());
+      }
+
+
+    }, err => {
+      console.log(err);
+    });
+
+
+
+  }
+
+
+
+  function getTopTrendingToday(limit, skip)
+  {
+
+    seDatabase([]);
+    TableLaunchService.getTopTrendingToday(limit, skip).then(function (result) {
+      result.map((item, index) => {
+        item.id = (
+          {/* <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div> */ }
+        );
+        item.image = (
+          <img className={style.topTrending_img} src={url + result[index].image} alt='img' />
+        );
+
+        userData.push(item);
+      });
+      totalReactPackages = userData;
+
+      TableLaunchService.setDatabase(userData)
+      if (totalReactPackages != null) {
+        TableLaunchService.initDatabase();
+
+        let data = TableLaunchService.getDatabase()
+        console.log("skip", skip)
+        for (let i = 0; i < totalReactPackages.length; i++) {
+          data.rows.push(({ image: <img className={style.topTrending_img} alt='img' style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, vote: totalReactPackages[i].vote, voteToday: totalReactPackages[i].voteToday, price: totalReactPackages[i].price, coinMarket: totalReactPackages[i].marketCap, supply: totalReactPackages[i].supply, voteTwentyHourCalcul: totalReactPackages[i].voteTwentyHourCalcul, voteTwentyHour: totalReactPackages[i].voteTwentyHour, rank: i + 1 + skip, percent_change_24h: totalReactPackages[i].percent_change_24h }));
+        }
+
+        seDatabase(TableLaunchService.getDatabase());
+      }
+
+
+    }, err => {
+      console.log(err);
+    });
+
+
+
+  }
+
+  function getLaunchTab(limit, skip)
+  {
+
+    seDatabase([]);
+    TableLaunchService.getLaunchTab(limit, skip).then(function (result) {
+      result.map((item, index) => {
+        item.id = (
+          {/* <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div> */ }
+        );
+        item.image = (
+          <img className={style.topTrending_img} src={url + result[index].image} alt='img' />
+        );
+
+        userData.push(item);
+      });
+      totalReactPackages = userData;
+
+      TableLaunchService.setDatabase(userData)
+      if (totalReactPackages != null) {
+        TableLaunchService.initDatabase();
+
+        let data = TableLaunchService.getDatabase()
+        console.log("skip", skip)
+        for (let i = 0; i < totalReactPackages.length; i++) {
+          data.rows.push(({ image: <img className={style.topTrending_img} alt='img' style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, vote: totalReactPackages[i].vote, voteToday: totalReactPackages[i].voteToday, price: totalReactPackages[i].price, coinMarket: totalReactPackages[i].marketCap, supply: totalReactPackages[i].supply, voteTwentyHourCalcul: totalReactPackages[i].voteTwentyHourCalcul, voteTwentyHour: totalReactPackages[i].voteTwentyHour, rank: i + 1 + skip, percent_change_24h: totalReactPackages[i].percent_change_24h }));
+        }
+
+        seDatabase(TableLaunchService.getDatabase());
+      }
+
+
+    }, err => {
+      console.log(err);
+    });
+
+
+
+  }
 
   useEffect(() => {
 
@@ -227,18 +348,21 @@ const TopTrending = () => {
         setToggle2(false);
         setToggle3(false);
         setToggle4(false);
+        getTopTrending(10, 0);
         break;
       case 2:
         setToggle2(true);
         setToggle1(false);
         setToggle3(false);
         setToggle4(false);
+        getTopTrendingToday(10, 0);
         break;
       case 3:
         setToggle3(true);
         setToggle1(false);
         setToggle2(false);
         setToggle4(false);
+        getLaunchTab(10, 0);
         break;
       case 4:
         setToggle3(false);

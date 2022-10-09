@@ -212,6 +212,13 @@ function getTopTrending(limit, skip) {
         })
 }
 
+function getTopTrendingToday(limit, skip) {
+    return axios.get(AuthService.getUrl() + `topTrendingToday/?limite=${limit}&skip=${skip}`)
+        .then(response => {
+            return response.data;
+        })
+}
+
 
 
 function voteHourVerif() {
@@ -337,6 +344,7 @@ function coinMarketCalcul() {
 
 export default {
     resolveAfter2Seconds,
+    getTopTrendingToday,
     initListAllContract,
     voteHourApplication,
     ftmScanTotalSupply,
