@@ -165,11 +165,11 @@ const TopTrending = () => {
 
   }
 
-  function getLaunchTab(limit, skip)
+  function getLaunchDateTrending(limit, skip)
   {
 
     seDatabase([]);
-    TableLaunchService.getLaunchTab(limit, skip).then(function (result) {
+    TableLaunchService.getLaunchDateTrending(limit, skip).then(function (result) {
       result.map((item, index) => {
         item.id = (
           {/* <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div> */ }
@@ -362,7 +362,7 @@ const TopTrending = () => {
         setToggle1(false);
         setToggle2(false);
         setToggle4(false);
-        getLaunchTab(10, 0);
+        getLaunchDateTrending(10, 0);
         break;
       case 4:
         setToggle3(false);

@@ -178,6 +178,13 @@ function getLaunchTab(limit, skip) {
         })
 }
 
+function getLaunchDateTrending (limit, skip) {
+    return axios.get(AuthService.getUrl() + `launchDateTrending/?limite=${limit}&skip=${skip}`)
+        .then(response => {
+            return response.data;
+        })
+}
+
 
 
 function getLaunchTabLenght() {
@@ -349,6 +356,7 @@ export default {
     voteHourApplication,
     ftmScanTotalSupply,
     getLaunchTabLenght,
+    getLaunchDateTrending,
     /* getEcosystemLenght, */
     getListAllContract,
     setListAllContract,
