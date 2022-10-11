@@ -48,7 +48,7 @@ const TopTrending = () => {
   let userData = [];
 
   function tableLaunch(limit, skip) {
-  
+
     TableLaunchService.getTopTrending(limit, skip).then(function (result) {
       result.map((item, index) => {
         item.id = (
@@ -85,8 +85,7 @@ const TopTrending = () => {
 
 
 
-  function getTopTrending(limit, skip)
-  {
+  function getTopTrending(limit, skip) {
 
     seDatabase([]);
     TableLaunchService.getTopTrending(limit, skip).then(function (result) {
@@ -126,8 +125,7 @@ const TopTrending = () => {
 
 
 
-  function getTopTrendingToday(limit, skip)
-  {
+  function getTopTrendingToday(limit, skip) {
 
     seDatabase([]);
     TableLaunchService.getTopTrendingToday(limit, skip).then(function (result) {
@@ -165,8 +163,10 @@ const TopTrending = () => {
 
   }
 
-  function getLaunchDateTrending(limit, skip)
-  {
+
+
+
+  function getLaunchDateTrending(limit, skip) {
 
     seDatabase([]);
     TableLaunchService.getLaunchDateTrending(limit, skip).then(function (result) {
@@ -204,6 +204,46 @@ const TopTrending = () => {
 
   }
 
+
+
+
+  function getPromotedProject() {
+
+    seDatabase([]);
+    TableLaunchService.getPromotedProject().then(function (result) {
+      result.map((item, index) => {
+        item.id = (
+          {/* <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div> */ }
+        );
+        item.image = (
+          <img className={style.topTrending_img} src={url + result[index].image} alt='img' />
+        );
+
+        userData.push(item);
+      });
+      totalReactPackages = userData;
+
+      TableLaunchService.setDatabase(userData)
+      if (totalReactPackages != null) {
+        TableLaunchService.initDatabase();
+
+        let data = TableLaunchService.getDatabase()
+        for (let i = 0; i < totalReactPackages.length; i++) {
+          data.rows.push(({ image: <img className={style.topTrending_img} alt='img' style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, vote: totalReactPackages[i].vote, voteToday: totalReactPackages[i].voteToday, price: totalReactPackages[i].price, coinMarket: totalReactPackages[i].marketCap, supply: totalReactPackages[i].supply, voteTwentyHourCalcul: totalReactPackages[i].voteTwentyHourCalcul, voteTwentyHour: totalReactPackages[i].voteTwentyHour, rank: i + 1, percent_change_24h: totalReactPackages[i].percent_change_24h }));
+        }
+
+        seDatabase(TableLaunchService.getDatabase());
+      }
+
+
+    }, err => {
+      console.log(err);
+    });
+
+
+
+  }
+
   useEffect(() => {
 
     TableLaunchService.getLaunchTabLenght().then(function (result) {
@@ -225,6 +265,24 @@ const TopTrending = () => {
     e.stopPropagation();
   }
 
+
+  function allRequest(limit, skip) {
+    seDatabase([]);
+
+    if (toggle1) {
+      tableLaunch(limit, skip);
+    }
+
+    if (toggle2) {
+      getTopTrendingToday(limit, skip);
+    }
+    if (toggle3) {
+      getLaunchDateTrending(limit, skip);
+    }
+    if (toggle4) {
+      getPromotedProject();
+    }
+  }
 
 
   function vote(id, voteToday, vote, voteTwentyHourCalcul, voteTwentyHour) {
@@ -269,7 +327,10 @@ const TopTrending = () => {
         fetch(url + `vote/${projectId}`, requestOptions)
           .then(response => response.json())
           /* .then(data => this.setState({ postId: data.id })) */
-          .finally(() => { seDatabase([]); tableLaunch(pagination.limit, pagination.skip); })
+          .finally(() => {
+            allRequest(pagination.limit, pagination.skip);
+            seDatabase([]); tableLaunch(pagination.limit, pagination.skip);
+          })
       }
     }
 
@@ -282,7 +343,10 @@ const TopTrending = () => {
       };
       fetch(url + `vote/${projectId}`, requestOptions)
         .then(response => response.json())
-        .finally(() => { seDatabase([]); tableLaunch(pagination.limit, pagination.skip); })
+        .finally(() => {
+          allRequest(pagination.limit, pagination.skip);
+          seDatabase([]); tableLaunch(pagination.limit, pagination.skip);
+        })
 
     }
   }
@@ -311,8 +375,7 @@ const TopTrending = () => {
         skip: pagination.skip + 10
       });
 
-
-      tableLaunch(pagination.limit, pagination.skip + 10);
+      allRequest(pagination.limit, pagination.skip + 10)
     }
 
   }
@@ -326,8 +389,7 @@ const TopTrending = () => {
         limit: pagination.limit,
         skip: pagination.skip - 10
       });
-
-      tableLaunch(pagination.limit, pagination.skip - 10);
+      allRequest(pagination.limit, pagination.skip - 10)
     }
 
   }
@@ -369,6 +431,7 @@ const TopTrending = () => {
         setToggle1(false);
         setToggle2(false);
         setToggle4(true);
+        getPromotedProject();
         break;
       default:
     }

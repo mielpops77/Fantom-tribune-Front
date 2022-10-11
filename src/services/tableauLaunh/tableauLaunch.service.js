@@ -185,7 +185,13 @@ function getLaunchDateTrending (limit, skip) {
         })
 }
 
+function getPromotedProject() {
 
+    return axios.get(AuthService.getUrl() + `getPromotedProjectTrending/`)
+    .then(response => {
+        return response.data;
+    })
+}
 
 function getLaunchTabLenght() {
     return axios.get(AuthService.getUrl() + 'launchDateLenght/')
@@ -359,6 +365,7 @@ export default {
     getLaunchDateTrending,
     /* getEcosystemLenght, */
     getListAllContract,
+    getPromotedProject,
     setListAllContract,
     coinMarketCalcul,
     configContract,
