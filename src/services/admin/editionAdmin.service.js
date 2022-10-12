@@ -48,6 +48,12 @@ function setCoin(coinTarget) {
     coin = coinTarget;
 }
 
+function setCoinEdit(coinTarget, attribut) {
+    if (attribut == "name") {
+        coin.name = coinTarget
+    }
+}
+
 function initPromotedProjectLenght() {
     promotedProjectLenght = 0;
 }
@@ -84,7 +90,6 @@ function setGlobalVoteTwentyHourStatus(status) {
 
 
 function setCoinMarketCapStatus(status, listId) {
-    console.log('yolosssssss', listId);
     return axios.put(AuthService.getUrl() + `coinMarketCapBoucleStatus?status=${status}`,
         {
             data: { listId }
@@ -108,6 +113,7 @@ export default {
     initMarketCapStatus,
     getMarketCapStatus,
     setMarketCapStatus,
+    setCoinEdit,
     initCoin,
     initType,
     getCoin,

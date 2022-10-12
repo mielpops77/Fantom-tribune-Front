@@ -178,7 +178,20 @@ function getLaunchTab(limit, skip) {
         })
 }
 
+function getLaunchDateTrending (limit, skip) {
+    return axios.get(AuthService.getUrl() + `launchDateTrending/?limite=${limit}&skip=${skip}`)
+        .then(response => {
+            return response.data;
+        })
+}
 
+function getPromotedProject() {
+
+    return axios.get(AuthService.getUrl() + `getPromotedProjectTrending/`)
+    .then(response => {
+        return response.data;
+    })
+}
 
 function getLaunchTabLenght() {
     return axios.get(AuthService.getUrl() + 'launchDateLenght/')
@@ -207,6 +220,13 @@ function getEcosystem(limit, skip) {
 
 function getTopTrending(limit, skip) {
     return axios.get(AuthService.getUrl() + `topTrending/?limite=${limit}&skip=${skip}`)
+        .then(response => {
+            return response.data;
+        })
+}
+
+function getTopTrendingToday(limit, skip) {
+    return axios.get(AuthService.getUrl() + `topTrendingToday/?limite=${limit}&skip=${skip}`)
         .then(response => {
             return response.data;
         })
@@ -337,12 +357,15 @@ function coinMarketCalcul() {
 
 export default {
     resolveAfter2Seconds,
+    getTopTrendingToday,
     initListAllContract,
     voteHourApplication,
     ftmScanTotalSupply,
     getLaunchTabLenght,
+    getLaunchDateTrending,
     /* getEcosystemLenght, */
     getListAllContract,
+    getPromotedProject,
     setListAllContract,
     coinMarketCalcul,
     configContract,

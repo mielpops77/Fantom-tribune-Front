@@ -1,9 +1,8 @@
 import NavigationAdminComponent from '../../Navigation/NavigationAdmin/NavigationAdmin.component';
+import TableLaunchService from "../../../services/tableauLaunh/tableauLaunch.service";
 import FooterComponent from '../../../components/Navigation/Footer/Footer.component';
 import editionService from "../../../services/admin/editionAdmin.service";
 import AuthService from "../../../services/auth/auth.service";
-import TableLaunchService from "../../../services/tableauLaunh/tableauLaunch.service";
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import style from "./Edition.module.scss";
@@ -15,6 +14,22 @@ const Edition = () => {
     const [inputs, setInputs] = useState({});
     const [urlUpload, setToggle] = useState('');
     const [prev, setPrev] = useState('');
+    const [kyc, setKyc] = useState('');
+    const [stat, setStat] = useState({
+        name: "drgerrzdadaz",
+        symbol: "",
+        launchDate: "",
+        contractAddress: "",
+        description: "",
+        websiteLink: "",
+        coinMarketCapLink: "",
+        telegram: "",
+        twitter: "",
+        discord: ""
+    });
+
+    const [statType, setStatType] = useState("");
+
 
     let navigate = useNavigate();
     const url = AuthService.getUrl();
@@ -86,25 +101,25 @@ const Edition = () => {
 
 
     const prevente = (event) => {
-        setPrev("yes");
+        setPrev(event.target.value);
     }
+    const kycChange = (event) => {
+        setKyc(event.target.value);
+    }
+
 
     function prevCheck(dateProject) {
         if (dateProject >= dateUtc) {
-            console.log("projet prévente!!");
             setPrev("yes");
         }
         else {
-            console.log("projet  nooonprévente!!");
             setPrev("no");
 
 
         }
 
-        console.log("dateProject", dateProject);
-        console.log("dateUtc", dateUtc);
-
     }
+
 
     const handleChangeFile = (event) => {
         const name = event.target.name;
@@ -142,6 +157,7 @@ const Edition = () => {
     const handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
+        editionService.setCoinEdit("", name);
 
         if (name == "coinMarketCapLink") {
             editionService.initCoinMarketCapLink();
@@ -156,6 +172,10 @@ const Edition = () => {
                 editionService.setMarketCapStatus('none');
 
             }
+            if (inputs.coinMarketCapLink === undefined) {
+                editionService.setMarketCapStatus(editionService.getCoin().coinMarketCapStatus);
+
+            }
             else {
                 editionService.setMarketCapStatus("en cours de validation");
                 const searchTerm = '/currencies/'
@@ -168,7 +188,6 @@ const Edition = () => {
     }
     const handleSubmit = (event) => {
         editionService.initType();
-        console.log(editionService.getType());
         event.preventDefault();
         coinmarketCapLinkEdit();
         let type = [];
@@ -178,18 +197,17 @@ const Edition = () => {
         else {
             type = selected;
         }
-        console.log('selected', selected);
         const requestOptions = {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress, description: inputs.description, type: type.value,
-                websiteLink: inputs.websiteLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, coinMarketCapLink: inputs.coinMarketCapLink, coinMarketCapStatus: editionService.getMarketCapStatus()
+                websiteLink: inputs.websiteLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, coinMarketCapLink: inputs.coinMarketCapLink, coinMarketCapStatus: editionService.getMarketCapStatus(), kyc: kyc
             })
         };
         fetch(url + `adminEdit/${id}`, requestOptions)
             .then(response => response.json())
-            .then(data => this.setState({ postId: data.id }), navigate("/administration"));
+            .then(data => navigate("/administration"));
 
     }
 
@@ -216,16 +234,13 @@ const Edition = () => {
                         setToggle(url + editionService.getCoin().image);
                     }
                 }
-                // console.log('hmmmm', editionService.getCoin().launchDate.substr(8));
-                console.log('hmmmm', editionService.getCoin().launchDate);
-
+                setStat(editionService.getCoin());
+                setStatType(editionService.getType());
                 editionService.initMarketCapStatus();
-                editionService.setCoinMarketCapStatus(editionService.getCoin().coinMarketCapStatus);
+                editionService.setMarketCapStatus(editionService.getCoin().coinMarketCapStatus);
 
                 prevCheck(editionService.getCoin().launchDate);
-
-
-
+                setKyc(editionService.getCoin().kyc.toString());
             });
     }, [id]);
 
@@ -259,7 +274,7 @@ const Edition = () => {
                             <input className={style.formInput}
                                 type="text"
                                 name="name"
-                                value={inputs.name || editionService.getCoin().name}
+                                value={inputs.name || stat.name}
                                 onChange={handleChange}
                             />
                         </label>
@@ -267,7 +282,7 @@ const Edition = () => {
                             <input className={style.formInput}
                                 type="text"
                                 name="symbol"
-                                value={inputs.symbol || editionService.getCoin().symbol}
+                                value={inputs.symbol || stat.symbol}
                                 onChange={handleChange}
                             ></input>
                         </label>
@@ -308,7 +323,7 @@ const Edition = () => {
                                     type="date"
                                     name="launchDate"
                                     min={dateUtc}
-                                    value={inputs.launchDate || editionService.getCoin().launchDate}
+                                    value={inputs.launchDate || stat.launchDate}
                                     onChange={handleChange}
                                 />
                             </label>
@@ -320,7 +335,7 @@ const Edition = () => {
                                     type="date"
                                     name="launchDate"
                                     max={dateUtcMax}
-                                    value={inputs.launchDate || editionService.getCoin().launchDate}
+                                    value={inputs.launchDate || stat.launchDate}
                                     onChange={handleChange}
                                 />
                             </label>
@@ -332,7 +347,7 @@ const Edition = () => {
                             <input className={style.formInput}
                                 type="text"
                                 name="contractAddress"
-                                value={inputs.contractAddress || editionService.getCoin().contractAddress}
+                                value={inputs.contractAddress || stat.contractAddress}
                                 onChange={handleChange}
                             />
 
@@ -345,7 +360,7 @@ const Edition = () => {
                             }}
                                 type="text"
                                 name="description"
-                                value={inputs.description || editionService.getCoin().description}
+                                value={inputs.description || stat.description}
                                 onChange={handleChange}
                                 required="required"
                             />
@@ -355,7 +370,7 @@ const Edition = () => {
                             <Select
                                 className="basic-single"
                                 classNamePrefix="select"
-                                value={selected || editionService.getType()}
+                                value={selected || statType}
                                 isSearchable={true}
                                 options={options}
                                 /* value={selected} */
@@ -369,7 +384,7 @@ const Edition = () => {
                             <input className={style.formInput}
                                 type="text"
                                 name="websiteLink"
-                                value={inputs.websiteLink || editionService.getCoin().websiteLink}
+                                value={inputs.websiteLink || stat.websiteLink}
                                 onChange={handleChange}
                                 required="required"
                             />
@@ -379,7 +394,7 @@ const Edition = () => {
                             <input className={style.formInput}
                                 type="text"
                                 name="coinMarketCapLink"
-                                value={inputs.coinMarketCapLink || editionService.getCoin().coinMarketCapLink}
+                                value={inputs.coinMarketCapLink || stat.coinMarketCapLink}
                                 onChange={handleChange} />
                         </label>
 
@@ -390,7 +405,7 @@ const Edition = () => {
                             <input className={style.formInput}
                                 type="text"
                                 name="telegram"
-                                value={inputs.telegram || editionService.getCoin().telegram}
+                                value={inputs.telegram || stat.telegram}
                                 onChange={handleChange}>
                             </input>
                         </label>
@@ -400,7 +415,7 @@ const Edition = () => {
                             <input className={style.formInput}
                                 type="text"
                                 name="twitter"
-                                value={inputs.twitter || editionService.getCoin().twitter}
+                                value={inputs.twitter || stat.twitter}
                                 onChange={handleChange}
                                 required="required" />
                         </label>
@@ -410,9 +425,40 @@ const Edition = () => {
                             <input className={style.formInput}
                                 type="text"
                                 name="discord"
-                                value={inputs.discord || editionService.getCoin().discord}
+                                value={inputs.discord || stat.discord}
                                 onChange={handleChange} />
                         </label>
+                        <label className={style.formLabel}>Kyc? *:
+                            <div>
+                                {
+                                    kyc === "true" &&
+                                    < input onChange={kycChange} type="radio" name="questionKyc" value="true" id="true" required="required" checked
+                                    />}
+                                {
+                                    kyc === "false" &&
+                                    <input onChange={kycChange} type="radio" name="questionKyc" value="true" id="true" required="required"
+                                    />}
+                                <label style={{ marginRight: "1%" }} htmlFor="yes">yes</label>
+
+                                {
+                                    kyc === "false" &&
+                                    <input onChange={kycChange} type="radio" name="questionKyc" value="false" id="false" required="required" checked
+                                    />
+                                }
+                                {
+                                    kyc === "true" &&
+                                    <input onChange={kycChange} type="radio" name="questionKyc" value="false" id="false" required="required"
+                                    />
+                                }
+                                <label htmlFor="no">no</label>
+                            </div>
+                        </label>
+
+
+
+
+
+
                         <br />
                         <input className="btn btn-primary btn-block" id="submitInput" type="submit" />
                     </form >

@@ -18,7 +18,15 @@ const TopTrending = () => {
 
   var [database, seDatabase] = useState([])
   var [pagination, setLimit] = useState({ pageActuel: 1, limit: 10, skip: 0 })
+  const [toggle1, setToggle1] = useState(true);
+  const [toggle2, setToggle2] = useState(false);
+  const [toggle3, setToggle3] = useState(false);
+  const [toggle4, setToggle4] = useState(false);
+
   const user = AuthService.getCurrentUser();
+
+
+
 
   const styleBox = {
     position: 'absolute',
@@ -36,12 +44,12 @@ const TopTrending = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  var totalReactPackages;
+  let userData = [];
+
   function tableLaunch(limit, skip) {
 
-
-    var totalReactPackages;
     TableLaunchService.getTopTrending(limit, skip).then(function (result) {
-      let userData = [];
       result.map((item, index) => {
         item.id = (
           {/* <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div> */ }
@@ -75,6 +83,167 @@ const TopTrending = () => {
   }
 
 
+
+
+  function getTopTrending(limit, skip) {
+
+    seDatabase([]);
+    TableLaunchService.getTopTrending(limit, skip).then(function (result) {
+      result.map((item, index) => {
+        item.id = (
+          {/* <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div> */ }
+        );
+        item.image = (
+          <img className={style.topTrending_img} src={url + result[index].image} alt='img' />
+        );
+
+        userData.push(item);
+      });
+      totalReactPackages = userData;
+
+      TableLaunchService.setDatabase(userData)
+      if (totalReactPackages != null) {
+        TableLaunchService.initDatabase();
+
+        let data = TableLaunchService.getDatabase()
+        console.log("skip", skip)
+        for (let i = 0; i < totalReactPackages.length; i++) {
+          data.rows.push(({ image: <img className={style.topTrending_img} alt='img' style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, vote: totalReactPackages[i].vote, voteToday: totalReactPackages[i].voteToday, price: totalReactPackages[i].price, coinMarket: totalReactPackages[i].marketCap, supply: totalReactPackages[i].supply, voteTwentyHourCalcul: totalReactPackages[i].voteTwentyHourCalcul, voteTwentyHour: totalReactPackages[i].voteTwentyHour, rank: i + 1 + skip, percent_change_24h: totalReactPackages[i].percent_change_24h }));
+        }
+
+        seDatabase(TableLaunchService.getDatabase());
+      }
+
+
+    }, err => {
+      console.log(err);
+    });
+
+
+
+  }
+
+
+
+  function getTopTrendingToday(limit, skip) {
+
+    seDatabase([]);
+    TableLaunchService.getTopTrendingToday(limit, skip).then(function (result) {
+      result.map((item, index) => {
+        item.id = (
+          {/* <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div> */ }
+        );
+        item.image = (
+          <img className={style.topTrending_img} src={url + result[index].image} alt='img' />
+        );
+
+        userData.push(item);
+      });
+      totalReactPackages = userData;
+
+      TableLaunchService.setDatabase(userData)
+      if (totalReactPackages != null) {
+        TableLaunchService.initDatabase();
+
+        let data = TableLaunchService.getDatabase()
+        console.log("skip", skip)
+        for (let i = 0; i < totalReactPackages.length; i++) {
+          data.rows.push(({ image: <img className={style.topTrending_img} alt='img' style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, vote: totalReactPackages[i].vote, voteToday: totalReactPackages[i].voteToday, price: totalReactPackages[i].price, coinMarket: totalReactPackages[i].marketCap, supply: totalReactPackages[i].supply, voteTwentyHourCalcul: totalReactPackages[i].voteTwentyHourCalcul, voteTwentyHour: totalReactPackages[i].voteTwentyHour, rank: i + 1 + skip, percent_change_24h: totalReactPackages[i].percent_change_24h }));
+        }
+
+        seDatabase(TableLaunchService.getDatabase());
+      }
+
+
+    }, err => {
+      console.log(err);
+    });
+
+
+
+  }
+
+
+
+
+  function getLaunchDateTrending(limit, skip) {
+
+    seDatabase([]);
+    TableLaunchService.getLaunchDateTrending(limit, skip).then(function (result) {
+      result.map((item, index) => {
+        item.id = (
+          {/* <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div> */ }
+        );
+        item.image = (
+          <img className={style.topTrending_img} src={url + result[index].image} alt='img' />
+        );
+
+        userData.push(item);
+      });
+      totalReactPackages = userData;
+
+      TableLaunchService.setDatabase(userData)
+      if (totalReactPackages != null) {
+        TableLaunchService.initDatabase();
+
+        let data = TableLaunchService.getDatabase()
+        console.log("skip", skip)
+        for (let i = 0; i < totalReactPackages.length; i++) {
+          data.rows.push(({ image: <img className={style.topTrending_img} alt='img' style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, vote: totalReactPackages[i].vote, voteToday: totalReactPackages[i].voteToday, price: totalReactPackages[i].price, coinMarket: totalReactPackages[i].marketCap, supply: totalReactPackages[i].supply, voteTwentyHourCalcul: totalReactPackages[i].voteTwentyHourCalcul, voteTwentyHour: totalReactPackages[i].voteTwentyHour, rank: i + 1 + skip, percent_change_24h: totalReactPackages[i].percent_change_24h }));
+        }
+
+        seDatabase(TableLaunchService.getDatabase());
+      }
+
+
+    }, err => {
+      console.log(err);
+    });
+
+
+
+  }
+
+
+
+
+  function getPromotedProject() {
+
+    seDatabase([]);
+    TableLaunchService.getPromotedProject().then(function (result) {
+      result.map((item, index) => {
+        item.id = (
+          {/* <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div> */ }
+        );
+        item.image = (
+          <img className={style.topTrending_img} src={url + result[index].image} alt='img' />
+        );
+
+        userData.push(item);
+      });
+      totalReactPackages = userData;
+
+      TableLaunchService.setDatabase(userData)
+      if (totalReactPackages != null) {
+        TableLaunchService.initDatabase();
+
+        let data = TableLaunchService.getDatabase()
+        for (let i = 0; i < totalReactPackages.length; i++) {
+          data.rows.push(({ image: <img className={style.topTrending_img} alt='img' style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, vote: totalReactPackages[i].vote, voteToday: totalReactPackages[i].voteToday, price: totalReactPackages[i].price, coinMarket: totalReactPackages[i].marketCap, supply: totalReactPackages[i].supply, voteTwentyHourCalcul: totalReactPackages[i].voteTwentyHourCalcul, voteTwentyHour: totalReactPackages[i].voteTwentyHour, rank: i + 1, percent_change_24h: totalReactPackages[i].percent_change_24h }));
+        }
+
+        seDatabase(TableLaunchService.getDatabase());
+      }
+
+
+    }, err => {
+      console.log(err);
+    });
+
+
+
+  }
+
   useEffect(() => {
 
     TableLaunchService.getLaunchTabLenght().then(function (result) {
@@ -96,6 +265,24 @@ const TopTrending = () => {
     e.stopPropagation();
   }
 
+
+  function allRequest(limit, skip) {
+    seDatabase([]);
+
+    if (toggle1) {
+      tableLaunch(limit, skip);
+    }
+
+    if (toggle2) {
+      getTopTrendingToday(limit, skip);
+    }
+    if (toggle3) {
+      getLaunchDateTrending(limit, skip);
+    }
+    if (toggle4) {
+      getPromotedProject();
+    }
+  }
 
 
   function vote(id, voteToday, vote, voteTwentyHourCalcul, voteTwentyHour) {
@@ -140,7 +327,10 @@ const TopTrending = () => {
         fetch(url + `vote/${projectId}`, requestOptions)
           .then(response => response.json())
           /* .then(data => this.setState({ postId: data.id })) */
-          .finally(() => { seDatabase([]); tableLaunch(pagination.limit, pagination.skip); })
+          .finally(() => {
+            allRequest(pagination.limit, pagination.skip);
+            seDatabase([]); tableLaunch(pagination.limit, pagination.skip);
+          })
       }
     }
 
@@ -153,7 +343,10 @@ const TopTrending = () => {
       };
       fetch(url + `vote/${projectId}`, requestOptions)
         .then(response => response.json())
-        .finally(() => { seDatabase([]); tableLaunch(pagination.limit, pagination.skip); })
+        .finally(() => {
+          allRequest(pagination.limit, pagination.skip);
+          seDatabase([]); tableLaunch(pagination.limit, pagination.skip);
+        })
 
     }
   }
@@ -182,8 +375,7 @@ const TopTrending = () => {
         skip: pagination.skip + 10
       });
 
-
-      tableLaunch(pagination.limit, pagination.skip + 10);
+      allRequest(pagination.limit, pagination.skip + 10)
     }
 
   }
@@ -197,8 +389,7 @@ const TopTrending = () => {
         limit: pagination.limit,
         skip: pagination.skip - 10
       });
-
-      tableLaunch(pagination.limit, pagination.skip - 10);
+      allRequest(pagination.limit, pagination.skip - 10)
     }
 
   }
@@ -210,6 +401,42 @@ const TopTrending = () => {
     navigate(path);
   }
 
+
+
+  let changeStyle = (btn) => {
+    switch (btn) {
+      case 1:
+        setToggle1(true);
+        setToggle2(false);
+        setToggle3(false);
+        setToggle4(false);
+        getTopTrending(10, 0);
+        break;
+      case 2:
+        setToggle2(true);
+        setToggle1(false);
+        setToggle3(false);
+        setToggle4(false);
+        getTopTrendingToday(10, 0);
+        break;
+      case 3:
+        setToggle3(true);
+        setToggle1(false);
+        setToggle2(false);
+        setToggle4(false);
+        getLaunchDateTrending(10, 0);
+        break;
+      case 4:
+        setToggle3(false);
+        setToggle1(false);
+        setToggle2(false);
+        setToggle4(true);
+        getPromotedProject();
+        break;
+      default:
+    }
+  };
+
   return (
     <div className={style.topTrending_fond}>
       <NavigationUserComponent />
@@ -220,7 +447,21 @@ const TopTrending = () => {
         </div>
       </div>
       <div className={style.topTrending_container}>
+
+        <div className={style.topTrending_filterContainer}>
+
+
+          <div className={toggle1 ? style.topTrending_filterOneClick : style.topTrending_filterOne} onClick={() => changeStyle(1)}>
+            <p className={style.topTrending__filterTitle}>All Time</p>
+          </div>
+          <div className={toggle2 ? style.topTrending_filterClick : style.topTrending_filter} onClick={() => changeStyle(2)}> <p className={style.topTrending__filterTitle}>Today</p> </div>
+          <div className={toggle3 ? style.topTrending_filterClick : style.topTrending_filter} onClick={() => changeStyle(3)}> <p className={style.topTrending__filterTitle}>Presale</p> </div>
+          <div className={toggle4 ? style.topTrending_filterClick : style.topTrending_filter} onClick={() => changeStyle(4)}> <p className={style.topTrending__filterTitle}>Premium</p> </div>
+
+        </div>
+
         <table className="table table-striped table-hover">
+
           <thead>
             <tr>
               <th className={style.topTrending_thPointer} scope="col">Rank</th>
@@ -245,7 +486,7 @@ const TopTrending = () => {
                 <td className={style.topTrending_PageTd}>{row.launchDate}</td>
                 <td className={style.topTrending_PageTd}>$ {row.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}</td>
                 <td className={style.topTrending_PageTd}>$ {row.coinMarket.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</td>
-                <td className={style.topTrending_PageTd}> {row.percent_change_24h} %   {row.percent_change_24h > 0 &&<img src={url + "assets/Up-arrow.png"} className={style.topTrending_imgUpArrow} alt='Up-arrow'></img>}  {row.percent_change_24h < 0 &&<img src={url + "assets/Down-arrow.png"} className={style.topTrending_imgUpArrow} alt='Down-arrow'></img>} </td>
+                <td className={style.topTrending_PageTd}> {row.percent_change_24h} %   {row.percent_change_24h > 0 && <img src={url + "assets/Up-arrow.png"} className={style.topTrending_imgUpArrow} alt='Up-arrow'></img>}  {row.percent_change_24h < 0 && <img src={url + "assets/Down-arrow.png"} className={style.topTrending_imgUpArrow} alt='Down-arrow'></img>} </td>
                 <td className={style.topTrending_PageTd}>{row.vote}</td>
                 <td className={style.topTrending_PageTd}>
                   <button type="button" onClick={function (event) { Propagation(event); vote(row.id, row.voteToday, row.vote, row.voteTwentyHourCalcul, row.voteTwentyHour) }} className="btn btn-success">Vote</button>
@@ -262,7 +503,7 @@ const TopTrending = () => {
         <div className={style.topTrending_pagination}>
           <span className={style.topTrending_paginationPageActuel}>1 - {TableLaunchService.totalPage} of {pagination.pageActuel}</span>
           <a className={style.topTrending_paginationPageActuel > 1 ? "" : "disable"} onClick={previous} href="#">❮</a>
-          <a className={style.topTrending_paginationPageActuel< TableLaunchService.totalPage ? "" : "disable"} onClick={next} href="#">❯</a>
+          <a className={style.topTrending_paginationPageActuel < TableLaunchService.totalPage ? "" : "disable"} onClick={next} href="#">❯</a>
         </div>
 
         <Modal
