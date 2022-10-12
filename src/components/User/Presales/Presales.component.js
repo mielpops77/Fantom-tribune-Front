@@ -88,7 +88,16 @@ const Presales = () => {
     TableLaunchService.initAction();
     TableLaunchService.initTypeFilter();
 
-    TableLaunchService.getLaunchTabLenght().then(function (result) {
+    getLaunchDateLenght();
+
+    tableLaunch(10, 0);
+
+  }, []);
+
+
+  function getLaunchDateLenght() {
+
+    TableLaunchService.getLaunchDateLenght().then(function (result) {
 
       if (result / 10 < 1) {
         TableLaunchService.totalPage = 1;
@@ -97,11 +106,7 @@ const Presales = () => {
         TableLaunchService.totalPage = result % 10 === 0 ? result / 10 : ((result / 10) - ((result % 10) / 10)) + 1
       }
     });
-
-    tableLaunch(10, 0);
-
-  }, []);
-
+  }
 
 
   const Propagation = e => {
