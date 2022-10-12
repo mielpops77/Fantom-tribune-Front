@@ -1,21 +1,18 @@
 import { AiOutlineCheck, AiOutlineClose, AiFillEdit, AiFillStar } from 'react-icons/ai';
 import editionAdminService from "../../../services/admin/editionAdmin.service";
 import AuthService from "../../../services/auth/auth.service";
-import { MDBDataTableV5 } from 'mdbreact';
-import { useEffect, useState } from "react";
-import { FaTrashRestore } from 'react-icons/fa';
-import { BsTrash } from 'react-icons/bs';
-import { Menu } from 'semantic-ui-react'
-// import { useHistory } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import style from "./Administration.module.scss";
+import { FaTrashRestore } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { MDBDataTableV5 } from 'mdbreact';
+import { BsTrash } from 'react-icons/bs';
 
 function Administration() {
 
     const url = AuthService.getUrl();
-
-    const [posts, setPosts] = useState([]);
     const [usersForRender, setUsersForRender] = useState([]);
+    const [posts, setPosts] = useState([]);
     const [toggle, setToggle] = useState(true);
     const [toggle2, setToggle2] = useState(false);
     const [toggle3, setToggle3] = useState(false);
@@ -338,31 +335,16 @@ function Administration() {
 
     return (
         <div className="container">
-            <Menu className={style.navTabAdmin}>
-                <Menu.Item className={toggle ? style.itemTabAdminClick : style.itemTabAdmin} onClick={() => changeStyle(1)}
-                    name='À valider'
-                />
+            <div className={style.administration_filterContainer}>
+                <div className={toggle ? style.administration_filterOneClick : style.administration_filterOne} onClick={() => changeStyle(1)}>
+                    <p className={style.administration__filterTitle}>À valider</p>
+                </div>
+                <div className={toggle2 ? style.administration_filterClick : style.administration_filter} onClick={() => changeStyle(2)}> <p className={style.administration__filterTitle}>En ligne</p> </div>
+                <div className={toggle4 ? style.administration_filterClick : style.administration_filter} onClick={() => changeStyle(4)}> <p className={style.administration__filterTitle}>Promoted</p> </div>
+                <div className={toggle3 ? style.administration_filterClick : style.administration_filter} onClick={() => changeStyle(3)}> <p className={style.administration__filterTitle}>Corbeille</p> </div>
 
-
-                <Menu.Item
-                    className={toggle2 ? style.itemTabAdminClick : style.itemTabAdmin} onClick={() => changeStyle(2)}
-
-                    name='En ligne'
-                />
-                <Menu.Item
-                    className={toggle3 ? style.itemTabAdminClick : style.itemTabAdmin} onClick={() => changeStyle(3)}
-
-                    name='Corbeille'
-                />
-
-                <Menu.Item
-                    className={toggle4 ? style.itemTabAdminClick : style.itemTabAdmin} onClick={() => changeStyle(4)}
-
-                    name='Promoted'
-                />
-            </Menu>
-
-
+            </div>
+       
             <MDBDataTableV5
                 responsive
                 hover
