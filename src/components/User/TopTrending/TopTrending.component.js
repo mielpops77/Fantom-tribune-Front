@@ -245,8 +245,15 @@ const TopTrending = () => {
   }
 
   useEffect(() => {
+    getEcosystemLenght();
+    tableLaunch(10, 0);
+  }, []);
 
-    TableLaunchService.getLaunchTabLenght().then(function (result) {
+
+
+  function getEcosystemLenght() {
+
+    TableLaunchService.getEcosystemLenght().then(function (result) {
 
       if (result / 10 < 1) {
         TableLaunchService.totalPage = 1;
@@ -255,10 +262,35 @@ const TopTrending = () => {
         TableLaunchService.totalPage = result % 10 === 0 ? result / 10 : ((result / 10) - ((result % 10) / 10)) + 1
       }
     });
+  }
+  function getLaunchDateLenght() {
 
-    tableLaunch(10, 0);
-  }, []);
+    TableLaunchService.getLaunchDateLenght().then(function (result) {
 
+      if (result / 10 < 1) {
+        TableLaunchService.totalPage = 1;
+      }
+      if (result / 10 >= 1) {
+        TableLaunchService.totalPage = result % 10 === 0 ? result / 10 : ((result / 10) - ((result % 10) / 10)) + 1
+      }
+    });
+  }
+
+
+  function getPromotedProjectLenght() {
+
+    TableLaunchService.getPromotedProjectLenght().then(function (result) {
+
+      if (result / 10 < 1) {
+        TableLaunchService.totalPage = 1;
+      }
+      if (result / 10 >= 1) {
+        TableLaunchService.totalPage = result % 10 === 0 ? result / 10 : ((result / 10) - ((result % 10) / 10)) + 1
+      }
+    });
+  }
+
+  
 
 
   const Propagation = e => {
@@ -270,16 +302,20 @@ const TopTrending = () => {
     seDatabase([]);
 
     if (toggle1) {
+      TableLaunchService.pageActuel = 1;
       tableLaunch(limit, skip);
     }
 
     if (toggle2) {
+      TableLaunchService.pageActuel = 1;
       getTopTrendingToday(limit, skip);
     }
     if (toggle3) {
+      TableLaunchService.pageActuel = 1;
       getLaunchDateTrending(limit, skip);
     }
     if (toggle4) {
+      TableLaunchService.pageActuel = 1;
       getPromotedProject();
     }
   }
@@ -410,6 +446,12 @@ const TopTrending = () => {
         setToggle2(false);
         setToggle3(false);
         setToggle4(false);
+        getEcosystemLenght();
+        setLimit({
+          pageActuel: 1,
+          limit: pagination.limit,
+          skip: pagination.skip
+        });
         getTopTrending(10, 0);
         break;
       case 2:
@@ -417,6 +459,12 @@ const TopTrending = () => {
         setToggle1(false);
         setToggle3(false);
         setToggle4(false);
+        getEcosystemLenght();
+        setLimit({
+          pageActuel: 1,
+          limit: pagination.limit,
+          skip: pagination.skip
+        });
         getTopTrendingToday(10, 0);
         break;
       case 3:
@@ -424,6 +472,12 @@ const TopTrending = () => {
         setToggle1(false);
         setToggle2(false);
         setToggle4(false);
+        getLaunchDateLenght();
+        setLimit({
+          pageActuel: 1,
+          limit: pagination.limit,
+          skip: pagination.skip
+        });
         getLaunchDateTrending(10, 0);
         break;
       case 4:
@@ -431,6 +485,12 @@ const TopTrending = () => {
         setToggle1(false);
         setToggle2(false);
         setToggle4(true);
+        getPromotedProjectLenght();
+        setLimit({
+          pageActuel: 1,
+          limit: pagination.limit,
+          skip: pagination.skip
+        });
         getPromotedProject();
         break;
       default:
