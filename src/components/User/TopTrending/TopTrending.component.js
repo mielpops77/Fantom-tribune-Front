@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import NavigationUserComponent from '../../Navigation/NavigationUser/NavigationUser.component';
 import TableLaunchService from '../../../services/tableauLaunh/tableauLaunch.service'
+import FooterComponent from '../../../components/Navigation/Footer/Footer.component';
 import AuthService from "../../../services/auth/auth.service";
 import React, { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
@@ -585,6 +586,7 @@ const TopTrending = () => {
         </Modal>
 
       </div >
+    <FooterComponent/>
     </div>
   );
 }
