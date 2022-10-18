@@ -7,7 +7,7 @@ import React from 'react';
 
 const AllTokens = () => {
     return (
-        <div>
+        <div className={style.presales_fond}>
             <NavigationUserComponent/>
             <AllTokensComponent/>
             <div /* className={style.divFooter} */>
