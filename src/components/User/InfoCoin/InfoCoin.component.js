@@ -35,11 +35,11 @@ const InfoCoin = () => {
 
     return (
 
-        <div>
+        <div className={style.container}>
             <NavigationUserComponent />
             <div className={style.divCorpCoin}>
                 <p className={style.test}>{coin.name}</p>
-                <iframe title="Graphical Board" loading="lazy" src={src} width="50%" height="600px" frameborder="0" scrolling="no" align="center"></iframe>
+                <iframe title="Graphical Board" loading="lazy" src={src} width="50%" height="600px" frameborder="0" scrolling="no" ></iframe>
             </div>
         </div>
     )
