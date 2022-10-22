@@ -1,36 +1,39 @@
-.divCorpSubmit{
-    background-color: #ffffffec;
-    box-shadow: 0px 14px 80px rgb(34 35 58 / 20%);
-    border-radius: 15px;
-    width: 80%;   
-    max-width: 800px;
-    min-width: 100px;
-    margin: 7% auto;
-    border-radius: 20px;
+.submit_page{
+    background-color:#0C35FF;
 
-    .titleSubmit{
-        font-size: max(2.2vw, 170%);
-        text-align: center;
-        color: #450ca0;
-        margin:0 auto;
-        padding: 2% 0 0 0;
-    }
-    
-    .subtitleSubmit
-    {
-       /*  font-size: max(2.2vw, 170%); */
-        text-align: center;
-        color: #450ca0;
-        margin:0 auto;
-        padding: 2% 0 0 0;  
-    }
+    .divCorpSubmit{
+        background-color:#ffffff;
+        box-shadow: 0px 14px 80px rgb(34 35 58 / 20%);
+        border-radius: 15px;
+        width: 80%;   
+        max-width: 800px;
+        min-width: 100px;
+        margin: 7% auto;
+        border-radius: 20px;
+        padding:1%;
 
-    hr{
-        color:#450ca0;
+        .titleSubmit{
+            font-size: max(2.2vw, 170%);
+            text-align: center;
+            color: #450ca0;
+            margin:0 auto;
+            padding: 2% 0 0 0;
+        }
+        
+        .subtitleSubmit
+        {
+        /*  font-size: max(2.2vw, 170%); */
+            text-align: center;
+            color: #450ca0;
+            margin:0 auto;
+            padding: 2% 0 0 0;  
+        }
+
+        hr{
+            color:#450ca0;
+        }
     }
 }
-
-
 
 
    

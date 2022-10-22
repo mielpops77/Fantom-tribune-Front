@@ -1,18 +1,62 @@
-.container{
-    background: url("http://localhost:3000/assets/background_with_rocket5.png") no-repeat;
-    background-size: cover;
-    width: 100%;
-    min-height: 1000px;
-}
+@media all and (min-width:1024px){
 
-.divCorpCoin{
-    background-color: #060A46;
-    margin:auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 95%;
-    height: 860px;
-    border-radius: 15px;
-    box-shadow: 0px 0px 2px 2px rgba(255, 255, 255);
+    .infoCoin_page{
+        background: url("http://localhost:3000/assets/background_with_rocket5.png") no-repeat;
+        background-size: cover;
+        width: 100%;
+        min-height: 1000px;
+
+        .infoCoin_container{
+            background-color: #060A46;
+            margin:auto;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            margin-top:2%;
+            width: 85%;
+            height: 820px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 2px 2px rgba(255, 255, 255);
+
+            .infoCoin_img{
+                max-width: 13vw;
+                height: auto;
+            }
+    
+            .infoCoin_name{
+                font-family: "Roboto", sans-serif;
+                font-size: 3.4vw;
+                margin-left:2%;
+                color:white;
+            }
+
+            .infoCoin_infoAndIframe{
+                display: flex;
+                flex-direction:row;
+                align-items: center;
+                justify-content: center;
+                width: 95%;
+                height: auto;
+
+                .infoCoin_info{
+                    font-family: "Roboto", sans-serif;
+                    font-size: 1.4vw;
+                    width: 35%;
+                    margin-left:3%;
+                    height: auto;
+                    color: white;
+                }
+
+                .infoCoin_iframe{
+                    width: 55%;
+                    margin-right:3%;
+                    border-radius: 15px;
+                    box-shadow: 0px 0px 0px 4px rgba(255, 255, 255);
+                }
+
+            }
+        }
+    }
 }

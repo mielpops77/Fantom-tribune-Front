@@ -7,7 +7,7 @@ import style from "./Submit.module.scss";
 
 const Submit = () => {
     return (
-        <div>
+        <div className={style.submit_page}>
             <NavigationUserComponent />
             <div className={style.divCorpSubmit}>
                 <h1 className={style.titleSubmit}>Submit new coin to Fantom Tribune</h1>
