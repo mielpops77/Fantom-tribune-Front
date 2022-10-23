@@ -296,26 +296,24 @@ const Presales = () => {
   return (
 
     <div className={style.container}>
-      <div >
-        <Dropdown className={style.controlDropdownRoot} controlClassName={style.controlDropdown} options={options} onChange={changeType} value={options[0]} placeholder="Select an option" />
-        <div style={{ width: " 60%", display: "inline-block", marginBottom: "2%", marginLeft: "3%" }}>
-          <ReactSearchAutocomplete
-            styling={
-              { 
-                backgroundColor: "transparant",
-                border: "1px solid #ccc",
-                width: "50% !important"
-              }
+      <Dropdown className={style.controlDropdownRoot} controlClassName={style.controlDropdown} options={options} onChange={changeType} value={options[0]} placeholder="Select an option" />
+      <div className={style.presale_dropDownSearch} style={{ width: " 60%", display: "inline-block", marginBottom: "2%", marginLeft: "3%" }}>
+        <ReactSearchAutocomplete
+          styling={
+            { 
+              backgroundColor: "transparant",
+              border: "1px solid #ccc",
+              width: "50% !important"
             }
-            items={items}
-            onSearch={handleOnSearch}
-            onHover={handleOnHover}
-            onSelect={handleOnSelect}
-            onFocus={handleOnFocus}
-            autoFocus
-            formatResult={formatResult}
-          />
-        </div>
+          }
+          items={items}
+          onSearch={handleOnSearch}
+          onHover={handleOnHover}
+          onSelect={handleOnSelect}
+          onFocus={handleOnFocus}
+          autoFocus
+          formatResult={formatResult}
+        />
         {/*   <input className= {style.searchInput}
         type="text"
         name="search-bar"

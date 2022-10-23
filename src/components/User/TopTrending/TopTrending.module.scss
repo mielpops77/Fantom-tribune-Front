@@ -1,10 +1,11 @@
 .topTrending_fond{
-  background-color:#0C35FF;
+  background-color:#050945;
 
   .topTrending_filterContainer {
     width: 100%;
     margin-bottom: 5%;
     padding:1%;
+    border-radius: 15px;
   
     .topTrending_filterOne {
       display: inline-block;
@@ -83,7 +84,9 @@
     margin: 5% auto;
     font-size: 120%;
     width: 80%;
-    background-color:#282931;
+    background-color: #131325;
+    border-radius: 15px;
+    box-shadow: 0px 0px 14px 2px rgba(105, 130, 241, 0.555);
     
   
     .topTrending_thPointer {
@@ -157,7 +160,7 @@
       .topTrending_sectionTitle {
         margin-left: 1%;
         letter-spacing: -1.6px;
-        color: #1b1b1b;
+        color:#3888E5;
         font-size: 8vw;
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       }
@@ -177,7 +180,7 @@
     /* height: 1000px; */
 
     .topTrending_divSectionTitle {
-      margin-top: 6%;
+      margin-top: 4%;
       display: flex;
       justify-content: center;
       align-items: baseline;
@@ -191,9 +194,10 @@
       .topTrending_sectionTitle {
         margin-left: 1%;
         letter-spacing: -1.6px;
-        color: #1b1b1b;
+        color:#3888E5;
         font-size: 3.2vw;
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
       }
 
       .topTrending_tokensTitle {
