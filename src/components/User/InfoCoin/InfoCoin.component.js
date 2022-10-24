@@ -38,7 +38,7 @@ const InfoCoin = () => {
         <div className={style.infoCoin_page}>
             <NavigationUserComponent />
             <div className={style.infoCoin_container}>
-                <img className={style.infoCoin_img} src="http://localhost:3000/assets/darkdodge.png" alt='img' />
+                <img className={style.infoCoin_img} src="https://fantom-tribune-back.herokuapp.com/assets/floodypuppy.png" alt='img' />
                 <p className={style.infoCoin_name}>{coin.name} NAME - {coin.symbol} SYMBOL</p>
                     <div className={style.infoCoin_infoAndIframe}>
                         <div className={style.infoCoin_info}>
