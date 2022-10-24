@@ -7,8 +7,9 @@ import React from 'react';
 
 const Presales = () => {
     return (
-        <div>
+        <div className={style.presales_fond}>
             <NavigationUserComponent/>
+            <p className={style.presales_sectionTitle}>Presales</p>
             <PresalesComponent/>
             <div className={style.divFooter}> 
                 <FooterComponent/>

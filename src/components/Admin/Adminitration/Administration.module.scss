@@ -16,3 +16,61 @@
   }
 
 }
+
+
+
+.administration_filterContainer {
+  width: 100%;
+  margin-bottom: 5%;
+
+  .administration_filterOne {
+    display: inline-block;
+    width: 14%;
+    height: 70px;
+    border: #069 solid 2px;
+    border-radius: 10px;
+  }
+  .administration_filterOneClick
+  {
+    display: inline-block;
+    width: 14%;
+    height: 70px;
+    border: #069 solid 2px;
+    border-radius: 10px;
+    background-color: #1969fe;
+  }
+
+  .administration_filter {
+    display: inline-block;
+    width: 14%;
+    height: 70px;
+    border: #069 solid 2px;
+    margin-left: 3%;
+    border-radius: 10px;
+  }
+
+  .administration_filterClick
+  {
+    display: inline-block;
+    width: 14%;
+    height: 70px;
+    border: #069 solid 2px;
+    margin-left: 3%;
+    border-radius: 10px;
+    background-color: #1969fe;
+  }
+
+  .administration__filterTitle {
+    text-align: center;
+    line-height: 70px;
+  }
+  .administration_filter:hover {
+    cursor: pointer;
+    background-color: #1969fe;
+  }
+
+  .administration_filterOne:hover {
+    cursor: pointer;
+    background-color: #1969fe;
+  }
+}

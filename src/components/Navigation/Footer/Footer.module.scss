@@ -2,7 +2,7 @@
 
 
 .footerContainer{
-    background: url("https://fantom-tribune-back.herokuapp.com/assets/fond_bandeau.png") no-repeat padding-box;
+    background: url("https://fantom-tribune-back.herokuapp.com/assets/fond_bandeau2.png") no-repeat padding-box;
     background-size: cover;
     display: flex;
     flex-direction: column;
@@ -12,19 +12,54 @@
     width: 100%;
     height: auto;
     max-height: 100px;
-    opacity: 0.6;
     padding: 1.3%;
     bottom:0px;
     right:0px;
     left:0px;
-    opacity: 0.6;
     position: relative;
     
-    .h2Title{
-        font-size: 1vw;   
-        color: #ffffff;
-        text-align: left;
-        margin-left: 5%;
+    .imgFtmTribune{
+        height: 4.5vw;
+        width: 4.5vw;
+        background-color: rgba(158, 172, 255, 0.07);
+        box-shadow: 0px 2px 8px rgba(0, 9, 170, 0.221);
+        border-radius: 50px;
+        margin-bottom: 0.5%;
     }
+    .divAllLogo{
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+
+        .divLinks{
+       
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            width: 50%;
+            font-size: 1.4vw;
+            margin-bottom: 1vw;
+
+            .divLink{
+                display: flex;
+                align-items: center;
+
+                .imgLogo{
+                    height: 2.5vw;
+                    width: 2.5vw;
+                }
+                .link{
+                    color: #ffffff;
+                    font-family: 'Roboto', sans-serif;
+                    font-size: 1.2vw;
+                    
+                    &:hover{
+                        color: $color-1
+                    }
+                }
+            }
+        }
+    }    
 }
 

@@ -3,7 +3,7 @@
   .mainDiv {
     display: flex;
     flex-direction: column;
-    background: url("https://fantom-tribune-back.herokuapp.com/assets/background_with_rocket2.png") no-repeat;
+    background: url("https://fantom-tribune-back.herokuapp.com/assets/background_with_rocket5.png") no-repeat;
     background-size: cover;
     width: 100%;
     height: 1000px;
@@ -27,23 +27,24 @@
       .sectionTitle {
         margin-left: 1%;
         letter-spacing: -1.6px;
-        color: #1b1b1b;
+        color: #0b0b1d;
         font-size: 8vw;
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       }
       
       .tokensTitle {
-        color: #30d0b8;
+        color: #128573;
       }
     }
     
     .divSingleBlock {
       position: relative;
       text-align: center;
-      color: #fefefe;
+      color: #080C48;
 
       .sectionBackground {
-        background: #101e39 0% 0%;
+        background: #04083b;
+        border-radius: 20px;
         width: 100%;
         height: 80%;
         opacity: 1;
@@ -59,7 +60,7 @@
         height: 582px;
         display: inline-block;
         /* UI Properties */
-        background: #283358 0% 0% no-repeat padding-box;
+        background: #131325;
         box-shadow: 0px 0px 8px #00dcff;
         border-radius: 10px;
         opacity: 1;
@@ -68,7 +69,7 @@
       
         &:hover {
           transition-duration: 500ms;
-          background: #222c4e 0% 0% no-repeat padding-box;
+          background: #1b1b38;
           width: 400px;
           height: 590px;
         }
@@ -247,7 +248,7 @@
   .mainDiv {
     display: flex;
     flex-direction: column;
-    background: url("https://fantom-tribune-back.herokuapp.com/assets/background_with_rocket2.png") no-repeat;
+    background: url("https://fantom-tribune-back.herokuapp.com/assets/background_with_rocket5.png") no-repeat;
     background-size: cover;
     width: 100%;
     height: 1000px;
@@ -275,13 +276,13 @@
       font-size: 1.3vw;
       text-align: left;
       letter-spacing: -0.96px;
-      color: #1b1b1b;
-      opacity: 0.8;
+      color: #ffffff;
       font-weight: 600;
     }
 
     .divSectionTitle {
-      margin-top: 17%;
+      margin-top: 12%;
+      padding: 1%;
       display: flex;
       justify-content: center;
       align-items: baseline;
@@ -295,23 +296,24 @@
       .sectionTitle {
         margin-left: 1%;
         letter-spacing: -1.6px;
-        color: #1b1b1b;
+        color: #1b1b38;
         font-size: 3.2vw;
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       }
       
       .tokensTitle {
-        color: #30d0b8;
+        color: #128573;
       }
     }
     
     .divSingleBlock {
       position: relative;
       text-align: center;
-      color: #fefefe;
+      color: #080C48;
 
       .sectionBackground {
-        background: #101e39 0% 0%;
+        background: #04083b;
+        border-radius: 100px;
         width: 100%;
         height: 80%;
         opacity: 1;
@@ -327,7 +329,7 @@
         height: 582px;
         display: inline-block;
         /* UI Properties */
-        background: #283358 0% 0% no-repeat padding-box;
+        background: #131325;
         box-shadow: 0px 0px 8px #00dcff;
         border-radius: 10px;
         opacity: 1;
@@ -336,7 +338,7 @@
       
         &:hover {
           transition-duration: 500ms;
-          background: #222c4e 0% 0% no-repeat padding-box;
+          background: #1b1b38;
           width: 400px;
           height: 590px;
         }

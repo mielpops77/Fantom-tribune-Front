@@ -81,7 +81,7 @@ const AllTokens = () => {
 
   useEffect(() => {
 
-    TableLaunchService.getLaunchTabLenght().then(function (result) {
+    TableLaunchService.getEcosystemLenght().then(function (result) {
 
       if (result / 10 < 1) {
         TableLaunchService.totalPage = 1;

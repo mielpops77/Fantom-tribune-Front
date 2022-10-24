@@ -35,11 +35,23 @@ const InfoCoin = () => {
 
     return (
 
-        <div>
+        <div className={style.infoCoin_page}>
             <NavigationUserComponent />
-            <div className={style.divCorpCoin}>
-                <p className={style.test}>{coin.name}</p>
-                <iframe title="Graphical Board" loading="lazy" src={src} width="50%" height="600px" frameborder="0" scrolling="no" align="center"></iframe>
+            <div className={style.infoCoin_container}>
+                <img className={style.infoCoin_img} src="https://fantom-tribune-back.herokuapp.com/assets/floodypuppy.png" alt='img' />
+                <p className={style.infoCoin_name}>{coin.name} NAME - {coin.symbol} SYMBOL</p>
+                    <div className={style.infoCoin_infoAndIframe}>
+                        <div className={style.infoCoin_info}>
+                            <p className={style.infoCoin_textualInfo}>Type: {coin.type} </p>
+                            <p className={style.infoCoin_textualInfo}>MarketCap : {coin.marketCap}</p>
+                            <p className={style.infoCoin_textualInfo}>Price : {coin.price}</p>
+                            <p className={style.infoCoin_textualInfo}>Change in 24h : {coin.percent_change_24h}</p>
+                            <p className={style.infoCoin_textualInfo}>LaunchDate: {coin.launchDate} </p>
+                            <p className={style.infoCoin_textualInfo}>{coin.marketCap}</p>
+                            
+                        </div>
+                        <iframe className={style.infoCoin_iframe} title="Graphical Board" loading="lazy" src={src} width="50%" height="600px" frameborder="0" ></iframe>
+                    </div>
             </div>
         </div>
     )

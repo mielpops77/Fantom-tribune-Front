@@ -88,7 +88,16 @@ const Presales = () => {
     TableLaunchService.initAction();
     TableLaunchService.initTypeFilter();
 
-    TableLaunchService.getLaunchTabLenght().then(function (result) {
+    getLaunchDateLenght();
+
+    tableLaunch(10, 0);
+
+  }, []);
+
+
+  function getLaunchDateLenght() {
+
+    TableLaunchService.getLaunchDateLenght().then(function (result) {
 
       if (result / 10 < 1) {
         TableLaunchService.totalPage = 1;
@@ -97,11 +106,7 @@ const Presales = () => {
         TableLaunchService.totalPage = result % 10 === 0 ? result / 10 : ((result / 10) - ((result % 10) / 10)) + 1
       }
     });
-
-    tableLaunch(10, 0);
-
-  }, []);
-
+  }
 
 
   const Propagation = e => {
@@ -291,26 +296,24 @@ const Presales = () => {
   return (
 
     <div className={style.container}>
-      <div >
-        <Dropdown className={style.controlDropdownRoot} controlClassName={style.controlDropdown} options={options} onChange={changeType} value={options[0]} placeholder="Select an option" />
-        <div style={{ width: " 60%", display: "inline-block", marginBottom: "2%", marginLeft: "3%" }}>
-          <ReactSearchAutocomplete
-            styling={
-              { 
-                backgroundColor: "transparant",
-                border: "1px solid #ccc",
-                width: "50% !important"
-              }
+      <Dropdown className={style.controlDropdownRoot} controlClassName={style.controlDropdown} options={options} onChange={changeType} value={options[0]} placeholder="Select an option" />
+      <div className={style.presale_dropDownSearch} style={{ width: " 60%", display: "inline-block", marginBottom: "2%", marginLeft: "3%" }}>
+        <ReactSearchAutocomplete
+          styling={
+            { 
+              backgroundColor: "transparant",
+              border: "1px solid #ccc",
+              width: "50% !important"
             }
-            items={items}
-            onSearch={handleOnSearch}
-            onHover={handleOnHover}
-            onSelect={handleOnSelect}
-            onFocus={handleOnFocus}
-            autoFocus
-            formatResult={formatResult}
-          />
-        </div>
+          }
+          items={items}
+          onSearch={handleOnSearch}
+          onHover={handleOnHover}
+          onSelect={handleOnSelect}
+          onFocus={handleOnFocus}
+          autoFocus
+          formatResult={formatResult}
+        />
         {/*   <input className= {style.searchInput}
         type="text"
         name="search-bar"
@@ -321,30 +324,30 @@ const Presales = () => {
       <table className="table table-striped table-hover">
         <thead>
           <tr>
-            <th className={style.thPointer} scope="col">#</th>
-            <th className={style.thPointer} scope="col"> </th>
-            <th className={style.thPointer} style={{ cursor: 'pointer' }} scope="col">Name</th>
-            <th className={style.thPointer} style={{ cursor: 'pointer' }} scope="col">Symbol</th>
-            <th className={style.thPointer} scope="col">Type</th>
-            <th onClick={trieLaunchDate} className={style.thPointer} style={{ cursor: 'pointer' }} scope="col">LaunchDate</th>
-            <th onClick={trieVote} className={style.thPointer} style={{ cursor: 'pointer' }} scope="col">Votes</th>
-            <th className={style.thPointer} style={{ cursor: 'pointer' }} scope="col">VotesToday</th>
+            <th className={style.presales_thPointer} scope="col">#</th>
+            <th className={style.presales_thPointer} scope="col"> </th>
+            <th className={style.presales_thPointer} style={{ cursor: 'pointer' }} scope="col">Name</th>
+            <th className={style.presales_thPointer} style={{ cursor: 'pointer' }} scope="col">Symbol</th>
+            <th className={style.presales_thPointer} scope="col">Type</th>
+            <th onClick={trieLaunchDate} className={style.presales_thPointer} style={{ cursor: 'pointer' }} scope="col">LaunchDate</th>
+            <th onClick={trieVote} className={style.presales_thPointer} style={{ cursor: 'pointer' }} scope="col">Votes</th>
+            <th className={style.presales_thPointer} style={{ cursor: 'pointer' }} scope="col">VotesToday</th>
 
-            <th className={style.thPointer} scope="col">  </th>
+            <th className={style.presales_thPointer} scope="col">  </th>
           </tr>
         </thead>
         <tbody>
           {database.rows?.map((row, index) => (
             <tr key={index} onClick={() => nav(`/infoCoin/${row.id}`)} style={{ cursor: 'pointer' }} >
-              <td className={style.presalesPageTd}></td>
-              <td className={style.presalesPageTd} value={row.id} ><img className={style.presalesPage_img} src={row.image.props.src} alt='img' /> </td>
-              <td className={style.presalesPageTd}>{row.name}</td>
-              <td className={style.presalesPageTd}>{row.symbol}</td>
-              <td className={style.presalesPageTd}>{row.type}</td>
-              <td className={style.presalesPageTd}>{row.launchDate}</td>
-              <td className={style.presalesPageTd}>{row.vote}</td>
-              <td className={style.presalesPageTd}>{row.voteTwentyHour}</td>
-              <td className={style.presalesPageTd}>
+              <td className={style.presales_PageTd}></td>
+              <td className={style.presales_PageTd} value={row.id} ><img className={style.presalesPage_img} src={row.image.props.src} alt='img' /> </td>
+              <td className={style.presales_PageTd}>{row.name}</td>
+              <td className={style.presales_PageTd}>{row.symbol}</td>
+              <td className={style.presales_PageTd}>{row.type}</td>
+              <td className={style.presales_PageTd}>{row.launchDate}</td>
+              <td className={style.presales_PageTd}>{row.vote}</td>
+              <td className={style.presales_PageTd}>{row.voteTwentyHour}</td>
+              <td className={style.presales_PageTd}>
                 <button type="button" onClick={function (event) { Propagation(event); Vote(row.id, row.voteToday, row.vote, row.voteTwentyHourCalcul, row.voteTwentyHour) }} className="btn btn-success">Vote</button>
               </td>
             </tr>

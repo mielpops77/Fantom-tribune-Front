@@ -193,13 +193,22 @@ function getPromotedProject() {
     })
 }
 
-function getLaunchTabLenght() {
+function getLaunchDateLenght() {
     return axios.get(AuthService.getUrl() + 'launchDateLenght/')
         .then(response => {
             return response.data;
         })
 
 }
+
+
+let getPromotedProjectLenght = () => {
+    return axios.get(AuthService.getUrl() + 'getPromotedProjectLenght/')
+    .then(response => {
+        return response.data;
+    })
+ 
+};
 
 
 function getEcosystem(limit, skip) {
@@ -209,13 +218,13 @@ function getEcosystem(limit, skip) {
         })
 }
 
-/* function getEcosystemLenght() {
+function getEcosystemLenght() {
     return axios.get(AuthService.getUrl() + 'ecosystemLenght/')
         .then(response => {
             return response.data;
         })
 
-} */
+}
 
 
 function getTopTrending(limit, skip) {
@@ -356,14 +365,15 @@ function coinMarketCalcul() {
 
 
 export default {
+    getPromotedProjectLenght,
     resolveAfter2Seconds,
     getTopTrendingToday,
     initListAllContract,
     voteHourApplication,
     ftmScanTotalSupply,
-    getLaunchTabLenght,
+    getLaunchDateLenght,
     getLaunchDateTrending,
-    /* getEcosystemLenght, */
+    getEcosystemLenght,
     getListAllContract,
     getPromotedProject,
     setListAllContract,
