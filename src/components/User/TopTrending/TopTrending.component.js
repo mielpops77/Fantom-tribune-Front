@@ -540,17 +540,17 @@ const TopTrending = () => {
           <tbody>
             {database.rows?.map((row, index) => (
               <tr key={index} onClick={() => nav(`/infoCoin/${row.id}`)} style={{ cursor: 'pointer' }} >
-                <td className={style.topTrending_PageTd}>{row.rank}</td>
-                <td className={style.topTrending_PageTd} value={row.id}><img className={style.topTrending_img} src={row.image.props.src} alt='img' /></td>
-                <td className={style.topTrending_PageTd}>{row.name}</td>
-                <td className={style.topTrending_PageTd}>{row.symbol}</td>
-                <td className={style.topTrending_PageTd}>{row.launchDate}</td>
-                <td className={style.topTrending_PageTd}>$ {row.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}</td>
-                <td className={style.topTrending_PageTd}>$ {row.coinMarket.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</td>
-                <td className={style.topTrending_PageTd}> {row.percent_change_24h} %   {row.percent_change_24h > 0 && <img src={url + "assets/Up-arrow.png"} className={style.topTrending_imgUpArrow} alt='Up-arrow'></img>}  {row.percent_change_24h < 0 && <img src={url + "assets/Down-arrow.png"} className={style.topTrending_imgUpArrow} alt='Down-arrow'></img>} </td>
-                <td className={style.topTrending_PageTd}>{row.vote}</td>
-                <td className={style.topTrending_PageTd}>
-                  <button type="button" onClick={function (event) { Propagation(event); vote(row.id, row.voteToday, row.vote, row.voteTwentyHourCalcul, row.voteTwentyHour) }} className="btn btn-success">Vote</button>
+                <td className={style.topTrending_td}>{row.rank}</td>
+                <td className={style.topTrending_td} value={row.id}><img className={style.topTrending_img} src={row.image.props.src} alt='img' /></td>
+                <td className={style.topTrending_td}>{row.name}</td>
+                <td className={style.topTrending_td}>{row.symbol}</td>
+                <td className={style.topTrending_td}>{row.launchDate}</td>
+                <td className={style.topTrending_td}>$ {row.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}</td>
+                <td className={style.topTrending_td}>$ {row.coinMarket.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</td>
+                <td className={style.topTrending_td}> {row.percent_change_24h} %   {row.percent_change_24h > 0 && <img src={url + "assets/Up-arrow.png"} className={style.topTrending_imgUpArrow} alt='Up-arrow'></img>}  {row.percent_change_24h < 0 && <img src={url + "assets/Down-arrow.png"} className={style.topTrending_imgUpArrow} alt='Down-arrow'></img>} </td>
+                <td className={style.topTrending_td}>{row.vote}</td>
+                <td className={style.topTrending_td}>
+                  <button type="button" onClick={function (event) { Propagation(event); vote(row.id, row.voteToday, row.vote, row.voteTwentyHourCalcul, row.voteTwentyHour) }} className={style.topTrending_voteButton}>Vote</button>
                 </td>
               </tr>
 

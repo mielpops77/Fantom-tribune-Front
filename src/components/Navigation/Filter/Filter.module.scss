@@ -1,11 +1,10 @@
 @media all and (max-width:1024px){
     .searchFilter {
-        margin: 3% auto auto auto;
         display: flex;
         flex-direction: column;
         align-items:center ;
-        width:80%;
-        height: 80%;
+        width:400px;
+        height: 95%;
 
         .filter {
             display: block;
@@ -16,6 +15,16 @@
             opacity: 1;
             text-align: center;
             padding: 1% 2% 0 2%;
+
+            
+            .filter_priceChange{
+                margin-top:10%;
+                margin-bottom:10%;
+                
+                .filter_textPriceChange{
+                    margin-bottom: -5%;
+                }
+            }
 
             .switch {
                 margin-top: -4%;
@@ -72,7 +81,7 @@
                 align-items: center;
                 margin:5%;
 
-                .priceChange {
+                .filter_select {
                     margin-top: -4%;
                     background-color: #c6c6c6;
                     border-radius: 10px;                
@@ -113,7 +122,7 @@
             background: #2578d8;
                 .textSearch {
                     transition-duration: 600ms;
-                    font-size: 1.35vw;
+                    font-size: 22px;
                 }
             }
         
@@ -126,7 +135,7 @@
                 text-align: center;
                 letter-spacing: -0.96px;
                 color: #ffffff;
-                font-size: 3vw;
+                font-size: 20px;
 
             }
         }
@@ -137,7 +146,6 @@
 @media all and (min-width:1024px){
 
     .searchFilter {
-        margin: 3% 0% auto 13%;
         width: 85%;
         display: flex;
         flex-direction: row;
@@ -207,7 +215,7 @@
                 left: 44px;
             }
 
-            .priceChange {
+            .filter_select {
                 background-color: #c6c6c6;
                 border-radius: 10px;
                 padding: 5px;

@@ -233,36 +233,34 @@ const AllTokens = () => {
   }
 
   return (
-    <div className={style.container}>
+    <div className={style.allTokens_container}>
       <table className="table table-striped table-hover">
         <thead>
           <tr>
-            <th className={style.thPointer} scope="col">#</th>
-            <th className={style.thPointer} scope="col"> </th>
-            <th className={style.thPointer} scope="col">Name</th>
-            <th className={style.thPointer} scope="col">Symbol</th>
-            <th className={style.thPointer} scope="col">LaunchDate</th>
-            <th className={style.thPointer} scope="col">Price</th>
-            <th className={style.thPointer} scope="col">MarketCap</th>
-            <th className={style.thPointer} scope="col">Change in 24h:</th>
-            <th className={style.thPointer} scope="col">Votes</th>
-            <th className={style.thPointer} scope="col">  </th>
+            <th className={style.allTokens_thPointer} scope="col"> </th>
+            <th className={style.allTokens_thPointer} scope="col">Name</th>
+            <th className={style.allTokens_thPointer} scope="col">Symbol</th>
+            <th className={style.allTokens_thPointer} scope="col">LaunchDate</th>
+            <th className={style.allTokens_thPointer} scope="col">Price</th>
+            <th className={style.allTokens_thPointer} scope="col">MarketCap</th>
+            <th className={style.allTokens_thPointer} scope="col">Change in 24h:</th>
+            <th className={style.allTokens_thPointer} scope="col">Votes</th>
+            <th className={style.allTokens_thPointer} scope="col">  </th>
           </tr>
         </thead>
         <tbody>
           {database.rows?.map((row, index) => (
             <tr key={index} onClick={() => nav(`/infoCoin/${row.id}`)} style={{ cursor: 'pointer' }} >
-              <td className={style.allTokensPageTd}></td>
-              <td className={style.allTokensPageTd} value={row.id}><img className={style.allTokenPage_img} src={row.image.props.src} alt='img' /></td>
-              <td className={style.allTokensPageTd}>{row.name}</td>
-              <td className={style.allTokensPageTd}>{row.symbol}</td>
-              <td className={style.allTokensPageTd}>{row.launchDate}</td>
-              <td className={style.allTokensPageTd}>$ {row.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}</td>
-              <td className={style.allTokensPageTd}>$ {row.coinMarket.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</td>
-              <td className={style.allTokensPageTd}> {row.percent_change_24h} %   {row.percent_change_24h > 0 &&<img src={url + "assets/Up-arrow.png"} className={style.allTokensImgUpArrow} alt='Up-arrow'></img>}  {row.percent_change_24h < 0 &&<img src={url + "assets/Down-arrow.png"} className={style.allTokensImgUpArrow} alt='Down-arrow'></img>} </td>
-              <td className={style.allTokensPageTd}>{row.vote}</td>
-              <td className={style.allTokensPageTd}>
-                <button type="button" onClick={function (event) { Propagation(event); vote(row.id, row.voteToday, row.vote, row.voteTwentyHourCalcul, row.voteTwentyHour) }} className="btn btn-success">Vote</button>
+              <td className={style.allTokens_td} value={row.id}><img className={style.allTokens_img} src={row.image.props.src} alt='img' /></td>
+              <td className={style.allTokens_td}>{row.name}</td>
+              <td className={style.allTokens_td}>{row.symbol}</td>
+              <td className={style.allTokens_td}>{row.launchDate}</td>
+              <td className={style.allTokens_td}>$ {row.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}</td>
+              <td className={style.allTokens_td}>$ {row.coinMarket.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</td>
+              <td className={style.allTokens_td}> {row.percent_change_24h} %   {row.percent_change_24h > 0 &&<img src={url + "assets/Up-arrow.png"} className={style.allTokens_imgUpArrow} alt='Up-arrow'></img>}  {row.percent_change_24h < 0 &&<img src={url + "assets/Down-arrow.png"} className={style.allTokens_imgUpArrow} alt='Down-arrow'></img>} </td>
+              <td className={style.allTokens_td}>{row.vote}</td>
+              <td className={style.allTokens_td}>
+                <button type="button" onClick={function (event) { Propagation(event); vote(row.id, row.voteToday, row.vote, row.voteTwentyHourCalcul, row.voteTwentyHour) }} className={style.allTokens_voteButton}>Vote</button>
               </td>
             </tr>
 

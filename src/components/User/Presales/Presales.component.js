@@ -59,7 +59,7 @@ const Presales = () => {
           {/* <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div> */ }
         );
         item.image = (
-          <img className={style.presalesPage_img} src={url + result[index].image} alt='img' />
+          <img className={style.presales_img} src={url + result[index].image} alt='img' />
         );
         userData.push(item);
       });
@@ -71,7 +71,7 @@ const Presales = () => {
 
         let data = TableLaunchService.getDatabase()
         for (let i = 0; i < totalReactPackages.length; i++) {
-          data.rows.push(({ image: <img className={style.presalesPage_img} alt='img' style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, vote: totalReactPackages[i].vote, voteToday: totalReactPackages[i].voteToday, type: totalReactPackages[i].type, voteTwentyHour: totalReactPackages[i].voteTwentyHour, voteTwentyHourCalcul: totalReactPackages[i].voteTwentyHourCalcul }));
+          data.rows.push(({ image: <img className={style.presales_img} alt='img' style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, vote: totalReactPackages[i].vote, voteToday: totalReactPackages[i].voteToday, type: totalReactPackages[i].type, voteTwentyHour: totalReactPackages[i].voteTwentyHour, voteTwentyHourCalcul: totalReactPackages[i].voteTwentyHourCalcul }));
         }
         seDatabase(TableLaunchService.getDatabase());
       }
@@ -325,13 +325,11 @@ const Presales = () => {
         <thead>
           <tr>
             <th className={style.presales_thPointer} scope="col">#</th>
-            <th className={style.presales_thPointer} scope="col"> </th>
             <th className={style.presales_thPointer} style={{ cursor: 'pointer' }} scope="col">Name</th>
             <th className={style.presales_thPointer} style={{ cursor: 'pointer' }} scope="col">Symbol</th>
             <th className={style.presales_thPointer} scope="col">Type</th>
             <th onClick={trieLaunchDate} className={style.presales_thPointer} style={{ cursor: 'pointer' }} scope="col">LaunchDate</th>
             <th onClick={trieVote} className={style.presales_thPointer} style={{ cursor: 'pointer' }} scope="col">Votes</th>
-            <th className={style.presales_thPointer} style={{ cursor: 'pointer' }} scope="col">VotesToday</th>
 
             <th className={style.presales_thPointer} scope="col">  </th>
           </tr>
@@ -339,16 +337,14 @@ const Presales = () => {
         <tbody>
           {database.rows?.map((row, index) => (
             <tr key={index} onClick={() => nav(`/infoCoin/${row.id}`)} style={{ cursor: 'pointer' }} >
-              <td className={style.presales_PageTd}></td>
-              <td className={style.presales_PageTd} value={row.id} ><img className={style.presalesPage_img} src={row.image.props.src} alt='img' /> </td>
-              <td className={style.presales_PageTd}>{row.name}</td>
-              <td className={style.presales_PageTd}>{row.symbol}</td>
-              <td className={style.presales_PageTd}>{row.type}</td>
-              <td className={style.presales_PageTd}>{row.launchDate}</td>
-              <td className={style.presales_PageTd}>{row.vote}</td>
-              <td className={style.presales_PageTd}>{row.voteTwentyHour}</td>
-              <td className={style.presales_PageTd}>
-                <button type="button" onClick={function (event) { Propagation(event); Vote(row.id, row.voteToday, row.vote, row.voteTwentyHourCalcul, row.voteTwentyHour) }} className="btn btn-success">Vote</button>
+              <td className={style.presales_td} value={row.id} ><img className={style.presales_img} src={row.image.props.src} alt='img' /> </td>
+              <td className={style.presales_td}>{row.name}</td>
+              <td className={style.presales_td}>{row.symbol}</td>
+              <td className={style.presales_td}>{row.type}</td>
+              <td className={style.presales_td}>{row.launchDate}</td>
+              <td className={style.presales_td}>    {row.vote}</td>
+              <td className={style.presales_td}>
+                <button type="button" onClick={function (event) { Propagation(event); Vote(row.id, row.voteToday, row.vote, row.voteTwentyHourCalcul, row.voteTwentyHour) }} className={style.presales_voteButton}>Vote</button>
               </td>
             </tr>
 
