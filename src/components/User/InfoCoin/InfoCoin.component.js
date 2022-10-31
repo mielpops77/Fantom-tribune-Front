@@ -47,7 +47,7 @@ const InfoCoin = () => {
             <NavigationUserComponent />
             <div className={style.infoCoin_container}>
                 <img className={style.infoCoin_img} src={url + coin.image} alt='img' />
-                <p className={style.infoCoin_name}>{coin.name} NAME - {coin.symbol} SYMBOL</p>
+                <p className={style.infoCoin_name}>{coin.name}  - {coin.symbol} </p>
                 <div className={style.infoCoin_infoAndIframe}>
                     <div className={style.infoCoin_info}>
                         <p className={style.infoCoin_textualInfo}>Type: {coin.type} </p>
@@ -56,9 +56,8 @@ const InfoCoin = () => {
                         <p className={style.infoCoin_textualInfo}>Change in 24h : {coin.percent_change_24h}</p>
                         <p className={style.infoCoin_textualInfo}>LaunchDate: {coin.launchDate} </p>
                         <p>Information incorrect? Please submit an <span onClick={() => nav(`/updateCoin/`)}>Update Request!</span></p>
-
                     </div>
-                    <iframe className={style.infoCoin_iframe} title="Graphical Board" loading="lazy" src={src} width="50%" height="600px" frameborder="0" ></iframe>
+                    <iframe className={style.infoCoin_iframe} title="Graphical Board" loading="lazy" src={src} width="50%" height="550px" frameborder="0" ></iframe>
                 </div>
             </div>
         </div>

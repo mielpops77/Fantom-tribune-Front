@@ -21,8 +21,8 @@
             box-shadow: 0px 0px 2px 2px rgba(255, 255, 255);
 
             .infoCoin_img{
-                max-width: 13vw;
-                height: auto;
+                width: 6vw;
+                height: 6vw;
             }
     
             .infoCoin_name{
@@ -38,13 +38,13 @@
                 align-items: center;
                 justify-content: center;
                 width: 95%;
-                height: auto;
+                height: 73%;
 
                 .infoCoin_info{
                     font-family: "Roboto", sans-serif;
                     font-size: 1.4vw;
-                    width: 35%;
-                    margin-left:3%;
+                    width: 40%;
+                    margin:3%;
                     height: auto;
                     color: white;
                 }
