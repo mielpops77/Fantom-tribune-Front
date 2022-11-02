@@ -1,19 +1,91 @@
-.updateCoin_fond{
-    background-color:#050945;
-  
-    .updateCoin_sectionTitle {
-        margin-top:3%;
-        text-align: center;
-        margin-left: 1%;
-        letter-spacing: -1.6px;
-        color:#3888E5;
-        font-size: 3.2vw;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    }
-    .divFooter{
-        position:fixed;
-        left:0;
-        bottom: 0;
+.updateCoin_formulaire {
+    background-color: white;
+    width: 70%;
+    display: block;
+    margin-bottom: 2%;
+    margin: 0 auto;
+
+    .updateCoin_formLabel {
+        margin-top: 20px;
+        margin-bottom: 10px;
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        color: #450ca0;
+        font-size: max(0.84vw, 11px);
+        text-shadow: -0.05em 0.03em 0.25em #c7f5ca;
+        font-weight: 500;
+        font-family: "Fira Sans", sans-serif;
+
+        .updateCoin_formInput {
+            background-color: #ffffff;
+            width: 100%;
+            font-family: "Roboto", sans-serif;
+            color: rgb(37, 0, 122);
+            font-size: 1vw;
+            margin: 0 auto;
+            padding: 0.2rem 1rem 0.2rem 1rem;
+            border-radius: 0.3vw;
+            border: 0.1rem solid;
+            border-color: #cedeff;
+            transition: all 0.3s;
+        }
+    }
+
+    .updateCoin_formLabelFileEmpty {
+        width: 100%;
+        display: inline;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        flex-direction: column;
+        color: #450ca0;
+        font-size: max(0.84vw, 11px);
+        text-shadow: -0.05em 0.03em 0.25em #c7f5ca;
+        font-weight: 500;
+        font-family: "Fira Sans", sans-serif;
+    }
+
+    .updateCoin_img {
+        text-align: left;
+        width: 100%;
+        max-width: 50px;
+        min-width: 15px;
+        height: auto;
+        max-height: 50px;
+        min-height: 15px;
+        object-fit: cover;
+    }
+
+    .updateCoin_file {
+        width: 100%;
+        visibility: hidden;
+        height: 0;
+    }
+
+    .updateCoin_search {
+        vertical-align: middle;
+    }
+
+    .updateCoin_nameSearch {
+        margin-left: 5%;
+    }
+
+    .updateCoin_removeField {
+        margin-bottom: 10px;
+        color: #0d6efd;
+    }
+
+    mat-chip {
+        float: right;
+        margin-top: 1.5%;
+        margin-right: 10%;
+        border-radius: 12px;
+        background-color: #323546;
+        color: #a1a7bb;
+    }
+    mat-chip > label {
+        display: block;
+        padding: 6px;
+        border-radius: 12px;
     }
 }

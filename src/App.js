@@ -2,6 +2,7 @@
 import ValidationForm from "./components/User/Formulaire/ValidationFormulaire.component";
 import Register from './components/Authentification/Register/Register.component';
 import TopTrending from './components/User/TopTrending/TopTrending.component';
+import UpdateCoin from "./pages/user/UpdateCoin/UpdateCoin.page";
 import Giveaways from './components/User/Giveaways/Giveaways.component';
 import Login from './components/Authentification/Login/Login.component';
 import InfoCoin from "./components/User/InfoCoin/InfoCoin.component";
@@ -10,10 +11,9 @@ import EditionCoin from "./components/Admin/Adminitration/Edition";
 import Presales from './pages/user/Presales/Presales.component';
 import Welcome from "./components/Authentification/Welcome";
 import Administration from './pages/admin/Administration';
-import Submit from './pages/user/Submit/Submit.component'
+import Submit from './pages/user/Submit/Submit.component';
 import AllTokens from "./pages/user/AllTokens/AllTokens";
 import { Route, Routes } from 'react-router-dom';
-import UpdateCoin from "./components/User/UpdateCoin/UpdateCoin.component";
 import ApiConfig from './pages/admin/ApiConfig';
 import React from 'react';
 import Home from './Home';

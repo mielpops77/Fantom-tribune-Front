@@ -301,7 +301,7 @@ const Presales = () => {
         <ReactSearchAutocomplete
           styling={
             { 
-              backgroundColor: "transparant",
+             
               border: "1px solid #ccc",
               width: "50% !important"
             }
