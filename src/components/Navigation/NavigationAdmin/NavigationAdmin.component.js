@@ -30,7 +30,10 @@ const NavigationAdmin = () => {
 
 
     <nav>
-      <img className={style.imgFond} src={url + "assets/header.png"} alt='header' />
+      <div className={style.fantom_tribune}>
+        <img className={style.imgLogo} src={url + "assets/logo.png"} alt='logo' />
+        <h1 className={style.title}>FANTOM TRIBUNE</h1>
+      </div>
       {showAdminBoard && (<ul className={style.ulNavUser}>
         <NavLink
           to="/administration"

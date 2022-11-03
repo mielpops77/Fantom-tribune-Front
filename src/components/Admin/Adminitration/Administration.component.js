@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { MDBDataTableV5 } from 'mdbreact';
 import { BsTrash } from 'react-icons/bs';
+import { green } from '@mui/material/colors';
 
 function Administration() {
 
@@ -344,14 +345,17 @@ function Administration() {
                 <div className={toggle3 ? style.administration_filterClick : style.administration_filter} onClick={() => changeStyle(3)}> <p className={style.administration__filterTitle}>Corbeille</p> </div>
 
             </div>
-       
+
             <MDBDataTableV5
+                dark
                 responsive
                 hover
                 striped
                 bordered
                 small
                 data={data}
+                className={style.mbd}
+                color="success"
             />
         </div >
     );

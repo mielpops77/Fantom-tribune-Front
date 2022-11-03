@@ -1,7 +1,7 @@
 import NavigationUserComponent from '../../../components/Navigation/NavigationUser/NavigationUser.component';
 import UpdateCoinComponent from '../../../components/User/UpdateCoin/UpdateCoin.component';
 import FooterComponent from '../../../components/Navigation/Footer/Footer.component';
-import style from "./UpdateCoin.module.scss";
+import style from "./UpdateCoin.page.module.scss";
 import React from 'react';
 
 

@@ -2,6 +2,7 @@ import NavigationAdminComponent from '../../components/Navigation/NavigationAdmi
 import AdministrationComponent from '../../components/Admin/Adminitration/Administration.component'
 import AuthService from "../../services/auth/auth.service";
 import React, { useState, useEffect } from "react";
+import style from './Administration.page.module.scss';
 
 const Administration = () => {
 
@@ -21,13 +22,12 @@ const Administration = () => {
 
     return (
         
-        <div className ="admin">
+        <div className ={style.administration_fond}>
              {showAdminBoard && (<div>
             <NavigationAdminComponent/>
             <br /><br /><br />
             <AdministrationComponent/>
             <h1>
-                Admin
             </h1>
             </div>)}
         </div>
