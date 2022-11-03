@@ -521,7 +521,7 @@ const TopTrending = () => {
 
         </div>
 
-        <table className="table table-striped table-hover">
+        <table className="table table-hover">
 
           <thead>
             <tr>

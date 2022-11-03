@@ -234,7 +234,7 @@ const AllTokens = () => {
 
   return (
     <div className={style.allTokens_container}>
-      <table className="table table-striped table-hover">
+      <table className="table table-hover">
         <thead>
           <tr>
             <th className={style.allTokens_thPointer} scope="col"> </th>

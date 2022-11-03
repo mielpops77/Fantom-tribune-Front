@@ -19,6 +19,7 @@ const Home = () => {
             <div className={style.home_filterComponent}>
                 <FilterComponent/>
             </div>
+            <br/><br/><br/><br/><br/>
             <div className={style.divSectionTitle}>
                 <img src={url + "assets/star.png"} className={style.imgLogoSection} alt='star'></img>
                 <p className={style.sectionTitle}>Promoted <span className={style.tokensTitle}>Tokens</span> </p>

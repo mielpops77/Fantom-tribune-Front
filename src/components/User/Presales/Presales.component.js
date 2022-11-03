@@ -321,7 +321,7 @@ const Presales = () => {
         placeholder="Search..."
       /> */}
       </div>
-      <table className="table table-striped table-hover">
+      <table className="table table-hover">
         <thead>
           <tr>
             <th className={style.presales_thPointer} scope="col">#</th>

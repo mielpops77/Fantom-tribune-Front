@@ -24,6 +24,8 @@ const Navigation = () => {
   const logOut = () => {
     AuthService.logout();
   };
+
+  
   return (
     // eslint-disable-next-line react/style-prop-object
 
