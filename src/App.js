@@ -7,7 +7,7 @@ import Giveaways from './components/User/Giveaways/Giveaways.component';
 import Login from './components/Authentification/Login/Login.component';
 import InfoCoin from "./components/User/InfoCoin/InfoCoin.component";
 import Profile from "./components/Authentification/Profile/Profile";
-import EditionCoin from "./components/Admin/Adminitration/Edition";
+import EditionCoin from "./components/Admin/Adminitration/Edition.component";
 import Presales from './pages/user/Presales/Presales.page';
 import Welcome from "./components/Authentification/Welcome";
 import Administration from './pages/admin/Administration.page';

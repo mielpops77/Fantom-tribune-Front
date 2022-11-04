@@ -13,11 +13,15 @@ function Administration() {
     const url = AuthService.getUrl();
     const [usersForRender, setUsersForRender] = useState([]);
     const [posts, setPosts] = useState([]);
+    const [toggleMenu, setToggleMenu] = useState(true);
+    const [toggle2Menu, setToggle2Menu] = useState(false);
+    const [toggle3Menu, setToggle3Menu] = useState(false);
+    const [toggle4Menu, setToggle4Menu] = useState(false);
+
     const [toggle, setToggle] = useState(true);
     const [toggle2, setToggle2] = useState(false);
     const [toggle3, setToggle3] = useState(false);
     const [toggle4, setToggle4] = useState(false);
-    const [toggle5, setToggle5] = useState(false);
 
 
 
@@ -32,6 +36,51 @@ function Administration() {
         navigate(path)
     }
 
+
+    let changeStyleMenu = (btn) => {
+        switch (btn) {
+            case 1:
+                setToggleMenu(true);
+                setToggle2Menu(false);
+                setToggle3Menu(false);
+                setToggle4Menu(false);
+
+
+                setToggle(true);
+                setToggle2(false);
+                setToggle3(false);
+                setToggle4(false);
+                getValidation();
+                break;
+            case 2:
+                setToggleMenu(false);
+                setToggle2Menu(true);
+                setToggle3Menu(false);
+                setToggle4Menu(false);
+
+                setToggle(true);
+                setToggle2(false);
+                setToggle3(false);
+                setToggle4(false);
+                getUpdate();
+                break;
+            case 3:
+                setToggleMenu(false);
+                setToggle2Menu(false);
+                setToggle3Menu(true);
+                setToggle4Menu(false);
+                break;
+            case 4:
+                setToggleMenu(false);
+                setToggle2Menu(false);
+                setToggle3Menu(false);
+                setToggle4Menu(true);
+                break;
+            default:
+        }
+    };
+
+
     let changeStyle = (btn) => {
         switch (btn) {
             case 1:
@@ -39,41 +88,34 @@ function Administration() {
                 setToggle2(false);
                 setToggle3(false);
                 setToggle4(false);
-                setToggle5(false);
-                getValidation();
+                if (toggleMenu) { getValidation(); }
+                else { getUpdate(); }
                 break;
             case 2:
                 setToggle2(true);
                 setToggle(false);
                 setToggle3(false);
                 setToggle4(false);
-                setToggle5(false);
-                getLunch();
+                if (toggleMenu) { getLunch(); }
+                else { }
+
                 break;
             case 3:
+                console.log("kokok");
                 setToggle3(true);
                 setToggle(false);
                 setToggle2(false);
                 setToggle4(false);
-                setToggle5(false);
-                getTrash();
+                if (toggleMenu) { getTrash(); }
+                else { getUpdateListRefuse(); }
                 break;
             case 4:
                 setToggle3(false);
                 setToggle(false);
                 setToggle2(false);
                 setToggle4(true);
-                setToggle5(false);
-                getPromoted();
-                break;
-
-            case 5:
-                setToggle3(false);
-                setToggle(false);
-                setToggle2(false);
-                setToggle4(false);
-                setToggle5(true);
-                getUpdate();
+                if (toggleMenu) { getPromoted(); }
+                else { getUpdateListDelete() }
                 break;
             default:
         }
@@ -88,13 +130,6 @@ function Administration() {
             });
     }, []);
 
-    let getUpdate = () => {
-        fetch(url + 'updateList/')
-            .then((res) => res.json())
-            .then((res) => {
-                setPosts(res);
-            });
-    };
 
 
     let getLunch = () => {
@@ -140,6 +175,10 @@ function Administration() {
             });
     };
 
+
+
+
+
     let getPromoted = () => {
         fetch(url + 'getPromotedProject/')
             .then((res) => res.json())
@@ -178,6 +217,9 @@ function Administration() {
                 }
             });
     };
+
+
+
 
 
     let promotedChangeRequest = (postId, promotedStatus) => {
@@ -232,6 +274,88 @@ function Administration() {
 
 
 
+
+
+
+    let getUpdate = () => {
+        fetch(url + 'updateList/')
+            .then((res) => res.json())
+            .then((res) => {
+                setPosts(res);
+            });
+    };
+
+
+    let getUpdateListRefuse = () => {
+        fetch(url + 'updateListRefuse/')
+            .then((res) => res.json())
+            .then((res) => {
+                setPosts(res);
+            });
+    };
+
+
+
+    let getUpdateListDelete = () => {
+        fetch(url + 'updateListDelete/')
+            .then((res) => res.json())
+            .then((res) => {
+                setPosts(res);
+            });
+    };
+
+    let updateRefuseValide = (postId, remove) => {
+        fetch(url + `updateRefuseValide/${postId}`, {
+            method: "Put",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ status: remove })
+        })
+            .then((res) => res.json())
+            .then((res) => {
+
+                if (toggle) { getUpdate(); }
+                if (toggle3) { getUpdateListRefuse(); }
+            });
+    };
+
+
+
+
+    let updateDelete = (postId, deleteValeur) => {
+
+
+        fetch(url + `updateDelete/${postId}`, {
+            method: "Put",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ delete: deleteValeur })
+        })
+            .then((res) => res.json())
+            .then((res) => {
+                if (toggle3) { getUpdateListRefuse(); }
+                if (toggle4) { getUpdateListDelete(); }
+            });
+    };
+
+
+
+    let updateDeleteDef = (postId) => {
+        fetch(url + `updateDeleteDef/${postId}`, {
+            method: "DELETE",
+        })
+            .then((res) => res.json())
+            .then((res) => {
+                var postIndex = posts.findIndex(function (o) {
+                    return o._id === postId;
+                });
+                if (postIndex !== -1) {
+                    setPosts(posts.filter((item) => item.id !== postId));
+                    getUpdateListDelete();
+                }
+            });
+    };
+
+
+
     useEffect(() => {
         let postsArray = JSON.parse(JSON.stringify(posts));
         let userData = [];
@@ -242,75 +366,107 @@ function Administration() {
             item.action = (
                 <div style={{ display: "flex" }}>
 
-                    {toggle && <AiOutlineCheck size={32} style={{
-                        cursor: "pointer",
-                        color: "green",
-                    }} onClick={() => validProject(posts[index]._id, true, false)} />}
+                    {toggleMenu &&
+                        <div>
+                            {toggle && <AiOutlineCheck size={32} style={{
+                                cursor: "pointer",
+                                color: "green",
+                            }} onClick={() => validProject(posts[index]._id, true, false)} />}
 
-                    {toggle && <AiOutlineClose size={32} style={{
-                        cursor: "pointer",
-                        color: "red",
-                    }} onClick={() => validProject(posts[index]._id, false, true)} />}
+                            {toggle && <AiOutlineClose size={32} style={{
+                                cursor: "pointer",
+                                color: "red",
+                            }} onClick={() => validProject(posts[index]._id, false, true)} />}
 
-                    {toggle && <AiFillEdit size={32} style={{
-                        cursor: "pointer",
-                        color: "blue",
-                    }} onClick={() => nav(`/editionCoin/${posts[index]._id}`)} />}
-
-
-                    {toggle2 && <div>{!posts[index].promotedStatus && <AiFillStar size={32}
-                        style={{
-                            cursor: "pointer",
-                            color: "black",
-                        }} onClick={() => promotedChangeRequest(posts[index]._id, posts[index].promotedStatus)} />}</div>}
-
-                    {(toggle2 && !posts[index].promotedStatus) && <AiOutlineClose size={32} style={{
-                        cursor: "pointer",
-                        color: "red",
-                    }} onClick={() => validProject(posts[index]._id, false, false)} />}
+                            {toggle && <AiFillEdit size={32} style={{
+                                cursor: "pointer",
+                                color: "blue",
+                            }} onClick={() => nav(`/editionCoin/${posts[index]._id}`)} />}
 
 
-                    {toggle2 && <div>{posts[index].promotedStatus && <AiFillStar size={32}
-                        style={{
-                            cursor: "pointer",
-                            color: "yellow",
-                        }} onClick={() => promotedChangeRequest(posts[index]._id, posts[index].promotedStatus)} />}</div>}
+                            {toggle2 && <div>{!posts[index].promotedStatus && <AiFillStar size={32}
+                                style={{
+                                    cursor: "pointer",
+                                    color: "black",
+                                }} onClick={() => promotedChangeRequest(posts[index]._id, posts[index].promotedStatus)} />}</div>}
+
+                            {(toggle2 && !posts[index].promotedStatus) && <AiOutlineClose size={32} style={{
+                                cursor: "pointer",
+                                color: "red",
+                            }} onClick={() => validProject(posts[index]._id, false, false)} />}
 
 
-                    {toggle3 && <FaTrashRestore size={32} style={{
-                        cursor: "pointer",
-                        color: "green",
-                    }} onClick={() => validProject(posts[index]._id, false, false)} />}
-
-                    {toggle3 && < BsTrash size={32} style={{
-                        cursor: "pointer",
-                        color: "red",
-                    }} onClick={() => deletePost(posts[index]._id)} />}
+                            {toggle2 && <div>{posts[index].promotedStatus && <AiFillStar size={32}
+                                style={{
+                                    cursor: "pointer",
+                                    color: "yellow",
+                                }} onClick={() => promotedChangeRequest(posts[index]._id, posts[index].promotedStatus)} />}</div>}
 
 
-                    {toggle4 && <div>{!posts[index].promotedStatus && <AiFillStar size={32}
-                        style={{
-                            cursor: "pointer",
-                            color: "black",
-                        }} onClick={() => promotedChangeRequest(posts[index]._id, posts[index].promotedStatus)} />}</div>}
+                            {toggle3 && <FaTrashRestore size={32} style={{
+                                cursor: "pointer",
+                                color: "green",
+                            }} onClick={() => validProject(posts[index]._id, false, false)} />}
+
+                            {toggle3 && < BsTrash size={32} style={{
+                                cursor: "pointer",
+                                color: "red",
+                            }} onClick={() => deletePost(posts[index]._id)} />}
+
+
+                            {toggle4 && <div>{!posts[index].promotedStatus && <AiFillStar size={32}
+                                style={{
+                                    cursor: "pointer",
+                                    color: "black",
+                                }} onClick={() => promotedChangeRequest(posts[index]._id, posts[index].promotedStatus)} />}</div>}
 
 
 
-                    {toggle4 && <div>{posts[index].promotedStatus && <AiFillStar size={32}
-                        style={{
-                            cursor: "pointer",
-                            color: "yellow",
-                        }} onClick={() => promotedChangeRequest(posts[index]._id, posts[index].promotedStatus)} />}</div>}
+                            {toggle4 && <div>{posts[index].promotedStatus && <AiFillStar size={32}
+                                style={{
+                                    cursor: "pointer",
+                                    color: "yellow",
+                                }} onClick={() => promotedChangeRequest(posts[index]._id, posts[index].promotedStatus)} />}</div>}
 
-                    {toggle5 && <AiOutlineCheck size={32} style={{
-                        cursor: "pointer",
-                        color: "green",
-                    }} onClick={() => validProject(posts[index]._id, true, false)} />}
 
-                    {toggle5 && <AiOutlineClose size={32} style={{
-                        cursor: "pointer",
-                        color: "red",
-                    }} onClick={() => validProject(posts[index]._id, false, true)} />}
+                        </div>}
+                    {toggle2Menu &&
+                        <div>
+                            {toggle && <AiFillEdit size={32} style={{
+                                cursor: "pointer",
+                                color: "green",
+                            }} onClick={() => validProject(posts[index]._id, true, false)} />}
+
+
+
+                            {toggle && <AiOutlineClose size={32} style={{
+                                cursor: "pointer",
+                                color: "red",
+                            }} onClick={() => updateRefuseValide(posts[index]._id, "Refuser")} />}
+
+
+                            {toggle3 && <FaTrashRestore size={32} style={{
+                                cursor: "pointer",
+                                color: "green",
+                            }} onClick={() => updateRefuseValide(posts[index]._id, "A valider")} />}
+
+                            {toggle3 && < BsTrash size={32} style={{
+                                cursor: "pointer",
+                                color: "red",
+                            }} onClick={() => updateDelete(posts[index]._id, true)} />}
+
+
+                            {toggle4 && <FaTrashRestore size={32} style={{
+                                cursor: "pointer",
+                                color: "green",
+                            }} onClick={() => updateDelete(posts[index]._id, false)} />}
+
+                            {toggle4 && < BsTrash size={32} style={{
+                                cursor: "pointer",
+                                color: "red",
+                            }} onClick={() => updateDeleteDef(posts[index]._id)} />}
+
+                        </div>}
                 </div>
 
 
@@ -366,16 +522,80 @@ function Administration() {
 
     return (
         <div className="container">
-            <div className={style.administration_filterContainer}>
-                <div className={toggle ? style.administration_filterOneClick : style.administration_filterOne} onClick={() => changeStyle(1)}>
-                    <p className={style.administration__filterTitle}>À valider</p>
-                </div>
-                <div className={toggle2 ? style.administration_filterClick : style.administration_filter} onClick={() => changeStyle(2)}> <p className={style.administration__filterTitle}>En ligne</p> </div>
-                <div className={toggle4 ? style.administration_filterClick : style.administration_filter} onClick={() => changeStyle(4)}> <p className={style.administration__filterTitle}>Promoted</p> </div>
-                <div className={toggle3 ? style.administration_filterClick : style.administration_filter} onClick={() => changeStyle(3)}> <p className={style.administration__filterTitle}>Corbeille</p> </div>
-                <div className={toggle5 ? style.administration_filterClick : style.administration_filter} onClick={() => changeStyle(5)}> <p className={style.administration__filterTitle}>Update</p> </div>
-            </div>
 
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            {toggleMenu &&
+                                <a class="nav-link" href="#" onClick={() => changeStyleMenu(1)}> <span className={style.administration_filterMainColor}>Projets</span></a>
+                            }
+                            {!toggleMenu &&
+                                <a class="nav-link" href="#" onClick={() => changeStyleMenu(1)}> <span>Projets</span></a>
+                            }
+
+                        </li>
+                        <li class="nav-item ">
+                            {toggle2Menu &&
+                                <a class="nav-link" href="#" onClick={() => changeStyleMenu(2)}> <span className={style.administration_filterMainColor}>Update</span></a>
+                            }
+                            {!toggle2Menu &&
+                                <a class="nav-link" href="#" onClick={() => changeStyleMenu(2)}> <span>Update</span></a>
+                            }
+                        </li>
+                        <li class="nav-item ">
+                            {toggle3Menu &&
+                                <a class="nav-link" href="#" onClick={() => changeStyleMenu(3)}> <span className={style.administration_filterMainColor}>Utilisateurs</span></a>
+                            }
+                            {!toggle3Menu &&
+                                <a class="nav-link" href="#" onClick={() => changeStyleMenu(3)}> <span>Utilisateurs</span></a>
+                            }
+                        </li>
+
+                        <li class="nav-item ">
+                            {toggle4Menu &&
+                                <a class="nav-link" href="#" onClick={() => changeStyleMenu(4)}> <span className={style.administration_filterMainColor}>Promotions</span></a>
+                            }
+                            {!toggle4Menu &&
+                                <a class="nav-link" href="#" onClick={() => changeStyleMenu(4)}> <span>Promotions</span></a>
+                            }
+                        </li>
+
+                    </ul>
+
+                </div>
+            </nav>
+
+
+            {/*     <div className={style.administration_filterMainMenu}>
+                <div className={toggleMenu ? style.administration_filterOneClick : style.administration_filterOne} onClick={() => changeStyleMenu(1)}> <p className={style.administration__filterTitle}>Projets</p> </div>
+                <div className={toggle3Menu ? style.administration_filterClick : style.administration_filter} onClick={() => changeStyleMenu(3)}> <p className={style.administration__filterTitle}>Update</p> </div>
+                <div className={toggle2Menu ? style.administration_filterClick : style.administration_filter} onClick={() => changeStyleMenu(2)}> <p className={style.administration__filterTitle}>Utilisateurs</p> </div>
+                <div className={toggle4Menu ? style.administration_filterClick : style.administration_filter} onClick={() => changeStyleMenu(4)}> <p className={style.administration__filterTitle}>Promotion</p> </div>
+            </div> */}
+
+            {toggleMenu &&
+                <div className={style.administration_filterContainer}>
+                    <div className={toggle ? style.administration_filterOneClick : style.administration_filterOne} onClick={() => changeStyle(1)}>
+                        <p className={style.administration__filterTitle}>À valider</p>
+                    </div>
+                    <div className={toggle2 ? style.administration_filterClick : style.administration_filter} onClick={() => changeStyle(2)}> <p className={style.administration__filterTitle}>En ligne</p> </div>
+                    <div className={toggle4 ? style.administration_filterClick : style.administration_filter} onClick={() => changeStyle(4)}> <p className={style.administration__filterTitle}>Promoted</p> </div>
+                    <div className={toggle3 ? style.administration_filterClick : style.administration_filter} onClick={() => changeStyle(3)}> <p className={style.administration__filterTitle}>Corbeille</p> </div>
+                </div>
+            }
+
+            {toggle2Menu &&
+                <div className={style.administration_filterContainer}>
+                    <div className={toggle ? style.administration_filterOneClick : style.administration_filterOne} onClick={() => changeStyle(1)}>
+                        <p className={style.administration__filterTitle}>À valider</p>
+                    </div>
+                    <div className={toggle2 ? style.administration_filterClick : style.administration_filter} onClick={() => changeStyle(2)}> <p className={style.administration__filterTitle}>Validé</p> </div>
+                    <div className={toggle3 ? style.administration_filterClick : style.administration_filter} onClick={() => changeStyle(3)}> <p className={style.administration__filterTitle}>Refusé</p> </div>
+                    <div className={toggle4 ? style.administration_filterClick : style.administration_filter} onClick={() => changeStyle(4)}> <p className={style.administration__filterTitle}>Corbeille</p> </div>
+                </div>
+            }
             <MDBDataTableV5
                 dark
                 responsive

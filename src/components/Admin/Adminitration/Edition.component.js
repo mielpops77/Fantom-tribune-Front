@@ -1,6 +1,6 @@
 import NavigationAdminComponent from '../../Navigation/NavigationAdmin/NavigationAdmin.component';
 import TableLaunchService from "../../../services/tableauLaunh/tableauLaunch.service";
-import FooterComponent from '../../../components/Navigation/Footer/Footer.component';
+import FooterComponent from '../../Navigation/Footer/Footer.component';
 import editionService from "../../../services/admin/editionAdmin.service";
 import AuthService from "../../../services/auth/auth.service";
 import React, { useState, useEffect } from 'react';

@@ -18,6 +18,7 @@ const UpdateCoin = () => {
     const [prev, setPrev] = useState('');
     const [kyc, setKyc] = useState('');
     const [logo, setLogo] = useState('');
+    const [idProject, setIdProject] = useState('');
 
     const url = AuthService.getUrl();
     const navigate = useNavigate();
@@ -192,7 +193,7 @@ const UpdateCoin = () => {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                nameEdit: inputs.name, symbolEdit: inputs.symbolEdit, launchDateEdit: inputs.launchDate, contractAddressEdit: inputs.contractAddress, descriptionEdit: inputs.description, typeEdit: type, websiteLinkEdit: inputs.websiteLink, coinMarketCapLinkEdit: inputs.coinMarketCapLink, telegramEdit: inputs.telegram, twitterEdit: inputs.twitter, discordEdit: inputs.discord, kycEdit: inputs.kyc, imageEdit: inputs.image, image: logo,
+                nameEdit: inputs.name, symbolEdit: inputs.symbolEdit, launchDateEdit: inputs.launchDate, contractAddressEdit: inputs.contractAddress, descriptionEdit: inputs.description, typeEdit: type, websiteLinkEdit: inputs.websiteLink, coinMarketCapLinkEdit: inputs.coinMarketCapLink, telegramEdit: inputs.telegram, twitterEdit: inputs.twitter, discordEdit: inputs.discord, kycEdit: inputs.kyc, imageEdit: inputs.image, image: logo, idProject: idProject
             })
         };
         fetch(url + 'updateNew', requestOptions)
@@ -227,6 +228,7 @@ const UpdateCoin = () => {
 
     const handleOnSelect = (item) => {
         getSearchCoinById(item.id);
+        setIdProject(item.id)
         setField(true);
         console.log('hello worzdzzddzld', item);
         setTypeSelected({ label: item.type, value: item.type })
