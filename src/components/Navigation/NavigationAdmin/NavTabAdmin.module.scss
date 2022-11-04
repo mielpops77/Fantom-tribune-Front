@@ -1,12 +1,24 @@
 @import "../../../styles/setting";
 
+
+
+.navigationAdmin_fond
+{
+background-color:#050945;
+    
+}
+
+
 @media all and (max-width: 1024px){ 
   nav { 
     display: flex;
     align-items: center;
     width: 100%;
     height: auto;
-
+    .navigationAdmin_fond
+    {
+        
+    }
     .fantom_tribune{
       display: flex;
       align-items: center;

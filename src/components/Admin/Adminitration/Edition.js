@@ -253,7 +253,6 @@ const Edition = () => {
             <div className={style.divCorpSubmit}>
                 <h1 className={style.titleSubmit}>Modify a coin to Fantom Tribune</h1>
                 <p className={style.subtitleSubmit}>Here you can edit projects</p>
-                <p className={style.subtitleSubmit}>David likes to take cocks in the ass</p>
                 <hr></hr>
                 <div>
                     <form className={style.formulaireSubmit} onSubmit={handleSubmit}>

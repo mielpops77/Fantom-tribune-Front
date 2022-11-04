@@ -9,6 +9,7 @@ const InfoCoin = () => {
 
     const url = AuthService.getUrl()
     let path = window.location.href;
+    //Version Distant
     /* const id = path.substring(50, path.length); */
 
 

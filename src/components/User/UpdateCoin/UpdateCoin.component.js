@@ -2,6 +2,7 @@
 import UpdateCoinService from "../../../services/User/UpdateCoin.service";
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 import AuthService from "../../../services/auth/auth.service";
+import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import style from "./UpdateCoin.module.scss";
 import Select from 'react-select'
@@ -10,14 +11,16 @@ import axios from "axios";
 const UpdateCoin = () => {
     const [typeSelected, setTypeSelected] = useState({});
     const [fieldOpen, setFieldOpen] = useState({});
-    const [urlUpload, setToggle] = useState('');
+    const [urlUpload, setUrlUpload] = useState('');
     const [field, setField] = useState(false);
     const [inputs, setInputs] = useState({});
     const [items, setItems] = useState([]);
     const [prev, setPrev] = useState('');
     const [kyc, setKyc] = useState('');
-    
+    const [logo, setLogo] = useState('');
+
     const url = AuthService.getUrl();
+    const navigate = useNavigate();
 
     const initForm = {
         name: "",
@@ -170,15 +173,31 @@ const UpdateCoin = () => {
 
                 const result2 = result.filter((person) => person.name !== 'vide')
                 setItems(result2);
-             
+
 
                 return response.data;
             })
     }
 
 
+    function nav(path) {
+        navigate(path);
+    }
 
     const handleSubmit = (event) => {
+
+        console.log("submit");
+        event.preventDefault();
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                nameEdit: inputs.name, symbolEdit: inputs.symbolEdit, launchDateEdit: inputs.launchDate, contractAddressEdit: inputs.contractAddress, descriptionEdit: inputs.description, typeEdit: type, websiteLinkEdit: inputs.websiteLink, coinMarketCapLinkEdit: inputs.coinMarketCapLink, telegramEdit: inputs.telegram, twitterEdit: inputs.twitter, discordEdit: inputs.discord, kycEdit: inputs.kyc, imageEdit: inputs.image, image: logo,
+            })
+        };
+        fetch(url + 'updateNew', requestOptions)
+            .then(response => response.json(), nav(`/ValidationForm/Update`)
+            )
 
     }
 
@@ -198,7 +217,7 @@ const UpdateCoin = () => {
         setField(false);
         setInputs([]);
         getSearchCoinRequest(string);
-  
+
 
 
     }
@@ -209,8 +228,8 @@ const UpdateCoin = () => {
     const handleOnSelect = (item) => {
         getSearchCoinById(item.id);
         setField(true);
-        console.log('hello worzdzzddzld',item);
-         setTypeSelected({ label: item.type, value: item.type })
+        console.log('hello worzdzzddzld', item);
+        setTypeSelected({ label: item.type, value: item.type })
     }
 
     const handleOnFocus = () => {
@@ -233,19 +252,15 @@ const UpdateCoin = () => {
     function getSearchCoinById(id) {
         return axios.get(AuthService.getUrl() + `searchById?id=${id}`)
             .then(response => {
-                setInputs(response.data[0]);
-                setToggle(url + response.data[0].image);
+                /* setInputs(response.data[0]); */
+                setLogo(response.data[0].image);
+                setUrlUpload("vide");
+                console.log(urlUpload)
                 setKyc(response.data[0].kyc.toString());
                 prevCheck(response.data[0].launchDate);
                 return response.data;
             })
     }
-
-
-
-
-
-
 
     const handleChangeFile = (event) => {
         const name = event.target.name;
@@ -271,7 +286,8 @@ const UpdateCoin = () => {
             })
                 .then(function (response) {
                     //handle success
-                    setToggle(url + inputImg.files.item(0).name);
+                    setUrlUpload(url + inputImg.files.item(0).name);
+                    console.log("inputImg.files.item(0).name", url + inputImg.files.item(0).name);
                 })
                 .catch(function (response) {
                     //handle error
@@ -405,7 +421,9 @@ const UpdateCoin = () => {
                     <label className={style.updateCoin_formLabelFileEmpty} htmlFor="file-input">
                         <div className={style.updateCoin_formLabel}>Logo Upload</div>
                         <img style={{ height: "100%", float: "left", maxWidth: "30%", maxHeight: "30%", cursor: 'pointer' }} src={url + "assets/upload.png"} alt='img' />
-                        <img style={{ height: "100%", float: "left", maxWidth: "25%", maxHeight: "25%" }} src={urlUpload} alt='img' />
+                        {urlUpload !== "vide" &&
+                            <img style={{ height: "100%", float: "left", maxWidth: "25%", maxHeight: "25%" }} src={urlUpload} alt='img' />
+                        }
                     </label>}
                 {fieldOpen.logo &&
                     <input id="file-input" className={style.updateCoin_file} type="file" name="image"
@@ -665,9 +683,10 @@ const UpdateCoin = () => {
                     </label>}
                 <br />
                 <br />
-                <input className="btn btn-primary btn-block" style={{ margin: " 0 auto", display: "block" }} id="submitInput" type="submit" />
+                {fieldOpen.comment &&
+                    <input className="btn btn-primary btn-block" style={{ margin: " 0 auto", display: "block" }} id="submitInput" type="submit" />
 
-
+                }
             </form >}
         </div>
 

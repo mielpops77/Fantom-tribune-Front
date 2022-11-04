@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { MDBDataTableV5 } from 'mdbreact';
 import { BsTrash } from 'react-icons/bs';
-import { green } from '@mui/material/colors';
 
 function Administration() {
 
@@ -18,6 +17,8 @@ function Administration() {
     const [toggle2, setToggle2] = useState(false);
     const [toggle3, setToggle3] = useState(false);
     const [toggle4, setToggle4] = useState(false);
+    const [toggle5, setToggle5] = useState(false);
+
 
 
     /* const [promotedStatus, setpromotedStatus] = useState(false); */
@@ -38,6 +39,7 @@ function Administration() {
                 setToggle2(false);
                 setToggle3(false);
                 setToggle4(false);
+                setToggle5(false);
                 getValidation();
                 break;
             case 2:
@@ -45,6 +47,7 @@ function Administration() {
                 setToggle(false);
                 setToggle3(false);
                 setToggle4(false);
+                setToggle5(false);
                 getLunch();
                 break;
             case 3:
@@ -52,6 +55,7 @@ function Administration() {
                 setToggle(false);
                 setToggle2(false);
                 setToggle4(false);
+                setToggle5(false);
                 getTrash();
                 break;
             case 4:
@@ -59,7 +63,17 @@ function Administration() {
                 setToggle(false);
                 setToggle2(false);
                 setToggle4(true);
+                setToggle5(false);
                 getPromoted();
+                break;
+
+            case 5:
+                setToggle3(false);
+                setToggle(false);
+                setToggle2(false);
+                setToggle4(false);
+                setToggle5(true);
+                getUpdate();
                 break;
             default:
         }
@@ -73,6 +87,14 @@ function Administration() {
                 setPosts(res);
             });
     }, []);
+
+    let getUpdate = () => {
+        fetch(url + 'updateList/')
+            .then((res) => res.json())
+            .then((res) => {
+                setPosts(res);
+            });
+    };
 
 
     let getLunch = () => {
@@ -280,7 +302,15 @@ function Administration() {
                             color: "yellow",
                         }} onClick={() => promotedChangeRequest(posts[index]._id, posts[index].promotedStatus)} />}</div>}
 
+                    {toggle5 && <AiOutlineCheck size={32} style={{
+                        cursor: "pointer",
+                        color: "green",
+                    }} onClick={() => validProject(posts[index]._id, true, false)} />}
 
+                    {toggle5 && <AiOutlineClose size={32} style={{
+                        cursor: "pointer",
+                        color: "red",
+                    }} onClick={() => validProject(posts[index]._id, false, true)} />}
                 </div>
 
 
@@ -343,7 +373,7 @@ function Administration() {
                 <div className={toggle2 ? style.administration_filterClick : style.administration_filter} onClick={() => changeStyle(2)}> <p className={style.administration__filterTitle}>En ligne</p> </div>
                 <div className={toggle4 ? style.administration_filterClick : style.administration_filter} onClick={() => changeStyle(4)}> <p className={style.administration__filterTitle}>Promoted</p> </div>
                 <div className={toggle3 ? style.administration_filterClick : style.administration_filter} onClick={() => changeStyle(3)}> <p className={style.administration__filterTitle}>Corbeille</p> </div>
-
+                <div className={toggle5 ? style.administration_filterClick : style.administration_filter} onClick={() => changeStyle(5)}> <p className={style.administration__filterTitle}>Update</p> </div>
             </div>
 
             <MDBDataTableV5

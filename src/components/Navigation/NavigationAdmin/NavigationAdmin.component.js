@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import AuthService from "../../../services/auth/auth.service";
-import style from "../NavigationUser/NavigationUser.module.scss";
+import style from "../NavigationAdmin/NavTabAdmin.module.scss";
 
 const NavigationAdmin = () => {
 
@@ -29,7 +29,7 @@ const NavigationAdmin = () => {
     // eslint-disable-next-line react/style-prop-object
 
 
-    <nav>
+    <nav className={style.navigationAdmin_fond}>
       <div className={style.fantom_tribune}>
         <img className={style.imgLogo} src={url + "assets/logo.png"} alt='logo' />
         <h1 className={style.title}>FANTOM TRIBUNE</h1>

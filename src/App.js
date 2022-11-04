@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-undef */
-import ValidationForm from "./components/User/Formulaire/ValidationFormulaire.component";
+import ValidationForm from "./pages/user/ValidationFormulaire/ValidationFormulaire.page";
 import Register from './components/Authentification/Register/Register.component';
 import TopTrending from './components/User/TopTrending/TopTrending.component';
 import UpdateCoin from "./pages/user/UpdateCoin/UpdateCoin.page";
@@ -24,7 +24,7 @@ const App = () => {
       <Routes>
         <Route path="/confirm/:confirmationCode" element={<Welcome />} />
         <Route path="/administration" element={<Administration />} />
-        <Route path="/ValidationForm" element={<ValidationForm />} />
+        <Route path="/validationForm/:TypeFormulaire" element={<ValidationForm />} />
         <Route path="/editionCoin/:id" element={<EditionCoin />} />
         <Route path="/topTrending" element={<TopTrending />} />
         <Route path="//infoCoin/:id" element={<InfoCoin />} />
