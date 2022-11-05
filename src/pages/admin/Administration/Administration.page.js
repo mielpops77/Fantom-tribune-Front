@@ -1,6 +1,6 @@
-import NavigationAdminComponent from '../../components/Navigation/NavigationAdmin/NavigationAdmin.component';
-import AdministrationComponent from '../../components/Admin/Adminitration/Administration.component'
-import AuthService from "../../services/auth/auth.service";
+import NavigationAdminComponent from '../../../components/Navigation/NavigationAdmin/NavigationAdmin.component';
+import AdministrationComponent from '../../../components/Admin/Adminitration/Administration.component'
+import AuthService from "../../../services/auth/auth.service";
 import React, { useState, useEffect } from "react";
 import style from './Administration.page.module.scss';
 

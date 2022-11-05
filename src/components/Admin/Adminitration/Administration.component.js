@@ -435,7 +435,7 @@ function Administration() {
                             {toggle && <AiFillEdit size={32} style={{
                                 cursor: "pointer",
                                 color: "green",
-                            }} onClick={() => validProject(posts[index]._id, true, false)} />}
+                            }} onClick={() => nav(`/editionUtilisateurs/${posts[index]._id}`)} />}
 
 
 

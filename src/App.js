@@ -8,13 +8,14 @@ import Login from './components/Authentification/Login/Login.component';
 import InfoCoin from "./components/User/InfoCoin/InfoCoin.component";
 import Profile from "./components/Authentification/Profile/Profile";
 import EditionCoin from "./components/Admin/Adminitration/Edition.component";
+import EditionUtilisateurs from "./components/Admin/Adminitration/EditionUtilisateurs.components";
 import Presales from './pages/user/Presales/Presales.page';
 import Welcome from "./components/Authentification/Welcome";
-import Administration from './pages/admin/Administration.page';
+import Administration from './pages/admin/Administration/Administration.page';
 import Submit from './pages/user/Submit/Submit.page';
 import AllTokens from "./pages/user/AllTokens/AllTokens.page";
 import { Route, Routes } from 'react-router-dom';
-import ApiConfig from './pages/admin/ApiConfig.page';
+import ApiConfig from './pages/admin/ApiConfig/ApiConfig.page';
 import React from 'react';
 import Home from './Home';
 
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/confirm/:confirmationCode" element={<Welcome />} />
         <Route path="/administration" element={<Administration />} />
         <Route path="/validationForm/:TypeFormulaire" element={<ValidationForm />} />
+        <Route path="/editionUtilisateurs/:id" element={<EditionUtilisateurs />} />
         <Route path="/editionCoin/:id" element={<EditionCoin />} />
         <Route path="/topTrending" element={<TopTrending />} />
         <Route path="//infoCoin/:id" element={<InfoCoin />} />

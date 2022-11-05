@@ -252,7 +252,8 @@ const UpdateCoin = () => {
 
 
     function getSearchCoinById(id) {
-        return axios.get(AuthService.getUrl() + `searchById?id=${id}`)
+        const pattern = "projetsValidadOnly"
+        return axios.get(AuthService.getUrl() + `searchById?id=${id}&pattern=${pattern}`)
             .then(response => {
                 /* setInputs(response.data[0]); */
                 setLogo(response.data[0].image);

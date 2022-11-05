@@ -1,7 +1,7 @@
-import NavigationAdminComponent from '../../components/Navigation/NavigationAdmin/NavigationAdmin.component';
-import ApiConfigComponent from '../../components/Admin/Adminitration/ApiConfig.component';
+import NavigationAdminComponent from '../../../components/Navigation/NavigationAdmin/NavigationAdmin.component';
+import ApiConfigComponent from '../../../components/Admin/Adminitration/ApiConfig.component';
 
-import AuthService from "../../services/auth/auth.service";
+import AuthService from "../../../services/auth/auth.service";
 import React, { useState, useEffect } from "react";
 
 const ApiConfig = () => {
