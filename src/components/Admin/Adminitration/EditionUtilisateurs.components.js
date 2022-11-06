@@ -11,9 +11,37 @@ import axios from 'axios';
 
 const EditionUtilisateurs = () => {
 
-
     const [selected, setSelected] = useState(null);
-    const [inputs, setInputs] = useState({});
+    const [inputs, setInputs] = useState({
+        name: "",
+        symbol: "",
+        launchDate: "",
+        contractAddress: "",
+        description: "",
+        websiteLink: "",
+        coinMarketCapLink: "",
+        telegram: "",
+        twitter: "",
+        discord: ""
+    });
+    const [inputsEdit, setInputsEdit] = useState({
+        comment: "",
+        coinMarketCapLinkEdit: "",
+        contractAddressEdit: "",
+        contractAddress: "",
+        descriptionEdit: "",
+        discordEdit: "",
+        idProject: "",
+        imageEdit: "",
+        kycEdit: "",
+        launchDateEdit: "",
+        nameEdit: "",
+        symbolEdit: "",
+        telegramEdit: "",
+        twitterEdit: "",
+        typeEdit: "",
+        websiteLinkEdit: ""
+    });
     const [urlUpload, setToggle] = useState('');
     const [prev, setPrev] = useState('');
     const [kyc, setKyc] = useState('');
@@ -31,14 +59,12 @@ const EditionUtilisateurs = () => {
     });
 
     const [statType, setStatType] = useState("");
-
-
+    let a = "pouet"
     let navigate = useNavigate();
     const url = AuthService.getUrl();
 
     //let date = new Date()
     //let today = date.toISOString().split('T')[0];
-
 
     let paths = window.location.href;
     const id = paths.substring(42, paths.length);
@@ -52,10 +78,37 @@ const EditionUtilisateurs = () => {
         { label: "Yield Aggregatort", value: "Yield Aggregatort" },
         { label: "Reflect token", value: "Reflect token" },
         { label: "Yield", value: "Yield" },
-
     ];
 
 
+    const customStyles = {
+        control: (base, state) => ({
+            ...base,
+            background: "yellow",
+            // match with the menu
+            borderRadius: state.isFocused ? "3px 3px 0 0" : 3,
+            // Overwrittes the different states of border
+            borderColor: state.isFocused ? "yellow" : "green",
+            // Removes weird border around container
+            boxShadow: state.isFocused ? null : null,
+            "&:hover": {
+                // Overwrittes the different states of border
+                borderColor: state.isFocused ? "red" : "blue"
+            }
+        }),
+        menu: base => ({
+            ...base,
+            // override border radius to match the box
+            borderRadius: 0,
+            // kill the gap
+            marginTop: 0
+        }),
+        menuList: base => ({
+            ...base,
+            // kill the white space on first and last option
+            padding: 0
+        })
+    };
 
     let date = new Date();
     let mondayUtc = (date.getUTCMonth() + 1)
@@ -166,6 +219,7 @@ const EditionUtilisateurs = () => {
             editionService.setCoinMarketCapLink(value);
         }
         setInputs(values => ({ ...values, [name]: value }))
+
     }
 
     function coinmarketCapLinkEdit() {
@@ -222,13 +276,9 @@ const EditionUtilisateurs = () => {
     function searchUpdateById(id) {
         return axios.get(AuthService.getUrl() + `updateSearchById?id=${id}`)
             .then(response => {
-                /* setInputs(response.data[0]); */
-                /*  setLogo(response.data[0].image);
-                 setUrlUpload("vide"); */
-                /*       console.log(urlUpload)
-                      setKyc(response.data[0].kyc.toString());
-                      prevCheck(response.data[0].launchDate); */
-                getSearchCoinById(response.data[0].idProject)
+                setInputsEdit(response.data[0]);
+                console.log('ssssss', response.data[0].launchDateEdit)
+                getSearchCoinById(response.data[0].idProject);
                 return response.data;
             })
     }
@@ -240,9 +290,9 @@ const EditionUtilisateurs = () => {
             .then(response => {
                 editionService.initCoin();
                 editionService.initType();
-                console.log('postsArray[i]iiii', response.data)
                 editionService.setCoin(response.data[0]);
                 editionService.setType({ label: response.data[0].type, value: response.data[0].type },);
+
                 setToggle(url + editionService.getCoin().image);
                 setStat(editionService.getCoin());
                 setStatType(editionService.getType());
@@ -258,36 +308,6 @@ const EditionUtilisateurs = () => {
 
     useEffect(() => {
         searchUpdateById(id);
-        /* console.log('hello Mielpossssps', id); */
-
-
-
-
-        /*  fetch(url + 'launchDateAdmin/')
-             .then((res) => res.json())
-             .then((res) => {
-                 editionService.initCoin();
-                 editionService.initType();
- 
-                 let postsArray = JSON.parse(JSON.stringify(res));
- 
- 
-                 for (let i = 0; i < postsArray.length; i++) {
-                     if (postsArray[i]._id === id) {
-                         console.log('postsArray[i]', postsArray[i])
-                         editionService.setCoin(postsArray[i]);
-                         editionService.setType({ label: postsArray[i].type, value: postsArray[i].type },);
-                         setToggle(url + editionService.getCoin().image);
-                     }
-                 } */
-        /*   setStat(editionService.getCoin());
-          setStatType(editionService.getType());
-          editionService.initMarketCapStatus();
-          editionService.setMarketCapStatus(editionService.getCoin().coinMarketCapStatus);
-
-          prevCheck(editionService.getCoin().launchDate);
-          setKyc(editionService.getCoin().kyc.toString()); */
-        /*   }); */
     }, [id]);
 
 
@@ -303,6 +323,21 @@ const EditionUtilisateurs = () => {
                 <div>
                     <form className={style.formulaireSubmit} onSubmit={handleSubmit}>
 
+
+                        {inputsEdit.comment !== "" &&
+                            <label className={style.formLabel}>Comment:
+                                <textarea className={style.formInputUpdate} style={{
+                                    maxHeight: "40em",
+                                    minHeight: "8em"
+                                }}
+                                    type="text"
+                                    name="Comment:"
+                                    value={inputsEdit.comment}
+                                    onChange={handleChange}
+                                    required="required"
+                                />
+                            </label>}
+
                         <label className={style.formLabelFileEmpty} htmlFor="file-input">
                             <div className={style.formLabel}>Logo Upload*</div>
                             <img style={{ height: "100%", float: "left", maxWidth: "30%", maxHeight: "30%", cursor: 'pointer' }} src={url + "assets/upload.png"} alt='img' />
@@ -314,7 +349,12 @@ const EditionUtilisateurs = () => {
                             accept="image/png, image/jpeg"
                         >
                         </input>
-
+                        {inputsEdit.imageEdit !== "" &&
+                            <label className={style.formLabelFileEmpty} htmlFor="file-input">
+                                <div className={style.formLabel}>Logo Update</div>
+                                <img style={{ height: "100%", float: "left", maxWidth: "25%", maxHeight: "25%" }} src={(url + inputsEdit.imageEdit)} alt='img' />
+                            </label>
+                        }
                         <label className={style.formLabel}>Name*:
                             <input className={style.formInput}
                                 type="text"
@@ -323,6 +363,14 @@ const EditionUtilisateurs = () => {
                                 onChange={handleChange}
                             />
                         </label>
+                        {inputsEdit.nameEdit !== "" &&
+                            <label className={style.formLabel}>Name*:
+                                <input className={style.formInputUpdate}
+                                    type="text"
+                                    name="name"
+                                    defaultValue={inputsEdit.nameEdit}
+                                />
+                            </label>}
                         <label className={style.formLabel}>Symbol*:
                             <input className={style.formInput}
                                 type="text"
@@ -331,6 +379,15 @@ const EditionUtilisateurs = () => {
                                 onChange={handleChange}
                             ></input>
                         </label>
+
+                        {inputsEdit.symbolEdit !== "" &&
+                            <label className={style.formLabel}>Symbol*:
+                                <input className={style.formInputUpdate}
+                                    type="text"
+                                    name="name"
+                                    defaultValue={inputsEdit.symbolEdit}
+                                />
+                            </label>}
 
 
 
@@ -388,6 +445,20 @@ const EditionUtilisateurs = () => {
 
 
 
+                        {inputsEdit.launchDateEdit !== "" &&
+                            <label className={style.formLabel}>LaunchDate (UTC)*:
+                                <input className={style.formInputUpdate}
+                                    type="date"
+                                    name="launchDate"
+                                    /* min={dateUtc} */
+                                    defaultValue={inputsEdit.launchDateEdit}
+                                />
+                            </label>}
+
+
+
+
+
                         <label className={style.formLabel}>Contract Address:
                             <input className={style.formInput}
                                 type="text"
@@ -397,6 +468,16 @@ const EditionUtilisateurs = () => {
                             />
 
                         </label>
+
+                        {inputsEdit.contractAddressEdit !== "" &&
+                            <label className={style.formLabel}>Contract Address:
+                                <input className={style.formInputUpdate}
+                                    type="text"
+                                    name="contractAddress"
+                                    defaultValue={inputsEdit.contractAddressEdit}
+                                />
+
+                            </label>}
 
                         <label className={style.formLabel}>Description*:
                             <textarea className={style.formInput} style={{
@@ -411,19 +492,20 @@ const EditionUtilisateurs = () => {
                             />
                         </label>
 
-                        <label className={style.formLabel}>Type*:
-                            <Select
-                                className="basic-single"
-                                classNamePrefix="select"
-                                value={selected || statType}
-                                isSearchable={true}
-                                options={options}
-                                /* value={selected} */
-                                onChange={handleSelect}
-                                selectOption="required"
-                            />
+                        {inputsEdit.descriptionEdit !== "" &&
+                            <label className={style.formLabel}>Description*:
+                                <textarea className={style.formInputUpdate} style={{
+                                    maxHeight: "40em",
+                                    minHeight: "8em"
+                                }}
+                                    type="text"
+                                    name="description"
+                                    defaultValue={inputsEdit.descriptionEdit}
+                                    required="required"
+                                />
+                            </label>
+                        }
 
-                        </label>
 
                         <label className={style.formLabel}>Website link*:
                             <input className={style.formInput}
@@ -434,6 +516,16 @@ const EditionUtilisateurs = () => {
                                 required="required"
                             />
                         </label>
+                        {inputsEdit.websiteLinkEdit !== "" &&
+                            <label className={style.formLabel}>Website link*:
+                                <input className={style.formInputUpdate}
+                                    type="text"
+                                    name="websiteLink"
+                                    defaultValue={inputsEdit.websiteLinkEdit}
+                                    required="required"
+                                />
+                            </label>
+                        }
 
                         <label className={style.formLabel}>coinmarketcap link:
                             <input className={style.formInput}
@@ -442,6 +534,17 @@ const EditionUtilisateurs = () => {
                                 value={inputs.coinMarketCapLink || stat.coinMarketCapLink}
                                 onChange={handleChange} />
                         </label>
+
+                        {inputsEdit.coinMarketCapLinkEdit !== "" &&
+                            <label className={style.formLabel}>coinmarketcap link:
+                                <input className={style.formInputUpdate}
+                                    type="text"
+                                    name="coinMarketCapLink"
+                                    defaultValue={inputsEdit.coinMarketCapLinkEdit}
+                                />
+                            </label>
+                        }
+
 
                         <label className={style.formLabel}>coinMarketCapStatus: {editionService.getCoin().coinMarketCapStatus}
                         </label>
@@ -454,6 +557,15 @@ const EditionUtilisateurs = () => {
                                 onChange={handleChange}>
                             </input>
                         </label>
+                        {inputsEdit.telegramEdit !== "" &&
+                            <label className={style.formLabel}>Telegram link:
+                                <input className={style.formInputUpdate}
+                                    type="text"
+                                    name="telegram"
+                                    defaultValue={inputsEdit.telegramEdit}
+                                >
+                                </input>
+                            </label>}
 
 
                         <label className={style.formLabel}>Twitter link*:
@@ -465,6 +577,16 @@ const EditionUtilisateurs = () => {
                                 required="required" />
                         </label>
 
+                        {inputsEdit.twitterEdit !== "" &&
+                            <label className={style.formLabel}>Twitter link*:
+                                <input className={style.formInputUpdate}
+                                    type="text"
+                                    name="twitter"
+                                    defaultValue={inputsEdit.twitterEdit}
+                                    required="required" />
+                            </label>}
+
+
 
                         <label className={style.formLabel}>Discord link:
                             <input className={style.formInput}
@@ -473,6 +595,15 @@ const EditionUtilisateurs = () => {
                                 value={inputs.discord || stat.discord}
                                 onChange={handleChange} />
                         </label>
+                        {inputsEdit.discordEdit !== "" &&
+                            <label className={style.formLabel}>Discord link:
+                                <input className={style.formInputUpdate}
+                                    type="text"
+                                    name="discord"
+                                    defaultValue={inputsEdit.discordEdit}
+                                />
+                            </label>}
+
                         <label className={style.formLabel}>Kyc? *:
                             <div>
                                 {
@@ -498,12 +629,32 @@ const EditionUtilisateurs = () => {
                                 <label htmlFor="no">no</label>
                             </div>
                         </label>
+                        {inputsEdit.kycEdit.toString() !== kyc &&
+                            <label className={style.formLabel}>Kyc? *:
+                                <div>
+                                    {
+                                        inputsEdit.kycEdit.toString() === "true" &&
+                                        < input readOnly type="radio" name="questionKycEdit" value="true" id="true" required="required" checked
+                                        />}
+                                    {
+                                        inputsEdit.kycEdit.toString() === "false" &&
+                                        <input readOnly type="radio" name="questionKycEdit" value="true" id="true" required="required"
+                                        />}
+                                    <label style={{ marginRight: "1%", color: "red" }} htmlFor="yes">yes</label>
 
-
-
-
-
-
+                                    {
+                                        inputsEdit.kycEdit.toString() === "false" &&
+                                        <input readOnly type="radio" name="questionKycEdit" value="false" id="false" required="required" checked
+                                        />
+                                    }
+                                    {
+                                        inputsEdit.kycEdit.toString() === "true" &&
+                                        <input readOnly type="radio" name="questionKycEdit" value="false" id="false" required="required"
+                                        />
+                                    }
+                                    <label style={{ color: "red" }} htmlFor="no">no</label>
+                                </div>
+                            </label>}
                         <br />
                         <input className="btn btn-primary btn-block" id="submitInput" type="submit" />
                     </form >

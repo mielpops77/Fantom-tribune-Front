@@ -10,10 +10,24 @@ import axios from "axios";
 
 const UpdateCoin = () => {
     const [typeSelected, setTypeSelected] = useState({});
+    const [typeInitial, setTypeInitial] = useState({});
     const [fieldOpen, setFieldOpen] = useState({});
     const [urlUpload, setUrlUpload] = useState('');
     const [field, setField] = useState(false);
-    const [inputs, setInputs] = useState({});
+    const [inputs, setInputs] = useState({
+        name: "",
+        symbol: "",
+        launchDate: "",
+        contractAddress: "",
+        description: "",
+        websiteLink: "",
+        coinMarketCapLink: "",
+        telegram: "",
+        twitter: "",
+        discord: "",
+        comment: "",
+        imageEdit: ""
+    });
     const [items, setItems] = useState([]);
     const [prev, setPrev] = useState('');
     const [kyc, setKyc] = useState('');
@@ -187,13 +201,18 @@ const UpdateCoin = () => {
 
     const handleSubmit = (event) => {
 
-        console.log("submit");
+        let typeEdit = "";
+        if (typeSelected.value !== typeInitial.value) {
+            typeEdit = typeSelected.value;
+        }
+
+
         event.preventDefault();
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                nameEdit: inputs.name, symbolEdit: inputs.symbolEdit, launchDateEdit: inputs.launchDate, contractAddressEdit: inputs.contractAddress, descriptionEdit: inputs.description, typeEdit: type, websiteLinkEdit: inputs.websiteLink, coinMarketCapLinkEdit: inputs.coinMarketCapLink, telegramEdit: inputs.telegram, twitterEdit: inputs.twitter, discordEdit: inputs.discord, kycEdit: inputs.kyc, imageEdit: inputs.image, image: logo, idProject: idProject
+                nameEdit: inputs.name, symbolEdit: inputs.symbol, launchDateEdit: inputs.launchDate, contractAddressEdit: inputs.contractAddress, descriptionEdit: inputs.description, typeEdit: typeEdit, websiteLinkEdit: inputs.websiteLink, coinMarketCapLinkEdit: inputs.coinMarketCapLink, telegramEdit: inputs.telegram, twitterEdit: inputs.twitter, discordEdit: inputs.discord, kycEdit: kyc, imageEdit: inputs.imageEdit, image: logo, idProject: idProject, comment: inputs.comment
             })
         };
         fetch(url + 'updateNew', requestOptions)
@@ -205,6 +224,7 @@ const UpdateCoin = () => {
     const handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
+        console.log('c forcement ici bro', inputs);
         setInputs(values => ({ ...values, [name]: value }))
     }
 
@@ -216,7 +236,20 @@ const UpdateCoin = () => {
         UpdateCoinService.initFieldOpenFlexible();
         setFieldOpen(UpdateCoinService.getFieldOpenFlexible());
         setField(false);
-        setInputs([]);
+        setInputs({
+            name: "",
+            symbol: "",
+            launchDate: "",
+            contractAddress: "",
+            description: "",
+            websiteLink: "",
+            coinMarketCapLink: "",
+            telegram: "",
+            twitter: "",
+            discord: "",
+            comment: "",
+            imageEdit: ""
+        });
         getSearchCoinRequest(string);
 
 
@@ -232,6 +265,7 @@ const UpdateCoin = () => {
         setField(true);
         console.log('hello worzdzzddzld', item);
         setTypeSelected({ label: item.type, value: item.type })
+        setTypeInitial({ label: item.type, value: item.type });
     }
 
     const handleOnFocus = () => {
@@ -255,7 +289,6 @@ const UpdateCoin = () => {
         const pattern = "projetsValidadOnly"
         return axios.get(AuthService.getUrl() + `searchById?id=${id}&pattern=${pattern}`)
             .then(response => {
-                /* setInputs(response.data[0]); */
                 setLogo(response.data[0].image);
                 setUrlUpload("vide");
                 console.log(urlUpload)
@@ -266,6 +299,7 @@ const UpdateCoin = () => {
     }
 
     const handleChangeFile = (event) => {
+        console.log('on est pas sensé allé la');
         const name = event.target.name;
         const value = event.target.value;
         setInputs(values => ({ ...values, [name]: value }))
