@@ -479,18 +479,44 @@ const EditionUtilisateurs = () => {
 
                             </label>}
 
-                        <label className={style.formLabel}>Description*:
-                            <textarea className={style.formInput} style={{
-                                maxHeight: "40em",
-                                minHeight: "8em"
-                            }}
-                                type="text"
-                                name="description"
-                                value={inputs.description || stat.description}
-                                onChange={handleChange}
-                                required="required"
+                        <label className={style.formLabel}>Type*:
+                            <Select
+                                className="basic-single"
+                                classNamePrefix="select"
+                                value={selected || statType}
+                                isSearchable={true}
+                                options={options}
+                                /* value={selected} */
+                                onChange={handleSelect}
+                                selectOption="required"
                             />
                         </label>
+                        {inputsEdit.typeEdit !== "" &&
+                            <label className={style.formLabel}>Type*:
+                                <Select
+                                    className="basic-single"
+                                    classNamePrefix="select"
+                                    value={{ label: inputsEdit.typeEdit, value: inputsEdit.typeEdit }}
+                                    isSearchable={true}
+                                    options={options}
+                                    /* value={selected} */
+                                    selectOption="required"
+                                />
+                            </label>}
+
+                        {inputsEdit.descriptionEdit !== "" &&
+                            <label className={style.formLabel}>Description*:
+                                <textarea className={style.formInput} style={{
+                                    maxHeight: "40em",
+                                    minHeight: "8em"
+                                }}
+                                    type="text"
+                                    name="description"
+                                    value={inputs.description || stat.description}
+                                    onChange={handleChange}
+                                    required="required"
+                                />
+                            </label>}
 
                         {inputsEdit.descriptionEdit !== "" &&
                             <label className={style.formLabel}>Description*:
