@@ -1,7 +1,7 @@
 import NavigationUserComponent from '../../../components/Navigation/NavigationUser/NavigationUser.component';
 import PresalesComponent from '../../../components/User/Presales/Presales.component';
 import FooterComponent from '../../../components/Navigation/Footer/Footer.component';
-import style from './Presales.module.scss';
+import style from './Presales.page.module.scss';
 import React from 'react';
 
 

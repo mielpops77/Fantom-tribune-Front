@@ -1,7 +1,6 @@
 import AuthService from "../../../../services/auth/auth.service";
 import React, { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
-// import { useHistory } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import style from "../Home.module.scss";
 import Modal from '@mui/material/Modal';
@@ -151,6 +150,7 @@ const PromotedToken = () => {
         <div className={style.divSingleBlock}>
             <div className={style.sectionBackground}></div>
             {elements.map((item, key) => {
+                console.log('heeeey',item,url)
                 return <div onClick={() => nav(`/infoCoin/${item._id}`)} key={key} className={style.card}>
                     <div className={style.divAllInfo}>
                         {

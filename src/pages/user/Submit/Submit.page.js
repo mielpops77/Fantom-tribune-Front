@@ -2,7 +2,7 @@ import React from 'react';
 import FooterComponent from '../../../components/Navigation/Footer/Footer.component';
 import NavigationUserComponent from '../../../components/Navigation/NavigationUser/NavigationUser.component';
 import FormulaireComponent from '../../../components/User/Formulaire/Formulaire.component';
-import style from "./Submit.module.scss";
+import style from "./Submit.page.module.scss";
 
 
 const Submit = () => {

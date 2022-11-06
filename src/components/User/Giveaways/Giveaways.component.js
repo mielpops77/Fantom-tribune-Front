@@ -6,7 +6,7 @@ import style from "./Giveaways.module.scss";
 
 const Giveaways = () => {
   return (
-    <div>
+    <div className={style.giveaways_container}>
        <NavigationUserComponent/>
        <div className={style.divFooter}>
                 <FooterComponent/>

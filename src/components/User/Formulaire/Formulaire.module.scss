@@ -1,5 +1,5 @@
 .formulaireSubmit {
-    background-color:white;
+    background-color:#131325;
     margin: 0 auto;
     width: 70%;
     display: flex;
@@ -32,11 +32,12 @@
         width: 100%;
         display: flex;
         flex-direction: column;
-        color: #450ca0;
+        color: #e9f0ff;
         font-size: max(0.84vw, 11px);
-        text-shadow: -0.05em 0.03em 0.25em #c7f5ca;
+        text-shadow: -0.05em 0.07em 0.3em rgba(105, 130, 241, 0.856);
         font-weight: 500;
         font-family: "Fira Sans", sans-serif;
+        border-color: #cedeff;
 
         .formInput {
             background-color: #ffffff;
@@ -50,6 +51,7 @@
             border: 0.1rem solid;
             border-color: #cedeff;
             transition: all 0.3s;
+            box-shadow: 0px 0px 18px 1px rgba(105, 130, 241, 0.555);
         }     
     }
 
@@ -62,8 +64,7 @@
     .blueButton {
         display: inline-block;
         color: #ffffff;
-        background-color: #0d6efd;
-        border-color: #0d6efd;
+        background-color: #3085e6;
         font-weight: 400;
         font-size: 0.9vw;
         font-family: "Fira Sans", sans-serif;
@@ -86,21 +87,11 @@
             color: #fff;
             background-color: #0b5ed7;
             border-color: #0a58ca;
-            box-shadow: 0 0 0 0.25rem rgba(49, 132, 253, 0.5);
+            box-shadow: 0 0 0 0.1rem rgba(49, 132, 253, 0.5);
         }
     }
 }
 
-
-
-
-
-// .multiSelect {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     z-index: 1;
-// }
 
 
 

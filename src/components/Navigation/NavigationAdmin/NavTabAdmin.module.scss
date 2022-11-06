@@ -1,2 +1,230 @@
 @import "../../../styles/setting";
 
+
+
+.navigationAdmin_fond
+{
+background-color:#050945;
+    
+}
+
+
+@media all and (max-width: 1024px){ 
+  nav { 
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    .navigationAdmin_fond
+    {
+        
+    }
+    .fantom_tribune{
+      display: flex;
+      align-items: center;
+      margin-left:1%;
+      width:10%;
+  
+      .imgLogo{
+        width: 80%;
+        height: auto;
+        float: left;
+        object-fit: cover;
+      }
+  
+      .title{
+        margin: auto;
+        width: 75%;
+        letter-spacing: -1px;
+        color: #FFFFFF;
+        font-size: 2vw;
+      }
+    }
+
+    .ulNavUser{
+      display: flex;
+      justify-content: space-around;
+      width: 75%;
+      margin:auto;
+
+      .liNavUser {
+        font-size: 1.5vw;
+        color: $color-2;
+        transition: 0.2s;
+        
+        letter-spacing: -0.5px;
+        cursor: pointer;
+        text-align: center;
+    
+        &:hover {
+          color: $color-1;
+        }
+      }
+
+      #subToken{
+        background-color:#3B96FF;
+        padding: 2px 8px 2px 6px;
+        border-radius: 10px;
+      }  
+    }
+
+    .divCurrentUser{
+      width: 8%;
+      display: flex;
+      align-items: center;
+
+      .imgUser{
+        max-width: 3vw;
+      }
+    }
+  } 
+}
+
+@media all and (min-width: 1024px){ 
+
+  nav {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: auto;
+
+    .fantom_tribune{
+      display: flex;
+      align-items: center;
+      margin-left:1.5%;
+      width:28%;
+      
+      .imgLogo{
+        width: 100%;
+        max-width: 100px;
+        min-width: 30px;
+        height: auto;
+        max-height: 100px;
+        min-height: 30px;
+        float: left;
+        object-fit: cover;
+      }
+
+      .title{
+        margin-left: 5%;
+        max-width: 75%;
+        vertical-align: middle;
+        letter-spacing: -1.44px;
+        color: #FFFFFF;
+        font-size: 2vw;
+      }
+    }
+
+    .ulNavUser{
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 62%;
+      margin-right: 3%;
+      margin-top:1%;
+  
+      .liNavUser {
+        font-size: 1.1vw;
+        color: $color-2;
+        transition: 0.2s;
+        cursor: pointer;
+
+        
+        &:hover {
+          color: $color-1;
+        }
+      }
+      .liNavUser::selection{
+        background-color: #071CFF;
+      }
+
+      #subToken{
+        background-color:#3B96FF;
+        padding: 6px 25px 6px 18px;
+        border-radius: 10px;
+      }    
+    }
+
+    .divCurrentUser{
+      width: 4%;
+      display: flex;
+      align-items: center;
+
+      .imgUser{
+        max-width: 5vw;
+        
+      margin: auto;
+      }
+    }
+
+    .divLoginRegister{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+  
+      .login {
+        margin: 1%;
+        font-size: 0.8vw;
+        padding: 3%;
+        text-align: center;
+        color: #450ca0;
+        background-color: #52fdfd;
+        border-radius: 100px;
+        height: auto;
+        width: 8vw;
+        right:100px;
+    
+        &:hover {
+          color: $color-3;
+        }
+      }
+    
+    
+      .logOut {  
+        margin: 7%;
+        font-size: 1.1vw;
+        padding: 5%;
+        text-align: center;
+        color: #fefdff;
+        background-color: #071CFF;
+        border-radius: 100px;
+        height: auto;
+        width: 8vw;
+        right:100px;
+    
+        &:hover {
+          color: $color-1;
+        }
+      }  
+    }
+  
+    .nav-active {
+  
+      &::after {
+        content: "";
+        height: 4px;
+        width: 0;
+        position: absolute;
+        border-radius: 10px;
+        bottom: 0px;
+        left: 50%;
+        transform: translateX(-50%);
+        -webkit-animation: anim 0.3s ease forwards;
+        animation: anim 0.6s ease forwards;
+        z-index: 4;
+  
+        @-webkit-keyframes anim {
+          to {
+            width: 100%;
+          }
+        }
+        @keyframes anim {
+          to {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

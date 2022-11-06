@@ -113,8 +113,8 @@ const Filter = () => {
                     <span></span>
                 </label>
             </div>
-            <div>
-                <p>24h price change</p>
+            <div className={style.filter_priceChange}>
+                <p className={style.filter_textPriceChange}>24h price change</p>
                 {/* <p className={style.priceChange}>{minValue}% to {maxValue}%</p> */}
                 <MultiRangeSlider
                     min={-100}
@@ -127,7 +127,7 @@ const Filter = () => {
                     <p>Category</p>
 
                 </div>
-                <select className={style.priceChange}
+                <select className={style.filter_select}
                         onClick={changeCategory}
                         id="category"
                         /* className={style.selectClass} */>
@@ -142,7 +142,7 @@ const Filter = () => {
                 <div className={style.category}>
                     <p>Type</p> 
                 </div>
-                <select className={style.priceChange} 
+                <select className={style.filter_select} 
                 /* className={style.selectClass} */
                         id="type"
                         onClick={changeType}>

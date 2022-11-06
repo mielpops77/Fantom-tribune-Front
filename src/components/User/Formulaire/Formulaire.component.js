@@ -312,7 +312,7 @@ function Formulaire() {
       })
     };
     fetch(url + 'launchDate', requestOptions)
-      .then(response => response.json(), nav(`/ValidationForm/`)/*  history.push(`/ValidationForm/`) */
+      .then(response => response.json(), nav(`/ValidationForm/Submit`)
       )
 
     /* .then(data => this.setState({ postId: data.id })); */
