@@ -494,13 +494,14 @@ const EditionUtilisateurs = () => {
                         {inputsEdit.typeEdit !== "" &&
                             <label className={style.formLabel}>Type*:
                                 <Select
-                                    className="basic-single"
+                                        className="basic-single"
                                     classNamePrefix="select"
                                     value={{ label: inputsEdit.typeEdit, value: inputsEdit.typeEdit }}
                                     isSearchable={true}
                                     options={options}
                                     /* value={selected} */
                                     selectOption="required"
+                                    styles = {customStyles}
                                 />
                             </label>}
 

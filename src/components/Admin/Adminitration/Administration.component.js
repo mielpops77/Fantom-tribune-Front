@@ -24,18 +24,11 @@ function Administration() {
     const [toggle4, setToggle4] = useState(false);
 
 
-
-    /* const [promotedStatus, setpromotedStatus] = useState(false); */
-    //let promotedProjectLenght = 0;
-
-    // const history = useHistory();
     const navigate = useNavigate();
-
 
     function nav(path) {
         navigate(path)
     }
-
 
     let changeStyleMenu = (btn) => {
         switch (btn) {
@@ -60,8 +53,6 @@ function Administration() {
 
                 setToggle(true);
                 setToggle2(false);
-                setToggle3(false);
-                setToggle4(false);
                 getUpdate();
                 break;
             case 3:
@@ -97,17 +88,15 @@ function Administration() {
                 setToggle3(false);
                 setToggle4(false);
                 if (toggleMenu) { getLunch(); }
-                else { }
+                else { getUpdateListDelete() }
 
                 break;
             case 3:
-                console.log("kokok");
                 setToggle3(true);
                 setToggle(false);
                 setToggle2(false);
                 setToggle4(false);
                 if (toggleMenu) { getTrash(); }
-                else { getUpdateListRefuse(); }
                 break;
             case 4:
                 setToggle3(false);
@@ -115,7 +104,6 @@ function Administration() {
                 setToggle2(false);
                 setToggle4(true);
                 if (toggleMenu) { getPromoted(); }
-                else { getUpdateListDelete() }
                 break;
             default:
         }
@@ -273,21 +261,8 @@ function Administration() {
     };
 
 
-
-
-
-
     let getUpdate = () => {
         fetch(url + 'updateList/')
-            .then((res) => res.json())
-            .then((res) => {
-                setPosts(res);
-            });
-    };
-
-
-    let getUpdateListRefuse = () => {
-        fetch(url + 'updateListRefuse/')
             .then((res) => res.json())
             .then((res) => {
                 setPosts(res);
@@ -304,22 +279,6 @@ function Administration() {
             });
     };
 
-    let updateRefuseValide = (postId, remove) => {
-        fetch(url + `updateRefuseValide/${postId}`, {
-            method: "Put",
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ status: remove })
-        })
-            .then((res) => res.json())
-            .then((res) => {
-
-                if (toggle) { getUpdate(); }
-                if (toggle3) { getUpdateListRefuse(); }
-            });
-    };
-
-
-
 
     let updateDelete = (postId, deleteValeur) => {
 
@@ -331,8 +290,8 @@ function Administration() {
         })
             .then((res) => res.json())
             .then((res) => {
-                if (toggle3) { getUpdateListRefuse(); }
-                if (toggle4) { getUpdateListDelete(); }
+                if (toggle) { getUpdate(); }
+                if (toggle2) { getUpdateListDelete(); }
             });
     };
 
@@ -436,32 +395,17 @@ function Administration() {
                                 cursor: "pointer",
                                 color: "green",
                             }} onClick={() => nav(`/editionUtilisateurs/${posts[index]._id}`)} />}
-
-
-
                             {toggle && <AiOutlineClose size={32} style={{
-                                cursor: "pointer",
-                                color: "red",
-                            }} onClick={() => updateRefuseValide(posts[index]._id, "Refuser")} />}
-
-
-                            {toggle3 && <FaTrashRestore size={32} style={{
-                                cursor: "pointer",
-                                color: "green",
-                            }} onClick={() => updateRefuseValide(posts[index]._id, "A valider")} />}
-
-                            {toggle3 && < BsTrash size={32} style={{
                                 cursor: "pointer",
                                 color: "red",
                             }} onClick={() => updateDelete(posts[index]._id, true)} />}
 
-
-                            {toggle4 && <FaTrashRestore size={32} style={{
+                            {toggle2 && <FaTrashRestore size={32} style={{
                                 cursor: "pointer",
                                 color: "green",
                             }} onClick={() => updateDelete(posts[index]._id, false)} />}
 
-                            {toggle4 && < BsTrash size={32} style={{
+                            {toggle2 && < BsTrash size={32} style={{
                                 cursor: "pointer",
                                 color: "red",
                             }} onClick={() => updateDeleteDef(posts[index]._id)} />}
@@ -567,14 +511,6 @@ function Administration() {
                 </div>
             </nav>
 
-
-            {/*     <div className={style.administration_filterMainMenu}>
-                <div className={toggleMenu ? style.administration_filterOneClick : style.administration_filterOne} onClick={() => changeStyleMenu(1)}> <p className={style.administration__filterTitle}>Projets</p> </div>
-                <div className={toggle3Menu ? style.administration_filterClick : style.administration_filter} onClick={() => changeStyleMenu(3)}> <p className={style.administration__filterTitle}>Update</p> </div>
-                <div className={toggle2Menu ? style.administration_filterClick : style.administration_filter} onClick={() => changeStyleMenu(2)}> <p className={style.administration__filterTitle}>Utilisateurs</p> </div>
-                <div className={toggle4Menu ? style.administration_filterClick : style.administration_filter} onClick={() => changeStyleMenu(4)}> <p className={style.administration__filterTitle}>Promotion</p> </div>
-            </div> */}
-
             {toggleMenu &&
                 <div className={style.administration_filterContainer}>
                     <div className={toggle ? style.administration_filterOneClick : style.administration_filterOne} onClick={() => changeStyle(1)}>
@@ -591,9 +527,7 @@ function Administration() {
                     <div className={toggle ? style.administration_filterOneClick : style.administration_filterOne} onClick={() => changeStyle(1)}>
                         <p className={style.administration__filterTitle}>À valider</p>
                     </div>
-                    <div className={toggle2 ? style.administration_filterClick : style.administration_filter} onClick={() => changeStyle(2)}> <p className={style.administration__filterTitle}>Validé</p> </div>
-                    <div className={toggle3 ? style.administration_filterClick : style.administration_filter} onClick={() => changeStyle(3)}> <p className={style.administration__filterTitle}>Refusé</p> </div>
-                    <div className={toggle4 ? style.administration_filterClick : style.administration_filter} onClick={() => changeStyle(4)}> <p className={style.administration__filterTitle}>Corbeille</p> </div>
+                    <div className={toggle2 ? style.administration_filterClick : style.administration_filter} onClick={() => changeStyle(2)}> <p className={style.administration__filterTitle}>Corbeille</p> </div>
                 </div>
             }
             <MDBDataTableV5
