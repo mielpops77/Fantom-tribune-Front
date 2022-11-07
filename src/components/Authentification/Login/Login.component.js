@@ -74,7 +74,7 @@ const Login = (props) => {
     };
 
     return (
-        <div>
+        <div className={style.login_container}>
             <NavigationUserComponent />
             <div className={style.divCorSignIn}>
                 <Form onSubmit={handleLogin} className={style.form}>
