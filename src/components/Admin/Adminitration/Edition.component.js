@@ -1,7 +1,7 @@
 import NavigationAdminComponent from '../../Navigation/NavigationAdmin/NavigationAdmin.component';
 import TableLaunchService from "../../../services/tableauLaunh/tableauLaunch.service";
-import FooterComponent from '../../Navigation/Footer/Footer.component';
 import editionService from "../../../services/admin/editionAdmin.service";
+import FooterComponent from '../../Navigation/Footer/Footer.component';
 import AuthService from "../../../services/auth/auth.service";
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -340,8 +340,6 @@ const Edition = () => {
                             </label>
                         }
 
-
-
                         <label className={style.formLabel}>Contract Address:
                             <input className={style.formInput}
                                 type="text"
@@ -452,12 +450,6 @@ const Edition = () => {
                                 <label htmlFor="no">no</label>
                             </div>
                         </label>
-
-
-
-
-
-
                         <br />
                         <input className="btn btn-primary btn-block" id="submitInput" type="submit" />
                     </form >

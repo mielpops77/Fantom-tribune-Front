@@ -5,9 +5,9 @@ import CheckButton from "react-validation/build/button";
 import Input from "react-validation/build/input";
 import React, { useState, useRef } from "react";
 import Form from "react-validation/build/form";
-import { NavLink } from "react-router-dom";
-import style from "./Login.module.scss";
 import { useNavigate } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
+import style from "./ForgotPassword.module.scss";
 
 
 
@@ -21,7 +21,7 @@ const required = (value) => {
     }
 };
 
-const Login = (props) => {
+const ForgotPassword = (props) => {
     let navigate = useNavigate();
     //const form = useRef();
     const checkBtn = useRef();
@@ -50,9 +50,9 @@ const Login = (props) => {
 
         if (checkBtn.current.context._errors.length === 0) {
 
-            AuthService.login(mail, password).then(
+            AuthService.verifMail(mail).then(
                 () => {
-                    navigate("/");
+                    /* navigate("/"); */
                     /*  props.history.push("/launchDate"); */
                     window.location.reload();
                 },
@@ -74,34 +74,24 @@ const Login = (props) => {
     };
 
     return (
-        <div className={style.login_container}>
-     {/*    <div  className={style.login_fond}> */}
-
+        <div  className={style.forgotPassword_fond}>
             <NavigationUserComponent />
             <div className={style.divCorSignIn}>
                 <Form onSubmit={handleLogin} className={style.form}>
-                    <h3 className={style.loginTitle}>Login</h3>
+                    <h3 className={style.loginTitle}>Forgot Password</h3>
                     <div className={style.formGroup}>
                         <label className={style.labeSignIn}>Email address</label>
                         <Input type="email" className={style.formControl} name="mail" value={mail} onChange={onChangeMail} validations={[required]} placeholder="Enter email" />
                     </div>
-                    <div className={style.formGroup}>
-                        <label className={style.labeSignIn}>Password</label>
-                        <Input type="password" className={style.formControl} placeholder="Enter password" name="password" value={password} onChange={onChangePassword} validations={[required]} />
-                    </div>
-                    <div className={style.formCheckbox}>
-                        <div className={style.controlCheckbox}>
-                            <Input type="checkbox" className={style.customControlInput} id="customCheck1" />
-                            <label className={style.customControlLabel} htmlFor="customCheck1">Remember me</label>
-                        </div>
-                    </div>
+                
+                   
 
                     <div className={style.loginButton}>
                         <button className={style.greenButton} disabled={loading}>
                             {loading && (
                                 <span className="spinner-border spinner-border-sm"></span>
                             )}
-                            <span>Login</span>
+                            <span>Email Password Reset Link</span>
                         </button>
                     </div>
 
@@ -114,14 +104,8 @@ const Login = (props) => {
                     )}
                     <CheckButton style={{ display: "none" }} ref={checkBtn} />
 
-                    <NavLink to="/register" className={style.register}>
-                        <button className={style.blueButton}>No Account? Register Here</button>
-                    </NavLink>
-                    <NavLink to="/forgotPassword" className={style.register}>
-                    <p className={style.forgotPassword}>
-                        Forgot <a className={style.link} style={{ color: "#167bff" }} href="#"> password?</a>
-                    </p>
-                    </NavLink>
+                  
+
                 </Form>
             </div>
             <FooterComponent />
@@ -131,4 +115,4 @@ const Login = (props) => {
     );
 };
 
-export default Login;
+export default ForgotPassword;

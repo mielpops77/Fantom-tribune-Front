@@ -1,5 +1,7 @@
 /* eslint-disable react/jsx-no-undef */
+import ForgotPassword from './components/Authentification/ForgotPassword/ForgotPassword.component';
 import EditionUtilisateurs from "./components/Admin/Adminitration/EditionUtilisateurs.components";
+import NewPassword from './components/Authentification/ForgotPassword/NewPassword.component'
 import ValidationForm from "./pages/user/ValidationFormulaire/ValidationFormulaire.page";
 import Register from './components/Authentification/Register/Register.component';
 import TopTrending from './components/User/TopTrending/TopTrending.component';
@@ -18,15 +20,16 @@ import Submit from './pages/user/Submit/Submit.page';
 import { Route, Routes } from 'react-router-dom';
 import React from 'react';
 import Home from './Home';
-
 const App = () => {
   return (
     <div>
       <Routes>
-      <Route path="/validationForm/:TypeFormulaire" element={<ValidationForm />} />
-      <Route path="/editionUtilisateurs/:id" element={<EditionUtilisateurs />} />
+        <Route path="/validationForm/:TypeFormulaire" element={<ValidationForm />} />
+        <Route path="/editionUtilisateurs/:id" element={<EditionUtilisateurs />} />
         <Route path="/confirm/:confirmationCode" element={<Welcome />} />
+        <Route path="/reset-password/:confirmationCode" element={<NewPassword />} />
         <Route path="/administration" element={<Administration />} />
+        <Route path="/forgotPassword" element={<ForgotPassword />} />
         <Route path="/editionCoin/:id" element={<EditionCoin />} />
         <Route path="/topTrending" element={<TopTrending />} />
         <Route path="//infoCoin/:id" element={<InfoCoin />} />
@@ -34,7 +37,7 @@ const App = () => {
         <Route path="/apiConfig/" element={<ApiConfig />} />
         <Route path="/giveaways" element={<Giveaways />} />
         <Route path="/allTokens" element={<AllTokens />} />
-        <Route path="/coinDetail/" element={<Welcome />} />
+        {/* <Route path="/coinDetail/" element={<Welcome />} /> */}
         <Route path="/presales" element={<Presales />} />
         <Route path="/register" element={<Register />} />
         <Route path="/Profile" element={<Profile />} />
