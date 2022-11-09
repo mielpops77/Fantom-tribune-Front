@@ -6,16 +6,17 @@ import style from "../Home.module.scss";
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 
-
-const user = AuthService.getCurrentUser();
 const url = AuthService.getUrl();
 
 
 const PromotedToken = () => {
 
     const [elements, setElements] = useState([]);
+    const [user, setUser] = useState([]);
+
 
     useEffect(() => {
+        setUser(AuthService.getCurrentUser());
         fetch(url + 'getPromotedProject')
             .then((res) => res.json())
             .then((res) => {
