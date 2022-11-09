@@ -74,7 +74,7 @@ const ForgotPassword = (props) => {
     };
 
     return (
-        <div  className={style.forgotPassword_fond}>
+        <div  className={style.forgot_container}>
             <NavigationUserComponent />
             <div className={style.divCorSignIn}>
                 <Form onSubmit={handleLogin} className={style.form}>

@@ -13,16 +13,6 @@ const EditionUtilisateurs = () => {
 
     const [selected, setSelected] = useState(null);
     const [inputs, setInputs] = useState({
-        name: "",
-        symbol: "",
-        launchDate: "",
-        contractAddress: "",
-        description: "",
-        websiteLink: "",
-        coinMarketCapLink: "",
-        telegram: "",
-        twitter: "",
-        discord: ""
     });
     const [inputsEdit, setInputsEdit] = useState({
         comment: "",
@@ -253,6 +243,8 @@ const EditionUtilisateurs = () => {
         else {
             type = selected;
         }
+        console.log("input: " , inputs);
+
         const requestOptions = {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
@@ -261,10 +253,9 @@ const EditionUtilisateurs = () => {
                 websiteLink: inputs.websiteLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, coinMarketCapLink: inputs.coinMarketCapLink, coinMarketCapStatus: editionService.getMarketCapStatus(), kyc: kyc
             })
         };
-        fetch(url + `adminEdit/${id}`, requestOptions)
+        fetch(url + `adminEdit/${editionService.getIdProject()}`, requestOptions)
             .then(response => response.json())
             .then(data => navigate("/administration"));
-
     }
 
 
@@ -278,6 +269,8 @@ const EditionUtilisateurs = () => {
             .then(response => {
                 setInputsEdit(response.data[0]);
                 console.log('ssssss', response.data[0].launchDateEdit)
+                editionService.initIdProject();
+                editionService.setIdProject(response.data[0].idProject);
                 getSearchCoinById(response.data[0].idProject);
                 return response.data;
             })
@@ -494,14 +487,14 @@ const EditionUtilisateurs = () => {
                         {inputsEdit.typeEdit !== "" &&
                             <label className={style.formLabel}>Type*:
                                 <Select
-                                        className="basic-single"
+                                    className="basic-single"
                                     classNamePrefix="select"
                                     value={{ label: inputsEdit.typeEdit, value: inputsEdit.typeEdit }}
                                     isSearchable={true}
                                     options={options}
                                     /* value={selected} */
                                     selectOption="required"
-                                    styles = {customStyles}
+                                    styles={customStyles}
                                 />
                             </label>}
 

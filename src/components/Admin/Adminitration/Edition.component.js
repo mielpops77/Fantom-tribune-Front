@@ -197,6 +197,7 @@ const Edition = () => {
         else {
             type = selected;
         }
+        console.log("input: " , inputs);
         const requestOptions = {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },

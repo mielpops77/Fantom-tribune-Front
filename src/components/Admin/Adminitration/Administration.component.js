@@ -467,42 +467,42 @@ function Administration() {
     return (
         <div className="container">
 
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul className="navbar-nav mr-auto">
+                        <li className="nav-item">
                             {toggleMenu &&
-                                <a class="nav-link" href="#" onClick={() => changeStyleMenu(1)}> <span className={style.administration_filterMainColor}>Projets</span></a>
+                                <a className="nav-link" href="#" onClick={() => changeStyleMenu(1)}> <span className={style.administration_filterMainColor}>Projets</span></a>
                             }
                             {!toggleMenu &&
-                                <a class="nav-link" href="#" onClick={() => changeStyleMenu(1)}> <span>Projets</span></a>
+                                <a className="nav-link" href="#" onClick={() => changeStyleMenu(1)}> <span>Projets</span></a>
                             }
 
                         </li>
-                        <li class="nav-item ">
+                        <li className="nav-item ">
                             {toggle2Menu &&
-                                <a class="nav-link" href="#" onClick={() => changeStyleMenu(2)}> <span className={style.administration_filterMainColor}>Update</span></a>
+                                <a className="nav-link" href="#" onClick={() => changeStyleMenu(2)}> <span className={style.administration_filterMainColor}>Update</span></a>
                             }
                             {!toggle2Menu &&
-                                <a class="nav-link" href="#" onClick={() => changeStyleMenu(2)}> <span>Update</span></a>
+                                <a className="nav-link" href="#" onClick={() => changeStyleMenu(2)}> <span>Update</span></a>
                             }
                         </li>
-                        <li class="nav-item ">
+                        <li className="nav-item ">
                             {toggle3Menu &&
-                                <a class="nav-link" href="#" onClick={() => changeStyleMenu(3)}> <span className={style.administration_filterMainColor}>Utilisateurs</span></a>
+                                <a className="nav-link" href="#" onClick={() => changeStyleMenu(3)}> <span className={style.administration_filterMainColor}>Utilisateurs</span></a>
                             }
                             {!toggle3Menu &&
-                                <a class="nav-link" href="#" onClick={() => changeStyleMenu(3)}> <span>Utilisateurs</span></a>
+                                <a className="nav-link" href="#" onClick={() => changeStyleMenu(3)}> <span>Utilisateurs</span></a>
                             }
                         </li>
 
-                        <li class="nav-item ">
+                        <li className="nav-item ">
                             {toggle4Menu &&
-                                <a class="nav-link" href="#" onClick={() => changeStyleMenu(4)}> <span className={style.administration_filterMainColor}>Promotions</span></a>
+                                <a className="nav-link" href="#" onClick={() => changeStyleMenu(4)}> <span className={style.administration_filterMainColor}>Promotions</span></a>
                             }
                             {!toggle4Menu &&
-                                <a class="nav-link" href="#" onClick={() => changeStyleMenu(4)}> <span>Promotions</span></a>
+                                <a className="nav-link" href="#" onClick={() => changeStyleMenu(4)}> <span>Promotions</span></a>
                             }
                         </li>
 

@@ -1,9 +1,9 @@
 import NavigationUserComponent from '../../Navigation/NavigationUser/NavigationUser.component';
 import FooterComponent from '../../../components/Navigation/Footer/Footer.component';
 import AuthService from "../../../services/auth/auth.service";
+import React, { useEffect, useState, useRef } from "react";
 import CheckButton from "react-validation/build/button";
 import Input from "react-validation/build/input";
-import React, { useEffect, useState, useRef } from "react";
 import Form from "react-validation/build/form";
 import style from "./NewPassword.module.scss"
 import axios from "axios";
@@ -12,15 +12,11 @@ import axios from "axios";
 const NewPassword = (props) => {
 
     let url = window.location.href;
-    const [error, setError] = useState(false);
-
-    const checkBtn = useRef();
-    const [password, setPassword] = useState("");
-    const [passwordConfirm, setPasswordConfirm] = useState("");
-
-    const [loading, setLoading] = useState(false);
-    const [message, setMessage] = useState("");
     const [passwordIdentical, setpasswordIdentical] = useState(true);
+    const [passwordConfirm, setPasswordConfirm] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState(false);
+    const checkBtn = useRef();
 
 
 
@@ -31,7 +27,7 @@ const NewPassword = (props) => {
 
         }, (error) => {
             setError(true)
-            console.log('errooooooor', error.response)
+            console.log('error', error.response)
         }
         );
     };
@@ -135,23 +131,14 @@ const NewPassword = (props) => {
                         </p>}
 
                         <div className={style.newPassword_button}>
-                            <button className={style.newPassword_greenButton} disabled={loading}>
-                                {loading && (
-                                    <span className="spinner-border spinner-border-sm"></span>
-                                )}
+                            <button className={style.newPassword_greenButton} >
                                 <span>Reset password</span>
                             </button>
                         </div>
 
 
 
-                        {message && (
-                            <div className={style.newPassword_formGroup}>
-                                <div className="alert alert-danger" role="alert">
-                                    {message}
-                                </div>
-                            </div>
-                        )}
+              
                         <CheckButton style={{ display: "none" }} ref={checkBtn} />
 
                     </Form>

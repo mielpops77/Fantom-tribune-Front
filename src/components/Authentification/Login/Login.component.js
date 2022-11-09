@@ -54,8 +54,6 @@ const Login = (props) => {
             AuthService.login(mail, password).then(
                 () => {
                     navigate("/");
-                    /*  props.history.push("/launchDate"); */
-                    window.location.reload();
                 },
                 (error) => {
                     const resMessage =
