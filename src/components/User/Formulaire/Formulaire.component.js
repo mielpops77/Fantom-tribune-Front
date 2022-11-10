@@ -1,13 +1,13 @@
 import TableLaunchService from '../../../services/tableauLaunh/tableauLaunch.service'
 import AuthService from "../../../services/auth/auth.service";
+import React, { useState, useEffect } from 'react';
+import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
 import style from "./Formulaire.module.scss";
-import Select from 'react-select'
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import Select from 'react-select'
+import axios from 'axios';
 
 function Formulaire() {
 
@@ -24,9 +24,6 @@ function Formulaire() {
   const navigate = useNavigate();
 
 
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
 
 
@@ -34,7 +31,6 @@ function Formulaire() {
 
   useEffect(() => {
     setUser(AuthService.getCurrentUser());
-    console.log('user', user);
   }, [])
 
 
@@ -46,13 +42,7 @@ function Formulaire() {
     setVerifUpl(true);
   }
 
-
-
-
-
-
   function login() {
-    // history.push(`/login/`)
     navigate(`/login/`);
   }
 
@@ -347,19 +337,19 @@ function Formulaire() {
         type = selected.value;
       }
       event.preventDefault();
-      const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress.toLowerCase(), description: inputs.description, type: type,
-          websiteLink: inputs.websiteLink, coinMarketCapLink: coinMarketCapLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, vote: 0, voteToday: voteTodayUtc, voteTwentyHour: 0, voteTwentyHourCalcul: voteTwentyHourCalcul, price: 0, marketCap: 0, supply: 0, coinMarketCapStatus: coinMarketCapStatus, idCoinMarketCap: 0, listePriceIdCoinMarketCap: listePriceIdCoinMarketCap, percent_change_24h: 0, promotedStatus: false, kyc: kyc
-        })
-      };
-      fetch(url + 'launchDate', requestOptions)
-        .then(response => response.json(), nav(`/ValidationForm/Submit`)
-        )
+        const requestOptions = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress.toLowerCase(), description: inputs.description, type: type,
+            websiteLink: inputs.websiteLink, coinMarketCapLink: coinMarketCapLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, vote: 0, voteToday: voteTodayUtc, voteTwentyHour: 0, voteTwentyHourCalcul: voteTwentyHourCalcul, price: 0, marketCap: 0, supply: 0, coinMarketCapStatus: coinMarketCapStatus, idCoinMarketCap: 0, listePriceIdCoinMarketCap: listePriceIdCoinMarketCap, percent_change_24h: 0, promotedStatus: false, kyc: kyc
+          })
+        };
+        fetch(url + 'launchDate', requestOptions)
+          .then(response => response.json(), nav(`/ValidationForm/Submit`)
+          )
 
-      /* .then(data => this.setState({ postId: data.id })); */
+        /* .then(data => this.setState({ postId: data.id })); */
 
     }
 
@@ -570,7 +560,6 @@ function Formulaire() {
 
       <Modal
         open={user == null}
-        onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >

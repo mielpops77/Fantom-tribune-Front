@@ -7,6 +7,9 @@ import React, { useState, useEffect } from 'react';
 import style from "./UpdateCoin.module.scss";
 import Select from 'react-select'
 import axios from "axios";
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
 
 const UpdateCoin = () => {
     const [typeSelected, setTypeSelected] = useState({});
@@ -34,8 +37,30 @@ const UpdateCoin = () => {
     const [logo, setLogo] = useState('');
     const [idProject, setIdProject] = useState('');
 
+    const [user, setUser] = useState([]);
+
+
+
+    const styleBox = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: '30%',
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        boxShadow: 24,
+        p: 4,
+    };
+
     const url = AuthService.getUrl();
     const navigate = useNavigate();
+
+
+    function login() {
+        navigate(`/login/`);
+    }
+
 
     const initForm = {
         name: "",
@@ -85,6 +110,7 @@ const UpdateCoin = () => {
 
 
     useEffect(() => {
+        setUser(AuthService.getCurrentUser());
         UpdateCoinService.initFieldOpenFlexible();
         setFieldOpen(UpdateCoinService.getFieldOpenFlexible());
     }, []);
@@ -201,24 +227,23 @@ const UpdateCoin = () => {
 
     const handleSubmit = (event) => {
 
-        let typeEdit = "";
-        if (typeSelected.value !== typeInitial.value) {
-            typeEdit = typeSelected.value;
+        if (user !== null) {
+            let typeEdit = "";
+            if (typeSelected.value !== typeInitial.value) {
+                typeEdit = typeSelected.value;
+            }
+            event.preventDefault();
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    nameEdit: inputs.name, symbolEdit: inputs.symbol, launchDateEdit: inputs.launchDate, contractAddressEdit: inputs.contractAddress, descriptionEdit: inputs.description, typeEdit: typeEdit, websiteLinkEdit: inputs.websiteLink, coinMarketCapLinkEdit: inputs.coinMarketCapLink, telegramEdit: inputs.telegram, twitterEdit: inputs.twitter, discordEdit: inputs.discord, kycEdit: kyc, imageEdit: inputs.imageEdit, image: logo, idProject: idProject, comment: inputs.comment
+                })
+            };
+            fetch(url + 'updateNew', requestOptions)
+                .then(response => response.json(), nav(`/ValidationForm/Update`)
+                )
         }
-
-
-        event.preventDefault();
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                nameEdit: inputs.name, symbolEdit: inputs.symbol, launchDateEdit: inputs.launchDate, contractAddressEdit: inputs.contractAddress, descriptionEdit: inputs.description, typeEdit: typeEdit, websiteLinkEdit: inputs.websiteLink, coinMarketCapLinkEdit: inputs.coinMarketCapLink, telegramEdit: inputs.telegram, twitterEdit: inputs.twitter, discordEdit: inputs.discord, kycEdit: kyc, imageEdit: inputs.imageEdit, image: logo, idProject: idProject, comment: inputs.comment
-            })
-        };
-        fetch(url + 'updateNew', requestOptions)
-            .then(response => response.json(), nav(`/ValidationForm/Update`)
-            )
-
     }
 
     const handleChange = (event) => {
@@ -725,6 +750,22 @@ const UpdateCoin = () => {
 
                 }
             </form >}
+
+
+            <Modal
+                open={user == null}
+                /* onClose={handleClose} */
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={styleBox}>
+                    <Typography className={style.typo} id="modal-modal-title" variant="h6" component="h2">
+                        You must be logged in to be able to submit a new project
+                    </Typography>
+                    <br />
+                    <button style={{ width: "100%" }} className="btn btn-success" onClick={login}>login</button>
+                </Box>
+            </Modal>
         </div>
 
     )
