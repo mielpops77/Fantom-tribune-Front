@@ -319,8 +319,9 @@ function Administration() {
         let postsArray = JSON.parse(JSON.stringify(posts));
         let userData = [];
         postsArray.map((item, index) => {
-            item._id = (
-                <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div>
+            
+            item.username = (
+                <div style={{ fontSize: "1.2em" }}>{item.usernameCrea}</div>
             );
             item.action = (
                 <div style={{ display: "flex" }}>
@@ -426,8 +427,8 @@ function Administration() {
     const data = {
         columns: [
             {
-                label: '#',
-                field: 'id',
+                label: 'Créateurs',
+                field: 'username',
                 sort: 'asc',
                 width: 150
             },
