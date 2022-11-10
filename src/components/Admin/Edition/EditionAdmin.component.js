@@ -1,4 +1,3 @@
-import NavigationAdminComponent from '../../Navigation/NavigationAdmin/NavigationAdmin.component';
 import TableLaunchService from "../../../services/tableauLaunh/tableauLaunch.service";
 import editionService from "../../../services/admin/editionAdmin.service";
 import FooterComponent from '../../Navigation/Footer/Footer.component';
@@ -9,7 +8,7 @@ import style from "./Edition.module.scss";
 import Select from 'react-select'
 import axios from 'axios';
 
-const Edition = () => {
+const EditionAdmin = () => {
     const [selected, setSelected] = useState(null);
     const [inputs, setInputs] = useState({});
     const [urlUpload, setToggle] = useState('');
@@ -38,8 +37,8 @@ const Edition = () => {
     //let today = date.toISOString().split('T')[0];
 
 
-    let paths = window.location.href;
-    const id = paths.substring(34, paths.length);
+    let path = window.location.href;
+    const id = path.substring(34, path.length);
     const options = [
         { label: "Dex", value: "Dex" },
         { label: "Gaming", value: "Gaming" },
@@ -50,10 +49,7 @@ const Edition = () => {
         { label: "Yield Aggregatort", value: "Yield Aggregatort" },
         { label: "Reflect token", value: "Reflect token" },
         { label: "Yield", value: "Yield" },
-
     ];
-
-
 
     let date = new Date();
     let mondayUtc = (date.getUTCMonth() + 1)
@@ -114,12 +110,9 @@ const Edition = () => {
         }
         else {
             setPrev("no");
-
-
         }
 
     }
-
 
     const handleChangeFile = (event) => {
         const name = event.target.name;
@@ -249,8 +242,6 @@ const Edition = () => {
     return (
 
         <div>
-            <NavigationAdminComponent />
-
             <div className={style.divCorpSubmit}>
                 <h1 className={style.titleSubmit}>Modify a coin to Fantom Tribune</h1>
                 <p className={style.subtitleSubmit}>Here you can edit projects</p>
@@ -459,12 +450,7 @@ const Edition = () => {
             <FooterComponent />
         </div >
 
-
-
-
-
-
     )
 }
 
-export default Edition;
+export default EditionAdmin;

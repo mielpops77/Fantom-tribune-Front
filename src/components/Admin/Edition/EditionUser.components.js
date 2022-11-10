@@ -1,7 +1,6 @@
-import NavigationAdminComponent from '../../Navigation/NavigationAdmin/NavigationAdmin.component';
 import TableLaunchService from "../../../services/tableauLaunh/tableauLaunch.service";
-import FooterComponent from '../../Navigation/Footer/Footer.component';
 import editionService from "../../../services/admin/editionAdmin.service";
+import FooterComponent from '../../Navigation/Footer/Footer.component';
 import AuthService from "../../../services/auth/auth.service";
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -9,7 +8,7 @@ import style from "./Edition.module.scss";
 import Select from 'react-select'
 import axios from 'axios';
 
-const EditionUtilisateurs = () => {
+const EditionUser = () => {
 
     const [selected, setSelected] = useState(null);
     const [inputs, setInputs] = useState({
@@ -56,8 +55,11 @@ const EditionUtilisateurs = () => {
     //let date = new Date()
     //let today = date.toISOString().split('T')[0];
 
-    let paths = window.location.href;
-    const id = paths.substring(42, paths.length);
+    let path = window.location.href;
+    const id = path.substring(34, path.length);
+    console.log(id);
+
+    
     const options = [
         { label: "Dex", value: "Dex" },
         { label: "Gaming", value: "Gaming" },
@@ -307,8 +309,6 @@ const EditionUtilisateurs = () => {
     return (
 
         <div>
-            <NavigationAdminComponent />
-
             <div className={style.divCorpSubmit}>
                 <h1 className={style.titleSubmit}>Modify a coin to Fantom Tribune</h1>
                 <p className={style.subtitleSubmit}>Here you can edit projects</p>
@@ -691,4 +691,4 @@ const EditionUtilisateurs = () => {
     )
 }
 
-export default EditionUtilisateurs;
+export default EditionUser;

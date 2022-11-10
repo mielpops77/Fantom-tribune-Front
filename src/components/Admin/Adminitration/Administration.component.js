@@ -394,7 +394,7 @@ function Administration() {
                             {toggle && <AiFillEdit size={32} style={{
                                 cursor: "pointer",
                                 color: "green",
-                            }} onClick={() => nav(`/editionUtilisateurs/${posts[index]._id}`)} />}
+                            }} onClick={() => nav(`/editionUser/${posts[index]._id}`)} />}
                             {toggle && <AiOutlineClose size={32} style={{
                                 cursor: "pointer",
                                 color: "red",
