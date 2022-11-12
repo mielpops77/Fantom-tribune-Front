@@ -381,6 +381,31 @@ function Administration() {
 
 
 
+    let deleteUser = (postId) => {
+        fetch(url + `deleteUser/${postId}`, {
+            method: "DELETE",
+        })
+            .then((res) => res.json())
+            .then((res) => {
+                var postIndex = posts.findIndex(function (o) {
+                    return o._id === postId;
+                });
+                if (postIndex !== -1) {
+                    setPosts(posts.filter((item) => item.id !== postId));
+                    if (toggle) {
+                        getListUser();
+                    }
+                    if (toggle2) {
+                        getListAdmin();
+                    }
+
+                }
+            });
+    };
+
+
+
+
     useEffect(() => {
         let postsArray = JSON.parse(JSON.stringify(posts));
         let userData = [];
@@ -486,6 +511,11 @@ function Administration() {
                 item.image = (
                     <img style={{ height: "100%", width: "95px", float: "left" }} src={url + posts[index].image} alt="img" />
                 );
+
+
+
+
+
                 userData.push(item);
             });
 
@@ -497,6 +527,19 @@ function Administration() {
 
                 item.createdOn = (
                     <div style={{ fontSize: "1.2em" }}>Date: {item.createdOn.substr(0, 10)}  Heure: {item.createdOn.substr(11, 8)}</div>
+                );
+
+                item.action = (
+                    <div style={{ display: "flex" }}>
+
+                        <div>
+                            <AiOutlineClose size={32} style={{
+                                cursor: "pointer",
+                                color: "red",
+                            }} onClick={() => deleteUser(posts[index]._id, true)} />
+
+                        </div>
+                    </div>
                 );
                 userData.push(item);
             });
@@ -568,6 +611,12 @@ function Administration() {
                 field: 'createdOn',
                 sort: 'asc',
                 width: 200
+            }
+            ,
+            {
+                label: 'Action',
+                field: 'action',
+                width: 100
             }
         ],
 
