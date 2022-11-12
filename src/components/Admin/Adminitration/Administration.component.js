@@ -172,8 +172,8 @@ function Administration() {
             });
     };
 
-    let deletePost = (postId) => {
-        fetch(url + `trashDef/${postId}`, {
+    let deletePost = (postId, imageId) => {
+        fetch(url + `trashDef/?id=${postId}&imageId=${imageId}`, {
             method: "DELETE",
         })
             .then((res) => res.json())
@@ -463,7 +463,7 @@ function Administration() {
                                 {toggle3 && < BsTrash size={32} style={{
                                     cursor: "pointer",
                                     color: "red",
-                                }} onClick={() => deletePost(posts[index]._id)} />}
+                                }} onClick={() => deletePost(posts[index]._id, posts[index].image)} />}
 
 
                                 {toggle4 && <div>{!posts[index].promotedStatus && <AiFillStar size={32}
