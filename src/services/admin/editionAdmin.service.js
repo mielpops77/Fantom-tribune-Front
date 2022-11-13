@@ -10,7 +10,20 @@ let promotedProjectLenght;
 
 let coinMarketCapLink;
 let coinMarketCapStatus;
+let idProject;
 
+
+function initIdProject() {
+    idProject = "";
+}
+
+function getIdProject() {
+    return idProject
+}
+
+function setIdProject(id) {
+    idProject = id;
+}
 
 function initCoinMarketCapLink() {
     coinMarketCapLink = "";
@@ -113,11 +126,14 @@ export default {
     initMarketCapStatus,
     getMarketCapStatus,
     setMarketCapStatus,
+    initIdProject,
+    getIdProject,
+    setIdProject,
     setCoinEdit,
     initCoin,
     initType,
     getCoin,
     setCoin,
     getType,
-    setType,
+    setType
 };
