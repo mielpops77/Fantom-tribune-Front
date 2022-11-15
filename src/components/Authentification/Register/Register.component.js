@@ -107,7 +107,7 @@ const Register = (props) => {
     };
 
     return (
-        <div>
+        <div className={style.register_container}>
             <NavigationUserComponent />
             <div className={style.divCorSignIn}>
                 <Form onSubmit={handleRegister} ref={form} className={style.form}>

@@ -8,11 +8,11 @@ const ValidationFormulaire = (props) => {
     let path = window.location.href;
 
     //Version Distant
-    /* const id = path.substring(56, path.length); */
+    const typeForm = path.substring(56, path.length);
 
 
     // Version Local 
-    const typeForm = path.substring(37, path.length);
+    /* const typeForm = path.substring(37, path.length); */
     console.log("typeForm", typeForm)
 
 

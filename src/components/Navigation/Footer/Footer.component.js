@@ -17,7 +17,7 @@ const Footer = () => {
                     </div>
                     <div className={style.divLink}>
                         <img className={style.imgLogo} src="https://fantom-tribune-back.herokuapp.com/assets/logo_discord.png" />
-                        <a className={style.link} href="https://discord.gg/AtjmsXJe">Discord</a>
+                        <a className={style.link} href="https://discord.gg/AtjmsXJe">Term</a>
                     </div>
                 </div>
             <img className={style.imgFtmTribune} src="https://fantom-tribune-back.herokuapp.com/assets/logo.png" />

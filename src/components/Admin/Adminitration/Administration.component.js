@@ -23,12 +23,18 @@ function Administration() {
     const [toggle3, setToggle3] = useState(false);
     const [toggle4, setToggle4] = useState(false);
 
+    const [statistiqueToday, setStatistiqueToday] = useState(0);
+    const [statistiqueMonth, setStatistiqueMonth] = useState(0);
+    const [statistiqueTotal, setStatistiqueTotal] = useState(0);
+
+
 
     const navigate = useNavigate();
 
     function nav(path) {
         navigate(path)
     }
+
 
     let changeStyleMenu = (btn) => {
         switch (btn) {
@@ -53,6 +59,8 @@ function Administration() {
 
                 setToggle(true);
                 setToggle2(false);
+                setToggle3(false);
+                setToggle4(false);
                 getUpdate();
                 break;
             case 3:
@@ -60,6 +68,13 @@ function Administration() {
                 setToggle2Menu(false);
                 setToggle3Menu(true);
                 setToggle4Menu(false);
+
+
+                setToggle(true);
+                setToggle2(false);
+                setToggle3(false);
+                setToggle4(false);
+                getListUser();
                 break;
             case 4:
                 setToggleMenu(false);
@@ -71,6 +86,7 @@ function Administration() {
         }
     };
 
+    console.log('weeesh', toggle3);
 
     let changeStyle = (btn) => {
         switch (btn) {
@@ -80,7 +96,8 @@ function Administration() {
                 setToggle3(false);
                 setToggle4(false);
                 if (toggleMenu) { getValidation(); }
-                else { getUpdate(); }
+                if (toggle2Menu) { getUpdate(); }
+                if (toggle3Menu) { getListUser(); }
                 break;
             case 2:
                 setToggle2(true);
@@ -88,7 +105,8 @@ function Administration() {
                 setToggle3(false);
                 setToggle4(false);
                 if (toggleMenu) { getLunch(); }
-                else { getUpdateListDelete() }
+                if (toggle2Menu) { getUpdateListDelete(); }
+                else { getListAdmin() }
 
                 break;
             case 3:
@@ -97,6 +115,13 @@ function Administration() {
                 setToggle2(false);
                 setToggle4(false);
                 if (toggleMenu) { getTrash(); }
+                if (toggle3Menu) {
+                    getStatistiqueToday();
+                    getStatistiqueMonth();
+                    getStatistiqueTotal();
+
+                }
+
                 break;
             case 4:
                 setToggle3(false);
@@ -147,8 +172,8 @@ function Administration() {
             });
     };
 
-    let deletePost = (postId) => {
-        fetch(url + `trashDef/${postId}`, {
+    let deletePost = (postId, imageId) => {
+        fetch(url + `trashDef/?id=${postId}&imageId=${imageId}`, {
             method: "DELETE",
         })
             .then((res) => res.json())
@@ -212,19 +237,14 @@ function Administration() {
 
     let promotedChangeRequest = (postId, promotedStatus) => {
 
-
         if (promotedStatus) {
             editionAdminService.setPromotedProjectLenght(editionAdminService.getPromotedProjectLenght() - 1);
-            console.log('editionAdminService.getPromotedProjectLenght()', editionAdminService.getPromotedProjectLenght());
         }
 
         if (!promotedStatus) {
 
             editionAdminService.setPromotedProjectLenght(editionAdminService.getPromotedProjectLenght() + 1);
         }
-
-        console.log('editionAdminService.getPromotedProjectLenght()', editionAdminService.getPromotedProjectLenght());
-
         if (editionAdminService.getPromotedProjectLenght() <= 8 || promotedStatus || toggle4) {
 
 
@@ -315,119 +335,226 @@ function Administration() {
 
 
 
+    let getListUser = () => {
+        fetch(url + 'listUser/')
+            .then((res) => res.json())
+            .then((res) => {
+                setPosts(res);
+            });
+    };
+
+    let getListAdmin = () => {
+        fetch(url + 'listAdmin/')
+            .then((res) => res.json())
+            .then((res) => {
+                setPosts(res);
+            });
+    };
+
+    let getStatistiqueToday = () => {
+        fetch(url + 'statistiqueToday/')
+            .then((res) => res.json())
+            .then((res) => {
+                console.log(res);
+                setStatistiqueToday(res)
+                /* setPosts(res); */
+            });
+    };
+
+    let getStatistiqueMonth = () => {
+        fetch(url + 'statistiqueMonth/')
+            .then((res) => res.json())
+            .then((res) => {
+                setStatistiqueMonth(res)
+                /* setPosts(res); */
+            });
+    };
+
+    let getStatistiqueTotal = () => {
+        fetch(url + 'statistiqueTotal/')
+            .then((res) => res.json())
+            .then((res) => {
+                setStatistiqueTotal(res)
+                /* setPosts(res); */
+            });
+    };
+
+
+
+    let deleteUser = (postId) => {
+        fetch(url + `deleteUser/${postId}`, {
+            method: "DELETE",
+        })
+            .then((res) => res.json())
+            .then((res) => {
+                var postIndex = posts.findIndex(function (o) {
+                    return o._id === postId;
+                });
+                if (postIndex !== -1) {
+                    setPosts(posts.filter((item) => item.id !== postId));
+                    if (toggle) {
+                        getListUser();
+                    }
+                    if (toggle2) {
+                        getListAdmin();
+                    }
+
+                }
+            });
+    };
+
+
+
+
     useEffect(() => {
         let postsArray = JSON.parse(JSON.stringify(posts));
         let userData = [];
-        postsArray.map((item, index) => {
-            item._id = (
-                <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div>
-            );
-            item.action = (
-                <div style={{ display: "flex" }}>
+        if (toggleMenu || toggle2Menu) {
+            postsArray.map((item, index) => {
 
-                    {toggleMenu &&
+                item.email = (
+                    <div style={{ fontSize: "1.2em" }}>{item.emailCrea}</div>
+                );
+                item.action = (
+                    <div style={{ display: "flex" }}>
+
+                        {toggleMenu &&
+                            <div>
+                                {toggle && <AiOutlineCheck size={32} style={{
+                                    cursor: "pointer",
+                                    color: "green",
+                                }} onClick={() => validProject(posts[index]._id, true, false)} />}
+
+                                {toggle && <AiOutlineClose size={32} style={{
+                                    cursor: "pointer",
+                                    color: "red",
+                                }} onClick={() => validProject(posts[index]._id, false, true)} />}
+
+                                {toggle && <AiFillEdit size={32} style={{
+                                    cursor: "pointer",
+                                    color: "blue",
+                                }} onClick={() => nav(`/editionCoin/${posts[index]._id}`)} />}
+
+
+                                {toggle2 && <div>{!posts[index].promotedStatus && <AiFillStar size={32}
+                                    style={{
+                                        cursor: "pointer",
+                                        color: "black",
+                                    }} onClick={() => promotedChangeRequest(posts[index]._id, posts[index].promotedStatus)} />}</div>}
+
+                                {(toggle2 && !posts[index].promotedStatus) && <AiOutlineClose size={32} style={{
+                                    cursor: "pointer",
+                                    color: "red",
+                                }} onClick={() => validProject(posts[index]._id, false, false)} />}
+
+
+                                {toggle2 && <div>{posts[index].promotedStatus && <AiFillStar size={32}
+                                    style={{
+                                        cursor: "pointer",
+                                        color: "yellow",
+                                    }} onClick={() => promotedChangeRequest(posts[index]._id, posts[index].promotedStatus)} />}</div>}
+
+
+                                {toggle3 && <FaTrashRestore size={32} style={{
+                                    cursor: "pointer",
+                                    color: "green",
+                                }} onClick={() => validProject(posts[index]._id, false, false)} />}
+
+                                {toggle3 && < BsTrash size={32} style={{
+                                    cursor: "pointer",
+                                    color: "red",
+                                }} onClick={() => deletePost(posts[index]._id, posts[index].image)} />}
+
+
+                                {toggle4 && <div>{!posts[index].promotedStatus && <AiFillStar size={32}
+                                    style={{
+                                        cursor: "pointer",
+                                        color: "black",
+                                    }} onClick={() => promotedChangeRequest(posts[index]._id, posts[index].promotedStatus)} />}</div>}
+
+
+
+                                {toggle4 && <div>{posts[index].promotedStatus && <AiFillStar size={32}
+                                    style={{
+                                        cursor: "pointer",
+                                        color: "yellow",
+                                    }} onClick={() => promotedChangeRequest(posts[index]._id, posts[index].promotedStatus)} />}</div>}
+
+
+                            </div>}
+                        {toggle2Menu &&
+                            <div>
+                                {toggle && <AiFillEdit size={32} style={{
+                                    cursor: "pointer",
+                                    color: "green",
+                                }} onClick={() => nav(`/editionUser/${posts[index]._id}`)} />}
+                                {toggle && <AiOutlineClose size={32} style={{
+                                    cursor: "pointer",
+                                    color: "red",
+                                }} onClick={() => updateDelete(posts[index]._id, true)} />}
+
+                                {toggle2 && <FaTrashRestore size={32} style={{
+                                    cursor: "pointer",
+                                    color: "green",
+                                }} onClick={() => updateDelete(posts[index]._id, false)} />}
+
+                                {toggle2 && < BsTrash size={32} style={{
+                                    cursor: "pointer",
+                                    color: "red",
+                                }} onClick={() => updateDeleteDef(posts[index]._id)} />}
+
+                            </div>}
+                    </div>
+
+
+                );
+                item.image = (
+                    <img style={{ height: "100%", width: "95px", float: "left" }} src={url + posts[index].image} alt="img" />
+                );
+
+
+
+
+
+                userData.push(item);
+            });
+
+        }
+
+        if (toggle3Menu) {
+            postsArray.map((item, index) => {
+
+
+                item.createdOn = (
+                    <div style={{ fontSize: "1.2em" }}>Date: {item.createdOn.substr(0, 10)}  Heure: {item.createdOn.substr(11, 8)}</div>
+                );
+
+                item.action = (
+                    <div style={{ display: "flex" }}>
+
                         <div>
-                            {toggle && <AiOutlineCheck size={32} style={{
-                                cursor: "pointer",
-                                color: "green",
-                            }} onClick={() => validProject(posts[index]._id, true, false)} />}
-
-                            {toggle && <AiOutlineClose size={32} style={{
+                            <AiOutlineClose size={32} style={{
                                 cursor: "pointer",
                                 color: "red",
-                            }} onClick={() => validProject(posts[index]._id, false, true)} />}
+                            }} onClick={() => deleteUser(posts[index]._id, true)} />
 
-                            {toggle && <AiFillEdit size={32} style={{
-                                cursor: "pointer",
-                                color: "blue",
-                            }} onClick={() => nav(`/editionCoin/${posts[index]._id}`)} />}
+                        </div>
+                    </div>
+                );
+                userData.push(item);
+            });
 
-
-                            {toggle2 && <div>{!posts[index].promotedStatus && <AiFillStar size={32}
-                                style={{
-                                    cursor: "pointer",
-                                    color: "black",
-                                }} onClick={() => promotedChangeRequest(posts[index]._id, posts[index].promotedStatus)} />}</div>}
-
-                            {(toggle2 && !posts[index].promotedStatus) && <AiOutlineClose size={32} style={{
-                                cursor: "pointer",
-                                color: "red",
-                            }} onClick={() => validProject(posts[index]._id, false, false)} />}
+        }
 
 
-                            {toggle2 && <div>{posts[index].promotedStatus && <AiFillStar size={32}
-                                style={{
-                                    cursor: "pointer",
-                                    color: "yellow",
-                                }} onClick={() => promotedChangeRequest(posts[index]._id, posts[index].promotedStatus)} />}</div>}
-
-
-                            {toggle3 && <FaTrashRestore size={32} style={{
-                                cursor: "pointer",
-                                color: "green",
-                            }} onClick={() => validProject(posts[index]._id, false, false)} />}
-
-                            {toggle3 && < BsTrash size={32} style={{
-                                cursor: "pointer",
-                                color: "red",
-                            }} onClick={() => deletePost(posts[index]._id)} />}
-
-
-                            {toggle4 && <div>{!posts[index].promotedStatus && <AiFillStar size={32}
-                                style={{
-                                    cursor: "pointer",
-                                    color: "black",
-                                }} onClick={() => promotedChangeRequest(posts[index]._id, posts[index].promotedStatus)} />}</div>}
-
-
-
-                            {toggle4 && <div>{posts[index].promotedStatus && <AiFillStar size={32}
-                                style={{
-                                    cursor: "pointer",
-                                    color: "yellow",
-                                }} onClick={() => promotedChangeRequest(posts[index]._id, posts[index].promotedStatus)} />}</div>}
-
-
-                        </div>}
-                    {toggle2Menu &&
-                        <div>
-                            {toggle && <AiFillEdit size={32} style={{
-                                cursor: "pointer",
-                                color: "green",
-                            }} onClick={() => nav(`/editionUtilisateurs/${posts[index]._id}`)} />}
-                            {toggle && <AiOutlineClose size={32} style={{
-                                cursor: "pointer",
-                                color: "red",
-                            }} onClick={() => updateDelete(posts[index]._id, true)} />}
-
-                            {toggle2 && <FaTrashRestore size={32} style={{
-                                cursor: "pointer",
-                                color: "green",
-                            }} onClick={() => updateDelete(posts[index]._id, false)} />}
-
-                            {toggle2 && < BsTrash size={32} style={{
-                                cursor: "pointer",
-                                color: "red",
-                            }} onClick={() => updateDeleteDef(posts[index]._id)} />}
-
-                        </div>}
-                </div>
-
-
-            );
-            item.image = (
-                <img style={{ height: "100%", width: "95px", float: "left" }} src={url + posts[index].image} alt="img" />
-            );
-            userData.push(item);
-        });
         setUsersForRender(userData);
     }, [posts]);
 
     const data = {
         columns: [
             {
-                label: '#',
-                field: 'id',
+                label: 'Créateur',
+                field: 'email',
                 sort: 'asc',
                 width: 150
             },
@@ -464,45 +591,77 @@ function Administration() {
         rows: usersForRender,
     };
 
+
+    const dataUsers = {
+        columns: [
+            {
+                label: 'Username',
+                field: 'username',
+                sort: 'asc',
+                width: 150
+            },
+            {
+                label: 'Email',
+                field: 'email',
+                sort: 'asc',
+                width: 270
+            },
+            {
+                label: 'Date de création',
+                field: 'createdOn',
+                sort: 'asc',
+                width: 200
+            }
+            ,
+            {
+                label: 'Action',
+                field: 'action',
+                width: 100
+            }
+        ],
+
+        rows: usersForRender,
+    };
+
     return (
         <div className="container">
 
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul className="navbar-nav mr-auto">
+                        <li className="nav-item">
                             {toggleMenu &&
-                                <a class="nav-link" href="#" onClick={() => changeStyleMenu(1)}> <span className={style.administration_filterMainColor}>Projets</span></a>
+                                <a className="nav-link" href="#" onClick={() => changeStyleMenu(1)}> <span className={style.administration_filterMainColor}>Projets</span></a>
                             }
                             {!toggleMenu &&
-                                <a class="nav-link" href="#" onClick={() => changeStyleMenu(1)}> <span>Projets</span></a>
+                                <a className="nav-link" href="#" onClick={() => changeStyleMenu(1)}> <span>Projets</span></a>
                             }
 
                         </li>
-                        <li class="nav-item ">
+                        <li className="nav-item ">
                             {toggle2Menu &&
-                                <a class="nav-link" href="#" onClick={() => changeStyleMenu(2)}> <span className={style.administration_filterMainColor}>Update</span></a>
+                                <a className="nav-link" href="#" onClick={() => changeStyleMenu(2)}> <span className={style.administration_filterMainColor}>Update</span></a>
                             }
                             {!toggle2Menu &&
-                                <a class="nav-link" href="#" onClick={() => changeStyleMenu(2)}> <span>Update</span></a>
+                                <a className="nav-link" href="#" onClick={() => changeStyleMenu(2)}> <span>Update</span></a>
                             }
                         </li>
-                        <li class="nav-item ">
+                        <li className="nav-item ">
                             {toggle3Menu &&
-                                <a class="nav-link" href="#" onClick={() => changeStyleMenu(3)}> <span className={style.administration_filterMainColor}>Utilisateurs</span></a>
+                                <a className="nav-link" href="#" onClick={() => changeStyleMenu(3)}> <span className={style.administration_filterMainColor}>Utilisateurs</span></a>
                             }
                             {!toggle3Menu &&
-                                <a class="nav-link" href="#" onClick={() => changeStyleMenu(3)}> <span>Utilisateurs</span></a>
+                                <a className="nav-link" href="#" onClick={() => changeStyleMenu(3)}> <span>Utilisateurs</span></a>
                             }
                         </li>
 
-                        <li class="nav-item ">
+                        <li className="nav-item ">
                             {toggle4Menu &&
-                                <a class="nav-link" href="#" onClick={() => changeStyleMenu(4)}> <span className={style.administration_filterMainColor}>Promotions</span></a>
+                                <a className="nav-link" href="#" onClick={() => changeStyleMenu(4)}> <span className={style.administration_filterMainColor}>Promotions</span></a>
                             }
                             {!toggle4Menu &&
-                                <a class="nav-link" href="#" onClick={() => changeStyleMenu(4)}> <span>Promotions</span></a>
+                                <a className="nav-link" href="#" onClick={() => changeStyleMenu(4)}> <span>Promotions</span></a>
                             }
                         </li>
 
@@ -530,7 +689,33 @@ function Administration() {
                     <div className={toggle2 ? style.administration_filterClick : style.administration_filter} onClick={() => changeStyle(2)}> <p className={style.administration__filterTitle}>Corbeille</p> </div>
                 </div>
             }
-            <MDBDataTableV5
+
+            {toggle3Menu &&
+                <div className={style.administration_filterContainer}>
+                    <div className={toggle ? style.administration_filterOneClick : style.administration_filterOne} onClick={() => changeStyle(1)}>
+                        <p className={style.administration__filterTitle}>Liste users</p>
+                    </div>
+                    <div className={toggle2 ? style.administration_filterClick : style.administration_filter} onClick={() => changeStyle(2)}>
+                        <p className={style.administration__filterTitle}>Liste admins</p>
+                    </div>
+                    <div className={toggle3 ? style.administration_filterClick : style.administration_filter} onClick={() => changeStyle(3)}>
+                        <p className={style.administration__filterTitle}>Statistiques</p>
+                    </div>
+                    {toggle3 &&
+                        <div>
+                            <p> <br /><br />Nombres d'utilisateurs inscrit aujourd'hui :  {statistiqueToday}</p>
+                            <p> <br />Nombres d'utilisateurs inscrit ce mois-ci :  {statistiqueMonth}</p>
+                            <p> <br />Nombres d'utilisateurs Total:  {statistiqueTotal}</p>
+
+                        </div>
+                    }
+
+                </div>
+
+            }
+
+
+            {(toggleMenu || toggle2Menu) && <MDBDataTableV5
                 dark
                 responsive
                 hover
@@ -540,7 +725,19 @@ function Administration() {
                 data={data}
                 className={style.mbd}
                 color="success"
-            />
+            />}
+
+            {toggle3Menu && (toggle || toggle2) && <MDBDataTableV5
+                dark
+                responsive
+                hover
+                striped
+                bordered
+                small
+                data={dataUsers}
+                className={style.mbd}
+                color="success"
+            />}
         </div >
     );
 }

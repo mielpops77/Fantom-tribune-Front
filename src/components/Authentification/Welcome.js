@@ -1,33 +1,66 @@
-import React from "react";
+import NavigationUserComponent from '../Navigation/NavigationUser/NavigationUser.component';
 import AuthService from "../../services/auth/auth.service";
 import { Link } from "react-router-dom";
-import NavigationUserComponent from '../Navigation/NavigationUser/NavigationUser.component';
+import { useState } from "react";
+import axios from "axios";
+import React from "react";
+import style from "./Welcome.module.scss"
 
 const Welcome = (props) => {
   let url = window.location.href;
-  /* AuthService.verifyUser(url.substr(30));  pour local seulement*/ 
-   AuthService.verifyUser(url.substr(49))
+  const [error, setError] = useState(false);
+
+  const API_URL = AuthService.getUrl() + "api/auth/"
+
+  const verifyUser = (code) => {
+    return axios.get(API_URL + "confirm/" + code).then((response) => {
+      return response.data;
+
+
+    }, (error) => {
+      setError(true)
+      console.log('errooooooor', error.response)
+    }
+    );
+  };
+
+
+
+
+
+  //If local
+  verifyUser(url.substr(30));
+
+  //If distant
+  /* verifyUser(url.substr(49)); */
+
 
   /*   console.log(props)
     if (props.match.path === "/confirm/:confirmationCode") {
       AuthService.verifyUser(props.match.params.confirmationCode);
     } */
   return (
-    <div>
+    <div >
+      <div className={style.welcome_fond}>
       <NavigationUserComponent />
-
+      </div>
       <div className="container">
         <br /><br /><br />
         <header className="jumbotron">
-          <h3>
+          {!error &&
+            < h3 >
             <strong>Account confirmed!</strong>
-          </h3>
-        </header>
-        <Link to={"/login"} className="nav-link">
-          Please Login
-        </Link>
-      </div>
+          </h3>}
+          {error &&
+            < h3 >
+            <strong>Error code Account no confirmed!</strong>
+          </h3>}
+      </header>
+      <Link to={"/login"} className="nav-link">
+        Please Login
+      </Link>
     </div>
+    </div >
   );
 };
 
