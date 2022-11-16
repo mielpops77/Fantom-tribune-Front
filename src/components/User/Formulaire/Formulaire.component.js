@@ -20,6 +20,8 @@ function Formulaire() {
   const [kyc, setKyc] = useState('');
   const [verifUpl, setVerifUpl] = useState('');
   const [user, setUser] = useState([]);
+  const [urlUpload2, setUrlUpload2] = useState('');
+
 
   const navigate = useNavigate();
 
@@ -254,7 +256,8 @@ function Formulaire() {
 
   const [inputs, setInputs] = useState({});
 
-  const upload = () => {
+  const upload = (event) => {
+    event.preventDefault();
     const inputImg = document.querySelector("input[type=file]");
     let fileCount = inputImg.files.length;
     if (fileCount > 0) {
@@ -271,6 +274,7 @@ function Formulaire() {
         .then(function (response) {
           //handle success
           setToggle(url + inputImg.files.item(0).name);
+          handleSubmit();
         })
         .catch(function (response) {
           //handle error
@@ -291,15 +295,15 @@ function Formulaire() {
     setKyc(event.target.value);
   }
 
-  const handleChangeFile = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    setInputs(values => ({ ...values, [name]: value }))
-    upload();
-  }
-
-
-  const handleSubmit = (event) => {
+  /*   const handleChangeFile = (event) => {
+      const name = event.target.name;
+      const value = event.target.value;
+      setInputs(values => ({ ...values, [name]: value }))
+      upload();
+    }
+   */
+  function handleSubmit() {
+    console.log("heeey");
 
     if (user !== null) {
       let coinMarketCapLink;
@@ -333,7 +337,7 @@ function Formulaire() {
       else {
         type = selected.value;
       }
-      event.preventDefault();
+      /* event.preventDefault(); */
       const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -356,17 +360,47 @@ function Formulaire() {
 
 
   function verifUpload() {
+    console.log("inputs.image", inputs.image)
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     inputs.image === undefined ? setVerifUpl(false) : setVerifUpl(true)
   }
 
 
+  // La fonction previewPicture
+  var previewPicture = function (event) {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs(values => ({ ...values, [name]: value }));
+    // var image = document.getElementById("image");
+
+    // e.files contient un objet FileList
+    console.log("sssssssssssssss", event.target.files);
+
+    const [picture] = event.target.files
+    const picture2 = event.target.files
+    console.log("picture", picture, "picture2", picture2[0]);
+
+
+    // "picture" est un objet File
+    if (event.target.files) {
+      // On change l'URL de l'image
+      // image.src = URL.createObjectURL(picture)
+      setUrlUpload2(URL.createObjectURL(event.target.files[0]));
+      console.log(URL.createObjectURL(picture));
+    }
+  }
 
   return (
 
     <div>
-      <form className={style.formulaireSubmit} onSubmit={handleSubmit}>
+
+
+
+      <form className={style.formulaireSubmit} onSubmit={upload}>
+
+        {/* <input type="file" name="picture" onChange={previewPicture} required />
+        <img src={urlUpload2} alt="" id="image" style={{ height: "100%", float: "left", maxWidth: "25%", maxHeight: "25%" }} /> */}
         {
           verifUpl === false && <div className={style.messageError} style={{ marginTop: "1rem" }}>
             Please upload the logo for your coin.
@@ -375,11 +409,11 @@ function Formulaire() {
         <label className={style.formLabelFileEmpty} htmlFor="file-input">
           <div className={style.formLabel}>Logo Upload*</div>
           <img alt='img' style={{ height: "100%", float: "left", maxWidth: "30%", maxHeight: "30%", cursor: 'pointer' }} src={url + "assets/upload.png"} />
-          {urlUpload !== '' && <img alt='img' style={{ height: "100%", float: "left", maxWidth: "25%", maxHeight: "25%" }} src={urlUpload} />}
+          {urlUpload2 !== '' && <img alt='img' style={{ height: "100%", float: "left", maxWidth: "25%", maxHeight: "25%" }} src={urlUpload2} />}
         </label>
 
         <input id="file-input" className={style.file} type="file" name="image" value={inputs.image || ""}
-          onChange={handleChangeFile}
+          onChange={previewPicture}
           accept="image/png, image/jpeg"
           required="required"
         >
