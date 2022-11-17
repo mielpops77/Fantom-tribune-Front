@@ -373,21 +373,13 @@ function Formulaire() {
     const value = event.target.value;
     setInputs(values => ({ ...values, [name]: value }));
     // var image = document.getElementById("image");
-
     // e.files contient un objet FileList
-    console.log("sssssssssssssss", event.target.files);
-
     const [picture] = event.target.files
-    const picture2 = event.target.files
-    console.log("picture", picture, "picture2", picture2[0]);
-
-
     // "picture" est un objet File
-    if (event.target.files) {
+    if (picture) {
       // On change l'URL de l'image
       // image.src = URL.createObjectURL(picture)
-      setUrlUpload2(URL.createObjectURL(event.target.files[0]));
-      console.log(URL.createObjectURL(picture));
+      setUrlUpload2(URL.createObjectURL(picture));
     }
   }
 
