@@ -55,13 +55,24 @@ const InfoCoin = () => {
                         <p className={style.infoCoin_textualInfo}>MarketCap : {coin.marketCap}</p>
                         <p className={style.infoCoin_textualInfo}>Price : {coin.price}</p>
                         <p className={style.infoCoin_textualInfo}>Change in 24h : {coin.percent_change_24h}</p>
-                        <p className={style.infoCoin_textualInfo}>LaunchDate: {coin.launchDate} </p>
+                        <p className={style.infoCoin_textualInfo}><a href={coin.coinMarketCapLink}>coinMarketCapLink</a></p>
+                        <p className={style.infoCoin_textualInfo}>contractAddress: {coin.contractAddress} </p>
+                        <p className={style.infoCoin_textualInfo}>createdOn: {coin.createdOn} </p>
+                        <p className={style.infoCoin_textualInfo}>description: {coin.description} </p>
+                        <p className={style.infoCoin_textualInfo}><a href={coin.websiteLink}>websiteLink</a> </p>
+                        <p className={style.infoCoin_textualInfo}> <a href={coin.discord}>discord</a></p>
+                        <p className={style.infoCoin_textualInfo}><a href={coin.telegram}>telegram</a></p>
+                        <p className={style.infoCoin_textualInfo}><a href={coin.twitter}>twitter</a> </p>
+                        <p className={style.infoCoin_textualInfo}>vote: {coin.vote} </p>
+                        <p className={style.infoCoin_textualInfo}>voteToday: {coin.voteTwentyHour} </p>
+
+
                         <p>Information incorrect? Please submit an <span onClick={() => nav(`/updateCoin/`)}>Update Request!</span></p>
                     </div>
                     <iframe className={style.infoCoin_iframe} title="Graphical Board" loading="lazy" src={src} width="50%" height="550px" frameborder="0" ></iframe>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
