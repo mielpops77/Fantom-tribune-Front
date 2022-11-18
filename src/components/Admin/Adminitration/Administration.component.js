@@ -211,7 +211,7 @@ function Administration() {
 
 
     let validProject = (postId, status, remove) => {
-        fetch(url + `adminEdit/${postId}`, {
+        fetch(url + `adminEdit?id=${postId}`, {
             method: "Put",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ status: status, delete: remove })

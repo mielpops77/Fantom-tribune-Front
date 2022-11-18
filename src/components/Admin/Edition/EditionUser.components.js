@@ -59,7 +59,7 @@ const EditionUser = () => {
     const id = path.substring(34, path.length);
     console.log(id);
 
-    
+
     const options = [
         { label: "Dex", value: "Dex" },
         { label: "Gaming", value: "Gaming" },
@@ -245,7 +245,7 @@ const EditionUser = () => {
         else {
             type = selected;
         }
-        console.log("input: " , inputs);
+        console.log("input: ", inputs);
 
         const requestOptions = {
             method: 'PUT',
@@ -255,7 +255,7 @@ const EditionUser = () => {
                 websiteLink: inputs.websiteLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, coinMarketCapLink: inputs.coinMarketCapLink, coinMarketCapStatus: editionService.getMarketCapStatus(), kyc: kyc
             })
         };
-        fetch(url + `adminEdit/${editionService.getIdProject()}`, requestOptions)
+        fetch(url + `adminEdit?id=${editionService.getIdProject()}`, requestOptions)
             .then(response => response.json())
             .then(data => navigate("/administration"));
     }
