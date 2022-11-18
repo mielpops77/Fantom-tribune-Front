@@ -13,6 +13,7 @@ import axios from "axios";
 
 
 const UpdateCoin = () => {
+    const [urlUpload2, setUrlUpload2] = useState('');
     const [typeSelected, setTypeSelected] = useState({});
     const [typeInitial, setTypeInitial] = useState({});
     const [fieldOpen, setFieldOpen] = useState({});
@@ -233,7 +234,7 @@ const UpdateCoin = () => {
             if (typeSelected.value !== typeInitial.value) {
                 typeEdit = typeSelected.value;
             }
-            event.preventDefault();
+            // event.preventDefault();
             const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -324,16 +325,17 @@ const UpdateCoin = () => {
             })
     }
 
-    const handleChangeFile = (event) => {
+/*     const handleChangeFile = (event) => {
         console.log('on est pas sensé allé la');
         const name = event.target.name;
         const value = event.target.value;
         setInputs(values => ({ ...values, [name]: value }))
         upload();
     }
+ */
 
-
-    const upload = () => {
+    const upload = (event) => {
+        event.preventDefault()
         const inputImg = document.querySelector("input[type=file]");
         let fileCount = inputImg.files.length;
         if (fileCount > 0) {
@@ -351,10 +353,15 @@ const UpdateCoin = () => {
                     //handle success
                     setUrlUpload(url + inputImg.files.item(0).name);
                     console.log("inputImg.files.item(0).name", url + inputImg.files.item(0).name);
+                    handleSubmit()
                 })
                 .catch(function (response) {
                     //handle error
                 });
+        }
+        else
+        {
+            handleSubmit();
         }
     }
     let date = new Date();
@@ -436,6 +443,22 @@ const UpdateCoin = () => {
 
     }
 
+    var previewPicture = function (event) {
+        const name = event.target.name;
+        const value = event.target.value;
+        console.log("name", name);
+        setInputs(values => ({ ...values, [name]: value }));
+        // var image = document.getElementById("image");
+        // e.files contient un objet FileList
+        const [picture] = event.target.files
+        // "picture" est un objet File
+        if (picture) {
+            // On change l'URL de l'image
+            // image.src = URL.createObjectURL(picture)
+            setUrlUpload2(URL.createObjectURL(picture));
+        }
+    }
+
 
     return (
         <div >
@@ -462,7 +485,7 @@ const UpdateCoin = () => {
                 />
             </div>
 
-            {field && <form className={style.updateCoin_formulaire} onSubmit={handleSubmit}>
+            {field && <form className={style.updateCoin_formulaire} onSubmit={upload}>
                 <label className={style.updateCoin_formLabel}> Select which field you want to update.:
                     <Select
                         className="basic-single"
@@ -484,13 +507,13 @@ const UpdateCoin = () => {
                     <label className={style.updateCoin_formLabelFileEmpty} htmlFor="file-input">
                         <div className={style.updateCoin_formLabel}>Logo Upload</div>
                         <img style={{ height: "100%", float: "left", maxWidth: "30%", maxHeight: "30%", cursor: 'pointer' }} src={url + "assets/upload.png"} alt='img' />
-                        {urlUpload !== "vide" &&
-                            <img style={{ height: "100%", float: "left", maxWidth: "25%", maxHeight: "25%" }} src={urlUpload} alt='img' />
+                        {urlUpload2 !== "" &&
+                            <img style={{ height: "100%", float: "left", maxWidth: "25%", maxHeight: "25%" }} src={urlUpload2} alt='img' />
                         }
                     </label>}
                 {fieldOpen.logo &&
-                    <input id="file-input" className={style.updateCoin_file} type="file" name="image"
-                        onChange={handleChangeFile}
+                    <input id="file-input" className={style.updateCoin_file} type="file" name="imageEdit"
+                        onChange={previewPicture}
                         accept="image/png, image/jpeg"
                     >
                     </input>}
