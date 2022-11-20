@@ -10,6 +10,7 @@ import axios from 'axios';
 
 const EditionUser = () => {
 
+    const [imgChange, setImgChange] = useState(false);
     const [selected, setSelected] = useState(null);
     const [inputs, setInputs] = useState({
     });
@@ -59,7 +60,7 @@ const EditionUser = () => {
     const id = path.substring(34, path.length);
     console.log(id);
 
-    
+
     const options = [
         { label: "Dex", value: "Dex" },
         { label: "Gaming", value: "Gaming" },
@@ -168,38 +169,36 @@ const EditionUser = () => {
     }
 
 
-    const handleChangeFile = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
-        setInputs(values => ({ ...values, [name]: value }))
-        upload();
-    }
-
-
-
-    const upload = () => {
-        const inputImg = document.querySelector("input[type=file]");
-        let fileCount = inputImg.files.length;
-        if (fileCount > 0) {
-
-
-            let formData = new FormData();
-            formData.append('image', inputImg.files.item(0))
-            axios({
-                method: "post",
-                url: url + "images",
-                data: formData,
-                headers: { "Content-Type": "multipart/form-data" },
-            })
-                .then(function (response) {
-                    //handle success
-                    setToggle(url + inputImg.files.item(0).name);
-                })
-                .catch(function (response) {
-                    //handle error
-                });
+    /*     const handleChangeFile = (event) => {
+            const name = event.target.name;
+            const value = event.target.value;
+            setInputs(values => ({ ...values, [name]: value }))
+            upload();
         }
-    }
+     */
+
+
+    /*     const upload = () => {
+            const inputImg = document.querySelector("input[type=file]");
+            let fileCount = inputImg.files.length;
+            if (fileCount > 0) {
+    
+    
+                let formData = new FormData();
+                formData.append('image', inputImg.files.item(0))
+                axios({
+                    method: "post",
+                    url: url + "images",
+                    data: formData,
+                    headers: { "Content-Type": "multipart/form-data" },
+                })
+                    .then(function (response) {
+                        setToggle(url + inputImg.files.item(0).name);
+                    })
+                    .catch(function (response) {
+                    });
+            } 
+        }*/
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -245,7 +244,7 @@ const EditionUser = () => {
         else {
             type = selected;
         }
-        console.log("input: " , inputs);
+        console.log("input: ", inputs);
 
         const requestOptions = {
             method: 'PUT',
@@ -255,9 +254,14 @@ const EditionUser = () => {
                 websiteLink: inputs.websiteLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, coinMarketCapLink: inputs.coinMarketCapLink, coinMarketCapStatus: editionService.getMarketCapStatus(), kyc: kyc
             })
         };
-        fetch(url + `adminEdit/${editionService.getIdProject()}`, requestOptions)
+        let imageDelete = ""
+        if (imgChange) { imageDelete = editionService.getCoin().image }
+        fetch(url + `adminEditUser?id=${editionService.getIdProject()}&imageDelete=${imageDelete}`, requestOptions)
             .then(response => response.json())
-            .then(data => navigate("/administration"));
+            .then(data => {
+                if (imgChange) { updateDelete(inputs.image, "") }
+                navigate("/administration")
+            });
     }
 
 
@@ -300,10 +304,34 @@ const EditionUser = () => {
             })
     }
 
+    function changeImage(event) {
+        event.preventDefault();
+        setImgChange(true);
+        const name = "image";
+        const value = inputsEdit.imageEdit;
+        setInputs(values => ({ ...values, [name]: value }))
+        setToggle(url + inputsEdit.imageEdit);
+    }
+
 
     useEffect(() => {
         searchUpdateById(id);
     }, [id]);
+
+
+
+
+    let updateDelete = (idImage, idImageEdit) => {
+
+
+        fetch(url + `updateDelete/${id}`, {
+            method: "Put",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ image: idImage, imageEdit: idImageEdit })
+        })
+            .then((res) => res.json())
+
+    };
 
 
     return (
@@ -333,15 +361,17 @@ const EditionUser = () => {
 
                         <label className={style.formLabelFileEmpty} htmlFor="file-input">
                             <div className={style.formLabel}>Logo Upload*</div>
-                            <img style={{ height: "100%", float: "left", maxWidth: "30%", maxHeight: "30%", cursor: 'pointer' }} src={url + "assets/upload.png"} alt='img' />
+                            {/* <img style={{ height: "100%", float: "left", maxWidth: "30%", maxHeight: "30%", cursor: 'pointer' }} src={url + "assets/upload.png"} alt='img' /> */}
                             <img style={{ height: "100%", float: "left", maxWidth: "25%", maxHeight: "25%" }} src={urlUpload} alt='img' />
                         </label>
-
-                        <input id="file-input" className={style.file} type="file" name="image" value={inputs.image || ""}
+                        {inputsEdit.imageEdit !== "" &&
+                        <button onClick={changeImage} className="btn btn-success">Attribuer la nouvelle image</button>
+                            }
+                        {/*   <input id="file-input" className={style.file} type="file" name="image" value={inputs.image || ""}
                             onChange={handleChangeFile}
                             accept="image/png, image/jpeg"
                         >
-                        </input>
+                        </input> */}
                         {inputsEdit.imageEdit !== "" &&
                             <label className={style.formLabelFileEmpty} htmlFor="file-input">
                                 <div className={style.formLabel}>Logo Update</div>
@@ -682,10 +712,6 @@ const EditionUser = () => {
             </div>
             <FooterComponent />
         </div >
-
-
-
-
 
 
     )

@@ -211,7 +211,7 @@ function Administration() {
 
 
     let validProject = (postId, status, remove) => {
-        fetch(url + `adminEdit/${postId}`, {
+        fetch(url + `adminEdit?id=${postId}`, {
             method: "Put",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ status: status, delete: remove })
@@ -317,8 +317,10 @@ function Administration() {
 
 
 
-    let updateDeleteDef = (postId) => {
-        fetch(url + `updateDeleteDef/${postId}`, {
+    let updateDeleteDef = (postId, imageId) => {
+        console.log("imageId",imageId);
+
+        fetch(url + `updateDeleteDef?id=${postId}&imageId=${imageId}`, {
             method: "DELETE",
         })
             .then((res) => res.json())
@@ -501,7 +503,7 @@ function Administration() {
                                 {toggle2 && < BsTrash size={32} style={{
                                     cursor: "pointer",
                                     color: "red",
-                                }} onClick={() => updateDeleteDef(posts[index]._id)} />}
+                                }} onClick={() => updateDeleteDef(posts[index]._id, posts[index].imageEdit)} />}
 
                             </div>}
                     </div>

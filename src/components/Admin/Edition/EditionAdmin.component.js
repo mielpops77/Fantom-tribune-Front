@@ -9,6 +9,7 @@ import Select from 'react-select'
 import axios from 'axios';
 
 const EditionAdmin = () => {
+    const [urlUpload2, setUrlUpload2] = useState('');
     const [selected, setSelected] = useState(null);
     const [inputs, setInputs] = useState({});
     const [urlUpload, setToggle] = useState('');
@@ -123,7 +124,9 @@ const EditionAdmin = () => {
 
 
 
-    const upload = () => {
+    const upload = (event) => {
+        console.log("upload");
+        event.preventDefault()
         const inputImg = document.querySelector("input[type=file]");
         let fileCount = inputImg.files.length;
         if (fileCount > 0) {
@@ -140,10 +143,14 @@ const EditionAdmin = () => {
                 .then(function (response) {
                     //handle success
                     setToggle(url + inputImg.files.item(0).name);
+                    handleSubmit();
                 })
                 .catch(function (response) {
                     //handle error
                 });
+        }
+        else {
+            handleSubmit();
         }
     }
 
@@ -180,8 +187,18 @@ const EditionAdmin = () => {
 
     }
     const handleSubmit = (event) => {
+        let imageDelete = "";
+        console.log("urlUpload", editionService.getCoin().image);
+        if (urlUpload2 == '') {
+            console.log("l'image non modifier");
+
+        }
+        else {
+            imageDelete = editionService.getCoin().image
+            console.log("image modifié");
+        }
         editionService.initType();
-        event.preventDefault();
+        /*  event.preventDefault(); */
         coinmarketCapLinkEdit();
         let type = [];
         if (selected === null) {
@@ -190,7 +207,6 @@ const EditionAdmin = () => {
         else {
             type = selected;
         }
-        console.log("input: " , inputs);
         const requestOptions = {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
@@ -199,7 +215,7 @@ const EditionAdmin = () => {
                 websiteLink: inputs.websiteLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, coinMarketCapLink: inputs.coinMarketCapLink, coinMarketCapStatus: editionService.getMarketCapStatus(), kyc: kyc
             })
         };
-        fetch(url + `adminEdit/${id}`, requestOptions)
+        fetch(url + `adminEdit?id=${id}&imageDelete=${imageDelete}`, requestOptions)
             .then(response => response.json())
             .then(data => navigate("/administration"));
 
@@ -211,6 +227,20 @@ const EditionAdmin = () => {
         setSelected(event);
     }
 
+    var previewPicture = function (event) {
+        const name = event.target.name;
+        const value = event.target.value;
+        setInputs(values => ({ ...values, [name]: value }));
+        // var image = document.getElementById("image");
+        // e.files contient un objet FileList
+        const [picture] = event.target.files
+        // "picture" est un objet File
+        if (picture) {
+            // On change l'URL de l'image
+            // image.src = URL.createObjectURL(picture)
+            setUrlUpload2(URL.createObjectURL(picture));
+        }
+    }
 
     useEffect(() => {
         fetch(url + 'launchDateAdmin/')
@@ -247,16 +277,19 @@ const EditionAdmin = () => {
                 <p className={style.subtitleSubmit}>Here you can edit projects</p>
                 <hr></hr>
                 <div>
-                    <form className={style.formulaireSubmit} onSubmit={handleSubmit}>
+                    <form className={style.formulaireSubmit} onSubmit={upload}>
 
                         <label className={style.formLabelFileEmpty} htmlFor="file-input">
                             <div className={style.formLabel}>Logo Upload*</div>
                             <img style={{ height: "100%", float: "left", maxWidth: "30%", maxHeight: "30%", cursor: 'pointer' }} src={url + "assets/upload.png"} alt='img' />
-                            <img style={{ height: "100%", float: "left", maxWidth: "25%", maxHeight: "25%" }} src={urlUpload} alt='img' />
+                            {
+                                urlUpload2 === '' && <img style={{ height: "100%", float: "left", maxWidth: "25%", maxHeight: "25%" }} src={urlUpload} alt='img' />}
+                            {
+                                urlUpload2 !== '' && <img style={{ height: "100%", float: "left", maxWidth: "25%", maxHeight: "25%" }} src={urlUpload2} alt='img' />}
                         </label>
 
                         <input id="file-input" className={style.file} type="file" name="image" value={inputs.image || ""}
-                            onChange={handleChangeFile}
+                            onChange={previewPicture}
                             accept="image/png, image/jpeg"
                         >
                         </input>
