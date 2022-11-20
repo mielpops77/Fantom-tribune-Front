@@ -337,7 +337,12 @@ const UpdateCoin = () => {
     const upload = (event) => {
         event.preventDefault()
         const inputImg = document.querySelector("input[type=file]");
+        console.log("inputImg",inputImg);
+        if(inputImg !== null)
+        {
         let fileCount = inputImg.files.length;
+        
+
         if (fileCount > 0) {
 
 
@@ -359,10 +364,13 @@ const UpdateCoin = () => {
                     //handle error
                 });
         }
+    }
+
         else
         {
             handleSubmit();
         }
+
     }
     let date = new Date();
     let mondayUtc = (date.getUTCMonth() + 1)
