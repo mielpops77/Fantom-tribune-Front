@@ -1,14 +1,15 @@
-import '../../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import NavigationUserComponent from '../../Navigation/NavigationUser/NavigationUser.component';
 import FooterComponent from '../../../components/Navigation/Footer/Footer.component';
-import React, { useState, useRef } from "react";
-import { NavLink } from "react-router-dom";
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
-import { isEmail } from "validator";
+import '../../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import AuthService from "../../../services/auth/auth.service";
+import CheckButton from "react-validation/build/button";
+import Input from "react-validation/build/input";
+import React, { useState, useRef } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
+import Form from "react-validation/build/form";
+import { NavLink } from "react-router-dom";
 import style from "./Register.module.scss";
+import { isEmail } from "validator";
 
 
 const required = (value) => {
@@ -61,6 +62,8 @@ const Register = (props) => {
     const [password, setPassword] = useState("");
     const [successful, setSuccessful] = useState(false);
     const [message, setMessage] = useState("");
+    const [capcha, setCapcha] = useState(null);
+
 
     const onChangeUsername = (e) => {
         const username = e.target.value;
@@ -79,32 +82,43 @@ const Register = (props) => {
 
     const handleRegister = (e) => {
         e.preventDefault();
+        if (capcha !== null) {
 
-        setMessage("");
-        setSuccessful(false);
 
-        form.current.validateAll();
 
-        if (checkBtn.current.context._errors.length === 0) {
-            AuthService.register(username, email, password).then(
-                (response) => {
-                    setMessage(response.data.message);
-                    setSuccessful(true);
-                },
-                (error) => {
-                    const resMessage =
-                        (error.response &&
-                            error.response.data &&
-                            error.response.data.message) ||
-                        error.message ||
-                        error.toString();
+            setMessage("");
+            setSuccessful(false);
 
-                    setMessage(resMessage);
-                    setSuccessful(false);
-                }
-            );
+            form.current.validateAll();
+
+            if (checkBtn.current.context._errors.length === 0) {
+                AuthService.register(username, email, password).then(
+                    (response) => {
+                        setMessage(response.data.message);
+                        setSuccessful(true);
+                    },
+                    (error) => {
+                        const resMessage =
+                            (error.response &&
+                                error.response.data &&
+                                error.response.data.message) ||
+                            error.message ||
+                            error.toString();
+
+                        setMessage(resMessage);
+                        setSuccessful(false);
+                    }
+                );
+            }
         }
     };
+
+
+    function onChange(value) {
+        setCapcha(value);
+    }
+
+
 
     return (
         <div className={style.register_container}>
@@ -148,8 +162,17 @@ const Register = (props) => {
                                     <label className={style.customControlLabel} htmlFor="customCheck1">Remember me</label>
                                 </div>
                             </div>
+                            <ReCAPTCHA
+                                sitekey="6LdjgCcjAAAAAKtlNP6UasdKdiBbjeQ82NAPAOtG"
+                                onChange={onChange}
+                                type="audio"
+                            />
+                            <br />
+
                             <button type="submit" className={style.greenButton}>Submit</button>
                         </div>)}
+
+
                     {message && (
                         <div className={style.formGroup}>
                             <div
@@ -168,7 +191,7 @@ const Register = (props) => {
                     </NavLink>
                 </Form>
             </div>
-            <FooterComponent/>
+            <FooterComponent />
         </div>
     );
 };
