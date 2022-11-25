@@ -1,0 +1,57 @@
+
+.modalBackground {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  .typo {
+    text-align: center;
+    color: #d3d3d3;
+  
+    .divTypo {
+      margin-top: 4%;
+      margin-bottom: 4%;
+  
+      .imgModal {
+        display: block;
+        margin: auto;
+        text-align: center;
+        max-width: 100px;
+        min-width: 30px;
+        height: auto;
+        max-height: 100px;
+        min-height: 30px;
+        object-fit: cover;
+      }
+  
+      .voteButtonTypo {
+        color: #ffffff;
+        background: #3b96ff;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 1.5vw;
+        width: 90%;
+        height: 3.5vw;
+      }
+      .voteButtonTypoNotAllowed {
+        color: #ffffff;
+        background: #3b96ff;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 1.5vw;
+        width: 90%;
+        height: 3.5vw;
+        cursor: not-allowed;
+      }
+    }
+  
+    .divTitle {
+      color: #ffffff;
+      font-size: 2.5rem;
+      font-weight: 500;
+    }
+  
+    .captcha {
+      max-width: 305px;
+      margin: 0 auto;
+    }
+  }
+  

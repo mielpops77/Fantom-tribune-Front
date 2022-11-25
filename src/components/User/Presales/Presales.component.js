@@ -10,6 +10,8 @@ import Modal from '@mui/material/Modal';
 import Dropdown from 'react-dropdown';
 import Box from '@mui/material/Box';
 import 'react-dropdown/style.css';
+import styleModal from "../../../styles/modalVote.module.scss";
+import ReCAPTCHA from "react-google-recaptcha";
 
 
 
@@ -19,15 +21,32 @@ const Presales = () => {
   var [database, seDatabase] = useState([])
   var [pagination, setLimit] = useState({ pageActuel: 1, limit: 10, skip: 0 })
   const user = AuthService.getCurrentUser();
+
+  const [captcha, setCaptcha] = useState(null);
+  const [name, setName] = useState('');
+  const [image, setImage] = useState('');
+  const [verifVoteToday, setVerifVoteToday] = useState(false);
+  const [data, setData] = useState({
+    id: "",
+    voteToday: "",
+    vote: "",
+    voteTwentyHourCalcul: "",
+    name: "",
+    image: "",
+  });
+
+
+
   const styleBox = {
+    border: '2px solid #3888E5',
     position: 'absolute',
+    borderRadius: '10px',
+    boxShadow: '0px 0px 50px rgb(56 136 229 / 90%)',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: '30%',
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
+    bgcolor: '#131325',
     p: 4,
   };
 
@@ -113,66 +132,65 @@ const Presales = () => {
     e.stopPropagation();
   }
 
-  function Vote(id, voteToday, vote, voteTwentyHourCalcul, voteTwentyHour) {
-    user !== null ? putVote(id, voteToday, user.email, vote, voteTwentyHourCalcul, voteTwentyHour) : handleOpen();
-  }
 
+  function vote(id, voteToday, vote, voteTwentyHourCalcul, voteTwentyHour, name, image) {
+    setCaptcha(null);
+    setName(name);
+    setImage(image);
+    setData({ id: id, voteToday: voteToday, vote: vote, voteTwentyHourCalcul: voteTwentyHourCalcul, voteTwentyHour: voteTwentyHour, name: name, image: image });
 
-  function putVote(projectId, voteToday, email, vote, voteTwentyHourCalcul, voteTwentyHour) {
+    if (user !== null) {
+      let date = new Date();
+      let mondayUtc = (date.getUTCMonth() + 1)
+      mondayUtc = parseInt(mondayUtc);
+      let dayUtc = date.getUTCDate()
+      dayUtc = parseInt(dayUtc);
+      if (mondayUtc < 10) {
+        mondayUtc = '0' + mondayUtc.toString()
+      }
 
-    let date = new Date();
-    let mondayUtc = (date.getUTCMonth() + 1)
-    mondayUtc = parseInt(mondayUtc);
-    let dayUtc = date.getUTCDate()
-    dayUtc = parseInt(dayUtc);
-    if (mondayUtc < 10) {
-      mondayUtc = '0' + mondayUtc.toString()
-    }
+      if (dayUtc < 10) {
+        dayUtc = '0' + dayUtc.toString()
+      }
+      let verif = false;
 
-    if (dayUtc < 10) {
-      dayUtc = '0' + dayUtc.toString()
-    }
-
-    let dateUtc = date.getFullYear() + '-' + mondayUtc + '-' + dayUtc;
-
-
-    if (voteToday[0] === dateUtc) {
-      let verif = true;
-      for (let i = 0; i < voteToday.length; i++) {
-        if (voteToday[i] === email) {
-          verif = false;
-          alert(' You can vote only once a day');
-          return 0
+      let dateUtc = date.getFullYear() + '-' + mondayUtc + '-' + dayUtc;
+      console.log(voteToday[0], dateUtc)
+      if (voteToday[0] === dateUtc) {
+        for (let i = 0; i < voteToday.length; i++) {
+          if (voteToday[i] === user.email) {
+            verif = true;
+            setVerifVoteToday(true)
+            /*  alert(' You can vote only once a day'); */
+          }
+        }
+        if (!verif) {
+          setVerifVoteToday(false);
         }
       }
-      if (verif) {
 
-        const requestOptions = {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ info: email, voteToday: voteToday, vote: vote, voteTwentyHourCalcul: voteTwentyHourCalcul, voteTwentyHour: voteTwentyHour })
-        };
-        fetch(url + `vote/${projectId}`, requestOptions)
-          .then(response => response.json())
-          /* .then(data => this.setState({ postId: data.id })) */
-          .finally(() => { seDatabase([]); tableLaunch(pagination.limit, pagination.skip); })
+      else {
+        setVerifVoteToday(false);
       }
     }
+    handleOpen();
+  }
 
-    else {
-
+  function putVote() {
+    if (!verifVoteToday && captcha !== null) {
       const requestOptions = {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ info: email, voteToday: voteToday, vote: vote, voteTwentyHourCalcul: voteTwentyHourCalcul, voteTwentyHour: voteTwentyHour })
+        body: JSON.stringify({ info: user.email, voteToday: data.voteToday, vote: data.vote, voteTwentyHourCalcul: data.voteTwentyHourCalcul, voteTwentyHour: data.voteTwentyHour })
       };
-      fetch(url + `vote/${projectId}`, requestOptions)
+      fetch(url + `vote/${data.id}`, requestOptions)
         .then(response => response.json())
-        .finally(() => { seDatabase([]); tableLaunch(pagination.limit, pagination.skip); })
-
+        .finally(() => {
+          seDatabase([]); tableLaunch(pagination.limit, pagination.skip);
+          handleClose();
+        })
     }
   }
-
 
   function login() {
     // history.push(`/login/`)
@@ -265,7 +283,9 @@ const Presales = () => {
     tableLaunch(pagination.limit, pagination.skip);
   }
 
-
+  function onChangeCaptcha(value) {
+    setCaptcha(value);
+  }
   const handleOnSearch = (string, results) => {
     // onSearch will have as the first callback parameter
     // the string searched and for the second the results.
@@ -300,8 +320,8 @@ const Presales = () => {
       <div className={style.presale_dropDownSearch} style={{ width: " 60%", display: "inline-block", marginBottom: "2%", marginLeft: "3%" }}>
         <ReactSearchAutocomplete
           styling={
-            { 
-             
+            {
+
               border: "1px solid #ccc",
               width: "50% !important"
             }
@@ -344,7 +364,7 @@ const Presales = () => {
               <td className={style.presales_td}>{row.launchDate}</td>
               <td className={style.presales_td}>    {row.vote}</td>
               <td className={style.presales_td}>
-                <button type="button" onClick={function (event) { Propagation(event); Vote(row.id, row.voteToday, row.vote, row.voteTwentyHourCalcul, row.voteTwentyHour) }} className={style.presales_voteButton}>Vote</button>
+                <button type="button" onClick={function (event) { Propagation(event); vote(row.id, row.voteToday, row.vote, row.voteTwentyHourCalcul, row.voteTwentyHour, row.name, row.image.props.src) }} className={style.presales_voteButton}>Vote</button>
               </td>
             </tr>
 
@@ -356,23 +376,43 @@ const Presales = () => {
         <a className={pagination.pageActuel > 1 ? "" : "disable"} onClick={previous}>❮</a>
         <a className={pagination.pageActuel < TableLaunchService.totalPage ? "" : "disable"} onClick={next}>❯</a>
       </div>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={styleBox}>
-          <Typography className={style.typo} id="modal-modal-title" variant="h6" component="h2">
-            You must be logged in to be able to vote
-          </Typography>
-          <br />
-          <button style={{ width: "100%" }} className="btn btn-success" onClick={login}>login</button>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            You can vote only once a day
-          </Typography>
-        </Box>
-      </Modal>
+      <Modal className={styleModal.modalBackground}
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={styleBox}>
+            <Typography id="modal-modal-title" className={styleModal.typo} variant="h6" component="h2">
+              <div className={styleModal.divTitle}>
+                Vote for {name}
+              </div>
+              <div className={styleModal.divTypo} >
+                <img className={styleModal.imgModal} src={image} alt='img' /></div>
+              {(user !== null && !verifVoteToday) &&
+                <ReCAPTCHA className={styleModal.captcha}
+                  sitekey="6LdjgCcjAAAAAKtlNP6UasdKdiBbjeQ82NAPAOtG"
+                  onChange={onChangeCaptcha}
+                />}
+            </Typography>
+            <Typography className={styleModal.typo}>
+              <div className={styleModal.divTypo}>
+                {(user !== null && !verifVoteToday) &&
+                  <button type="button" onClick={function (event) { Propagation(event); putVote() }} className={`${captcha == null ? styleModal.voteButtonTypoNotAllowed : styleModal.voteButtonTypo}`} >Votes</button>
+                }
+                {(user !== null && verifVoteToday) &&
+                  <button type="button" onClick={function (event) { Propagation(event); handleClose() }} className={styleModal.voteButtonTypo}>thank you for voting</button>
+                }
+                {user == null &&
+                  <button type="button" onClick={function (event) { Propagation(event); login() }} className={styleModal.voteButtonTypo}>Please login for vote</button>
+                }
+              </div>
+            </Typography>
+            <Typography className={styleModal.typo} id="modal-modal-description" sx={{ mt: 2 }}>
+              You can vote once every 24 hours.
+            </Typography>
+          </Box>
+        </Modal>
     </div >
   );
 }

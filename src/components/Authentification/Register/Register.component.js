@@ -62,7 +62,7 @@ const Register = (props) => {
     const [password, setPassword] = useState("");
     const [successful, setSuccessful] = useState(false);
     const [message, setMessage] = useState("");
-    const [capcha, setCapcha] = useState(null);
+    const [captcha, setCaptcha] = useState(null);
 
 
     const onChangeUsername = (e) => {
@@ -82,7 +82,7 @@ const Register = (props) => {
 
     const handleRegister = (e) => {
         e.preventDefault();
-        if (capcha !== null) {
+        if (captcha !== null) {
 
 
 
@@ -115,7 +115,7 @@ const Register = (props) => {
 
 
     function onChange(value) {
-        setCapcha(value);
+        setCaptcha(value);
     }
 
 

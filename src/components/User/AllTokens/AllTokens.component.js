@@ -2,9 +2,11 @@ import TableLaunchService from '../../../services/tableauLaunh/tableauLaunch.ser
 import AuthService from "../../../services/auth/auth.service";
 import React, { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
+import ReCAPTCHA from "react-google-recaptcha";
 import { useNavigate } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 import style from "./AllTokens.module.scss";
+import styleModal from "../../../styles/modalVote.module.scss";
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 
@@ -20,20 +22,36 @@ const AllTokens = () => {
   const user = AuthService.getCurrentUser();
 
   const styleBox = {
+    border: '2px solid #3888E5',
     position: 'absolute',
+    borderRadius: '10px',
+    boxShadow: '0px 0px 50px rgb(56 136 229 / 90%)',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: '30%',
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
+    bgcolor: '#131325',
     p: 4,
   };
+
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [captcha, setCaptcha] = useState(null);
+  const [name, setName] = useState('');
+  const [image, setImage] = useState('');
+  const [verifVoteToday, setVerifVoteToday] = useState(false);
+
+  const [data, setData] = useState({
+    id: "",
+    voteToday: "",
+    vote: "",
+    voteTwentyHourCalcul: "",
+    name: "",
+    image: "",
+  });
+
 
   function tableLaunch(limit, skip) {
 
@@ -61,13 +79,7 @@ const AllTokens = () => {
         for (let i = 0; i < totalReactPackages.length; i++) {
           data.rows.push(({ image: <img className={style.allTokenPage_img} alt='img' style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, vote: totalReactPackages[i].vote, voteToday: totalReactPackages[i].voteToday, price: totalReactPackages[i].price, coinMarket: totalReactPackages[i].marketCap, supply: totalReactPackages[i].supply, voteTwentyHourCalcul: totalReactPackages[i].voteTwentyHourCalcul, voteTwentyHour: totalReactPackages[i].voteTwentyHour, percent_change_24h: totalReactPackages[i].percent_change_24h }));
         }
-
-
-
         seDatabase(TableLaunchService.getDatabase());
-
-
-
       }
 
 
@@ -102,77 +114,73 @@ const AllTokens = () => {
 
 
 
-  function vote(id, voteToday, vote, voteTwentyHourCalcul, voteTwentyHour) {
-    console.log(id, voteToday, vote, voteTwentyHourCalcul, voteTwentyHour)
-    user !== null ? putVote(id, voteToday, user.email, vote, voteTwentyHourCalcul, voteTwentyHour) : handleOpen();
-  }
+  function vote(id, voteToday, vote, voteTwentyHourCalcul, voteTwentyHour, name, image) {
+    setCaptcha(null);
+    setName(name);
+    setImage(image);
+    setData({ id: id, voteToday: voteToday, vote: vote, voteTwentyHourCalcul: voteTwentyHourCalcul, voteTwentyHour: voteTwentyHour, name: name, image: image });
+    console.log('image', image);
+    if (user !== null) {
+      let date = new Date();
+      let mondayUtc = (date.getUTCMonth() + 1)
+      mondayUtc = parseInt(mondayUtc);
+      let dayUtc = date.getUTCDate()
+      dayUtc = parseInt(dayUtc);
+      if (mondayUtc < 10) {
+        mondayUtc = '0' + mondayUtc.toString()
+      }
 
-  function putVote(projectId, voteToday, email, vote, voteTwentyHourCalcul, voteTwentyHour) {
+      if (dayUtc < 10) {
+        dayUtc = '0' + dayUtc.toString()
+      }
+      let verif = false;
 
-    let date = new Date();
-    let mondayUtc = (date.getUTCMonth() + 1)
-    mondayUtc = parseInt(mondayUtc);
-    let dayUtc = date.getUTCDate()
-    dayUtc = parseInt(dayUtc);
-    if (mondayUtc < 10) {
-      mondayUtc = '0' + mondayUtc.toString()
-    }
-
-    if (dayUtc < 10) {
-      dayUtc = '0' + dayUtc.toString()
-    }
-
-    let dateUtc = date.getFullYear() + '-' + mondayUtc + '-' + dayUtc;
-
-
-    if (voteToday[0] === dateUtc) {
-      let verif = true;
-      for (let i = 0; i < voteToday.length; i++) {
-        if (voteToday[i] === email) {
-          verif = false;
-          alert(' You can vote only once a day');
-          return 0
+      let dateUtc = date.getFullYear() + '-' + mondayUtc + '-' + dayUtc;
+      console.log(voteToday[0], dateUtc)
+      if (voteToday[0] === dateUtc) {
+        for (let i = 0; i < voteToday.length; i++) {
+          if (voteToday[i] === user.email) {
+            verif = true;
+            setVerifVoteToday(true)
+            /*  alert(' You can vote only once a day'); */
+          }
+        }
+        if (!verif) {
+          setVerifVoteToday(false);
         }
       }
-      if (verif) {
 
-        const requestOptions = {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ info: email, voteToday: voteToday, vote: vote, voteTwentyHourCalcul: voteTwentyHourCalcul, voteTwentyHour: voteTwentyHour })
-        };
-        fetch(url + `vote/${projectId}`, requestOptions)
-          .then(response => response.json())
-          /* .then(data => this.setState({ postId: data.id })) */
-          .finally(() => { seDatabase([]); tableLaunch(pagination.limit, pagination.skip); })
+      else {
+        setVerifVoteToday(false);
       }
     }
+    handleOpen();
 
-    else {
+    // user !== null ? putVote(id, voteToday, user.email, vote, voteTwentyHourCalcul, voteTwentyHour, name, image) : handleOpen();
+  }
 
+  function putVote() {
+
+
+    if (!verifVoteToday && captcha !== null) {
       const requestOptions = {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ info: email, voteToday: voteToday, vote: vote, voteTwentyHourCalcul: voteTwentyHourCalcul, voteTwentyHour: voteTwentyHour })
+        body: JSON.stringify({ info: user.email, voteToday: data.voteToday, vote: data.vote, voteTwentyHourCalcul: data.voteTwentyHourCalcul, voteTwentyHour: data.voteTwentyHour })
       };
-      fetch(url + `vote/${projectId}`, requestOptions)
+      fetch(url + `vote/${data.id}`, requestOptions)
         .then(response => response.json())
-        .finally(() => { seDatabase([]); tableLaunch(pagination.limit, pagination.skip); })
-
+        /* .then(data => this.setState({ postId: data.id })) */
+        .finally(() => {
+          seDatabase([]); tableLaunch(pagination.limit, pagination.skip);
+          handleClose()
+        })
     }
   }
 
-
-
   function login() {
-    // history.push(`/login/`)
     navigate('/login/');
   }
-
-
-
-
-
 
 
   function next() {
@@ -208,24 +216,10 @@ const AllTokens = () => {
   }
 
 
+  function onChangeCaptcha(value) {
+    setCaptcha(value);
+  }
 
-
-  /*   const SortArray = (x, y) => {
-      return x.name.localeCompare(y.name);
-    } */
-
-  /*  function SortArray(x, y) {
-     return x.name.localeCompare(y.name);
-   }
-  */
-
-  /*   function trie(e) {
-      tedt = TableLaunchService.getDatabase();
-      var x = tedt.rows.sort(function (a, b) { return a[2] > b[2] ? 1 : -1; });
-      setValid(true);
-    } */
-
-  /* const history = useHistory(); */
   const navigate = useNavigate();
 
   function nav(path) {
@@ -237,30 +231,30 @@ const AllTokens = () => {
       <table className="table table-hover">
         <thead>
           <tr>
-            <th className={style.allTokens_thPointer} scope="col"> </th>
-            <th className={style.allTokens_thPointer} scope="col">Name</th>
-            <th className={style.allTokens_thPointer} scope="col">Symbol</th>
-            <th className={style.allTokens_thPointer} scope="col">LaunchDate</th>
-            <th className={style.allTokens_thPointer} scope="col">Price</th>
-            <th className={style.allTokens_thPointer} scope="col">MarketCap</th>
-            <th className={style.allTokens_thPointer} scope="col">Change in 24h:</th>
-            <th className={style.allTokens_thPointer} scope="col">Votes</th>
-            <th className={style.allTokens_thPointer} scope="col">  </th>
+            <th className={style.thPointer} scope="col"> </th>
+            <th className={style.thPointer} scope="col">Name</th>
+            <th className={style.thPointer} scope="col">Symbol</th>
+            <th className={style.thPointer} scope="col">LaunchDate</th>
+            <th className={style.thPointer} scope="col">Price</th>
+            <th className={style.thPointer} scope="col">MarketCap</th>
+            <th className={style.thPointer} scope="col">Change in 24h:</th>
+            <th className={style.thPointer} scope="col">Votes</th>
+            <th className={style.thPointer} scope="col">  </th>
           </tr>
         </thead>
         <tbody>
           {database.rows?.map((row, index) => (
             <tr key={index} onClick={() => nav(`/infoCoin/${row.id}`)} style={{ cursor: 'pointer' }} >
-              <td className={style.allTokens_td} value={row.id}><img className={style.allTokens_img} src={row.image.props.src} alt='img' /></td>
-              <td className={style.allTokens_td}>{row.name}</td>
-              <td className={style.allTokens_td}>{row.symbol}</td>
-              <td className={style.allTokens_td}>{row.launchDate}</td>
-              <td className={style.allTokens_td}>$ {row.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}</td>
-              <td className={style.allTokens_td}>$ {row.coinMarket.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</td>
-              <td className={style.allTokens_td}> {row.percent_change_24h} %   {row.percent_change_24h > 0 &&<img src={url + "assets/Up-arrow.png"} className={style.allTokens_imgUpArrow} alt='Up-arrow'></img>}  {row.percent_change_24h < 0 &&<img src={url + "assets/Down-arrow.png"} className={style.allTokens_imgUpArrow} alt='Down-arrow'></img>} </td>
-              <td className={style.allTokens_td}>{row.vote}</td>
-              <td className={style.allTokens_td}>
-                <button type="button" onClick={function (event) { Propagation(event); vote(row.id, row.voteToday, row.vote, row.voteTwentyHourCalcul, row.voteTwentyHour) }} className={style.allTokens_voteButton}>Vote</button>
+              <td className={style.td} value={row.id}><img className={style.img} src={row.image.props.src} alt='img' /></td>
+              <td className={style.td}>{row.name}</td>
+              <td className={style.td}>{row.symbol}</td>
+              <td className={style.td}>{row.launchDate}</td>
+              <td className={style.td}>$ {row.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}</td>
+              <td className={style.td}>$ {row.coinMarket.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</td>
+              <td className={style.td}> {row.percent_change_24h} %   {row.percent_change_24h > 0 && <img src={url + "assets/Up-arrow.png"} className={style.imgUpArrow} alt='Up-arrow'></img>}  {row.percent_change_24h < 0 && <img src={url + "assets/Down-arrow.png"} className={style.imgUpArrow} alt='Down-arrow'></img>} </td>
+              <td className={style.td}>{row.vote}</td>
+              <td className={style.td}>
+                <button type="button" onClick={function (event) { Propagation(event); vote(row.id, row.voteToday, row.vote, row.voteTwentyHourCalcul, row.voteTwentyHour, row.name, row.image.props.src) }} className={style.voteButton}>Vote</button>
               </td>
             </tr>
 
@@ -271,30 +265,49 @@ const AllTokens = () => {
 
       </table>
 
-      <div className={style.paginationAllTokens}>
+      <div className={style.pagination}>
         <span className={style.paginationPageActuel}>1 - {TableLaunchService.totalPage} of {pagination.pageActuel}</span>
         <a className={pagination.pageActuel > 1 ? "" : "disable"} onClick={previous} href="#">❮</a>
         <a className={pagination.pageActuel < TableLaunchService.totalPage ? "" : "disable"} onClick={next} href="#">❯</a>
       </div>
 
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={styleBox}>
-          <Typography className={style.typo} id="modal-modal-title" variant="h6" component="h2">
-            You must be logged in to be able to vote
-          </Typography>
-          <br />
-          <button style={{ width: "100%" }} className="btn btn-success" onClick={login}>login</button>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            You can vote only once a day
-          </Typography>
-        </Box>
-      </Modal>
-
+      <Modal className={styleModal.modalBackground}
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={styleBox}>
+                    <Typography id="modal-modal-title" className={styleModal.typo} variant="h6" component="h2">
+                        <div className={styleModal.divTitle}>
+                            Vote for {name}
+                        </div>
+                        <div className={styleModal.divTypo} >
+                            <img className={styleModal.imgModal} src={image} alt='img' /></div>
+                        {(user !== null && !verifVoteToday) &&
+                            <ReCAPTCHA className={styleModal.captcha}
+                                sitekey="6LdjgCcjAAAAAKtlNP6UasdKdiBbjeQ82NAPAOtG"
+                                onChange={onChangeCaptcha}
+                            />}
+                    </Typography>
+                    <Typography className={styleModal.typo}>
+                        <div className={styleModal.divTypo}>
+                            {(user !== null && !verifVoteToday) &&
+                                <button type="button" onClick={function (event) { Propagation(event); putVote() }} className={`${captcha == null ? styleModal.voteButtonTypoNotAllowed : styleModal.voteButtonTypo}`} >Votes</button>
+                            }
+                            {(user !== null && verifVoteToday) &&
+                                <button type="button" onClick={function (event) { Propagation(event); handleClose() }} className={styleModal.voteButtonTypo}>thank you for voting</button>
+                            }
+                            {user == null &&
+                                <button type="button" onClick={function (event) { Propagation(event); login() }} className={styleModal.voteButtonTypo}>Please login for vote</button>
+                            }
+                        </div>
+                    </Typography>
+                    <Typography className={styleModal.typo} id="modal-modal-description" sx={{ mt: 2 }}>
+                        You can vote once every 24 hours.
+                    </Typography>
+                </Box>
+            </Modal>
     </div >
   );
 }
