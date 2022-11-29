@@ -2,7 +2,7 @@ import NavigationUserComponent from './components/Navigation/NavigationUser/Navi
 import PromotedTokenComponent from './components/User/Home/PromotedToken/PromotedToken.component';
 import TopRankedTokens from './components/User/Home/TopRankedTokens/TopRankedTokens.component';
 import FooterComponent from './components/Navigation/Footer/Footer.component';
-import FilterComponent from './components/Navigation/Filter/Filter.component';
+import FilterComponent from './components/Navigation/Filter/Filter2.component';
 import AuthService from "../src/services/auth/auth.service";
 import style from './components/User/Home/Home.module.scss';
 

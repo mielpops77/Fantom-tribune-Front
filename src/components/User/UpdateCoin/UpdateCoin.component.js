@@ -260,6 +260,7 @@ const UpdateCoin = () => {
 
 
     const handleOnSearch = (string, results) => {
+        console.log('okokokoko');
         UpdateCoinService.initFieldOpenFlexible();
         setFieldOpen(UpdateCoinService.getFieldOpenFlexible());
         setField(false);
