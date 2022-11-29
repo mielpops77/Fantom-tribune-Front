@@ -100,14 +100,14 @@ function Administration() {
                 if (toggle3Menu) { getListUser(); }
                 break;
             case 2:
+                console.log("iciii en ligne",toggleMenu,toggle2Menu);
                 setToggle2(true);
                 setToggle(false);
                 setToggle3(false);
                 setToggle4(false);
                 if (toggleMenu) { getLunch(); }
                 if (toggle2Menu) { getUpdateListDelete(); }
-                else { getListAdmin() }
-
+                if (toggle3Menu) {  getListAdmin(); }
                 break;
             case 3:
                 setToggle3(true);
