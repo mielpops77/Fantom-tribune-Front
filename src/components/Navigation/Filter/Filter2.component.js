@@ -17,7 +17,8 @@ const Filter2 = () => {
     }
 
     const handleOnSelect = (item) => {
-        navigate(`/infoCoin/${item._id}`)
+        console.log("item", item);
+        navigate(`/infoCoin/${item.id}`);
     }
 
 
