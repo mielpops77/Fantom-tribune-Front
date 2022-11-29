@@ -1,17 +1,14 @@
-// import MultiRangeSlider from "multi-range-slider-react";
-import style from "./Filter2.module.scss";
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
-import UpdateCoinService from "../../../services/User/UpdateCoin.service";
-import axios from "axios";
-import React, { useState, useEffect } from 'react';
 import AuthService from "../../../services/auth/auth.service";
 import { useNavigate } from 'react-router-dom';
+import style from "./Filter2.module.scss";
+import React, { useState } from 'react';
+import axios from "axios";
 
 
 const Filter2 = () => {
 
     const [items, setItems] = useState([]);
-    // const [idProject, setIdProject] = useState('');
     const url = AuthService.getUrl();
     const navigate = useNavigate();
 
@@ -20,20 +17,10 @@ const Filter2 = () => {
     }
 
     const handleOnSelect = (item) => {
-        console.log('test');
-        // getSearchCoinById(item.id);
-        // setIdProject(item.id)
         navigate(`/infoCoin/${item._id}`)
     }
 
 
-/*     function getSearchCoinById(id) {
-        const pattern = "projetsValidadOnly"
-        return axios.get(AuthService.getUrl() + `searchById?id=${id}&pattern=${pattern}`)
-            .then(response => {
-                return response.data;
-            })
-    } */
 
     const formatResult = (item) => {
         return (
@@ -46,14 +33,13 @@ const Filter2 = () => {
     }
 
     function searchButton() {
-       
+
 
     }
 
     function getSearchCoinRequest(search) {
         return axios.get(AuthService.getUrl() + `searchCoin?name=${search}`)
             .then(response => {
-                /* setSearchCoin(response.data); */
                 let result = [
                     {
                         id: 0,
@@ -160,7 +146,7 @@ const Filter2 = () => {
                     styling={
                         {
 
-                            border: "0px",
+                            border: '1px solid #000',
                             fontSize: "40px",
                             height: "135px !IMPORTANT",
                             fontFamily: "arial",
