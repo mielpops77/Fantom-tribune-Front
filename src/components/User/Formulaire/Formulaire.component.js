@@ -237,7 +237,131 @@ function Formulaire() {
       }
     ]
   }
-
+  let pointsCacul =
+  {
+    twentyHourCalcul: [
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      },
+      {
+        day: 0,
+        hour: 0,
+        value: 0,
+      }
+    ]
+  }
 
 
   const options = [
@@ -343,7 +467,7 @@ function Formulaire() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress.toLowerCase(), description: inputs.description, type: type,
-          websiteLink: inputs.websiteLink, coinMarketCapLink: coinMarketCapLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, vote: 0, voteToday: voteTodayUtc, voteTwentyHour: 0, voteTwentyHourCalcul: voteTwentyHourCalcul, price: 0, marketCap: 0, supply: 0, coinMarketCapStatus: coinMarketCapStatus, idCoinMarketCap: 0, listePriceIdCoinMarketCap: listePriceIdCoinMarketCap, percent_change_24h: 0, promotedStatus: false, kyc: kyc,
+          websiteLink: inputs.websiteLink, coinMarketCapLink: coinMarketCapLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, vote: 0, voteToday: voteTodayUtc, voteTwentyHour: 0, voteTwentyHourCalcul: voteTwentyHourCalcul, points: 0, pointsTwentyHour: 0, pointsCacul: pointsCacul, price: 0, marketCap: 0, supply: 0, coinMarketCapStatus: coinMarketCapStatus, idCoinMarketCap: 0, listePriceIdCoinMarketCap: listePriceIdCoinMarketCap, percent_change_24h: 0, promotedStatus: false, kyc: kyc,
           emailCrea: user.email, usernameCrea: user.username
         })
       };
