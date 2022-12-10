@@ -171,19 +171,20 @@ const Filter2 = () => {
             })
     }
     return (
-        <div className={style.searchFilter}>
-            <div className={style.filter}>
+        <div className={style.filter2_searchFilter}>
+            <div className={style.filter2_filter}>
 
                 <div onChange={test}>
                     <ReactSearchAutocomplete
                         styling={
                             {
 
-                                border: '1px solid #000',
+                                border: "none",
                                 fontSize: "40px",
                                 height: "135px !IMPORTANT",
                                 fontFamily: "arial",
                                 fill: "blue !IMPORTANT",
+                                height: "115px"
                             }
                         }
                         fuseOptions={
@@ -209,13 +210,10 @@ const Filter2 = () => {
                         /* autoFocus */
                         formatResult={formatResult}
                     />
-
                 </div>
-
             </div>
-            <button onClick={searchButton} className={style.searchButton}>
-                <img src={url + "assets/search.png"} className={style.imgSearch} alt='search_img'></img>
-                <p className={style.textSearch}>Search</p>
+            <button onClick={searchButton} className={style.filter2_searchButton}>
+                <img src={url + "assets/search.png"} className={style.filter2_imgSearch} alt='search_img'></img>
             </button>
         </div>
 

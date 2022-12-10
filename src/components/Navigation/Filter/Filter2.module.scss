@@ -1,12 +1,12 @@
 @media all and (max-width: 1024px) {
-    .searchFilter {
+    .filter2_searchFilter {
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 400px;
         height: 95%;
 
-        .filter {
+        .filter2_filter {
             display: block;
             width: 80%;
             height: 100%;
@@ -15,7 +15,6 @@
             opacity: 1;
             text-align: center;
             padding: 1% 2% 0 2%;
-
         }
 
         .searchButton {
@@ -88,47 +87,36 @@
 }
 
 @media all and (min-width: 1024px) {
-    .searchFilter {
-        width: 85%;
+
+    .filter2_searchFilter {
+        width: 85%;     
         display: flex;
         flex-direction: row;
 
-        .filter {
-            width: 948px;
-
+        .filter2_filter {            
+            width: 68%;       
+            height: 115px;
         }
 
-        .searchButton {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-end;
+        .filter2_searchButton {
             margin-left: 0.5%;
-            width: 155px;
-            height: 135px;
+            width: 135px;
+            height: 115px;
             background-color: #3b96ff;
             border-radius: 10px;
             border: none;
 
             &:hover {
-                transition-duration: 600ms;
+                transition-duration: 500ms;
                 background: #2578d8;
-                .textSearch {
-                    transition-duration: 600ms;
-                    font-size: 1.35vw;
+                .filter2_imgSearch {
+                transition-duration: 300ms;
+                    width: 3.1vw;
                 }
             }
 
-            .imgSearch {
-                max-width: 2.3vw;
-                height: auto;
-            }
-
-            .textSearch {
-                text-align: center;
-                letter-spacing: -0.96px;
-                color: #ffffff;
-                font-size: 1.3vw;
+            .filter2_imgSearch {
+                width: 2.7vw;
             }
         }
     }
