@@ -1,10 +1,9 @@
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 import AuthService from "../../../services/auth/auth.service";
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import style from "./Filter2.module.scss";
-import React, { useState } from 'react';
 import axios from "axios";
-
 
 const Filter2 = () => {
 
@@ -19,31 +18,17 @@ const Filter2 = () => {
     const url = AuthService.getUrl();
     const navigate = useNavigate();
 
-    let b = [
-        {
-            id: 0,
-            name: 'vide',
-            image: 'vide',
-            symbol: 'vide',
-            type: 'vide'
-        }];
 
-    const items2 = [
-        {
-            id: 0,
-            name: "aaaaa",
-        },
-        {
-            id: 1,
-            name: "aaaaaaaaa",
-        },
 
-    ];
 
+    useEffect(() => {
+        //initialisation
+        getSearchCoinRequest('');
+    }, [])
 
     const handleOnSearch = (string, results) => {
-        console.log('results', results);
-        // getSearchCoinRequest(string);
+        console.log('string', string);
+        getSearchCoinRequest(string);
     }
 
 
@@ -65,14 +50,8 @@ const Filter2 = () => {
     }
 
     function searchButton() {
-
-
     }
-
-    function test(event) {
-        console.log("event:", event.target.value)
-        getSearchCoinRequest(event.target.value);
-    }
+   
     function getSearchCoinRequest(search) {
         return axios.get(AuthService.getUrl() + `searchCoin?name=${search}`)
             .then(response => {
@@ -173,8 +152,7 @@ const Filter2 = () => {
     return (
         <div className={style.searchFilter}>
             <div className={style.filter}>
-
-                <div onChange={test}>
+                <div>
                     <ReactSearchAutocomplete
                         styling={
                             {

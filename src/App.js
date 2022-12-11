@@ -9,7 +9,7 @@ import EditionCoin from "./pages/admin/Edition/EditionAdmin/EditionAdmin.page";
 import Administration from './pages/admin/Administration/Administration.page';
 import Giveaways from './components/User/Giveaways/Giveaways.component';
 import Login from './components/Authentification/Login/Login.component';
-import InfoCoin from "./components/User/InfoCoin/InfoCoin.component";
+import InfoCoin from "./pages/user/InfoCoin/InfoCoin.page";
 import Profile from "./components/Authentification/Profile/Profile";
 import UpdateCoin from "./pages/user/UpdateCoin/UpdateCoin.page";
 import ApiConfig from './pages/admin/ApiConfig/ApiConfig.page';

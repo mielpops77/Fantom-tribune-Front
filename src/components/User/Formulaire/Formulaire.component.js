@@ -243,126 +243,319 @@ function Formulaire() {
       {
         day: 0,
         hour: 0,
-        value: 0,
+        vote: 0,
+        coinMarketCap: 0,
+        website: 0,
+        discord: 0,
+        telegram: 0,
+        twitter: 0,
+        page: 0,
+				buy:0
       },
       {
         day: 0,
         hour: 0,
-        value: 0,
+        vote: 0,
+        coinMarketCap: 0,
+        website: 0,
+        discord: 0,
+        telegram: 0,
+        twitter: 0,
+        page: 0,
+				buy:0
       },
       {
         day: 0,
         hour: 0,
-        value: 0,
+        vote: 0,
+        coinMarketCap: 0,
+        website: 0,
+        discord: 0,
+        telegram: 0,
+        twitter: 0,
+        page: 0,
+				buy:0
       },
       {
         day: 0,
         hour: 0,
-        value: 0,
+        vote: 0,
+        coinMarketCap: 0,
+        website: 0,
+        discord: 0,
+        telegram: 0,
+        twitter: 0,
+        page: 0,
+				buy:0
       },
       {
         day: 0,
         hour: 0,
-        value: 0,
+        vote: 0,
+        coinMarketCap: 0,
+        website: 0,
+        discord: 0,
+        telegram: 0,
+        twitter: 0,
+        page: 0,
+				buy:0
       },
       {
         day: 0,
         hour: 0,
-        value: 0,
+        vote: 0,
+        coinMarketCap: 0,
+        website: 0,
+        discord: 0,
+        telegram: 0,
+        twitter: 0,
+        page: 0,
+				buy:0
       },
       {
         day: 0,
         hour: 0,
-        value: 0,
+        vote: 0,
+        coinMarketCap: 0,
+        website: 0,
+        discord: 0,
+        telegram: 0,
+        twitter: 0,
+        page: 0,
+				buy:0
       },
       {
         day: 0,
         hour: 0,
-        value: 0,
+        vote: 0,
+        coinMarketCap: 0,
+        website: 0,
+        discord: 0,
+        telegram: 0,
+        twitter: 0,
+        page: 0,
+				buy:0
       },
       {
         day: 0,
         hour: 0,
-        value: 0,
+        vote: 0,
+        coinMarketCap: 0,
+        website: 0,
+        discord: 0,
+        telegram: 0,
+        twitter: 0,
+        page: 0,
+				buy:0
       },
       {
         day: 0,
         hour: 0,
-        value: 0,
+        vote: 0,
+        coinMarketCap: 0,
+        website: 0,
+        discord: 0,
+        telegram: 0,
+        twitter: 0,
+        page: 0,
+				buy:0
       },
       {
         day: 0,
         hour: 0,
-        value: 0,
+        vote: 0,
+        coinMarketCap: 0,
+        website: 0,
+        discord: 0,
+        telegram: 0,
+        twitter: 0,
+        page: 0,
+				buy:0
       },
       {
         day: 0,
         hour: 0,
-        value: 0,
+        vote: 0,
+        coinMarketCap: 0,
+        website: 0,
+        discord: 0,
+        telegram: 0,
+        twitter: 0,
+        page: 0,
+				buy:0
       },
       {
         day: 0,
         hour: 0,
-        value: 0,
+        vote: 0,
+        coinMarketCap: 0,
+        website: 0,
+        discord: 0,
+        telegram: 0,
+        twitter: 0,
+        page: 0,
+				buy:0
       },
       {
         day: 0,
         hour: 0,
-        value: 0,
+        vote: 0,
+        coinMarketCap: 0,
+        website: 0,
+        discord: 0,
+        telegram: 0,
+        twitter: 0,
+        page: 0,
+				buy:0
       },
       {
         day: 0,
         hour: 0,
-        value: 0,
+        vote: 0,
+        coinMarketCap: 0,
+        website: 0,
+        discord: 0,
+        telegram: 0,
+        twitter: 0,
+        page: 0,
+				buy:0
       },
       {
         day: 0,
         hour: 0,
-        value: 0,
+        vote: 0,
+        coinMarketCap: 0,
+        website: 0,
+        discord: 0,
+        telegram: 0,
+        twitter: 0,
+        page: 0,
+				buy:0
       },
       {
         day: 0,
         hour: 0,
-        value: 0,
+        vote: 0,
+        coinMarketCap: 0,
+        website: 0,
+        discord: 0,
+        telegram: 0,
+        twitter: 0,
+        page: 0,
+				buy:0
       },
       {
         day: 0,
         hour: 0,
-        value: 0,
+        vote: 0,
+        coinMarketCap: 0,
+        website: 0,
+        discord: 0,
+        telegram: 0,
+        twitter: 0,
+        page: 0,
+				buy:0
       },
       {
         day: 0,
         hour: 0,
-        value: 0,
+        vote: 0,
+        coinMarketCap: 0,
+        website: 0,
+        discord: 0,
+        telegram: 0,
+        twitter: 0,
+        page: 0,
+				buy:0
       },
       {
         day: 0,
         hour: 0,
-        value: 0,
+        vote: 0,
+        coinMarketCap: 0,
+        website: 0,
+        discord: 0,
+        telegram: 0,
+        twitter: 0,
+        page: 0,
+				buy:0
       },
       {
         day: 0,
         hour: 0,
-        value: 0,
+        vote: 0,
+        coinMarketCap: 0,
+        website: 0,
+        discord: 0,
+        telegram: 0,
+        twitter: 0,
+        page: 0,
+				buy:0
       },
       {
         day: 0,
         hour: 0,
-        value: 0,
+        vote: 0,
+        coinMarketCap: 0,
+        website: 0,
+        discord: 0,
+        telegram: 0,
+        twitter: 0,
+        page: 0,
+				buy:0
       },
       {
         day: 0,
         hour: 0,
-        value: 0,
+        vote: 0,
+        coinMarketCap: 0,
+        website: 0,
+        discord: 0,
+        telegram: 0,
+        twitter: 0,
+        page: 0,
+				buy:0
       },
       {
         day: 0,
         hour: 0,
-        value: 0,
+        vote: 0,
+        coinMarketCap: 0,
+        website: 0,
+        discord: 0,
+        telegram: 0,
+        twitter: 0,
+        page: 0,
+				buy:0
       }
     ]
   }
 
+  let statistique = {
+    global: {
+      vote: 0,
+      coinMarketCap: 0,
+      website: 0,
+      discord: 0,
+      telegram: 0,
+      twitter: 0,
+      page: 0,
+      buy: 0
+    },
+    twentyHour:
+    {
+      vote: 0,
+      coinMarketCap: 0,
+      website: 0,
+      discord: 0,
+      telegram: 0,
+      twitter: 0,
+      page: 0,
+      buy: 0
+    }
+
+
+  }
 
   const options = [
     { label: "Dex", value: "Dex" },
@@ -468,7 +661,7 @@ function Formulaire() {
         body: JSON.stringify({
           name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress.toLowerCase(), description: inputs.description, type: type,
           websiteLink: inputs.websiteLink, coinMarketCapLink: coinMarketCapLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, vote: 0, voteToday: voteTodayUtc, voteTwentyHour: 0, voteTwentyHourCalcul: voteTwentyHourCalcul, points: 0, pointsTwentyHour: 0, pointsCacul: pointsCacul, price: 0, marketCap: 0, supply: 0, coinMarketCapStatus: coinMarketCapStatus, idCoinMarketCap: 0, listePriceIdCoinMarketCap: listePriceIdCoinMarketCap, percent_change_24h: 0, promotedStatus: false, kyc: kyc,
-          emailCrea: user.email, usernameCrea: user.username
+          emailCrea: user.email, usernameCrea: user.username, statistique: statistique
         })
       };
       fetch(url + 'launchDate', requestOptions)
