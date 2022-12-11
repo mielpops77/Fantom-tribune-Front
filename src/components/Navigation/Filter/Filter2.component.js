@@ -50,7 +50,7 @@ const Filter2 = () => {
 
     function searchButton() {
     }
-   
+
     function getSearchCoinRequest(search) {
         return axios.get(AuthService.getUrl() + `searchCoin?name=${search}`)
             .then(response => {
@@ -149,8 +149,8 @@ const Filter2 = () => {
             })
     }
     return (
-        <div className={style.searchFilter}>
-            <div className={style.filter}>
+        <div className={style.filter2_searchFilter}>
+        <div className={style.filter2_filter}>
                 <div >
                     <ReactSearchAutocomplete
                         styling={
