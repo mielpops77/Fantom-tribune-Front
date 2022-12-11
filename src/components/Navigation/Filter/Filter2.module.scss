@@ -107,10 +107,10 @@
             border: none;
 
             &:hover {
-                transition-duration: 500ms;
-                background: #2578d8;
-                .filter2_imgSearch {
                 transition-duration: 300ms;
+                background: #308af1;
+                .filter2_imgSearch {
+                transition-duration: 200ms;
                     width: 3.1vw;
                 }
             }

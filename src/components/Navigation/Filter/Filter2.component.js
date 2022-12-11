@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import style from "./Filter2.module.scss";
 import axios from "axios";
+import { borderRadius } from '@mui/system';
 
 const Filter2 = () => {
 
@@ -157,6 +158,7 @@ const Filter2 = () => {
                             {
 
                                 border: "none",
+                                borderRadius: "10px",
                                 fontSize: "40px",
                                 height: "135px !IMPORTANT",
                                 fontFamily: "arial",
