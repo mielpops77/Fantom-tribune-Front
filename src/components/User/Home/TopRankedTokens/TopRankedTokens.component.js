@@ -18,17 +18,32 @@ const TopRankedTokens = () => {
 
 
     const [captcha, setCaptcha] = useState(null);
-    const [name, setName] = useState('');
-    const [image, setImage] = useState('');
     const [verifVoteToday, setVerifVoteToday] = useState(false);
     const [data, setData] = useState({
         id: "",
-        voteToday: "",
-        vote: "",
-        voteTwentyHourCalcul: "",
         name: "",
         image: "",
+        points: "",
+        pointsTwentyHour: "",
+        pointsCacul: "",
+        statistique: "",
+        limiteUser:[]
     });
+
+    let date = new Date();
+    let mondayUtc = (date.getUTCMonth() + 1)
+    mondayUtc = parseInt(mondayUtc);
+    let dayUtc = date.getUTCDate()
+    dayUtc = parseInt(dayUtc);
+    if (mondayUtc < 10) {
+        mondayUtc = '0' + mondayUtc.toString()
+    }
+    if (dayUtc < 10) {
+        dayUtc = '0' + dayUtc.toString()
+    }
+    let dateUtc = date.getFullYear() + '-' + mondayUtc + '-' + dayUtc;
+
+    let date1 = new Date(dateUtc);
 
     useEffect(() => {
         setUser(AuthService.getCurrentUser());
@@ -36,6 +51,7 @@ const TopRankedTokens = () => {
             .then((res) => res.json())
             .then((res) => {
                 setElements(res);
+                console.log("elements", res);
             })
     }, []);
 
@@ -59,8 +75,6 @@ const TopRankedTokens = () => {
     const handleClose = () => setOpen(false);
 
 
-
-
     const styleBox = {
         border: '2px solid #3888E5',
         position: 'absolute',
@@ -72,8 +86,7 @@ const TopRankedTokens = () => {
         width: '30%',
         bgcolor: '#131325',
         p: 4,
-      };    
-
+    };
 
     /* const history = useHistory(); */
 
@@ -85,64 +98,6 @@ const TopRankedTokens = () => {
     }
 
 
-
-    let date = new Date();
-    let mondayUtc = (date.getUTCMonth() + 1)
-    mondayUtc = parseInt(mondayUtc);
-    let dayUtc = date.getUTCDate()
-    dayUtc = parseInt(dayUtc);
-    if (mondayUtc < 10) {
-        mondayUtc = '0' + mondayUtc.toString()
-    }
-    if (dayUtc < 10) {
-        dayUtc = '0' + dayUtc.toString()
-    }
-    let dateUtc = date.getFullYear() + '-' + mondayUtc + '-' + dayUtc;
-
-
-
-    function vote(id, voteToday, vote, voteTwentyHourCalcul, voteTwentyHour, name, image) {
-        setCaptcha(null);
-        setName(name);
-        setImage(url + image);
-        setData({ id: id, voteToday: voteToday, vote: vote, voteTwentyHourCalcul: voteTwentyHourCalcul, voteTwentyHour: voteTwentyHour, name: name, image: image });
-
-        if (user !== null) {
-            let date = new Date();
-            let mondayUtc = (date.getUTCMonth() + 1)
-            mondayUtc = parseInt(mondayUtc);
-            let dayUtc = date.getUTCDate()
-            dayUtc = parseInt(dayUtc);
-            if (mondayUtc < 10) {
-                mondayUtc = '0' + mondayUtc.toString()
-            }
-
-            if (dayUtc < 10) {
-                dayUtc = '0' + dayUtc.toString()
-            }
-            let verif = false;
-
-            let dateUtc = date.getFullYear() + '-' + mondayUtc + '-' + dayUtc;
-            console.log(voteToday[0], dateUtc)
-            if (voteToday[0] === dateUtc) {
-                for (let i = 0; i < voteToday.length; i++) {
-                    if (voteToday[i] === user.email) {
-                        verif = true;
-                        setVerifVoteToday(true)
-                        /*  alert(' You can vote only once a day'); */
-                    }
-                }
-                if (!verif) {
-                    setVerifVoteToday(false);
-                }
-            }
-
-            else {
-                setVerifVoteToday(false);
-            }
-        }
-        handleOpen();
-    }
     const Propagation = e => {
         e.stopPropagation();
     }
@@ -151,21 +106,64 @@ const TopRankedTokens = () => {
         navigate(url);
     }
 
-    function putVote() {
-        if (!verifVoteToday && captcha !== null) {
-            const requestOptions = {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ info: user.email, voteToday: data.voteToday, vote: data.vote, voteTwentyHourCalcul: data.voteTwentyHourCalcul, voteTwentyHour: data.voteTwentyHour })
-            };
-            fetch(url + `vote/${data.id}`, requestOptions)
-                .then(response => response.json())
-                .finally(() => { setElements([]); getTopRankedRequest(); handleClose() })
-        }
-    }
     function onChangeCaptcha(value) {
         setCaptcha(value);
     }
+
+
+
+    function vote(coinId, name, image, points, pointsTwentyHour, pointsCacul, statistique) {
+        setCaptcha(null);
+        setData({ id: coinId, name: name, image: url + image, points: points, pointsTwentyHour: pointsTwentyHour, pointsCacul: pointsCacul, statistique: statistique });
+        if (user !== null) {
+            let verif = false;
+            AuthService.getPointsLimitUser(user.id).then((res) => {
+                setData({ id: coinId, name: name, image: url + image, points: points, pointsTwentyHour: pointsTwentyHour, pointsCacul: pointsCacul, statistique: statistique,limiteUser: res.data });
+                for (let i = 0; i < res.data.length; i++) {
+                    if (res.data[i].id == coinId && res.data[i].type == "vote") {
+                        let date2 = new Date(res.data[i].day);
+                        let diff = date1 - date2;
+                        let diffJour = diff / (1000 * 3600 * 24);
+                        if ((diffJour <= 1 && res.data[i].day.hour <= date.getUTCHours()) || (res.data[i].day == dateUtc)) {
+                            verif = true;
+                            setVerifVoteToday(true);
+                        }
+                    }
+                }
+                if (!verif) {
+                    setVerifVoteToday(false);
+                }
+            })
+
+        }
+        handleOpen();
+    }
+
+    const addPoints = () => {
+      /*   AuthService.getPointsLimitUser(user.id).then((res) => { */
+            /* let limiteUser = res.data; */
+
+            let element = { id: data.id, type: "vote", hour: date.getUTCHours(), day: dateUtc, value: 1 }
+            fetch(url + `addPuntos/?id=${user.id}`, {
+                method: "Put",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ element: element, list: data.limiteUser })
+            })
+                .then((res) => {
+
+                    res.json()
+                    const requestOptions = {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ points: data.points, pointsCacul: data.pointsCacul, pointsTwentyHour: data.pointsTwentyHour, statistique: data.statistique })
+                    };
+                    fetch(url + `pointCalcul/?id=${data.id}&type=vote`, requestOptions)
+                        .then(response => response.json())
+                        .finally(() => { setElements([]); getTopRankedRequest(); handleClose() })
+
+                })
+       /*  }) */
+    };
 
 
 
@@ -189,13 +187,13 @@ const TopRankedTokens = () => {
                                     <tr><td className={style.pointer}>Price: </td><td className={style.pointedItem}>$ {item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</td></tr>
                                     <tr><td className={style.pointer}>Change in 24h: </td><td className={style.pointedItem}>{item.percent_change_24h} %   {item.percent_change_24h > 0 && <img src={url + "assets/Up-arrow.png"} className={style.imgUpArrow} alt='Up-arrow'></img>}  {item.percent_change_24h < 0 && <img src={url + "assets/Down-arrow.png"} className={style.imgUpArrow} alt='Down-arrow'></img>}</td></tr>
                                     <tr><td className={style.pointer}>Launch: </td><td className={style.pointedItem}>{item.launchDate}</td></tr>
-                                    <tr><td className={style.pointer}>Votes: </td><td className={style.pointedItem}>{item.vote}</td></tr>
-                                    <tr><td className={style.pointer}>Votes in 24h: </td><td className={style.pointedItem}>{item.voteTwentyHour}</td></tr>
+                                    <tr><td className={style.pointer}>Votes: </td><td className={style.pointedItem}>{item.statistique.global.vote}</td></tr>
+                                    <tr><td className={style.pointer}>Votes in 24h: </td><td className={style.pointedItem}>{item.statistique.twentyHour.vote}</td></tr>
                                 </tbody>
                             </table>
                         </div>
                         <div className={style.cardFooter}>
-                            <button onClick={function (event) { Propagation(event); vote(item._id, item.voteToday, item.vote, item.voteTwentyHourCalcul, item.voteTwentyHour, item.name, item.image) }} className={style.voteButton}>Vote</button>
+                            <button onClick={function (event) { Propagation(event); vote(item._id,/*  item.voteToday, item.vote, item.voteTwentyHourCalcul, item.voteTwentyHour, */ item.name, item.image, item.points, item.pointsTwentyHour, item.pointsCacul, item.statistique) }} className={style.voteButton}>Vote</button>
                             <button onClick={function (event) { Propagation(event); buy(item.contractAddress) }} className={style.buyButton}>Buy</button>
                         </div>
                     </div>
@@ -210,10 +208,10 @@ const TopRankedTokens = () => {
                 <Box sx={styleBox}>
                     <Typography id="modal-modal-title" className={styleModal.typo} variant="h6" component="h2">
                         <div className={styleModal.divTitle}>
-                            Vote for {name}
+                            Vote for {data.name}
                         </div>
                         <div className={styleModal.divTypo} >
-                            <img className={styleModal.imgModal} src={image} alt='img' /></div>
+                            <img className={styleModal.imgModal} src={data.image} alt='img' /></div>
                         {(user !== null && !verifVoteToday) &&
                             <ReCAPTCHA className={styleModal.captcha}
                                 sitekey="6LdjgCcjAAAAAKtlNP6UasdKdiBbjeQ82NAPAOtG"
@@ -223,7 +221,7 @@ const TopRankedTokens = () => {
                     <Typography className={styleModal.typo}>
                         <div className={styleModal.divTypo}>
                             {(user !== null && !verifVoteToday) &&
-                                <button type="button" onClick={function (event) { Propagation(event); putVote() }} className={`${captcha == null ? styleModal.voteButtonTypoNotAllowed : styleModal.voteButtonTypo}`} >Votes</button>
+                                <button type="button" onClick={function (event) { Propagation(event); addPoints() }} className={`${captcha == null ? styleModal.voteButtonTypoNotAllowed : styleModal.voteButtonTypo}`} >Votes</button>
                             }
                             {(user !== null && verifVoteToday) &&
                                 <button type="button" onClick={function (event) { Propagation(event); handleClose() }} className={styleModal.voteButtonTypo}>thank you for voting</button>
