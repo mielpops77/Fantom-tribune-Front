@@ -140,9 +140,6 @@ const TopRankedTokens = () => {
     }
 
     const addPoints = () => {
-      /*   AuthService.getPointsLimitUser(user.id).then((res) => { */
-            /* let limiteUser = res.data; */
-
             let element = { id: data.id, type: "vote", hour: date.getUTCHours(), day: dateUtc, value: 1 }
             fetch(url + `addPuntos/?id=${user.id}`, {
                 method: "Put",
@@ -162,7 +159,6 @@ const TopRankedTokens = () => {
                         .finally(() => { setElements([]); getTopRankedRequest(); handleClose() })
 
                 })
-       /*  }) */
     };
 
 
@@ -193,7 +189,7 @@ const TopRankedTokens = () => {
                             </table>
                         </div>
                         <div className={style.cardFooter}>
-                            <button onClick={function (event) { Propagation(event); vote(item._id,/*  item.voteToday, item.vote, item.voteTwentyHourCalcul, item.voteTwentyHour, */ item.name, item.image, item.points, item.pointsTwentyHour, item.pointsCacul, item.statistique) }} className={style.voteButton}>Vote</button>
+                            <button onClick={function (event) { Propagation(event); vote(item._id,item.name, item.image, item.points, item.pointsTwentyHour, item.pointsCacul, item.statistique) }} className={style.voteButton}>Vote</button>
                             <button onClick={function (event) { Propagation(event); buy(item.contractAddress) }} className={style.buyButton}>Buy</button>
                         </div>
                     </div>
