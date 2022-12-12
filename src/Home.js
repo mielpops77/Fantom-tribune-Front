@@ -15,7 +15,7 @@ const Home = () => {
             <NavigationUserComponent />
             <h1 className={style.titleh1}>Discover ...</h1>
             <h2 className={style.titleh2}> .... your next Moon!</h2>
-            <h3 className={style.titleh3}>Browse through the platform to find your next big project in the presale phase.</h3>
+            <h3 className={style.titleh3}>Browse through the platform to find your next big project in the fantom blockchain.</h3>
             <div className={style.home_filterComponent}>
                 <FilterComponent/>
             </div>

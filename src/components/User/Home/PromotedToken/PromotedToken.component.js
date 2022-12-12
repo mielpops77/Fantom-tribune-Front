@@ -53,8 +53,52 @@ const PromotedToken = () => {
     }, []);
 
 
-    function buy(contractAdress) {
+    function buy(contractAdress, coinId, points, pointsTwentyHour, pointsCacul, statistique) {
         window.open('https://spooky.fi/#/swap?outputCurrency=' + contractAdress, '_blank');
+        if (user !== null) {
+            console.log("wijizjdijdzidjzijdijdzi");
+            let verif = false;
+            AuthService.getPointsLimitUser(user.id).then((res) => {
+                for (let i = 0; i < res.data.length; i++) {
+                    if (res.data[i].id == coinId && res.data[i].type == "buy") {
+                        let date2 = new Date(res.data[i].day);
+                        let diff = date1 - date2;
+                        let diffJour = diff / (1000 * 3600 * 24);
+                        if ((diffJour <= 1 && res.data[i].day.hour <= date.getUTCHours()) || (res.data[i].day == dateUtc)) {
+                            verif = true;
+                        }
+                    }
+                }
+
+                if (!verif) {
+                    let element = { id: coinId, type: "buy", hour: date.getUTCHours(), day: dateUtc, value: 1 }
+                    fetch(url + `addPuntos/?id=${user.id}`, {
+                        method: "Put",
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ element: element, list: res.data })
+                    })
+                        .then((res) => {
+
+                            res.json()
+                            const requestOptions = {
+                                method: 'PUT',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ points: points, pointsCacul: pointsCacul, pointsTwentyHour: pointsTwentyHour, statistique: statistique })
+                            };
+                            fetch(url + `pointCalcul/?id=${coinId}&type=buy`, requestOptions)
+                                .then(response => response.json())
+                                .finally(() => { setElements([]); getPromotedProjecRequest(); handleClose() })
+
+                        })
+                }
+
+
+
+
+            })
+
+        }
+
     }
 
 
@@ -188,8 +232,8 @@ const PromotedToken = () => {
                             </table>
                         </div>
                         <div className={style.cardFooter}>
-                            <button onClick={function (event) { Propagation(event); vote(item._id,item.name, item.image, item.points, item.pointsTwentyHour, item.pointsCacul, item.statistique) }} className={style.voteButton}>Vote</button>
-                            <button onClick={function (event) { Propagation(event); buy(item.contractAddress) }} className={style.buyButton}>Buy</button>
+                            <button onClick={function (event) { Propagation(event); vote(item._id, item.name, item.image, item.points, item.pointsTwentyHour, item.pointsCacul, item.statistique) }} className={style.voteButton}>Vote</button>
+                            <button onClick={function (event) { Propagation(event); buy(item.contractAddress, item._id, item.points, item.pointsTwentyHour, item.pointsCacul, item.statistique) }} className={style.buyButton}>Buy</button>
                         </div>
                     </div>
                 </div>
