@@ -1,13 +1,12 @@
 @media all and (min-width:1024px){
 
     .infoCoin_page{
-      /*   background: url("hhttp://localhost:3000/assets/background_with_rocket5.png") no-repeat;
-        background-size: cover; */
         width: 100%;
         min-height: 1000px;
 
         .container{
-            background-color: #060A46;
+            background-color: #131325;
+            box-shadow: 0px 0px 14px 2px rgba(105, 130, 241, 0.555);
             margin:auto;
             display: flex;
             flex-wrap: wrap;
@@ -18,7 +17,6 @@
             width: 85%;
             height: 820px;
             border-radius: 15px;
-            box-shadow: 0px 0px 2px 2px rgba(255, 255, 255);
 
             .img{
                 width: 6vw;
@@ -42,11 +40,15 @@
 
                 .info{
                     font-family: "Roboto", sans-serif;
-                    font-size: 1.4vw;
+                    font-size: 1.1vw;
                     width: 40%;
                     margin:3%;
                     height: auto;
                     color: white;
+
+                    .textualInfo{
+                        margin:1%;
+                    }
                 }
 
                 .voteButton {

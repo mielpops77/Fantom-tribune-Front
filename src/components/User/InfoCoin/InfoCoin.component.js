@@ -215,14 +215,15 @@ const InfoCoin = () => {
                         <p className={style.textualInfo}>vote: {coin.vote} </p>
                         <p className={style.textualInfo}>voteToday: {coin.voteTwentyHour} </p>
 
-                        <button type="button" onClick={() => vote()} className={style.voteButton}>Vote</button>
-                        <button type="button" onClick={() => addPoints('buy', coin)} className={style.voteButton}>Buy</button>
+                        
 
 
 
                         <p>Information incorrect? Please submit an <span onClick={() => nav(`/updateCoin/`)}>Update Request!</span></p>
                     </div>
                     <iframe className={style.iframe} title="Graphical Board" loading="lazy" src={src} width="50%" height="550px" frameborder="0" ></iframe>
+                    <button type="button" onClick={() => vote()} className={style.voteButton}>Vote</button>
+                    <button type="button" onClick={() => addPoints('buy', coin)} className={style.voteButton}>Buy</button>
                 </div>
             </div>
 
