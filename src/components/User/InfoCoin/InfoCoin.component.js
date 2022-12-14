@@ -1,5 +1,5 @@
-import AuthService from "../../../services/auth/auth.service";
 import styleModal from "../../../styles/modalVote.module.scss";
+import AuthService from "../../../services/auth/auth.service";
 import React, { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
@@ -221,7 +221,7 @@ const InfoCoin = () => {
 
                         <p>Information incorrect? Please submit an <span onClick={() => nav(`/updateCoin/`)}>Update Request!</span></p>
                     </div>
-                    <iframe className={style.iframe} title="Graphical Board" loading="lazy" src={src} width="50%" height="550px" frameborder="0" ></iframe>
+                    <iframe className={style.iframe} title="Graphical Board" loading="lazy" src={src} width="50%" height="550px" /* frameborder="0" */ ></iframe>
                     <button type="button" onClick={() => vote()} className={style.voteButton}>Vote</button>
                     <button type="button" onClick={() => addPoints('buy', coin)} className={style.voteButton}>Buy</button>
                 </div>

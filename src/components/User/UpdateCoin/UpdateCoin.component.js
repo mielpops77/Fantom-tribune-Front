@@ -112,6 +112,7 @@ const UpdateCoin = () => {
 
 
     useEffect(() => {
+        getSearchCoinRequest('');
         setUser(AuthService.getCurrentUser());
         UpdateCoinService.initFieldOpenFlexible();
         setFieldOpen(UpdateCoinService.getFieldOpenFlexible());
