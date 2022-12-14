@@ -80,7 +80,7 @@ function Formulaire() {
   /* let today = date.toISOString().split('T')[0]; */
 
   function addDaysToDate(date, days) {
-    var res = new Date(date);
+    let res = new Date(date);
     res.setDate(res.getDate() + days);
     return res;
   }
@@ -112,424 +112,29 @@ function Formulaire() {
     ]
   };
 
-  let voteTwentyHourCalcul =
-  {
-    twentyHourCalcul: [
-      {
-        day: 0,
-        hour: 0,
-        value: 0,
-      },
-      {
-        day: 0,
-        hour: 0,
-        value: 0,
-      },
-      {
-        day: 0,
-        hour: 0,
-        value: 0,
-      },
-      {
-        day: 0,
-        hour: 0,
-        value: 0,
-      },
-      {
-        day: 0,
-        hour: 0,
-        value: 0,
-      },
-      {
-        day: 0,
-        hour: 0,
-        value: 0,
-      },
-      {
-        day: 0,
-        hour: 0,
-        value: 0,
-      },
-      {
-        day: 0,
-        hour: 0,
-        value: 0,
-      },
-      {
-        day: 0,
-        hour: 0,
-        value: 0,
-      },
-      {
-        day: 0,
-        hour: 0,
-        value: 0,
-      },
-      {
-        day: 0,
-        hour: 0,
-        value: 0,
-      },
-      {
-        day: 0,
-        hour: 0,
-        value: 0,
-      },
-      {
-        day: 0,
-        hour: 0,
-        value: 0,
-      },
-      {
-        day: 0,
-        hour: 0,
-        value: 0,
-      },
-      {
-        day: 0,
-        hour: 0,
-        value: 0,
-      },
-      {
-        day: 0,
-        hour: 0,
-        value: 0,
-      },
-      {
-        day: 0,
-        hour: 0,
-        value: 0,
-      },
-      {
-        day: 0,
-        hour: 0,
-        value: 0,
-      },
-      {
-        day: 0,
-        hour: 0,
-        value: 0,
-      },
-      {
-        day: 0,
-        hour: 0,
-        value: 0,
-      },
-      {
-        day: 0,
-        hour: 0,
-        value: 0,
-      },
-      {
-        day: 0,
-        hour: 0,
-        value: 0,
-      },
-      {
-        day: 0,
-        hour: 0,
-        value: 0,
-      },
-      {
-        day: 0,
-        hour: 0,
-        value: 0,
-      }
-    ]
+
+
+
+  let pointsCacul = { twentyHourCalcul: [] }
+
+
+
+  for (let i = 0; i < 24; i++) {
+    pointsCacul.twentyHourCalcul.push({
+      day: 0,
+      hour: 0,
+      vote: 0,
+      coinMarketCap: 0,
+      website: 0,
+      discord: 0,
+      telegram: 0,
+      twitter: 0,
+      page: 0,
+      buy: 0
+    })
+
   }
-  let pointsCacul =
-  {
-    twentyHourCalcul: [
-      {
-        day: 0,
-        hour: 0,
-        vote: 0,
-        coinMarketCap: 0,
-        website: 0,
-        discord: 0,
-        telegram: 0,
-        twitter: 0,
-        page: 0,
-				buy:0
-      },
-      {
-        day: 0,
-        hour: 0,
-        vote: 0,
-        coinMarketCap: 0,
-        website: 0,
-        discord: 0,
-        telegram: 0,
-        twitter: 0,
-        page: 0,
-				buy:0
-      },
-      {
-        day: 0,
-        hour: 0,
-        vote: 0,
-        coinMarketCap: 0,
-        website: 0,
-        discord: 0,
-        telegram: 0,
-        twitter: 0,
-        page: 0,
-				buy:0
-      },
-      {
-        day: 0,
-        hour: 0,
-        vote: 0,
-        coinMarketCap: 0,
-        website: 0,
-        discord: 0,
-        telegram: 0,
-        twitter: 0,
-        page: 0,
-				buy:0
-      },
-      {
-        day: 0,
-        hour: 0,
-        vote: 0,
-        coinMarketCap: 0,
-        website: 0,
-        discord: 0,
-        telegram: 0,
-        twitter: 0,
-        page: 0,
-				buy:0
-      },
-      {
-        day: 0,
-        hour: 0,
-        vote: 0,
-        coinMarketCap: 0,
-        website: 0,
-        discord: 0,
-        telegram: 0,
-        twitter: 0,
-        page: 0,
-				buy:0
-      },
-      {
-        day: 0,
-        hour: 0,
-        vote: 0,
-        coinMarketCap: 0,
-        website: 0,
-        discord: 0,
-        telegram: 0,
-        twitter: 0,
-        page: 0,
-				buy:0
-      },
-      {
-        day: 0,
-        hour: 0,
-        vote: 0,
-        coinMarketCap: 0,
-        website: 0,
-        discord: 0,
-        telegram: 0,
-        twitter: 0,
-        page: 0,
-				buy:0
-      },
-      {
-        day: 0,
-        hour: 0,
-        vote: 0,
-        coinMarketCap: 0,
-        website: 0,
-        discord: 0,
-        telegram: 0,
-        twitter: 0,
-        page: 0,
-				buy:0
-      },
-      {
-        day: 0,
-        hour: 0,
-        vote: 0,
-        coinMarketCap: 0,
-        website: 0,
-        discord: 0,
-        telegram: 0,
-        twitter: 0,
-        page: 0,
-				buy:0
-      },
-      {
-        day: 0,
-        hour: 0,
-        vote: 0,
-        coinMarketCap: 0,
-        website: 0,
-        discord: 0,
-        telegram: 0,
-        twitter: 0,
-        page: 0,
-				buy:0
-      },
-      {
-        day: 0,
-        hour: 0,
-        vote: 0,
-        coinMarketCap: 0,
-        website: 0,
-        discord: 0,
-        telegram: 0,
-        twitter: 0,
-        page: 0,
-				buy:0
-      },
-      {
-        day: 0,
-        hour: 0,
-        vote: 0,
-        coinMarketCap: 0,
-        website: 0,
-        discord: 0,
-        telegram: 0,
-        twitter: 0,
-        page: 0,
-				buy:0
-      },
-      {
-        day: 0,
-        hour: 0,
-        vote: 0,
-        coinMarketCap: 0,
-        website: 0,
-        discord: 0,
-        telegram: 0,
-        twitter: 0,
-        page: 0,
-				buy:0
-      },
-      {
-        day: 0,
-        hour: 0,
-        vote: 0,
-        coinMarketCap: 0,
-        website: 0,
-        discord: 0,
-        telegram: 0,
-        twitter: 0,
-        page: 0,
-				buy:0
-      },
-      {
-        day: 0,
-        hour: 0,
-        vote: 0,
-        coinMarketCap: 0,
-        website: 0,
-        discord: 0,
-        telegram: 0,
-        twitter: 0,
-        page: 0,
-				buy:0
-      },
-      {
-        day: 0,
-        hour: 0,
-        vote: 0,
-        coinMarketCap: 0,
-        website: 0,
-        discord: 0,
-        telegram: 0,
-        twitter: 0,
-        page: 0,
-				buy:0
-      },
-      {
-        day: 0,
-        hour: 0,
-        vote: 0,
-        coinMarketCap: 0,
-        website: 0,
-        discord: 0,
-        telegram: 0,
-        twitter: 0,
-        page: 0,
-				buy:0
-      },
-      {
-        day: 0,
-        hour: 0,
-        vote: 0,
-        coinMarketCap: 0,
-        website: 0,
-        discord: 0,
-        telegram: 0,
-        twitter: 0,
-        page: 0,
-				buy:0
-      },
-      {
-        day: 0,
-        hour: 0,
-        vote: 0,
-        coinMarketCap: 0,
-        website: 0,
-        discord: 0,
-        telegram: 0,
-        twitter: 0,
-        page: 0,
-				buy:0
-      },
-      {
-        day: 0,
-        hour: 0,
-        vote: 0,
-        coinMarketCap: 0,
-        website: 0,
-        discord: 0,
-        telegram: 0,
-        twitter: 0,
-        page: 0,
-				buy:0
-      },
-      {
-        day: 0,
-        hour: 0,
-        vote: 0,
-        coinMarketCap: 0,
-        website: 0,
-        discord: 0,
-        telegram: 0,
-        twitter: 0,
-        page: 0,
-				buy:0
-      },
-      {
-        day: 0,
-        hour: 0,
-        vote: 0,
-        coinMarketCap: 0,
-        website: 0,
-        discord: 0,
-        telegram: 0,
-        twitter: 0,
-        page: 0,
-				buy:0
-      },
-      {
-        day: 0,
-        hour: 0,
-        vote: 0,
-        coinMarketCap: 0,
-        website: 0,
-        discord: 0,
-        telegram: 0,
-        twitter: 0,
-        page: 0,
-				buy:0
-      }
-    ]
-  }
+
 
   let statistique = {
     global: {
@@ -660,7 +265,7 @@ function Formulaire() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress.toLowerCase(), description: inputs.description, type: type,
-          websiteLink: inputs.websiteLink, coinMarketCapLink: coinMarketCapLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, vote: 0, voteToday: voteTodayUtc, voteTwentyHour: 0, voteTwentyHourCalcul: voteTwentyHourCalcul, points: 0, pointsTwentyHour: 0, pointsCacul: pointsCacul, price: 0, marketCap: 0, supply: 0, coinMarketCapStatus: coinMarketCapStatus, idCoinMarketCap: 0, listePriceIdCoinMarketCap: listePriceIdCoinMarketCap, percent_change_24h: 0, promotedStatus: false, kyc: kyc,
+          websiteLink: inputs.websiteLink, coinMarketCapLink: coinMarketCapLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, points: 0, pointsTwentyHour: 0, pointsCacul: pointsCacul, price: 0, marketCap: 0, supply: 0, coinMarketCapStatus: coinMarketCapStatus, idCoinMarketCap: 0, listePriceIdCoinMarketCap: listePriceIdCoinMarketCap, percent_change_24h: 0, promotedStatus: false, kyc: kyc,
           emailCrea: user.email, usernameCrea: user.username, statistique: statistique
         })
       };
@@ -685,14 +290,11 @@ function Formulaire() {
 
 
   // La fonction previewPicture
-  var previewPicture = function (event) {
+  let previewPicture = function (event) {
     const name = event.target.name;
     const value = event.target.value;
     setInputs(values => ({ ...values, [name]: value }));
-    // var image = document.getElementById("image");
-    // e.files contient un objet FileList
     const [picture] = event.target.files
-    // "picture" est un objet File
     if (picture) {
       // On change l'URL de l'image
       // image.src = URL.createObjectURL(picture)
@@ -917,5 +519,4 @@ function Formulaire() {
 
 }
 
-/* ReactDOM.render(<Formulaire />, document.getElementById('root')); */
 export default Formulaire; 

@@ -60,7 +60,7 @@ function setPriceList(index, price, contract, supply) {
 
 
 
-var database = {
+let database = {
     columns: [
         {
             label: '#',
