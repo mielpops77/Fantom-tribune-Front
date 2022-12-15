@@ -1,8 +1,6 @@
 import axios from "axios";
 
-
 const API_URL = "https://fantom-tribune-back.herokuapp.com/api/auth/";
-
 
 const getUrl = () => "https://fantom-tribune-back.herokuapp.com/";
 
@@ -20,21 +18,15 @@ const login = (email, password) => axios
     return response.data;
   });
 
+const getPointsLimitUser = (id) => axios.get(getUrl() + `getPointsLimitUser/?id=${id}`).then((response) => { return response; });
 
-const logout = () => { localStorage.removeItem("user"); };
 const getCurrentUser = () => JSON.parse(localStorage.getItem("user"));
 
-const getPointsLimitUser = (id) => axios.get(getUrl() + `getPointsLimitUser/?id=${id}`).then((response) => {
-  return response;
-});
+const logout = () => { localStorage.removeItem("user"); };
 
-const verifyUser = (code) => axios.get(API_URL + "confirm/" + code).then((response) => {
-  return response.data;
-});
+const verifyUser = (code) => axios.get(API_URL + "confirm/" + code).then((response) => { return response.data; });
 
-const verifMail = (email) => axios.get(API_URL + `verifMail/?email=${email}`).then((response) => {
-  return response.data;
-});
+const verifMail = (email) => axios.get(API_URL + `verifMail/?email=${email}`).then((response) => { return response.data; });
 
 const authService = {
   getPointsLimitUser,
@@ -46,4 +38,5 @@ const authService = {
   getUrl,
   login
 };
+
 export default authService;

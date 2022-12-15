@@ -128,7 +128,6 @@ const AllTokens = () => {
 
   function vote(coinId, name, image, points, pointsTwentyHour, pointsCacul, statistique) {
     setCaptcha(null);
-    console.log("image", image.props.src);
     setData({ id: coinId, name: name, image: image.props.src, points: points, pointsTwentyHour: pointsTwentyHour, pointsCacul: pointsCacul, statistique: statistique });
     if (user !== null) {
       let verif = false;

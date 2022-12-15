@@ -16,7 +16,7 @@ const EditionAdmin = () => {
     const [prev, setPrev] = useState('');
     const [kyc, setKyc] = useState('');
     const [stat, setStat] = useState({
-        name: "drgerrzdadaz",
+        name: "",
         symbol: "",
         launchDate: "",
         contractAddress: "",
@@ -125,7 +125,6 @@ const EditionAdmin = () => {
 
 
     const upload = (event) => {
-        console.log("upload");
         event.preventDefault()
         const inputImg = document.querySelector("input[type=file]");
         let fileCount = inputImg.files.length;
@@ -188,14 +187,11 @@ const EditionAdmin = () => {
     }
     const handleSubmit = (event) => {
         let imageDelete = "";
-        console.log("urlUpload", editionService.getCoin().image);
         if (urlUpload2 == '') {
-            console.log("l'image non modifier");
 
         }
         else {
             imageDelete = editionService.getCoin().image
-            console.log("image modifié");
         }
         editionService.initType();
         /*  event.preventDefault(); */

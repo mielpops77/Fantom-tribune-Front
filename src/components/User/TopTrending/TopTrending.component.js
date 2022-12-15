@@ -95,7 +95,6 @@ const TopTrending = () => {
         TableLaunchService.initDatabase();
 
         let data = TableLaunchService.getDatabase()
-        console.log("skip", skip)
         for (let i = 0; i < totalReactPackages.length; i++) {
           data.rows.push(({ image: <img className={style.topTrending_img} alt='img' style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, price: totalReactPackages[i].price, coinMarket: totalReactPackages[i].marketCap, supply: totalReactPackages[i].supply, rank: i + 1 + skip, percent_change_24h: totalReactPackages[i].percent_change_24h, vote: totalReactPackages[i].statistique.global.vote, points: totalReactPackages[i].points, pointsTwentyHour: totalReactPackages[i].pointsTwentyHour, pointsCacul: totalReactPackages[i].pointsCacul, statistique: totalReactPackages[i].statistique }))
 
@@ -135,7 +134,6 @@ const TopTrending = () => {
         TableLaunchService.initDatabase();
 
         let data = TableLaunchService.getDatabase()
-        console.log("skip", skip)
         for (let i = 0; i < totalReactPackages.length; i++) {
           data.rows.push(({ image: <img className={style.topTrending_img} alt='img' style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, price: totalReactPackages[i].price, coinMarket: totalReactPackages[i].marketCap, supply: totalReactPackages[i].supply, rank: i + 1 + skip, percent_change_24h: totalReactPackages[i].percent_change_24h, vote: totalReactPackages[i].statistique.global.vote, points: totalReactPackages[i].points, pointsTwentyHour: totalReactPackages[i].pointsTwentyHour, pointsCacul: totalReactPackages[i].pointsCacul, statistique: totalReactPackages[i].statistique }))
 
@@ -177,7 +175,6 @@ const TopTrending = () => {
         TableLaunchService.initDatabase();
 
         let data = TableLaunchService.getDatabase()
-        console.log("skip", skip)
         for (let i = 0; i < totalReactPackages.length; i++) {
           data.rows.push(({ image: <img className={style.topTrending_img} alt='img' style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, price: totalReactPackages[i].price, coinMarket: totalReactPackages[i].marketCap, supply: totalReactPackages[i].supply, rank: i + 1 + skip, percent_change_24h: totalReactPackages[i].percent_change_24h, vote: totalReactPackages[i].statistique.global.vote, points: totalReactPackages[i].points, pointsTwentyHour: totalReactPackages[i].pointsTwentyHour, pointsCacul: totalReactPackages[i].pointsCacul, statistique: totalReactPackages[i].statistique }))
 
@@ -220,7 +217,6 @@ const TopTrending = () => {
         TableLaunchService.initDatabase();
 
         let data = TableLaunchService.getDatabase()
-        console.log("skip", skip)
         for (let i = 0; i < totalReactPackages.length; i++) {
           data.rows.push(({ image: <img className={style.topTrending_img} alt='img' style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, price: totalReactPackages[i].price, coinMarket: totalReactPackages[i].marketCap, supply: totalReactPackages[i].supply, rank: i + 1 + skip, percent_change_24h: totalReactPackages[i].percent_change_24h, vote: totalReactPackages[i].statistique.global.vote, points: totalReactPackages[i].points, pointsTwentyHour: totalReactPackages[i].pointsTwentyHour, pointsCacul: totalReactPackages[i].pointsCacul, statistique: totalReactPackages[i].statistique }))
 
@@ -364,7 +360,6 @@ const TopTrending = () => {
   }
   function vote(coinId, name, image, points, pointsTwentyHour, pointsCacul, statistique) {
     setCaptcha(null);
-    console.log("image", image.props.src);
     setData({ id: coinId, name: name, image: image.props.src, points: points, pointsTwentyHour: pointsTwentyHour, pointsCacul: pointsCacul, statistique: statistique });
     if (user !== null) {
       let verif = false;
@@ -559,7 +554,6 @@ const TopTrending = () => {
           </thead>
           <tbody>
             {database.rows?.map((row, index) => (
-              console.log('okok', row),
               <tr key={index} onClick={() => nav(`/infoCoin/${row.id}`)} style={{ cursor: 'pointer' }} >
                 <td className={style.topTrending_td}>{row.rank}</td>
                 <td className={style.topTrending_td} value={row.id}><img className={style.topTrending_img} src={row.image.props.src} alt='img' /></td>

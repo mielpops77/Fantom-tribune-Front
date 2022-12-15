@@ -29,7 +29,6 @@ function Formulaire() {
 
   useEffect(() => {
     setUser(AuthService.getCurrentUser());
-    console.log('AuthService.getCurrentUser()', AuthService.getCurrentUser());
   }, [])
 
 
@@ -225,8 +224,6 @@ function Formulaire() {
     }
    */
   function handleSubmit() {
-    console.log("heeey");
-
     if (user !== null) {
       let coinMarketCapLink;
       let coinMarketCapStatus;
@@ -282,7 +279,6 @@ function Formulaire() {
 
 
   function verifUpload() {
-    console.log("inputs.image", inputs.image)
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     inputs.image === undefined ? setVerifUpl(false) : setVerifUpl(true)

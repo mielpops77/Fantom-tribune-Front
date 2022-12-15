@@ -58,7 +58,6 @@ const EditionUser = () => {
 
     let path = window.location.href;
     const id = path.substring(34, path.length);
-    console.log(id);
 
 
     const options = [
@@ -244,7 +243,6 @@ const EditionUser = () => {
         else {
             type = selected;
         }
-        console.log("input: ", inputs);
 
         const requestOptions = {
             method: 'PUT',
@@ -274,7 +272,6 @@ const EditionUser = () => {
         return axios.get(AuthService.getUrl() + `updateSearchById?id=${id}`)
             .then(response => {
                 setInputsEdit(response.data[0]);
-                console.log('ssssss', response.data[0].launchDateEdit)
                 editionService.initIdProject();
                 editionService.setIdProject(response.data[0].idProject);
                 getSearchCoinById(response.data[0].idProject);

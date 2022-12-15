@@ -3,11 +3,14 @@ import AuthService from "../../../services/auth/auth.service";
 import React, { useState, useEffect } from 'react';
 
 function ApiConfig() {
+    
     const [config, setConfig] = useState({
         voteTwentyHour: true,
         coinMarketCap: true,
         listIdCoinMarket: [],
     });
+
+
     const url = AuthService.getUrl();
 
     useEffect(() => {
@@ -18,6 +21,10 @@ function ApiConfig() {
             })
     }, []);
 
+    /**
+ * voteTwentyHourStatus définis la valeur de voteTwentyHour global
+ * @param {status} valeur  de voteTwentyHour 
+ */
     function voteTwentyHourStatus(status) {
         editionAdminService.setGlobalVoteTwentyHourStatus(status);
         setConfig({ voteTwentyHour: status, coinMarketCap: config.coinMarketCap, listIdCoinMarket: config.listIdCoinMarket })

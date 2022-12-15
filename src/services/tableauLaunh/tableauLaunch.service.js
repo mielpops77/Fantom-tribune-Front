@@ -46,7 +46,6 @@ function getPriceList() {
 }
 
 function setPriceList(index, price, contract, supply) {
-    console.log("setPriceList", index);
     priceList.info[index].price = price;
     priceList.info[index].contract = contract;
     priceList.info[index].supply = supply;
@@ -286,14 +285,11 @@ function coinmarketCap(slug, coinMarketCapLink) {
     return axios.get(AuthService.getUrl() + `coinmarketCap?slug=${slug}&coinMarketCapLink=${coinMarketCapLink}`)
         .then(response => {
             /*   if (response.status === 200) {
-                  console.log('ici status 200 lets goooo')
                   coinmarketCapStatus(coinMarketCapLink,"success");
   
               }
   
               else {
-                  console.log('ici status 220 lets goooo')
-  
                   coinmarketCapStatus(coinMarketCapLink,"fail");
   
               } */
@@ -308,7 +304,6 @@ function coinmarketCap(slug, coinMarketCapLink) {
     return axios.put(AuthService.getUrl()+`coinmarketCapStatus?coinMarketCapLink=${coinMarketCapLink}&status=${status}`)
         .then(response => {
 
-            console.log("??????Response", response)
             return response.data;
         })
 }
@@ -356,7 +351,6 @@ function coinMarketCalcul() {
     for (let i = 0; i < getPriceList().info.length; i++) {
         getPriceList().info[i].coinMarket = (getPriceList().info[i].price * getPriceList().info[i].supply);
     }
-    console.log('priceList', priceList);
     priceList = getPriceList();
 
     configContract(priceList);

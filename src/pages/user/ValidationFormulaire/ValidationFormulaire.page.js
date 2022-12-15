@@ -13,10 +13,8 @@ const ValidationFormulaire = (props) => {
 
     // Version Local 
     /* const typeForm = path.substring(37, path.length); */
-    console.log("typeForm", typeForm)
 
 
-    /*  console.log('dddd', props) */
     /*  if (props.match.path === "/confirm/:confirmationCode") {
        AuthService.verifyUser(props.match.params.confirmationCode);
      } */

@@ -71,10 +71,7 @@ class HolderBalance extends React.Component {
 
 
     componentDidMount() {
-        console.log('départ');
         this.contractList();
-        console.log('after');
-
         //La Condition se valide si la liste des contract à déja été récupéré au préalable 
         if (TableLaunchService.getListAllContract().length !== 0) {
 

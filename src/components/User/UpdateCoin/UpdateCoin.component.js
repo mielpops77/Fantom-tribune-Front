@@ -229,7 +229,6 @@ const UpdateCoin = () => {
     }
 
     const handleSubmit = (event) => {
-
         if (user !== null) {
             let typeEdit = "";
             if (typeSelected.value !== typeInitial.value) {
@@ -252,7 +251,6 @@ const UpdateCoin = () => {
     const handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
-        console.log('c forcement ici bro', inputs);
         setInputs(values => ({ ...values, [name]: value }))
     }
 
@@ -261,7 +259,6 @@ const UpdateCoin = () => {
 
 
     const handleOnSearch = (string, results) => {
-        console.log('okokokoko');
         UpdateCoinService.initFieldOpenFlexible();
         setFieldOpen(UpdateCoinService.getFieldOpenFlexible());
         setField(false);
@@ -292,7 +289,6 @@ const UpdateCoin = () => {
         getSearchCoinById(item.id);
         setIdProject(item.id)
         setField(true);
-        console.log('hello worzdzzddzld', item);
         setTypeSelected({ label: item.type, value: item.type })
         setTypeInitial({ label: item.type, value: item.type });
     }
@@ -320,7 +316,6 @@ const UpdateCoin = () => {
             .then(response => {
                 setLogo(response.data[0].image);
                 setUrlUpload("vide");
-                console.log(urlUpload)
                 setKyc(response.data[0].kyc.toString());
                 prevCheck(response.data[0].launchDate);
                 return response.data;
@@ -328,7 +323,6 @@ const UpdateCoin = () => {
     }
 
 /*     const handleChangeFile = (event) => {
-        console.log('on est pas sensé allé la');
         const name = event.target.name;
         const value = event.target.value;
         setInputs(values => ({ ...values, [name]: value }))
@@ -339,7 +333,6 @@ const UpdateCoin = () => {
     const upload = (event) => {
         event.preventDefault()
         const inputImg = document.querySelector("input[type=file]");
-        console.log("inputImg",inputImg);
         if(inputImg !== null)
         {
         let fileCount = inputImg.files.length;
@@ -359,7 +352,6 @@ const UpdateCoin = () => {
                 .then(function (response) {
                     //handle success
                     setUrlUpload(url + inputImg.files.item(0).name);
-                    console.log("inputImg.files.item(0).name", url + inputImg.files.item(0).name);
                     handleSubmit()
                 })
                 .catch(function (response) {
@@ -448,6 +440,7 @@ const UpdateCoin = () => {
     }
 
     function removeField(event) {
+        if(event == "Logo") {setUrlUpload2("")}
         UpdateCoinService.setFieldOpenFlexible(event, false);
         setFieldOpen(UpdateCoinService.getFieldOpenFlexible());
 
@@ -456,7 +449,6 @@ const UpdateCoin = () => {
     var previewPicture = function (event) {
         const name = event.target.name;
         const value = event.target.value;
-        console.log("name", name);
         setInputs(values => ({ ...values, [name]: value }));
         // var image = document.getElementById("image");
         // e.files contient un objet FileList

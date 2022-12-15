@@ -71,7 +71,6 @@ function setFieldOpenFlexible(event, bool) {
     }
 
     else {
-        console.log("booool", event);
         switch (event) {
             case 'Logo':
                 fieldOpenFlexible =
