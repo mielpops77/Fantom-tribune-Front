@@ -213,6 +213,7 @@ function Formulaire() {
   }
 
   const kycEdit = (event) => {
+    console.log("event.target.value",event.target.value)
     setKyc(event.target.value);
   }
 
@@ -263,7 +264,7 @@ function Formulaire() {
         body: JSON.stringify({
           name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress.toLowerCase(), description: inputs.description, type: type,
           websiteLink: inputs.websiteLink, coinMarketCapLink: coinMarketCapLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, points: 0, pointsTwentyHour: 0, pointsCacul: pointsCacul, price: 0, marketCap: 0, supply: 0, coinMarketCapStatus: coinMarketCapStatus, idCoinMarketCap: 0, listePriceIdCoinMarketCap: listePriceIdCoinMarketCap, percent_change_24h: 0, promotedStatus: false, kyc: kyc,
-          emailCrea: user.email, usernameCrea: user.username, statistique: statistique
+          emailCrea: user.email, usernameCrea: user.username, statistique: statistique, kycProof : inputs.kycProof
         })
       };
       fetch(url + 'launchDate', requestOptions)
@@ -489,6 +490,16 @@ function Formulaire() {
             /> <label htmlFor="no">no</label>
           </div>
         </label>
+
+        {kyc == "yes" &&
+          <label className={style.formLabel}>kyc proof Link:
+            <input className={style.formInput}
+              type="text"
+              name="kycProof"
+              value={inputs.kycProof || ""}
+              onChange={handleChange}
+              required="required" />
+          </label>}
         <br />
 
         <input className={style.blueButton} type="submit" onClick={verifUpload} />

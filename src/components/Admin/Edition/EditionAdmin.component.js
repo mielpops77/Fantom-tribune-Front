@@ -25,7 +25,8 @@ const EditionAdmin = () => {
         coinMarketCapLink: "",
         telegram: "",
         twitter: "",
-        discord: ""
+        discord: "",
+        kycProof: ""
     });
 
     const [statType, setStatType] = useState("");
@@ -208,7 +209,7 @@ const EditionAdmin = () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress, description: inputs.description, type: type.value,
-                websiteLink: inputs.websiteLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, coinMarketCapLink: inputs.coinMarketCapLink, coinMarketCapStatus: editionService.getMarketCapStatus(), kyc: kyc
+                websiteLink: inputs.websiteLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, coinMarketCapLink: inputs.coinMarketCapLink, coinMarketCapStatus: editionService.getMarketCapStatus(), kyc: kyc, kycProof : inputs.kycProof
             })
         };
         fetch(url + `adminEdit?id=${id}&imageDelete=${imageDelete}`, requestOptions)
@@ -471,6 +472,16 @@ const EditionAdmin = () => {
                                 <label htmlFor="no">no</label>
                             </div>
                         </label>
+
+                        {kyc == "true" &&
+                            <label className={style.formLabel}>Kyc proof Link:
+                                <input className={style.formInput}
+                                    type="text"
+                                    name="kycProof"
+                                    value={inputs.kycProof || stat.kycProof}
+                                    onChange={handleChange}
+                                    required="required" />
+                            </label>}
                         <br />
                         <input className="btn btn-primary btn-block" id="submitInput" type="submit" />
                     </form >

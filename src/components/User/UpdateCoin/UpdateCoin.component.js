@@ -239,7 +239,7 @@ const UpdateCoin = () => {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    nameEdit: inputs.name, symbolEdit: inputs.symbol, launchDateEdit: inputs.launchDate, contractAddressEdit: inputs.contractAddress, descriptionEdit: inputs.description, typeEdit: typeEdit, websiteLinkEdit: inputs.websiteLink, coinMarketCapLinkEdit: inputs.coinMarketCapLink, telegramEdit: inputs.telegram, twitterEdit: inputs.twitter, discordEdit: inputs.discord, kycEdit: kyc, imageEdit: inputs.imageEdit, image: logo, idProject: idProject, comment: inputs.comment
+                    nameEdit: inputs.name, symbolEdit: inputs.symbol, launchDateEdit: inputs.launchDate, contractAddressEdit: inputs.contractAddress, descriptionEdit: inputs.description, typeEdit: typeEdit, websiteLinkEdit: inputs.websiteLink, coinMarketCapLinkEdit: inputs.coinMarketCapLink, telegramEdit: inputs.telegram, twitterEdit: inputs.twitter, discordEdit: inputs.discord, kycEdit: kyc, imageEdit: inputs.imageEdit, image: logo, idProject: idProject, kycProofEdit: inputs.kycProofEdit, comment: inputs.comment
                 })
             };
             fetch(url + 'updateNew', requestOptions)
@@ -322,46 +322,44 @@ const UpdateCoin = () => {
             })
     }
 
-/*     const handleChangeFile = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
-        setInputs(values => ({ ...values, [name]: value }))
-        upload();
-    }
- */
+    /*     const handleChangeFile = (event) => {
+            const name = event.target.name;
+            const value = event.target.value;
+            setInputs(values => ({ ...values, [name]: value }))
+            upload();
+        }
+     */
 
     const upload = (event) => {
         event.preventDefault()
         const inputImg = document.querySelector("input[type=file]");
-        if(inputImg !== null)
-        {
-        let fileCount = inputImg.files.length;
-        
-
-        if (fileCount > 0) {
+        if (inputImg !== null) {
+            let fileCount = inputImg.files.length;
 
 
-            let formData = new FormData();
-            formData.append('image', inputImg.files.item(0))
-            axios({
-                method: "post",
-                url: url + "images",
-                data: formData,
-                headers: { "Content-Type": "multipart/form-data" },
-            })
-                .then(function (response) {
-                    //handle success
-                    setUrlUpload(url + inputImg.files.item(0).name);
-                    handleSubmit()
+            if (fileCount > 0) {
+
+
+                let formData = new FormData();
+                formData.append('image', inputImg.files.item(0))
+                axios({
+                    method: "post",
+                    url: url + "images",
+                    data: formData,
+                    headers: { "Content-Type": "multipart/form-data" },
                 })
-                .catch(function (response) {
-                    //handle error
-                });
+                    .then(function (response) {
+                        //handle success
+                        setUrlUpload(url + inputImg.files.item(0).name);
+                        handleSubmit()
+                    })
+                    .catch(function (response) {
+                        //handle error
+                    });
+            }
         }
-    }
 
-        else
-        {
+        else {
             handleSubmit();
         }
 
@@ -440,7 +438,7 @@ const UpdateCoin = () => {
     }
 
     function removeField(event) {
-        if(event == "Logo") {setUrlUpload2("")}
+        if (event == "Logo") { setUrlUpload2("") }
         UpdateCoinService.setFieldOpenFlexible(event, false);
         setFieldOpen(UpdateCoinService.getFieldOpenFlexible());
 
@@ -766,9 +764,23 @@ const UpdateCoin = () => {
                         </div>
                     </label>
                 }
+
+                {fieldOpen.kyc && kyc === "true" &&
+                    <label className={style.updateCoin_formLabel}>kyc proof Link:
+                        <input className={style.updateCoin_formInput}
+                            type="text"
+                            name="kycProofEdit"
+                            value={inputs.kycProofEdit || ""}
+                            onChange={handleChange}
+                            required="required" />
+                    </label>}
                 {fieldOpen.kyc &&
                     // eslint-disable-next-line jsx-a11y/anchor-is-valid
                     <a className={style.updateCoin_removeField} onClick={function (event) { removeField("Kyc") }} >Remove this field</a>}
+
+
+
+
 
                 {fieldOpen.comment &&
                     <label className={style.updateCoin_formLabel}>Comment:

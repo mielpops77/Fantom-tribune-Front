@@ -30,7 +30,8 @@ const EditionUser = () => {
         telegramEdit: "",
         twitterEdit: "",
         typeEdit: "",
-        websiteLinkEdit: ""
+        websiteLinkEdit: "",
+        kycProofEdit: ""
     });
     const [urlUpload, setToggle] = useState('');
     const [prev, setPrev] = useState('');
@@ -45,7 +46,8 @@ const EditionUser = () => {
         coinMarketCapLink: "",
         telegram: "",
         twitter: "",
-        discord: ""
+        discord: "",
+        kycProof: ""
     });
 
     const [statType, setStatType] = useState("");
@@ -249,7 +251,7 @@ const EditionUser = () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress, description: inputs.description, type: type.value,
-                websiteLink: inputs.websiteLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, coinMarketCapLink: inputs.coinMarketCapLink, coinMarketCapStatus: editionService.getMarketCapStatus(), kyc: kyc
+                websiteLink: inputs.websiteLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, coinMarketCapLink: inputs.coinMarketCapLink, coinMarketCapStatus: editionService.getMarketCapStatus(), kyc: kyc, kycProof: inputs.kycProof
             })
         };
         let imageDelete = ""
@@ -362,8 +364,8 @@ const EditionUser = () => {
                             <img style={{ height: "100%", float: "left", maxWidth: "25%", maxHeight: "25%" }} src={urlUpload} alt='img' />
                         </label>
                         {inputsEdit.imageEdit !== "" &&
-                        <button onClick={changeImage} className="btn btn-success">Attribuer la nouvelle image</button>
-                            }
+                            <button onClick={changeImage} className="btn btn-success">Attribuer la nouvelle image</button>
+                        }
                         {/*   <input id="file-input" className={style.file} type="file" name="image" value={inputs.image || ""}
                             onChange={handleChangeFile}
                             accept="image/png, image/jpeg"
@@ -676,6 +678,7 @@ const EditionUser = () => {
                                 <label htmlFor="no">no</label>
                             </div>
                         </label>
+
                         {inputsEdit.kycEdit.toString() !== kyc &&
                             <label className={style.formLabel}>Kyc? *:
                                 <div>
@@ -702,6 +705,26 @@ const EditionUser = () => {
                                     <label style={{ color: "red" }} htmlFor="no">no</label>
                                 </div>
                             </label>}
+
+
+                        {
+                            kyc === "true" &&
+                            <label className={style.formLabel}>Kyc proof Link
+                                <input className={style.formInput}
+                                    type="text"
+                                    name="kycProof"
+                                    value={inputs.kycProof || stat.kycProof}
+                                    onChange={handleChange} />
+                            </label>}
+                        {inputsEdit.kycProofEdit !== "" &&
+                            <label className={style.formLabel}>kyc proof Link
+                                <input className={style.formInputUpdate}
+                                    type="text"
+                                    name="kycProofEdit"
+                                    defaultValue={inputsEdit.kycProofEdit}
+                                />
+                            </label>}
+
                         <br />
                         <input className="btn btn-primary btn-block" id="submitInput" type="submit" />
                     </form >
