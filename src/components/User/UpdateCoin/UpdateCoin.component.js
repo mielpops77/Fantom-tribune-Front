@@ -23,6 +23,7 @@ const UpdateCoin = () => {
         name: "",
         symbol: "",
         launchDate: "",
+        launchDateHour: "",
         contractAddress: "",
         description: "",
         websiteLink: "",
@@ -31,7 +32,9 @@ const UpdateCoin = () => {
         twitter: "",
         discord: "",
         comment: "",
-        imageEdit: ""
+        kycProof:"",
+        imageEdit: "",
+       
     });
     const [items, setItems] = useState([]);
     const [prev, setPrev] = useState('');
@@ -68,6 +71,7 @@ const UpdateCoin = () => {
         name: "",
         symbol: "",
         launchDate: "",
+        launchDateHour:"",
         contractAddress: "",
         description: "",
         websiteLink: "",
@@ -239,7 +243,9 @@ const UpdateCoin = () => {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    nameEdit: inputs.name, symbolEdit: inputs.symbol, launchDateEdit: inputs.launchDate, contractAddressEdit: inputs.contractAddress, descriptionEdit: inputs.description, typeEdit: typeEdit, websiteLinkEdit: inputs.websiteLink, coinMarketCapLinkEdit: inputs.coinMarketCapLink, telegramEdit: inputs.telegram, twitterEdit: inputs.twitter, discordEdit: inputs.discord, kycEdit: kyc, imageEdit: inputs.imageEdit, image: logo, idProject: idProject, kycProofEdit: inputs.kycProofEdit, comment: inputs.comment
+                    nameEdit: inputs.name, symbolEdit: inputs.symbol, launchDateEdit: inputs.launchDate,launchDateHourEdit: inputs.launchDateHour, contractAddressEdit: inputs.contractAddress,
+                     descriptionEdit: inputs.description, typeEdit: typeEdit, websiteLinkEdit: inputs.websiteLink, coinMarketCapLinkEdit: inputs.coinMarketCapLink, telegramEdit: inputs.telegram,
+                      twitterEdit: inputs.twitter, discordEdit: inputs.discord, kycEdit: kyc, imageEdit: inputs.imageEdit, image: logo, idProject: idProject, kycProofEdit: inputs.kycProof, comment: inputs.comment
                 })
             };
             fetch(url + 'updateNew', requestOptions)
@@ -266,6 +272,7 @@ const UpdateCoin = () => {
             name: "",
             symbol: "",
             launchDate: "",
+            launchDateHour: "",
             contractAddress: "",
             description: "",
             websiteLink: "",
@@ -274,6 +281,7 @@ const UpdateCoin = () => {
             twitter: "",
             discord: "",
             comment: "",
+            kycProof:"",
             imageEdit: ""
         });
         getSearchCoinRequest(string);
@@ -615,6 +623,19 @@ const UpdateCoin = () => {
                             />
                         </label>
                     }
+
+
+                        {prev === "yes" && <label htmlFor="appt-time" className={style.updateCoin_formLabel}>Presale time (UTC)*:
+                            <input className={style.updateCoin_formInput}
+                              id="appt-time"
+                              type="time"
+                              name="launchDateHour"
+                                value={inputs.launchDateHour || initForm.launchDateHour}
+                                onChange={handleChange}
+                            />
+                        </label>
+                    }
+
                     {fieldOpen.launchPhase &&
                         // eslint-disable-next-line jsx-a11y/anchor-is-valid
                         <a className={style.updateCoin_removeField} onClick={function (event) { removeField("Launch-phase") }} >Remove this field</a>}
@@ -769,8 +790,8 @@ const UpdateCoin = () => {
                     <label className={style.updateCoin_formLabel}>kyc proof Link:
                         <input className={style.updateCoin_formInput}
                             type="text"
-                            name="kycProofEdit"
-                            value={inputs.kycProofEdit || ""}
+                            name="kycProof"
+                            value={inputs.kycProof || ""}
                             onChange={handleChange}
                             required="required" />
                     </label>}

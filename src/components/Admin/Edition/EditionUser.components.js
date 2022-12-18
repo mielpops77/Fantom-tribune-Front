@@ -25,6 +25,7 @@ const EditionUser = () => {
         imageEdit: "",
         kycEdit: "",
         launchDateEdit: "",
+        launchDateHourEdit: "",
         nameEdit: "",
         symbolEdit: "",
         telegramEdit: "",
@@ -40,6 +41,7 @@ const EditionUser = () => {
         name: "",
         symbol: "",
         launchDate: "",
+        launchDateHour: "",
         contractAddress: "",
         description: "",
         websiteLink: "",
@@ -250,7 +252,7 @@ const EditionUser = () => {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress, description: inputs.description, type: type.value,
+                name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate,launchDateHour: inputs.launchDateHour, contractAddress: inputs.contractAddress, description: inputs.description, type: type.value,
                 websiteLink: inputs.websiteLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, coinMarketCapLink: inputs.coinMarketCapLink, coinMarketCapStatus: editionService.getMarketCapStatus(), kyc: kyc, kycProof: inputs.kycProof
             })
         };
@@ -273,6 +275,7 @@ const EditionUser = () => {
     function searchUpdateById(id) {
         return axios.get(AuthService.getUrl() + `updateSearchById?id=${id}`)
             .then(response => {
+                console.log("response.data[0]",response.data[0]);
                 setInputsEdit(response.data[0]);
                 editionService.initIdProject();
                 editionService.setIdProject(response.data[0].idProject);
@@ -464,7 +467,18 @@ const EditionUser = () => {
                                 />
                             </label>
                         }
+         {
+          prev === "yes" &&
+                            <label  htmlFor="appt-time" className={style.formLabel}>Presale time (UTC)*:
+                            <input className={style.formInput}
+                               id="appt-time"
+                               type="time"
+                               name="launchDateHour"
+                                value={inputs.launchDateHour || stat.launchDateHour}
+                                onChange={handleChange}
+                            />
 
+                        </label>}
 
 
                         {inputsEdit.launchDateEdit !== "" &&
@@ -477,6 +491,19 @@ const EditionUser = () => {
                                 />
                             </label>}
 
+
+
+                        {
+          inputsEdit.launchDateHourEdit !== "" &&
+                            <label  htmlFor="appt-time" className={style.formLabel}>Presale time (UTC)*:
+                            <input className={style.formInputUpdate}
+                               id="appt-time"
+                               type="time"
+                               name="launchDateHourEdit"
+                               defaultValue={inputsEdit.launchDateHourEdit}
+                            />
+
+                        </label>}
 
 
 
@@ -716,6 +743,7 @@ const EditionUser = () => {
                                     value={inputs.kycProof || stat.kycProof}
                                     onChange={handleChange} />
                             </label>}
+                            
                         {inputsEdit.kycProofEdit !== "" &&
                             <label className={style.formLabel}>kyc proof Link
                                 <input className={style.formInputUpdate}

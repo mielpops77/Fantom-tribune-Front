@@ -19,6 +19,7 @@ const EditionAdmin = () => {
         name: "",
         symbol: "",
         launchDate: "",
+        launchDateHour: "",
         contractAddress: "",
         description: "",
         websiteLink: "",
@@ -208,7 +209,7 @@ const EditionAdmin = () => {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress, description: inputs.description, type: type.value,
+                name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, launchDateHour: inputs.launchDateHour, contractAddress: inputs.contractAddress, description: inputs.description, type: type.value,
                 websiteLink: inputs.websiteLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, coinMarketCapLink: inputs.coinMarketCapLink, coinMarketCapStatus: editionService.getMarketCapStatus(), kyc: kyc, kycProof : inputs.kycProof
             })
         };
@@ -360,6 +361,19 @@ const EditionAdmin = () => {
                                     onChange={handleChange}
                                 />
                             </label>
+                        }
+                        {
+                        prev === "yes" &&
+                        <label htmlFor="appt-time" className={style.formLabel}>Presale time (UTC)*:
+                            <input className={style.formInput}
+                                id="appt-time"
+                                type="time"
+                                name="launchDateHour"
+                                value={inputs.launchDateHour || stat.launchDateHour}
+                                onChange={handleChange}
+                            />
+
+                        </label>
                         }
 
                         <label className={style.formLabel}>Contract Address:
