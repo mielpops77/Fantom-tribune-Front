@@ -198,6 +198,8 @@ const InfoCoin = () => {
             <div className={style.container}>
                 <img className={style.img} src={url + coin.image} alt='img' />
                 <p className={style.name}>{coin.name}  - {coin.symbol} </p>
+                <button type="button" onClick={() => vote()} className={style.voteButton}>Vote</button>
+                <button type="button" onClick={() => addPoints('buy', coin)} className={style.voteButton}>Buy</button>
                 <div className={style.infoAndIframe}>
                     <div className={style.info}>
                         <p className={style.textualInfo}>Type: {coin.type} </p>
@@ -215,16 +217,10 @@ const InfoCoin = () => {
                         <p className={style.textualInfo}>vote: {coin.vote} </p>
                         <p className={style.textualInfo}>voteToday: {coin.voteTwentyHour} </p>
 
-                        
-
-
-
-                        <p>Information incorrect? Please submit an <span onClick={() => nav(`/updateCoin/`)}>Update Request!</span></p>
                     </div>
                     <iframe className={style.iframe} title="Graphical Board" loading="lazy" src={src} width="50%" height="550px" /* frameborder="0" */ ></iframe>
-                    <button type="button" onClick={() => vote()} className={style.voteButton}>Vote</button>
-                    <button type="button" onClick={() => addPoints('buy', coin)} className={style.voteButton}>Buy</button>
                 </div>
+                <p className={style.wrongInfo}>Information incorrect? Please submit an <span className={style.updateRequest} onClick={() => nav(`/updateCoin/`)}>Update Request!</span></p>
             </div>
 
 

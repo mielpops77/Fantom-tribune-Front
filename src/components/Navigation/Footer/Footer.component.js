@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import style from "./Footer.module.scss";
 
 const Footer = () => {
@@ -16,8 +17,7 @@ const Footer = () => {
                         <a className={style.link} href="https://web.telegram.org/k/">Telegram</a>
                     </div>
                     <div className={style.divLink}>
-                        <img className={style.imgLogo} src="http://localhost:3000/assets/logo_discord.png" />
-                        <a className={style.link} href="https://discord.gg/AtjmsXJe">Term</a>
+                        <Link to="/TermsConditions">Terms & Conditions</Link>
                     </div>
                 </div>
             <img className={style.imgFtmTribune} src="http://localhost:3000/assets/logo.png" />
