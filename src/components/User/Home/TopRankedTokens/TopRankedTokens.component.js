@@ -51,7 +51,6 @@ const TopRankedTokens = () => {
             .then((res) => res.json())
             .then((res) => {
                 setElements(res);
-                console.log("elements", res);
             })
     }, []);
 
@@ -60,7 +59,6 @@ const TopRankedTokens = () => {
     function buy(contractAdress, coinId, points, pointsTwentyHour, pointsCacul, statistique) {
         window.open('https://spooky.fi/#/swap?outputCurrency=' + contractAdress, '_blank');
         if (user !== null) {
-            console.log("wijizjdijdzidjzijdijdzi");
             let verif = false;
             AuthService.getPointsLimitUser(user.id).then((res) => {
                 for (let i = 0; i < res.data.length; i++) {

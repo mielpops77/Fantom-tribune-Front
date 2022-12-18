@@ -2,52 +2,41 @@ import axios from "axios";
 
 const API_URL = "https://fantom-tribune-back.herokuapp.com/api/auth/";
 
-function getUrl() {
-  const url = "https://fantom-tribune-back.herokuapp.com/";
-  return url;
-}
+const getUrl = () => "https://fantom-tribune-back.herokuapp.com/";
 
-const register = (username, email, password) => {
-  return axios.post(API_URL + "signup", {
-    username,
+const register = (username, email, password) => axios.post(API_URL + "signup", { username, email, password, });
+
+const login = (email, password) => axios
+  .post(API_URL + "signin", {
     email,
     password,
-  });
-};
-
-const login = (email, password) => {
-  return axios
-    .post(API_URL + "signin", {
-      email,
-      password,
-    })
-    .then((response) => {
-      if (response.data.accessToken) {
-        localStorage.setItem("user", JSON.stringify(response.data));
-      }
-      return response.data;
-    });
-};
-
-const logout = () => {
-  localStorage.removeItem("user");
-};
-
-const getCurrentUser = () => {
-  return JSON.parse(localStorage.getItem("user"));
-};
-
-const verifyUser = (code) => {
-  return axios.get(API_URL + "confirm/" + code).then((response) => {
+  })
+  .then((response) => {
+    if (response.data.accessToken) {
+      localStorage.setItem("user", JSON.stringify(response.data));
+    }
     return response.data;
   });
-};
 
-export default {
+const getPointsLimitUser = (id) => axios.get(getUrl() + `getPointsLimitUser/?id=${id}`).then((response) => { return response; });
+
+const getCurrentUser = () => JSON.parse(localStorage.getItem("user"));
+
+const logout = () => { localStorage.removeItem("user"); };
+
+const verifyUser = (code) => axios.get(API_URL + "confirm/" + code).then((response) => { return response.data; });
+
+const verifMail = (email) => axios.get(API_URL + `verifMail/?email=${email}`).then((response) => { return response.data; });
+
+const authService = {
+  getPointsLimitUser,
   getCurrentUser,
   verifyUser,
+  verifMail,
   register,
   logout,
   getUrl,
   login
 };
+
+export default authService;

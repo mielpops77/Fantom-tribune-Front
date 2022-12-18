@@ -23,6 +23,7 @@ const UpdateCoin = () => {
         name: "",
         symbol: "",
         launchDate: "",
+        launchDateHour: "",
         contractAddress: "",
         description: "",
         websiteLink: "",
@@ -31,7 +32,9 @@ const UpdateCoin = () => {
         twitter: "",
         discord: "",
         comment: "",
-        imageEdit: ""
+        kycProof:"",
+        imageEdit: "",
+       
     });
     const [items, setItems] = useState([]);
     const [prev, setPrev] = useState('');
@@ -68,6 +71,7 @@ const UpdateCoin = () => {
         name: "",
         symbol: "",
         launchDate: "",
+        launchDateHour:"",
         contractAddress: "",
         description: "",
         websiteLink: "",
@@ -229,7 +233,6 @@ const UpdateCoin = () => {
     }
 
     const handleSubmit = (event) => {
-
         if (user !== null) {
             let typeEdit = "";
             if (typeSelected.value !== typeInitial.value) {
@@ -240,7 +243,9 @@ const UpdateCoin = () => {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    nameEdit: inputs.name, symbolEdit: inputs.symbol, launchDateEdit: inputs.launchDate, contractAddressEdit: inputs.contractAddress, descriptionEdit: inputs.description, typeEdit: typeEdit, websiteLinkEdit: inputs.websiteLink, coinMarketCapLinkEdit: inputs.coinMarketCapLink, telegramEdit: inputs.telegram, twitterEdit: inputs.twitter, discordEdit: inputs.discord, kycEdit: kyc, imageEdit: inputs.imageEdit, image: logo, idProject: idProject, comment: inputs.comment
+                    nameEdit: inputs.name, symbolEdit: inputs.symbol, launchDateEdit: inputs.launchDate,launchDateHourEdit: inputs.launchDateHour, contractAddressEdit: inputs.contractAddress,
+                     descriptionEdit: inputs.description, typeEdit: typeEdit, websiteLinkEdit: inputs.websiteLink, coinMarketCapLinkEdit: inputs.coinMarketCapLink, telegramEdit: inputs.telegram,
+                      twitterEdit: inputs.twitter, discordEdit: inputs.discord, kycEdit: kyc, imageEdit: inputs.imageEdit, image: logo, idProject: idProject, kycProofEdit: inputs.kycProof, comment: inputs.comment
                 })
             };
             fetch(url + 'updateNew', requestOptions)
@@ -252,7 +257,6 @@ const UpdateCoin = () => {
     const handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
-        console.log('c forcement ici bro', inputs);
         setInputs(values => ({ ...values, [name]: value }))
     }
 
@@ -261,7 +265,6 @@ const UpdateCoin = () => {
 
 
     const handleOnSearch = (string, results) => {
-        console.log('okokokoko');
         UpdateCoinService.initFieldOpenFlexible();
         setFieldOpen(UpdateCoinService.getFieldOpenFlexible());
         setField(false);
@@ -269,6 +272,7 @@ const UpdateCoin = () => {
             name: "",
             symbol: "",
             launchDate: "",
+            launchDateHour: "",
             contractAddress: "",
             description: "",
             websiteLink: "",
@@ -277,6 +281,7 @@ const UpdateCoin = () => {
             twitter: "",
             discord: "",
             comment: "",
+            kycProof:"",
             imageEdit: ""
         });
         getSearchCoinRequest(string);
@@ -292,7 +297,6 @@ const UpdateCoin = () => {
         getSearchCoinById(item.id);
         setIdProject(item.id)
         setField(true);
-        console.log('hello worzdzzddzld', item);
         setTypeSelected({ label: item.type, value: item.type })
         setTypeInitial({ label: item.type, value: item.type });
     }
@@ -320,56 +324,50 @@ const UpdateCoin = () => {
             .then(response => {
                 setLogo(response.data[0].image);
                 setUrlUpload("vide");
-                console.log(urlUpload)
                 setKyc(response.data[0].kyc.toString());
                 prevCheck(response.data[0].launchDate);
                 return response.data;
             })
     }
 
-/*     const handleChangeFile = (event) => {
-        console.log('on est pas sensé allé la');
-        const name = event.target.name;
-        const value = event.target.value;
-        setInputs(values => ({ ...values, [name]: value }))
-        upload();
-    }
- */
+    /*     const handleChangeFile = (event) => {
+            const name = event.target.name;
+            const value = event.target.value;
+            setInputs(values => ({ ...values, [name]: value }))
+            upload();
+        }
+     */
 
     const upload = (event) => {
         event.preventDefault()
         const inputImg = document.querySelector("input[type=file]");
-        console.log("inputImg",inputImg);
-        if(inputImg !== null)
-        {
-        let fileCount = inputImg.files.length;
-        
-
-        if (fileCount > 0) {
+        if (inputImg !== null) {
+            let fileCount = inputImg.files.length;
 
 
-            let formData = new FormData();
-            formData.append('image', inputImg.files.item(0))
-            axios({
-                method: "post",
-                url: url + "images",
-                data: formData,
-                headers: { "Content-Type": "multipart/form-data" },
-            })
-                .then(function (response) {
-                    //handle success
-                    setUrlUpload(url + inputImg.files.item(0).name);
-                    console.log("inputImg.files.item(0).name", url + inputImg.files.item(0).name);
-                    handleSubmit()
+            if (fileCount > 0) {
+
+
+                let formData = new FormData();
+                formData.append('image', inputImg.files.item(0))
+                axios({
+                    method: "post",
+                    url: url + "images",
+                    data: formData,
+                    headers: { "Content-Type": "multipart/form-data" },
                 })
-                .catch(function (response) {
-                    //handle error
-                });
+                    .then(function (response) {
+                        //handle success
+                        setUrlUpload(url + inputImg.files.item(0).name);
+                        handleSubmit()
+                    })
+                    .catch(function (response) {
+                        //handle error
+                    });
+            }
         }
-    }
 
-        else
-        {
+        else {
             handleSubmit();
         }
 
@@ -448,6 +446,7 @@ const UpdateCoin = () => {
     }
 
     function removeField(event) {
+        if (event == "Logo") { setUrlUpload2("") }
         UpdateCoinService.setFieldOpenFlexible(event, false);
         setFieldOpen(UpdateCoinService.getFieldOpenFlexible());
 
@@ -456,7 +455,6 @@ const UpdateCoin = () => {
     var previewPicture = function (event) {
         const name = event.target.name;
         const value = event.target.value;
-        console.log("name", name);
         setInputs(values => ({ ...values, [name]: value }));
         // var image = document.getElementById("image");
         // e.files contient un objet FileList
@@ -625,6 +623,19 @@ const UpdateCoin = () => {
                             />
                         </label>
                     }
+
+
+                        {prev === "yes" && <label htmlFor="appt-time" className={style.updateCoin_formLabel}>Presale time (UTC)*:
+                            <input className={style.updateCoin_formInput}
+                              id="appt-time"
+                              type="time"
+                              name="launchDateHour"
+                                value={inputs.launchDateHour || initForm.launchDateHour}
+                                onChange={handleChange}
+                            />
+                        </label>
+                    }
+
                     {fieldOpen.launchPhase &&
                         // eslint-disable-next-line jsx-a11y/anchor-is-valid
                         <a className={style.updateCoin_removeField} onClick={function (event) { removeField("Launch-phase") }} >Remove this field</a>}
@@ -774,9 +785,23 @@ const UpdateCoin = () => {
                         </div>
                     </label>
                 }
+
+                {fieldOpen.kyc && kyc === "true" &&
+                    <label className={style.updateCoin_formLabel}>kyc proof Link:
+                        <input className={style.updateCoin_formInput}
+                            type="text"
+                            name="kycProof"
+                            value={inputs.kycProof || ""}
+                            onChange={handleChange}
+                            required="required" />
+                    </label>}
                 {fieldOpen.kyc &&
                     // eslint-disable-next-line jsx-a11y/anchor-is-valid
                     <a className={style.updateCoin_removeField} onClick={function (event) { removeField("Kyc") }} >Remove this field</a>}
+
+
+
+
 
                 {fieldOpen.comment &&
                     <label className={style.updateCoin_formLabel}>Comment:

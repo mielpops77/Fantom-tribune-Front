@@ -19,7 +19,6 @@ const Welcome = (props) => {
 
     }, (error) => {
       setError(true)
-      console.log('errooooooor', error.response)
     }
     );
   };
@@ -35,7 +34,7 @@ const Welcome = (props) => {
   /* verifyUser(url.substr(49)); */
 
 
-  /*   console.log(props)
+  /*  
     if (props.match.path === "/confirm/:confirmationCode") {
       AuthService.verifyUser(props.match.params.confirmationCode);
     } */

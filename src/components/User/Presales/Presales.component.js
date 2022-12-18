@@ -149,7 +149,6 @@ const Presales = () => {
 
   function vote(coinId, name, image, points, pointsTwentyHour, pointsCacul, statistique) {
     setCaptcha(null);
-    console.log("image", image.props.src);
     setData({ id: coinId, name: name, image: image.props.src, points: points, pointsTwentyHour: pointsTwentyHour, pointsCacul: pointsCacul, statistique: statistique });
     if (user !== null) {
       let verif = false;
@@ -302,17 +301,14 @@ const Presales = () => {
   const handleOnSearch = (string, results) => {
     // onSearch will have as the first callback parameter
     // the string searched and for the second the results.
-    console.log(string, results)
   }
 
   const handleOnHover = (result) => {
     // the item hovered
-    console.log(result)
   }
 
   const handleOnSelect = (item) => {
     // the item selected
-    console.log(item)
   }
 
   const handleOnFocus = () => {
