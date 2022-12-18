@@ -213,7 +213,7 @@ function Formulaire() {
   }
 
   const kycEdit = (event) => {
-    console.log("event.target.value",event.target.value)
+    console.log("event.target.value", event.target.value)
     setKyc(event.target.value);
   }
 
@@ -257,14 +257,25 @@ function Formulaire() {
       else {
         type = selected.value;
       }
+
+
+
+      let contractAddress = inputs.contractAddress;
+
+      if (inputs.contractAddress !== undefined) {
+        contractAddress = contractAddress.toLowerCase();
+      }
+      else { contractAddress = "none" }
+
+
       /* event.preventDefault(); */
       const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress.toLowerCase(), description: inputs.description, type: type,
+          name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: contractAddress, description: inputs.description, type: type,
           websiteLink: inputs.websiteLink, coinMarketCapLink: coinMarketCapLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, points: 0, pointsTwentyHour: 0, pointsCacul: pointsCacul, price: 0, marketCap: 0, supply: 0, coinMarketCapStatus: coinMarketCapStatus, idCoinMarketCap: 0, listePriceIdCoinMarketCap: listePriceIdCoinMarketCap, percent_change_24h: 0, promotedStatus: false, kyc: kyc,
-          emailCrea: user.email, usernameCrea: user.username, statistique: statistique, kycProof : inputs.kycProof
+          emailCrea: user.email, usernameCrea: user.username, statistique: statistique, kycProof: inputs.kycProof, launchDateHour: inputs.launchDateHour
         })
       };
       fetch(url + 'launchDate', requestOptions)
@@ -384,16 +395,32 @@ function Formulaire() {
           </label>
         }
 
+        {
+          prev === "yes" &&
+          <label htmlFor="appt-time" className={style.formLabel}>Presale time (UTC)*:
+            <input className={style.formInput}
+              id="appt-time"
+              type="time"
+              name="launchDateHour"
+              // value="13:30"
+              // type="text"
+              // name="contractAddress"
+              value={inputs.launchDateHour || ""}
+              onChange={handleChange}
+            />
 
-        <label className={style.formLabel}>Contract Address:
-          <input className={style.formInput}
-            type="text"
-            name="contractAddress"
-            value={inputs.contractAddress || ""}
-            onChange={handleChange}
-          />
+          </label>}
 
-        </label>
+        {
+          prev === "no" &&
+          <label className={style.formLabel}>Contract Address:
+            <input className={style.formInput}
+              type="text"
+              name="contractAddress"
+              value={inputs.contractAddress || ""}
+              onChange={handleChange}
+            />
+          </label>}
 
         <label className={style.formLabel}>Description*:
           <textarea className={style.formInput} style={{
@@ -447,13 +474,15 @@ function Formulaire() {
           />
         </label>
 
-        <label className={style.formLabel}>coinmarketcap link:
-          <input className={style.formInput}
-            type="text"
-            name="coinMarketCapLink"
-            value={inputs.coinMarketCapLink || ""}
-            onChange={handleChange} />
-        </label>
+        {
+          prev === "no" &&
+          <label className={style.formLabel}>coinmarketcap link:
+            <input className={style.formInput}
+              type="text"
+              name="coinMarketCapLink"
+              value={inputs.coinMarketCapLink || ""}
+              onChange={handleChange} />
+          </label>}
 
         <label className={style.formLabel}>Telegram link:
           <input className={style.formInput}
