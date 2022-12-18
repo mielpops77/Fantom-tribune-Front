@@ -1,13 +1,12 @@
 @media all and (min-width:1024px){
 
     .infoCoin_page{
-        background: url("https://fantom-tribune-back.herokuapp.com/assets/background_with_rocket5.png") no-repeat;
-        background-size: cover;
         width: 100%;
         min-height: 1000px;
 
-        .infoCoin_container{
-            background-color: #060A46;
+        .container{
+            background-color: #131325;
+            box-shadow: 0px 0px 14px 2px rgba(105, 130, 241, 0.555);
             margin:auto;
             display: flex;
             flex-wrap: wrap;
@@ -18,21 +17,40 @@
             width: 85%;
             height: 820px;
             border-radius: 15px;
-            box-shadow: 0px 0px 2px 2px rgba(255, 255, 255);
 
-            .infoCoin_img{
+            .img{
+                margin-left:5%;
                 width: 6vw;
                 height: 6vw;
             }
     
-            .infoCoin_name{
+            .name{
                 font-family: "Roboto", sans-serif;
                 font-size: 3.4vw;
                 margin-left:2%;
                 color:white;
+                margin-right: 5%;
             }
 
-            .infoCoin_infoAndIframe{
+            .voteButton {
+                margin: 0.2%;
+                color: #ffffff;
+                background: #3b96ff;
+                border-radius: 10px;
+                text-align: center;
+                font-size: 1vw;
+                letter-spacing: -0.64px;
+                color: #ffffff;
+                width: 4vw;
+                height: 2.4vw;
+                line-height: normal;
+        
+                &:hover {
+                  font-size: 1.6vw;
+                }
+              }
+
+            .infoAndIframe{
                 display: flex;
                 flex-direction:row;
                 align-items: center;
@@ -40,22 +58,33 @@
                 width: 95%;
                 height: 73%;
 
-                .infoCoin_info{
+                .info{
                     font-family: "Roboto", sans-serif;
-                    font-size: 1.4vw;
+                    font-size: 1.1vw;
                     width: 40%;
                     margin:3%;
                     height: auto;
                     color: white;
+
+                    .textualInfo{
+                        margin:1%;
+                    }
                 }
 
-                .infoCoin_iframe{
+                .iframe{
                     width: 55%;
                     margin-right:3%;
                     border-radius: 15px;
                     box-shadow: 0px 0px 0px 4px rgba(255, 255, 255);
                 }
+            }
+            
+            .wrongInfo{
+                color: white;
 
+                .updateRequest{
+                    color: #3b96ff;
+                }
             }
         }
     }

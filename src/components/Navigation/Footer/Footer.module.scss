@@ -1,7 +1,7 @@
 @import "../../../styles/setting";
 
 .footerContainer{
-    background: url("https://fantom-tribune-back.herokuapp.com/assets/fond_bandeau2.png") no-repeat padding-box;
+    background: url("http://localhost:3000/assets/fond_bandeau2.png") no-repeat padding-box;
     background-size: cover;
     display: flex;
     flex-direction: column;

@@ -72,7 +72,6 @@ const NewPassword = (props) => {
 
     const handleLogin = (e) => {
         e.preventDefault()
-        console.log('kokokk');
         if (password === passwordConfirm && (password.length >= 6  && password.length <= 40) && (passwordConfirm.length >= 6 || passwordConfirm.length <= 40)) {
             setpasswordIdentical(true);
             passwordChange();
@@ -80,7 +79,6 @@ const NewPassword = (props) => {
         }
         else {
             setpasswordIdentical(false);
-            console.log("password non identique");
         }
     };
     const passwordChange = () => {
@@ -90,7 +88,7 @@ const NewPassword = (props) => {
 
         }, (error) => {
             /*  setError(true) */
-            console.log('errooooooor', error.response)
+            console.log('error', error.response)
         }
         );
     };

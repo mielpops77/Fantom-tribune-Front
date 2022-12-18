@@ -86,8 +86,6 @@ function Administration() {
         }
     };
 
-    console.log('weeesh', toggle3);
-
     let changeStyle = (btn) => {
         switch (btn) {
             case 1:
@@ -106,8 +104,7 @@ function Administration() {
                 setToggle4(false);
                 if (toggleMenu) { getLunch(); }
                 if (toggle2Menu) { getUpdateListDelete(); }
-                else { getListAdmin() }
-
+                if (toggle3Menu) {  getListAdmin(); }
                 break;
             case 3:
                 setToggle3(true);
@@ -258,11 +255,7 @@ function Administration() {
                 .then((res) => res.json())
 
                 .then((res) => {
-
-                    console.log('hmmmm', editionAdminService.getPromotedProjectLenght());
-
                     if (toggle2) {
-                        console.log('toggle2 Avant', editionAdminService.getPromotedProjectLenght());
                         getPromotedProjectLenght();
                         getLunch();
 
@@ -318,8 +311,6 @@ function Administration() {
 
 
     let updateDeleteDef = (postId, imageId) => {
-        console.log("imageId",imageId);
-
         fetch(url + `updateDeleteDef?id=${postId}&imageId=${imageId}`, {
             method: "DELETE",
         })
@@ -357,7 +348,6 @@ function Administration() {
         fetch(url + 'statistiqueToday/')
             .then((res) => res.json())
             .then((res) => {
-                console.log(res);
                 setStatistiqueToday(res)
                 /* setPosts(res); */
             });

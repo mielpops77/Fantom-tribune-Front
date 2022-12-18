@@ -16,16 +16,18 @@ const EditionAdmin = () => {
     const [prev, setPrev] = useState('');
     const [kyc, setKyc] = useState('');
     const [stat, setStat] = useState({
-        name: "drgerrzdadaz",
+        name: "",
         symbol: "",
         launchDate: "",
+        launchDateHour: "",
         contractAddress: "",
         description: "",
         websiteLink: "",
         coinMarketCapLink: "",
         telegram: "",
         twitter: "",
-        discord: ""
+        discord: "",
+        kycProof: ""
     });
 
     const [statType, setStatType] = useState("");
@@ -125,7 +127,6 @@ const EditionAdmin = () => {
 
 
     const upload = (event) => {
-        console.log("upload");
         event.preventDefault()
         const inputImg = document.querySelector("input[type=file]");
         let fileCount = inputImg.files.length;
@@ -188,14 +189,11 @@ const EditionAdmin = () => {
     }
     const handleSubmit = (event) => {
         let imageDelete = "";
-        console.log("urlUpload", editionService.getCoin().image);
         if (urlUpload2 == '') {
-            console.log("l'image non modifier");
 
         }
         else {
             imageDelete = editionService.getCoin().image
-            console.log("image modifié");
         }
         editionService.initType();
         /*  event.preventDefault(); */
@@ -211,8 +209,8 @@ const EditionAdmin = () => {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress, description: inputs.description, type: type.value,
-                websiteLink: inputs.websiteLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, coinMarketCapLink: inputs.coinMarketCapLink, coinMarketCapStatus: editionService.getMarketCapStatus(), kyc: kyc
+                name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, launchDateHour: inputs.launchDateHour, contractAddress: inputs.contractAddress, description: inputs.description, type: type.value,
+                websiteLink: inputs.websiteLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, coinMarketCapLink: inputs.coinMarketCapLink, coinMarketCapStatus: editionService.getMarketCapStatus(), kyc: kyc, kycProof : inputs.kycProof
             })
         };
         fetch(url + `adminEdit?id=${id}&imageDelete=${imageDelete}`, requestOptions)
@@ -364,6 +362,19 @@ const EditionAdmin = () => {
                                 />
                             </label>
                         }
+                        {
+                        prev === "yes" &&
+                        <label htmlFor="appt-time" className={style.formLabel}>Presale time (UTC)*:
+                            <input className={style.formInput}
+                                id="appt-time"
+                                type="time"
+                                name="launchDateHour"
+                                value={inputs.launchDateHour || stat.launchDateHour}
+                                onChange={handleChange}
+                            />
+
+                        </label>
+                        }
 
                         <label className={style.formLabel}>Contract Address:
                             <input className={style.formInput}
@@ -475,6 +486,16 @@ const EditionAdmin = () => {
                                 <label htmlFor="no">no</label>
                             </div>
                         </label>
+
+                        {kyc == "true" &&
+                            <label className={style.formLabel}>Kyc proof Link:
+                                <input className={style.formInput}
+                                    type="text"
+                                    name="kycProof"
+                                    value={inputs.kycProof || stat.kycProof}
+                                    onChange={handleChange}
+                                    required="required" />
+                            </label>}
                         <br />
                         <input className="btn btn-primary btn-block" id="submitInput" type="submit" />
                     </form >

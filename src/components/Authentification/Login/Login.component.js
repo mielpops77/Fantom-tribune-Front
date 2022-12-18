@@ -5,10 +5,9 @@ import CheckButton from "react-validation/build/button";
 import Input from "react-validation/build/input";
 import React, { useState, useRef } from "react";
 import Form from "react-validation/build/form";
-import { NavLink } from "react-router-dom";
-import style from "./Login.module.scss";
 import { useNavigate } from 'react-router-dom';
-
+import { NavLink} from "react-router-dom";
+import style from "./Login.module.scss";
 
 
 const required = (value) => {
@@ -29,7 +28,7 @@ const Login = (props) => {
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
-    
+
 
     const onChangeMail = (e) => {
         const mail = e.target.value;
@@ -74,7 +73,7 @@ const Login = (props) => {
 
     return (
         <div className={style.login_container}>
-     {/*    <div  className={style.login_fond}> */}
+            {/*    <div  className={style.login_fond}> */}
 
             <NavigationUserComponent />
             <div className={style.divCorSignIn}>
@@ -117,9 +116,9 @@ const Login = (props) => {
                         <button className={style.blueButton}>No Account? Register Here</button>
                     </NavLink>
                     <NavLink to="/forgotPassword" className={style.register}>
-                    <p className={style.forgotPassword}>
-                        Forgot <a className={style.link} style={{ color: "#167bff" }} href="#"> password?</a>
-                    </p>
+                        <p className={style.forgotPassword}>
+                            Forgot <span className={style.link} style={{ color: "#167bff" }} >password?</span>
+                        </p>
                     </NavLink>
                 </Form>
             </div>

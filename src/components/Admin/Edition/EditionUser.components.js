@@ -25,12 +25,14 @@ const EditionUser = () => {
         imageEdit: "",
         kycEdit: "",
         launchDateEdit: "",
+        launchDateHourEdit: "",
         nameEdit: "",
         symbolEdit: "",
         telegramEdit: "",
         twitterEdit: "",
         typeEdit: "",
-        websiteLinkEdit: ""
+        websiteLinkEdit: "",
+        kycProofEdit: ""
     });
     const [urlUpload, setToggle] = useState('');
     const [prev, setPrev] = useState('');
@@ -39,13 +41,15 @@ const EditionUser = () => {
         name: "",
         symbol: "",
         launchDate: "",
+        launchDateHour: "",
         contractAddress: "",
         description: "",
         websiteLink: "",
         coinMarketCapLink: "",
         telegram: "",
         twitter: "",
-        discord: ""
+        discord: "",
+        kycProof: ""
     });
 
     const [statType, setStatType] = useState("");
@@ -58,7 +62,6 @@ const EditionUser = () => {
 
     let path = window.location.href;
     const id = path.substring(34, path.length);
-    console.log(id);
 
 
     const options = [
@@ -244,14 +247,13 @@ const EditionUser = () => {
         else {
             type = selected;
         }
-        console.log("input: ", inputs);
 
         const requestOptions = {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: inputs.contractAddress, description: inputs.description, type: type.value,
-                websiteLink: inputs.websiteLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, coinMarketCapLink: inputs.coinMarketCapLink, coinMarketCapStatus: editionService.getMarketCapStatus(), kyc: kyc
+                name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate,launchDateHour: inputs.launchDateHour, contractAddress: inputs.contractAddress, description: inputs.description, type: type.value,
+                websiteLink: inputs.websiteLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, coinMarketCapLink: inputs.coinMarketCapLink, coinMarketCapStatus: editionService.getMarketCapStatus(), kyc: kyc, kycProof: inputs.kycProof
             })
         };
         let imageDelete = ""
@@ -273,8 +275,8 @@ const EditionUser = () => {
     function searchUpdateById(id) {
         return axios.get(AuthService.getUrl() + `updateSearchById?id=${id}`)
             .then(response => {
+                console.log("response.data[0]",response.data[0]);
                 setInputsEdit(response.data[0]);
-                console.log('ssssss', response.data[0].launchDateEdit)
                 editionService.initIdProject();
                 editionService.setIdProject(response.data[0].idProject);
                 getSearchCoinById(response.data[0].idProject);
@@ -365,8 +367,8 @@ const EditionUser = () => {
                             <img style={{ height: "100%", float: "left", maxWidth: "25%", maxHeight: "25%" }} src={urlUpload} alt='img' />
                         </label>
                         {inputsEdit.imageEdit !== "" &&
-                        <button onClick={changeImage} className="btn btn-success">Attribuer la nouvelle image</button>
-                            }
+                            <button onClick={changeImage} className="btn btn-success">Attribuer la nouvelle image</button>
+                        }
                         {/*   <input id="file-input" className={style.file} type="file" name="image" value={inputs.image || ""}
                             onChange={handleChangeFile}
                             accept="image/png, image/jpeg"
@@ -465,7 +467,18 @@ const EditionUser = () => {
                                 />
                             </label>
                         }
+         {
+          prev === "yes" &&
+                            <label  htmlFor="appt-time" className={style.formLabel}>Presale time (UTC)*:
+                            <input className={style.formInput}
+                               id="appt-time"
+                               type="time"
+                               name="launchDateHour"
+                                value={inputs.launchDateHour || stat.launchDateHour}
+                                onChange={handleChange}
+                            />
 
+                        </label>}
 
 
                         {inputsEdit.launchDateEdit !== "" &&
@@ -478,6 +491,19 @@ const EditionUser = () => {
                                 />
                             </label>}
 
+
+
+                        {
+          inputsEdit.launchDateHourEdit !== "" &&
+                            <label  htmlFor="appt-time" className={style.formLabel}>Presale time (UTC)*:
+                            <input className={style.formInputUpdate}
+                               id="appt-time"
+                               type="time"
+                               name="launchDateHourEdit"
+                               defaultValue={inputsEdit.launchDateHourEdit}
+                            />
+
+                        </label>}
 
 
 
@@ -679,6 +705,7 @@ const EditionUser = () => {
                                 <label htmlFor="no">no</label>
                             </div>
                         </label>
+
                         {inputsEdit.kycEdit.toString() !== kyc &&
                             <label className={style.formLabel}>Kyc? *:
                                 <div>
@@ -705,6 +732,27 @@ const EditionUser = () => {
                                     <label style={{ color: "red" }} htmlFor="no">no</label>
                                 </div>
                             </label>}
+
+
+                        {
+                            kyc === "true" &&
+                            <label className={style.formLabel}>Kyc proof Link
+                                <input className={style.formInput}
+                                    type="text"
+                                    name="kycProof"
+                                    value={inputs.kycProof || stat.kycProof}
+                                    onChange={handleChange} />
+                            </label>}
+                            
+                        {inputsEdit.kycProofEdit !== "" &&
+                            <label className={style.formLabel}>kyc proof Link
+                                <input className={style.formInputUpdate}
+                                    type="text"
+                                    name="kycProofEdit"
+                                    defaultValue={inputsEdit.kycProofEdit}
+                                />
+                            </label>}
+
                         <br />
                         <input className="btn btn-primary btn-block" id="submitInput" type="submit" />
                     </form >
