@@ -81,7 +81,12 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
         <div className="slider__track" />
         <div ref={range} className="slider__range" />
         <div className="slider__left-value">{minVal}%</div>
+        {maxVal ==101 &&
+        <div className="slider__right-value" ><span style = {{fontSize:"15px"}}>+∞</span>%</div>
+}
+{maxVal !==101 &&
         <div className="slider__right-value">{maxVal}%</div>
+}
       </div>
     </div>
   );

@@ -210,8 +210,8 @@ let getPromotedProjectLenght = () => {
 };
 
 
-function getEcosystem(limit, skip) {
-    return axios.get(AuthService.getUrl() + `ecosystem/?limite=${limit}&skip=${skip}`)
+function getEcosystem(limit, skip,action, type, min , max) {
+    return axios.get(AuthService.getUrl() + `ecosystem/?limite=${limit}&skip=${skip}&action=${action}&type=${type}&minPriceChange=${parseInt(min)}&maxPriceChange=${parseInt(max)}`)
         .then(response => {
             return response.data;
         })

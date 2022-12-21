@@ -1,4 +1,6 @@
 import TableLaunchService from '../../../services/tableauLaunh/tableauLaunch.service'
+import { ReactSearchAutocomplete } from 'react-search-autocomplete';
+import MultiRangeSlider from "../../../package/MultiRangeSlider";
 import styleModal from "../../../styles/modalVote.module.scss";
 import AuthService from "../../../services/auth/auth.service";
 import React, { useState, useEffect } from 'react';
@@ -9,6 +11,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import style from "./AllTokens.module.scss";
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 const AllTokens = () => {
 
@@ -18,6 +22,14 @@ const AllTokens = () => {
 
   var [database, seDatabase] = useState([])
   var [pagination, setLimit] = useState({ pageActuel: 1, limit: 10, skip: 0 })
+
+
+
+  const [minValue, set_minValue] = useState(-100);
+  const [maxValue, set_maxValue] = useState(100);
+  const [action, setAction] = useState("type");
+  const [type, setType] = useState("All");
+
   const user = AuthService.getCurrentUser();
 
   const styleBox = {
@@ -66,11 +78,11 @@ const AllTokens = () => {
 
   let date1 = new Date(dateUtc);
 
-  function tableLaunch(limit, skip) {
+  function tableLaunch(limit, skip, action, type, min, max) {
 
 
     var totalReactPackages;
-    TableLaunchService.getEcosystem(limit, skip).then(function (result) {
+    TableLaunchService.getEcosystem(limit, skip, action, type, min, max).then(function (result) {
       let userData = [];
       result.map((item, index) => {
         item.id = (
@@ -116,7 +128,7 @@ const AllTokens = () => {
       }
     });
 
-    tableLaunch(10, 0);
+    tableLaunch(10, 0, action, type, minValue, maxValue);
   }, []);
 
 
@@ -171,7 +183,7 @@ const AllTokens = () => {
         };
         fetch(url + `pointCalcul/?id=${data.id}&type=vote`, requestOptions)
           .then(response => response.json())
-          .finally(() => { seDatabase([]); tableLaunch(pagination.limit, pagination.skip); handleClose() })
+          .finally(() => { seDatabase([]); tableLaunch(pagination.limit, pagination.skip, action, type, minValue, maxValue); handleClose() })
 
       })
   };
@@ -193,7 +205,7 @@ const AllTokens = () => {
       });
 
 
-      tableLaunch(pagination.limit, pagination.skip + 10);
+      tableLaunch(pagination.limit, pagination.skip + 10, action, type, minValue, maxValue);
     }
 
   }
@@ -208,7 +220,7 @@ const AllTokens = () => {
         skip: pagination.skip - 10
       });
 
-      tableLaunch(pagination.limit, pagination.skip - 10);
+      tableLaunch(pagination.limit, pagination.skip - 10, action, type, minValue, maxValue);
     }
 
   }
@@ -223,9 +235,119 @@ const AllTokens = () => {
   function nav(path) {
     navigate(path);
   }
+  const items = [
+    {
+      id: 0,
+      name: 'Cobol'
+    },
+    {
+      id: 1,
+      name: 'JavaScript'
+    },
+    {
+      id: 2,
+      name: 'Basic'
+    },
+    {
+      id: 3,
+      name: 'PHP'
+    },
+    {
+      id: 4,
+      name: 'Java'
+    }
+  ]
 
+  const handleOnSearch = (string, results) => {
+    // onSearch will have as the first callback parameter
+    // the string searched and for the second the results.
+  }
+
+  const handleOnHover = (result) => {
+    // the item hovered
+  }
+
+  const handleOnSelect = (item) => {
+    // the item selected
+  }
+
+  const handleOnFocus = () => {
+  }
+
+  const formatResult = (item) => {
+    return (
+      <>
+        <span style={{ display: 'block', textAlign: 'left', }}>id: {item.id}</span>
+        <span style={{ display: 'block', textAlign: 'left' }}>name: {item.name}</span>
+      </>
+    )
+  }
+
+  function changeType(event) {
+    setAction('type')
+    setType(event.value);
+    seDatabase([]);
+
+    tableLaunch(pagination.limit, pagination.skip, "type", event.value, minValue, maxValue);
+    /*   seDatabase([]);
+      TableLaunchService.setTypeFilter(event.value)
+      tableLaunch(pagination.limit, pagination.skip); */
+  }
+  const options = [
+    "All", "Dex", "Gaming", "Nft", "Lending", "Algo-Stables", "Derivatives", "Yield Aggregatort", "Reflect token", "Yield"
+  ];
+
+
+  function changePrice(min, max) {
+    // if (!init){
+    console.log('ici', min, max);
+
+    set_minValue(min);
+    set_maxValue(max);
+    // }
+    // set_minValue(min);
+    // set_maxValue(max);
+    // !init ? seDatabase([]) : console.log("rinit");
+    // setInit(false);
+    // seDatabase([]);
+    tableLaunch(pagination.limit, pagination.skip, "priceChange", type, min, max);
+  }
   return (
     <div className={style.allTokens_container}>
+
+      <div className={style.filterContainer}>
+        <div className={style.filterType}>
+          <Dropdown controlClassName={style.controlDropdown} options={options} onChange={changeType} value={options[0]} placeholder="Select an option" />
+        </div>
+        <div className={style.filterRangeSlider} >
+          <p className={style.textMultiRangeSlider}>24h price change</p >
+          <div className={style.multiRangeSlider}>
+            <MultiRangeSlider
+              min={-100}
+              max={101}
+              onChange={({ min, max }) => changePrice(min, max)}
+            />
+          </div>
+        </div>
+        <div className={style.dropDownSearch} style={{ width: "80%", display: "inline-block", marginRight: "3%", marginTop: "1%" }}>
+          <ReactSearchAutocomplete
+            styling={
+              {
+                border: "1px solid #ccc",
+                width: "50% !important"
+              }
+            }
+            items={items}
+            onSearch={handleOnSearch}
+            onHover={handleOnHover}
+            onSelect={handleOnSelect}
+            onFocus={handleOnFocus}
+            autoFocus
+            formatResult={formatResult}
+          />
+
+        </div>
+      </div>
       <table className="table table-hover">
         <thead>
           <tr>

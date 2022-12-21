@@ -143,7 +143,7 @@ function Administration() {
 
 
     let getLunch = () => {
-        fetch(url + 'ecosystem/')
+        fetch(url + 'ecosystem/?action=admin')
             .then((res) => res.json())
             .then((res) => {
                 setPosts(res);

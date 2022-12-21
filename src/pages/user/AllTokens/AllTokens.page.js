@@ -4,7 +4,6 @@ import FooterComponent from '../../../components/Navigation/Footer/Footer.compon
 import style from './AllTokens.page.module.scss';
 import React from 'react';
 
-
 const AllTokens = () => {
     return (
         <div className={style.allTokens_fond}>

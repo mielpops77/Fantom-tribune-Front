@@ -1,6 +1,6 @@
 .multiRangeSlider_container {
-    margin-top: 27px;
-    height: 0vh;
+    /* margin-top: 1%; */
+    /* height: 0vh; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -8,7 +8,7 @@
 
 .slider {
     position: relative;
-    width: 200px;
+    width: 100%;
 }
 
 .slider__track,
@@ -25,13 +25,13 @@
 }
 
 .slider__track {
-    background-color: #30d0b8;
+    background-color: #ffffff;
     width: 100%;
     z-index: 1;
 }
 
 .slider__range {
-    background-color: #30d0b8;
+    background-color: #ffffff;
     z-index: 2;
 }
 
@@ -61,7 +61,7 @@
     pointer-events: none;
     position: absolute;
     height: 0;
-    width: 200px;
+    width: 20%;
     outline: none;
 }
 
