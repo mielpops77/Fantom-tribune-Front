@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3000/api/auth/";
+const API_URL = "https://fantom-tribune-back.herokuapp.com/api/auth/";
 
-const getUrl = () => "http://localhost:3000/";
+const getUrl = () => "https://fantom-tribune-back.herokuapp.com/";
 
 const register = (username, email, password) => axios.post(API_URL + "signup", { username, email, password, });
 
