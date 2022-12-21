@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import style from "./Filter2.module.scss";
 import axios from "axios";
-import { borderRadius } from '@mui/system';
+// import { borderRadius } from '@mui/system';
 
 const Filter2 = () => {
 

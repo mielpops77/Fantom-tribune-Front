@@ -13,11 +13,16 @@ import Modal from '@mui/material/Modal';
 import Dropdown from 'react-dropdown';
 import Box from '@mui/material/Box';
 import 'react-dropdown/style.css';
+import axios from "axios";
 
 const AllTokens = () => {
 
 
   const url = AuthService.getUrl();
+
+  const [items, setItems] = useState([]);
+
+
 
 
   var [database, seDatabase] = useState([])
@@ -81,6 +86,109 @@ const AllTokens = () => {
     tableLaunch(10, 0, action, type, TableLaunchService.getMin(), TableLaunchService.getMax());
   }, []);
 
+
+  function getSearchCoinRequest(search) {
+    return axios.get(AuthService.getUrl() + `searchCoinNoPresale?name=${search}`)
+        .then(response => {
+            /* setSearchCoin(response.data); */
+            let result = [
+                {
+                    id: 0,
+                    name: 'vide',
+                    image: 'vide',
+                    symbol: 'vide',
+                    type: 'vide'
+                },
+                {
+                    id: 1,
+                    name: 'vide',
+                    image: 'vide',
+                    symbol: 'vide',
+                    type: 'vide'
+
+                },
+                {
+                    id: 2,
+                    name: 'vide',
+                    image: 'vide',
+                    symbol: 'vide',
+                    type: 'vide'
+
+                },
+                {
+                    id: 3,
+                    name: 'vide',
+                    image: 'vide',
+                    symbol: 'vide',
+                    type: 'vide'
+
+                },
+                {
+                    id: 4,
+                    name: 'vide',
+                    image: 'vide',
+                    symbol: 'vide',
+                    type: 'vide'
+
+                }
+                ,
+                {
+                    id: 5,
+                    name: 'vide',
+                    image: 'vide',
+                    symbol: 'vide',
+                    type: 'vide'
+
+                },
+                {
+                    id: 6,
+                    name: 'vide',
+                    image: 'vide',
+                    symbol: 'vide',
+                    type: 'vide'
+
+                },
+                {
+                    id: 7,
+                    name: 'vide',
+                    image: 'vide',
+                    symbol: 'vide',
+                    type: 'vide'
+
+                },
+                {
+                    id: 8,
+                    name: 'vide',
+                    image: 'vide',
+                    symbol: 'vide',
+                    type: 'vide'
+
+                },
+                {
+                    id: 9,
+                    name: 'vide',
+                    image: 'vide',
+                    symbol: 'vide',
+                    type: 'vide'
+
+                }
+            ]
+            for (let i = 0; i < response.data.length; i++) {
+                result[i].name = response.data[i].name;
+                result[i].id = response.data[i]._id;
+                result[i].image = response.data[i].image;
+                result[i].symbol = response.data[i].symbol;
+                result[i].type = response.data[i].type;
+
+            }
+
+            const result2 = result.filter((person) => person.name !== 'vide')
+            setItems(result2);
+
+
+            return response.data;
+        })
+}
 
   let date = new Date();
   let mondayUtc = (date.getUTCMonth() + 1)
@@ -236,49 +344,47 @@ const AllTokens = () => {
   function nav(path) {
     navigate(path);
   }
-  const items = [
-    {
-      id: 0,
-      name: 'Cobol'
-    },
-    {
-      id: 1,
-      name: 'JavaScript'
-    },
-    {
-      id: 2,
-      name: 'Basic'
-    },
-    {
-      id: 3,
-      name: 'PHP'
-    },
-    {
-      id: 4,
-      name: 'Java'
-    }
-  ]
+
 
   const handleOnSearch = (string, results) => {
+    console.log('mieeeerda');
+    TableLaunchService.setchangePrice(TableLaunchService.getChangePrice() - 1);
+    getSearchCoinRequest(string);
   }
 
   const handleOnHover = (result) => {
   }
 
   const handleOnSelect = (item) => {
-  }
-
+    nav(`/infoCoin/${item.id}`);
+       /*  getSearchCoinById(item.id);
+        setIdProject(item.id)
+        setField(true);
+        setTypeSelected({ label: item.type, value: item.type })
+        setTypeInitial({ label: item.type, value: item.type }); */
+    }
   const handleOnFocus = () => {
   }
 
-  const formatResult = (item) => {
+/*   const formatResult = (item) => {
     return (
       <>
         <span style={{ display: 'block', textAlign: 'left', }}>id: {item.id}</span>
         <span style={{ display: 'block', textAlign: 'left' }}>name: {item.name}</span>
       </>
     )
-  }
+  } */
+
+  const formatResult = (item) => {
+    return (
+        <>
+            <span className={style.updateCoin_search}>  <img className={style.updateCoin_img} src={url + item.image} alt='img' />  <span className={style.updateCoin_nameSearch}>{item.name}</span> 	<mat-chip>
+                <label htmlFor="chip-1">{item.symbol}</label>
+            </mat-chip></span>
+        </>
+    )
+}
+
 
   function changeType(event) {
     setAction('type')
@@ -292,6 +398,7 @@ const AllTokens = () => {
 
 
   function changePrice(min, max) {
+    console.log("merde");
     TableLaunchService.setMax(max);
     TableLaunchService.setMin(min);
     if (TableLaunchService.getChangePrice() == 2) {
@@ -345,6 +452,20 @@ const AllTokens = () => {
             onFocus={handleOnFocus}
             autoFocus
             formatResult={formatResult}
+            fuseOptions={
+              {
+                shouldSort: true,
+                threshold: 0.6,
+                location: 0,
+                distance: 100,
+                maxPatternLength: 32,
+                minMatchCharLength: 1,
+                keys: [
+                  "name", "symbol"
+                ]
+              }
+            }
+            resultStringKeyName="name"
           />
 
         </div>
