@@ -13,6 +13,67 @@ let priceList = { info: [] };
 let supply = 0;
 let compteur = 0;
 
+let changePrice = 0;
+let timeChangePrice = true;
+let changePriceDataBase = 1;
+let max = 101;
+let min = -100;
+
+function initMin() {
+    min = -100;
+}
+
+function getMin() {
+    return min;
+}
+function setMin(value) {
+    min = value;
+}
+function initMax() {
+    max = 101;
+}
+
+function getMax() {
+    return max;
+}
+function setMax(value) {
+    max = value;
+}
+
+function initChangePriceDataBase() {
+    changePriceDataBase = 1;
+}
+
+function getChangePriceDataBase() {
+    return changePriceDataBase;
+}
+function setChangePriceDataBase(value) {
+    changePriceDataBase = value;
+}
+
+function initTimeChangePrice() {
+    timeChangePrice = true;
+}
+
+function getTimeChangePrice() {
+    return timeChangePrice;
+}
+function setTimeChangePrice(value) {
+    timeChangePrice = value;
+}
+
+
+function initChangePrice() {
+    changePrice = 0;
+}
+
+function getChangePrice() {
+    return changePrice;
+}
+function setchangePrice(value) {
+    changePrice = value;
+}
+
 function initCompteur() {
     compteur = 0;
 }
@@ -177,7 +238,7 @@ function getLaunchTab(limit, skip) {
         })
 }
 
-function getLaunchDateTrending (limit, skip) {
+function getLaunchDateTrending(limit, skip) {
     return axios.get(AuthService.getUrl() + `launchDateTrending/?limite=${limit}&skip=${skip}`)
         .then(response => {
             return response.data;
@@ -187,9 +248,9 @@ function getLaunchDateTrending (limit, skip) {
 function getPromotedProject() {
 
     return axios.get(AuthService.getUrl() + `getPromotedProjectTrending/`)
-    .then(response => {
-        return response.data;
-    })
+        .then(response => {
+            return response.data;
+        })
 }
 
 function getLaunchDateLenght() {
@@ -203,14 +264,14 @@ function getLaunchDateLenght() {
 
 let getPromotedProjectLenght = () => {
     return axios.get(AuthService.getUrl() + 'getPromotedProjectLenght/')
-    .then(response => {
-        return response.data;
-    })
- 
+        .then(response => {
+            return response.data;
+        })
+
 };
 
 
-function getEcosystem(limit, skip,action, type, min , max) {
+function getEcosystem(limit, skip, action, type, min, max) {
     return axios.get(AuthService.getUrl() + `ecosystem/?limite=${limit}&skip=${skip}&action=${action}&type=${type}&minPriceChange=${parseInt(min)}&maxPriceChange=${parseInt(max)}`)
         .then(response => {
             return response.data;
@@ -395,5 +456,20 @@ export default {
     theGraphe,
     getSupply,
     setSupply,
-    getTopTrending
+    getTopTrending,
+    initChangePrice,
+    getChangePrice,
+    setchangePrice,
+    initTimeChangePrice,
+    getTimeChangePrice,
+    setTimeChangePrice,
+    initChangePriceDataBase,
+    getChangePriceDataBase,
+    setChangePriceDataBase,
+    initMax,
+    getMax,
+    setMax,
+    initMin,
+    getMin,
+    setMin
 };

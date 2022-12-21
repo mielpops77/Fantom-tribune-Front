@@ -10,8 +10,8 @@ import { useNavigate } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 import style from "./AllTokens.module.scss";
 import Modal from '@mui/material/Modal';
-import Box from '@mui/material/Box';
 import Dropdown from 'react-dropdown';
+import Box from '@mui/material/Box';
 import 'react-dropdown/style.css';
 
 const AllTokens = () => {
@@ -23,25 +23,21 @@ const AllTokens = () => {
   var [database, seDatabase] = useState([])
   var [pagination, setLimit] = useState({ pageActuel: 1, limit: 10, skip: 0 })
 
-
-
-  const [minValue, set_minValue] = useState(-100);
-  const [maxValue, set_maxValue] = useState(100);
   const [action, setAction] = useState("type");
   const [type, setType] = useState("All");
 
   const user = AuthService.getCurrentUser();
 
   const styleBox = {
+    boxShadow: '0px 0px 50px rgb(56 136 229 / 90%)',
+    transform: 'translate(-50%, -50%)',
     border: '2px solid #3888E5',
     position: 'absolute',
     borderRadius: '10px',
-    boxShadow: '0px 0px 50px rgb(56 136 229 / 90%)',
+    bgcolor: '#131325',
     top: '50%',
     left: '50%',
-    transform: 'translate(-50%, -50%)',
     width: '30%',
-    bgcolor: '#131325',
     p: 4,
   };
 
@@ -62,6 +58,29 @@ const AllTokens = () => {
     statistique: "",
     limiteUser: []
   });
+
+
+  useEffect(() => {
+    TableLaunchService.initChangePrice();
+    TableLaunchService.initTimeChangePrice();
+    TableLaunchService.initChangePriceDataBase();
+    TableLaunchService.initMax();
+    TableLaunchService.initMin();
+
+
+    TableLaunchService.getEcosystemLenght().then(function (result) {
+
+      if (result / 10 < 1) {
+        TableLaunchService.totalPage = 1;
+      }
+      if (result / 10 >= 1) {
+        TableLaunchService.totalPage = result % 10 === 0 ? result / 10 : ((result / 10) - ((result % 10) / 10)) + 1
+      }
+    });
+
+    tableLaunch(10, 0, action, type, TableLaunchService.getMin(), TableLaunchService.getMax());
+  }, []);
+
 
   let date = new Date();
   let mondayUtc = (date.getUTCMonth() + 1)
@@ -115,24 +134,6 @@ const AllTokens = () => {
 
   }
 
-
-  useEffect(() => {
-
-    TableLaunchService.getEcosystemLenght().then(function (result) {
-
-      if (result / 10 < 1) {
-        TableLaunchService.totalPage = 1;
-      }
-      if (result / 10 >= 1) {
-        TableLaunchService.totalPage = result % 10 === 0 ? result / 10 : ((result / 10) - ((result % 10) / 10)) + 1
-      }
-    });
-
-    tableLaunch(10, 0, action, type, minValue, maxValue);
-  }, []);
-
-
-
   const Propagation = e => {
     e.stopPropagation();
   }
@@ -183,7 +184,7 @@ const AllTokens = () => {
         };
         fetch(url + `pointCalcul/?id=${data.id}&type=vote`, requestOptions)
           .then(response => response.json())
-          .finally(() => { seDatabase([]); tableLaunch(pagination.limit, pagination.skip, action, type, minValue, maxValue); handleClose() })
+          .finally(() => { seDatabase([]); tableLaunch(pagination.limit, pagination.skip, action, type, TableLaunchService.getMin(), TableLaunchService.getMax()); handleClose() })
 
       })
   };
@@ -205,7 +206,7 @@ const AllTokens = () => {
       });
 
 
-      tableLaunch(pagination.limit, pagination.skip + 10, action, type, minValue, maxValue);
+      tableLaunch(pagination.limit, pagination.skip + 10, action, type, TableLaunchService.getMin(), TableLaunchService.getMax());
     }
 
   }
@@ -220,7 +221,7 @@ const AllTokens = () => {
         skip: pagination.skip - 10
       });
 
-      tableLaunch(pagination.limit, pagination.skip - 10, action, type, minValue, maxValue);
+      tableLaunch(pagination.limit, pagination.skip - 10, action, type, TableLaunchService.getMin(), TableLaunchService.getMax());
     }
 
   }
@@ -259,16 +260,12 @@ const AllTokens = () => {
   ]
 
   const handleOnSearch = (string, results) => {
-    // onSearch will have as the first callback parameter
-    // the string searched and for the second the results.
   }
 
   const handleOnHover = (result) => {
-    // the item hovered
   }
 
   const handleOnSelect = (item) => {
-    // the item selected
   }
 
   const handleOnFocus = () => {
@@ -287,11 +284,7 @@ const AllTokens = () => {
     setAction('type')
     setType(event.value);
     seDatabase([]);
-
-    tableLaunch(pagination.limit, pagination.skip, "type", event.value, minValue, maxValue);
-    /*   seDatabase([]);
-      TableLaunchService.setTypeFilter(event.value)
-      tableLaunch(pagination.limit, pagination.skip); */
+    tableLaunch(pagination.limit, pagination.skip, "type", event.value, TableLaunchService.getMin(), TableLaunchService.getMax());
   }
   const options = [
     "All", "Dex", "Gaming", "Nft", "Lending", "Algo-Stables", "Derivatives", "Yield Aggregatort", "Reflect token", "Yield"
@@ -299,18 +292,26 @@ const AllTokens = () => {
 
 
   function changePrice(min, max) {
-    // if (!init){
-    console.log('ici', min, max);
+    TableLaunchService.setMax(max);
+    TableLaunchService.setMin(min);
+    if (TableLaunchService.getChangePrice() == 2) {
+      if (TableLaunchService.getTimeChangePrice()) {
+        TableLaunchService.setChangePriceDataBase(TableLaunchService.getChangePriceDataBase() + 1)
+        TableLaunchService.setTimeChangePrice(false);
+        setTimeout(() => {
+          if (TableLaunchService.getChangePriceDataBase() == 2) {
+            seDatabase([]);
+            tableLaunch(pagination.limit, pagination.skip, "priceChange", type, TableLaunchService.getMin(), TableLaunchService.getMax());
+            TableLaunchService.setChangePriceDataBase(0);
+          }
+          TableLaunchService.setTimeChangePrice(true);
+        }, "200")
+      }
 
-    set_minValue(min);
-    set_maxValue(max);
-    // }
-    // set_minValue(min);
-    // set_maxValue(max);
-    // !init ? seDatabase([]) : console.log("rinit");
-    // setInit(false);
-    // seDatabase([]);
-    tableLaunch(pagination.limit, pagination.skip, "priceChange", type, min, max);
+    }
+    else {
+      TableLaunchService.setchangePrice(TableLaunchService.getChangePrice() + 1);
+    }
   }
   return (
     <div className={style.allTokens_container}>
@@ -380,7 +381,6 @@ const AllTokens = () => {
 
           ))}
         </tbody>
-
 
 
       </table>
