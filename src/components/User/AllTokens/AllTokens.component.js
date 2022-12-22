@@ -66,6 +66,7 @@ const AllTokens = () => {
 
 
   useEffect(() => {
+    getSearchCoinRequest('');
     TableLaunchService.initChangePrice();
     TableLaunchService.initTimeChangePrice();
     TableLaunchService.initChangePriceDataBase();
@@ -347,7 +348,6 @@ const AllTokens = () => {
 
 
   const handleOnSearch = (string, results) => {
-    console.log('mieeeerda');
     TableLaunchService.setchangePrice(TableLaunchService.getChangePrice() - 1);
     getSearchCoinRequest(string);
   }
@@ -357,23 +357,11 @@ const AllTokens = () => {
 
   const handleOnSelect = (item) => {
     nav(`/infoCoin/${item.id}`);
-       /*  getSearchCoinById(item.id);
-        setIdProject(item.id)
-        setField(true);
-        setTypeSelected({ label: item.type, value: item.type })
-        setTypeInitial({ label: item.type, value: item.type }); */
     }
   const handleOnFocus = () => {
   }
 
-/*   const formatResult = (item) => {
-    return (
-      <>
-        <span style={{ display: 'block', textAlign: 'left', }}>id: {item.id}</span>
-        <span style={{ display: 'block', textAlign: 'left' }}>name: {item.name}</span>
-      </>
-    )
-  } */
+
 
   const formatResult = (item) => {
     return (

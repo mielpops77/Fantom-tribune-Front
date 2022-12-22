@@ -2,6 +2,7 @@ import styleModal from "../../../styles/modalVote.module.scss";
 import AuthService from "../../../services/auth/auth.service";
 import React, { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
+import { Timeline } from 'react-twitter-widgets'
 import { useNavigate } from 'react-router-dom';
 import ReCAPTCHA from "react-google-recaptcha";
 import style from "./InfoCoin.module.scss"
@@ -13,6 +14,8 @@ const InfoCoin = () => {
     const [verifVoteToday, setVerifVoteToday] = useState(false);
     const [open, setOpen] = React.useState(false);
     const [captcha, setCaptcha] = useState(null);
+    const [twitter, setTwitter] = useState(null);
+    
     const user = AuthService.getCurrentUser();
     const handleClose = () => setOpen(false);
     const handleOpen = () => setOpen(true);
@@ -48,6 +51,7 @@ const InfoCoin = () => {
             .then((res) => res.json())
             .then((res) => {
                 setCoin(res[0]);
+                setTwitter(res[0].twitter.substr(20))
                 addPoints("page", res[0]);
 
             })
@@ -218,6 +222,11 @@ const InfoCoin = () => {
                         <p className={style.textualInfo}>voteToday: {coin.voteTwentyHour} </p>
 
                     </div>
+                    <Timeline
+                        dataSource={{ sourceType: "profile", screenName: `${twitter}` }}
+                        options={{ theme: "dark", width: "400", height: "600" }}
+                    />  
+                   
                     <iframe className={style.iframe} title="Graphical Board" loading="lazy" src={src} width="50%" height="550px" /* frameborder="0" */ ></iframe>
                 </div>
                 <p className={style.wrongInfo}>Information incorrect? Please submit an <span className={style.updateRequest} onClick={() => nav(`/updateCoin/`)}>Update Request!</span></p>
