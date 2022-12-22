@@ -12,7 +12,6 @@ import Modal from '@mui/material/Modal';
 import Dropdown from 'react-dropdown';
 import Box from '@mui/material/Box';
 import 'react-dropdown/style.css';
-import axios from "axios";
 
 
 
@@ -22,7 +21,6 @@ const Presales = () => {
   var [database, seDatabase] = useState([])
   var [pagination, setLimit] = useState({ pageActuel: 1, limit: 10, skip: 0 })
   const user = AuthService.getCurrentUser();
-  const [items, setItems] = useState([]);
 
   const [captcha, setCaptcha] = useState(null);
   const [verifVoteToday, setVerifVoteToday] = useState(false);
@@ -73,108 +71,7 @@ const Presales = () => {
   }
 
 
-  function getSearchCoinRequest(search) {
-    return axios.get(AuthService.getUrl() + `searchCoinNoPresale?name=${search}`)
-        .then(response => {
-            /* setSearchCoin(response.data); */
-            let result = [
-                {
-                    id: 0,
-                    name: 'vide',
-                    image: 'vide',
-                    symbol: 'vide',
-                    type: 'vide'
-                },
-                {
-                    id: 1,
-                    name: 'vide',
-                    image: 'vide',
-                    symbol: 'vide',
-                    type: 'vide'
 
-                },
-                {
-                    id: 2,
-                    name: 'vide',
-                    image: 'vide',
-                    symbol: 'vide',
-                    type: 'vide'
-
-                },
-                {
-                    id: 3,
-                    name: 'vide',
-                    image: 'vide',
-                    symbol: 'vide',
-                    type: 'vide'
-
-                },
-                {
-                    id: 4,
-                    name: 'vide',
-                    image: 'vide',
-                    symbol: 'vide',
-                    type: 'vide'
-
-                }
-                ,
-                {
-                    id: 5,
-                    name: 'vide',
-                    image: 'vide',
-                    symbol: 'vide',
-                    type: 'vide'
-
-                },
-                {
-                    id: 6,
-                    name: 'vide',
-                    image: 'vide',
-                    symbol: 'vide',
-                    type: 'vide'
-
-                },
-                {
-                    id: 7,
-                    name: 'vide',
-                    image: 'vide',
-                    symbol: 'vide',
-                    type: 'vide'
-
-                },
-                {
-                    id: 8,
-                    name: 'vide',
-                    image: 'vide',
-                    symbol: 'vide',
-                    type: 'vide'
-
-                },
-                {
-                    id: 9,
-                    name: 'vide',
-                    image: 'vide',
-                    symbol: 'vide',
-                    type: 'vide'
-
-                }
-            ]
-            for (let i = 0; i < response.data.length; i++) {
-                result[i].name = response.data[i].name;
-                result[i].id = response.data[i]._id;
-                result[i].image = response.data[i].image;
-                result[i].symbol = response.data[i].symbol;
-                result[i].type = response.data[i].type;
-
-            }
-
-            const result2 = result.filter((person) => person.name !== 'vide')
-            setItems(result2);
-
-
-            return response.data;
-        })
-}
   const options = [
     "All", "Dex", "Gaming", "Nft", "Lending", "Algo-Stables", "Derivatives", "Yield Aggregatort", "Reflect token", "Yield"
   ];
@@ -220,7 +117,7 @@ const Presales = () => {
 
 
   useEffect(() => {
-    getSearchCoinRequest('');
+
     TableLaunchService.initAction();
     TableLaunchService.initTypeFilter();
 
@@ -339,9 +236,43 @@ const Presales = () => {
     }
   }
 
- 
+  /*   const SortArray = (x, y) => {
+      return x.name.localeCompare(y.name);
+    } */
 
+  /*  function SortArray(x, y) {
+     return x.name.localeCompare(y.name);
+   }
+  */
 
+  /*   function trie(e) {
+      tedt = TableLaunchService.getDatabase();
+      var x = tedt.rows.sort(function (a, b) { return a[2] > b[2] ? 1 : -1; });
+      setValid(true);
+    } */
+
+  const items = [
+    {
+      id: 0,
+      name: 'Cobol'
+    },
+    {
+      id: 1,
+      name: 'JavaScript'
+    },
+    {
+      id: 2,
+      name: 'Basic'
+    },
+    {
+      id: 3,
+      name: 'PHP'
+    },
+    {
+      id: 4,
+      name: 'Java'
+    }
+  ]
   /*  const history = useHistory(); */
   const navigate = useNavigate();
 
@@ -367,112 +298,9 @@ const Presales = () => {
   function onChangeCaptcha(value) {
     setCaptcha(value);
   }
-
-  function getSearchCoinRequest(search) {
-    return axios.get(AuthService.getUrl() + `searchCoinPresale?name=${search}`)
-        .then(response => {
-            /* setSearchCoin(response.data); */
-            let result = [
-                {
-                    id: 0,
-                    name: 'vide',
-                    image: 'vide',
-                    symbol: 'vide',
-                    type: 'vide'
-                },
-                {
-                    id: 1,
-                    name: 'vide',
-                    image: 'vide',
-                    symbol: 'vide',
-                    type: 'vide'
-
-                },
-                {
-                    id: 2,
-                    name: 'vide',
-                    image: 'vide',
-                    symbol: 'vide',
-                    type: 'vide'
-
-                },
-                {
-                    id: 3,
-                    name: 'vide',
-                    image: 'vide',
-                    symbol: 'vide',
-                    type: 'vide'
-
-                },
-                {
-                    id: 4,
-                    name: 'vide',
-                    image: 'vide',
-                    symbol: 'vide',
-                    type: 'vide'
-
-                }
-                ,
-                {
-                    id: 5,
-                    name: 'vide',
-                    image: 'vide',
-                    symbol: 'vide',
-                    type: 'vide'
-
-                },
-                {
-                    id: 6,
-                    name: 'vide',
-                    image: 'vide',
-                    symbol: 'vide',
-                    type: 'vide'
-
-                },
-                {
-                    id: 7,
-                    name: 'vide',
-                    image: 'vide',
-                    symbol: 'vide',
-                    type: 'vide'
-
-                },
-                {
-                    id: 8,
-                    name: 'vide',
-                    image: 'vide',
-                    symbol: 'vide',
-                    type: 'vide'
-
-                },
-                {
-                    id: 9,
-                    name: 'vide',
-                    image: 'vide',
-                    symbol: 'vide',
-                    type: 'vide'
-
-                }
-            ]
-            for (let i = 0; i < response.data.length; i++) {
-                result[i].name = response.data[i].name;
-                result[i].id = response.data[i]._id;
-                result[i].image = response.data[i].image;
-                result[i].symbol = response.data[i].symbol;
-                result[i].type = response.data[i].type;
-
-            }
-
-            const result2 = result.filter((person) => person.name !== 'vide')
-            setItems(result2);
-
-
-            return response.data;
-        })
-}
-
   const handleOnSearch = (string, results) => {
-    getSearchCoinRequest(string);
+    // onSearch will have as the first callback parameter
+    // the string searched and for the second the results.
   }
 
   const handleOnHover = (result) => {
@@ -480,20 +308,20 @@ const Presales = () => {
   }
 
   const handleOnSelect = (item) => {
-    nav(`/infoCoin/${item.id}`);
-    }
+    // the item selected
+  }
 
   const handleOnFocus = () => {
   }
+
   const formatResult = (item) => {
     return (
-        <>
-            <span className={style.updateCoin_search}>  <img className={style.updateCoin_img} src={url + item.image} alt='img' />  <span className={style.updateCoin_nameSearch}>{item.name}</span> 	<mat-chip>
-                <label htmlFor="chip-1">{item.symbol}</label>
-            </mat-chip></span>
-        </>
+      <>
+        <span style={{ display: 'block', textAlign: 'left', }}>id: {item.id}</span>
+        <span style={{ display: 'block', textAlign: 'left' }}>name: {item.name}</span>
+      </>
     )
-}
+  }
   return (
 
     <div className={style.container}>
@@ -514,20 +342,6 @@ const Presales = () => {
           onFocus={handleOnFocus}
           autoFocus
           formatResult={formatResult}
-          fuseOptions={
-            {
-              shouldSort: true,
-              threshold: 0.6,
-              location: 0,
-              distance: 100,
-              maxPatternLength: 32,
-              minMatchCharLength: 1,
-              keys: [
-                "name", "symbol"
-              ]
-            }
-          }
-          resultStringKeyName="name"
         />
         {/*   <input className= {style.searchInput}
         type="text"

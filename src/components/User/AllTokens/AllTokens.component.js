@@ -71,7 +71,6 @@ const AllTokens = () => {
     TableLaunchService.initChangePriceDataBase();
     TableLaunchService.initMax();
     TableLaunchService.initMin();
-    getSearchCoinRequest('');
 
 
     TableLaunchService.getEcosystemLenght().then(function (result) {
@@ -90,106 +89,106 @@ const AllTokens = () => {
 
   function getSearchCoinRequest(search) {
     return axios.get(AuthService.getUrl() + `searchCoinNoPresale?name=${search}`)
-      .then(response => {
-        /* setSearchCoin(response.data); */
-        let result = [
-          {
-            id: 0,
-            name: 'vide',
-            image: 'vide',
-            symbol: 'vide',
-            type: 'vide'
-          },
-          {
-            id: 1,
-            name: 'vide',
-            image: 'vide',
-            symbol: 'vide',
-            type: 'vide'
+        .then(response => {
+            /* setSearchCoin(response.data); */
+            let result = [
+                {
+                    id: 0,
+                    name: 'vide',
+                    image: 'vide',
+                    symbol: 'vide',
+                    type: 'vide'
+                },
+                {
+                    id: 1,
+                    name: 'vide',
+                    image: 'vide',
+                    symbol: 'vide',
+                    type: 'vide'
 
-          },
-          {
-            id: 2,
-            name: 'vide',
-            image: 'vide',
-            symbol: 'vide',
-            type: 'vide'
+                },
+                {
+                    id: 2,
+                    name: 'vide',
+                    image: 'vide',
+                    symbol: 'vide',
+                    type: 'vide'
 
-          },
-          {
-            id: 3,
-            name: 'vide',
-            image: 'vide',
-            symbol: 'vide',
-            type: 'vide'
+                },
+                {
+                    id: 3,
+                    name: 'vide',
+                    image: 'vide',
+                    symbol: 'vide',
+                    type: 'vide'
 
-          },
-          {
-            id: 4,
-            name: 'vide',
-            image: 'vide',
-            symbol: 'vide',
-            type: 'vide'
+                },
+                {
+                    id: 4,
+                    name: 'vide',
+                    image: 'vide',
+                    symbol: 'vide',
+                    type: 'vide'
 
-          }
-          ,
-          {
-            id: 5,
-            name: 'vide',
-            image: 'vide',
-            symbol: 'vide',
-            type: 'vide'
+                }
+                ,
+                {
+                    id: 5,
+                    name: 'vide',
+                    image: 'vide',
+                    symbol: 'vide',
+                    type: 'vide'
 
-          },
-          {
-            id: 6,
-            name: 'vide',
-            image: 'vide',
-            symbol: 'vide',
-            type: 'vide'
+                },
+                {
+                    id: 6,
+                    name: 'vide',
+                    image: 'vide',
+                    symbol: 'vide',
+                    type: 'vide'
 
-          },
-          {
-            id: 7,
-            name: 'vide',
-            image: 'vide',
-            symbol: 'vide',
-            type: 'vide'
+                },
+                {
+                    id: 7,
+                    name: 'vide',
+                    image: 'vide',
+                    symbol: 'vide',
+                    type: 'vide'
 
-          },
-          {
-            id: 8,
-            name: 'vide',
-            image: 'vide',
-            symbol: 'vide',
-            type: 'vide'
+                },
+                {
+                    id: 8,
+                    name: 'vide',
+                    image: 'vide',
+                    symbol: 'vide',
+                    type: 'vide'
 
-          },
-          {
-            id: 9,
-            name: 'vide',
-            image: 'vide',
-            symbol: 'vide',
-            type: 'vide'
+                },
+                {
+                    id: 9,
+                    name: 'vide',
+                    image: 'vide',
+                    symbol: 'vide',
+                    type: 'vide'
 
-          }
-        ]
-        for (let i = 0; i < response.data.length; i++) {
-          result[i].name = response.data[i].name;
-          result[i].id = response.data[i]._id;
-          result[i].image = response.data[i].image;
-          result[i].symbol = response.data[i].symbol;
-          result[i].type = response.data[i].type;
+                }
+            ]
+            for (let i = 0; i < response.data.length; i++) {
+                result[i].name = response.data[i].name;
+                result[i].id = response.data[i]._id;
+                result[i].image = response.data[i].image;
+                result[i].symbol = response.data[i].symbol;
+                result[i].type = response.data[i].type;
 
-        }
+            }
 
-        const result2 = result.filter((person) => person.name !== 'vide')
-        setItems(result2);
+            const result2 = result.filter((person) => person.name !== 'vide')
+            setItems(result2);
 
 
-        return response.data;
-      })
-  }
+            return response.data;
+        })
+}
 
   let date = new Date();
   let mondayUtc = (date.getUTCMonth() + 1)
@@ -348,6 +347,7 @@ const AllTokens = () => {
 
 
   const handleOnSearch = (string, results) => {
+    console.log('mieeeerda');
     TableLaunchService.setchangePrice(TableLaunchService.getChangePrice() - 1);
     getSearchCoinRequest(string);
   }
@@ -357,20 +357,33 @@ const AllTokens = () => {
 
   const handleOnSelect = (item) => {
     nav(`/infoCoin/${item.id}`);
-  }
+       /*  getSearchCoinById(item.id);
+        setIdProject(item.id)
+        setField(true);
+        setTypeSelected({ label: item.type, value: item.type })
+        setTypeInitial({ label: item.type, value: item.type }); */
+    }
   const handleOnFocus = () => {
   }
 
+/*   const formatResult = (item) => {
+    return (
+      <>
+        <span style={{ display: 'block', textAlign: 'left', }}>id: {item.id}</span>
+        <span style={{ display: 'block', textAlign: 'left' }}>name: {item.name}</span>
+      </>
+    )
+  } */
 
   const formatResult = (item) => {
     return (
-      <>
-        <span className={style.updateCoin_search}>  <img className={style.updateCoin_img} src={url + item.image} alt='img' />  <span className={style.updateCoin_nameSearch}>{item.name}</span> 	<mat-chip>
-          <label htmlFor="chip-1">{item.symbol}</label>
-        </mat-chip></span>
-      </>
+        <>
+            <span className={style.updateCoin_search}>  <img className={style.updateCoin_img} src={url + item.image} alt='img' />  <span className={style.updateCoin_nameSearch}>{item.name}</span> 	<mat-chip>
+                <label htmlFor="chip-1">{item.symbol}</label>
+            </mat-chip></span>
+        </>
     )
-  }
+}
 
 
   function changeType(event) {
