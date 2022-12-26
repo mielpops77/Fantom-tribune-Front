@@ -231,7 +231,7 @@ const EditionUser = () => {
                 editionService.setMarketCapStatus("en cours de validation");
                 const searchTerm = '/currencies/'
                 const slug = inputs.coinMarketCapLink.substring(inputs.coinMarketCapLink.lastIndexOf(searchTerm) + 12, inputs.coinMarketCapLink.length - 1)
-                TableLaunchService.coinmarketCap(editionService.getIdProject(), slug, editionService.getCoinMarketCapLink());
+                TableLaunchService.coinmarketCap(editionService.getIdProject(), slug, editionService.getCoinMarketCapLink(),editionService.getCoin().coinMarketCapStatus,editionService.getCoin().idCoinMarketCap);
             }
 
         }
