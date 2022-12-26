@@ -16,6 +16,10 @@ import Box from '@mui/material/Box';
 
 const TopTrending = () => {
 
+  let a = [
+    {}
+  ];
+  console.log('hello world!!', a[0].id);
 
   const url = AuthService.getUrl();
 

@@ -235,10 +235,10 @@ function Formulaire() {
       }
       else {
         coinMarketCapStatus = "en cours de validation"
-        const searchTerm = '/currencies/'
-        const slug = inputs.coinMarketCapLink.substring(inputs.coinMarketCapLink.lastIndexOf(searchTerm) + 12, inputs.coinMarketCapLink.length - 1)
+        // const searchTerm = '/currencies/'
+        // const slug = inputs.coinMarketCapLink.substring(inputs.coinMarketCapLink.lastIndexOf(searchTerm) + 12, inputs.coinMarketCapLink.length - 1)
         coinMarketCapLink = inputs.coinMarketCapLink;
-        TableLaunchService.coinmarketCap(slug, coinMarketCapLink);
+        // TableLaunchService.coinmarketCap(slug, coinMarketCapLink);
       }
       if (inputs.launchDate === undefined) {
         if (prev === 'yes') {
@@ -248,8 +248,6 @@ function Formulaire() {
           inputs.launchDate = dateUtcMax;
         }
       }
-
-
 
       if (selected === null || selected === 'Dex') {
         type = 'Dex'
@@ -279,8 +277,18 @@ function Formulaire() {
         })
       };
       fetch(url + 'launchDate', requestOptions)
-        .then(response => response.json(), nav(`/ValidationForm/Submit`)
-        )
+        .then((response) => response.json()) //2
+        .then((res) => {
+          if (inputs.coinMarketCapLink !== undefined) {
+            const searchTerm = '/currencies/'
+            const slug = inputs.coinMarketCapLink.substring(inputs.coinMarketCapLink.lastIndexOf(searchTerm) + 12, inputs.coinMarketCapLink.length - 1);
+            TableLaunchService.coinmarketCap(res._id, slug, coinMarketCapLink);
+          }
+          nav(`/ValidationForm/Submit`);
+        });
+
+      /*   .then(response => { console.log(JSON.parse(response.json())) }, nav(`/ValidationForm/Submit`)
+        ) */
 
       /* .then(data => this.setState({ postId: data.id })); */
 

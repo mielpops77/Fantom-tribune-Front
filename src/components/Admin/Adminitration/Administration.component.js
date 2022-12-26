@@ -104,7 +104,7 @@ function Administration() {
                 setToggle4(false);
                 if (toggleMenu) { getLunch(); }
                 if (toggle2Menu) { getUpdateListDelete(); }
-                if (toggle3Menu) {  getListAdmin(); }
+                if (toggle3Menu) { getListAdmin(); }
                 break;
             case 3:
                 setToggle3(true);
@@ -169,8 +169,8 @@ function Administration() {
             });
     };
 
-    let deletePost = (postId, imageId) => {
-        fetch(url + `trashDef/?id=${postId}&imageId=${imageId}`, {
+    let deletePost = (postId, imageId, coinMarketCapStatus, idCoinMarketCap) => {
+        fetch(url + `trashDef/?id=${postId}&imageId=${imageId}&coinMarketCapStatus=${coinMarketCapStatus}&idCoinMarketCap=${idCoinMarketCap}`, {
             method: "DELETE",
         })
             .then((res) => res.json())
@@ -455,7 +455,7 @@ function Administration() {
                                 {toggle3 && < BsTrash size={32} style={{
                                     cursor: "pointer",
                                     color: "red",
-                                }} onClick={() => deletePost(posts[index]._id, posts[index].image)} />}
+                                }} onClick={() => deletePost(posts[index]._id, posts[index].image, posts[index].coinMarketCapStatus, posts[index].idCoinMarketCap)} />}
 
 
                                 {toggle4 && <div>{!posts[index].promotedStatus && <AiFillStar size={32}

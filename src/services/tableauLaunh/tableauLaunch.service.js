@@ -342,8 +342,8 @@ function contractSpooky() {
 }
 
 
-function coinmarketCap(slug, coinMarketCapLink) {
-    return axios.get(AuthService.getUrl() + `coinmarketCap?slug=${slug}&coinMarketCapLink=${coinMarketCapLink}`)
+function coinmarketCap(id,slug, coinMarketCapLink) {
+    return axios.get(AuthService.getUrl() + `coinmarketCap?id=${id}&slug=${slug}&coinMarketCapLink=${coinMarketCapLink}`)
         .then(response => {
             /*   if (response.status === 200) {
                   coinmarketCapStatus(coinMarketCapLink,"success");
