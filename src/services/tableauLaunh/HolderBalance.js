@@ -1,17 +1,15 @@
+import tableauLaunchService from '../tableauLaunh/tableauLaunch.service';
 import TableLaunchService from '../tableauLaunh/tableauLaunch.service'
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client'
 import React from 'react'
-import tableauLaunchService from '../tableauLaunh/tableauLaunch.service';
-
-
 
 class HolderBalance extends React.Component {
-
 
     async fetchData(i) {
 
 
         let a = "";
+
         a = TableLaunchService.getListAllContract()[i].contractAddress;
         const hoprClient = new ApolloClient({
             uri: 'https://api.thegraph.com/subgraphs/name/eerieeight/spookyswap',
@@ -48,11 +46,10 @@ class HolderBalance extends React.Component {
 
             await TableLaunchService.ftmScanTotalSupply(TableLaunchService.getListAllContract()[i].contractAddress);
             allResults = allResults.concat(result.data.accounts);
-            if (result.data.tokenDayDatas.length !== 0)
-            {
+            if (result.data.tokenDayDatas.length !== 0) {
                 TableLaunchService.setPriceList(i, Number(result.data.tokenDayDatas[0].priceUSD), result.data.tokenDayDatas[0].token.id, tableauLaunchService.getSupply());
             }
-            else{
+            else {
                 TableLaunchService.setPriceList(i, 0, TableLaunchService.getListAllContract()[i].contractAddress, 0);
 
             }
@@ -78,14 +75,10 @@ class HolderBalance extends React.Component {
             //On initialise la PriceList suivant le nbr de contract
             TableLaunchService.initPriceList(TableLaunchService.getListAllContract().length);
 
-
             //Ici on lance les request SubgraphSpooky et ftmScan
             for (let i = 0; i < TableLaunchService.getListAllContract().length; i++) {
                 this.fetchData(i);
             }
-
-
-
 
         }
     }

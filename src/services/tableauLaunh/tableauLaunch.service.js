@@ -107,7 +107,100 @@ function getPriceList() {
 }
 
 function setPriceList(index, price, contract, supply) {
-    priceList.info[index].price = price;
+
+    if (price >= 100) {
+        priceList.info[index].price = parseInt(price);
+    }
+    if (price >= 0 && (priceList.info[index].price == 0)) {
+        priceList.info[index].price = Math.round((price) * 100) / 100;
+    }
+    if (price > 0.099999999999999999999999999999999999999999 && priceList.info[index].price == 0) {
+        priceList.info[index].price = Math.round((price) * 1000) / 1000;
+    }
+    if (price > 0.0099999999999999999999999999999999999999999 && priceList.info[index].price == 0) {
+        priceList.info[index].price = Math.round((price) * 10000) / 10000;
+    }
+    if (price > 0.00099999999999999999999999999999999999999999 && priceList.info[index].price == 0) {
+        priceList.info[index].price = Math.round((price) * 100000) / 100000;
+    }
+    if (price > 0.000099999999999999999999999999999999999999999 && priceList.info[index].price == 0) {
+        priceList.info[index].price = Math.round((price) * 1000000) / 1000000;
+    }
+    if (price > 0.0000099999999999999999999999999999999999999999 && priceList.info[index].price == 0) {
+        priceList.info[index].price = Math.round((price) * 10000000) / 10000000;
+    }
+    if (price > 0.00000099999999999999999999999999999999999999999 && priceList.info[index].price == 0) {
+        priceList.info[index].price = Math.round((price) * 100000000) / 100000000;
+    }
+    if (price > 0.000000099999999999999999999999999999999999999999 && priceList.info[index].price == 0) {
+        priceList.info[index].price = Math.round((price) * 1000000000) / 1000000000;
+    }
+    if (price > 0.0000000099999999999999999999999999999999999999999 && priceList.info[index].price == 0) {
+        priceList.info[index].price = Math.round((price) * 10000000000) / 10000000000;
+    }
+    if (price > 0.00000000099999999999999999999999999999999999999999 && priceList.info[index].price == 0) {
+        priceList.info[index].price = Math.round((price) * 100000000000) / 100000000000;
+    }
+    if (price > 0.000000000099999999999999999999999999999999999999999 && priceList.info[index].price == 0) {
+        priceList.info[index].price = Math.round((price) * 1000000000000) / 1000000000000;
+    }
+    if (price > 0.0000000000099999999999999999999999999999999999999999 && priceList.info[index].price == 0) {
+        priceList.info[index].price = Math.round((price) * 10000000000000) / 10000000000000;
+    }
+    if (price > 0.00000000000099999999999999999999999999999999999999999 && priceList.info[index].price == 0) {
+        priceList.info[index].price = Math.round((price) * 100000000000000) / 100000000000000;
+    }
+    if (price > 0.000000000000099999999999999999999999999999999999999999 && priceList.info[index].price == 0) {
+        priceList.info[index].price = Math.round((price) * 1000000000000000) / 1000000000000000;
+    }
+    if (price > 0.0000000000000099999999999999999999999999999999999999999 && priceList.info[index].price == 0) {
+        priceList.info[index].price = Math.round((price) * 10000000000000000) / 10000000000000000;
+    }
+    if (price > 0.00000000000000099999999999999999999999999999999999999999 && priceList.info[index].price == 0) {
+        priceList.info[index].price = Math.round((price) * 100000000000000000) / 100000000000000000;
+    }
+    if (price > 0.000000000000000099999999999999999999999999999999999999999 && priceList.info[index].price == 0) {
+        priceList.info[index].price = Math.round((price) * 1000000000000000000) / 1000000000000000000;
+    }
+    if (price > 0.0000000000000000099999999999999999999999999999999999999999 && priceList.info[index].price == 0) {
+        priceList.info[index].price = Math.round((price) * 10000000000000000000) / 10000000000000000000;
+    }
+    if (price > 0.00000000000000000099999999999999999999999999999999999999999 && priceList.info[index].price == 0) {
+        priceList.info[index].price = Math.round((price) * 100000000000000000000) / 100000000000000000000;
+    }
+    if (price > 0.000000000000000000099999999999999999999999999999999999999999 && priceList.info[index].price == 0) {
+        priceList.info[index].price = Math.round((price) * 1000000000000000000000) / 1000000000000000000000;
+    }
+    if (price > 0.0000000000000000000099999999999999999999999999999999999999999 && priceList.info[index].price == 0) {
+        priceList.info[index].price = Math.round((price) * 1000000000000000000000) / 10000000000000000000000;
+    }
+    if (price > 0.00000000000000000000099999999999999999999999999999999999999999 && priceList.info[index].price == 0) {
+        priceList.info[index].price = Math.round((price) * 10000000000000000000000) / 100000000000000000000000;
+    }
+    if (price > 0.000000000000000000000099999999999999999999999999999999999999999 && priceList.info[index].price == 0) {
+        priceList.info[index].price = Math.round((price) * 100000000000000000000000) / 1000000000000000000000000;
+    }
+    if (price > 0.0000000000000000000000099999999999999999999999999999999999999999 && priceList.info[index].price == 0) {
+        priceList.info[index].price = Math.round((price) * 1000000000000000000000000) / 10000000000000000000000000;
+    }
+    if (price > 0.00000000000000000000000099999999999999999999999999999999999999999 && priceList.info[index].price == 0) {
+        priceList.info[index].price = Math.round((price) * 10000000000000000000000000) / 100000000000000000000000000;
+    }
+    if (price > 0.000000000000000000000000099999999999999999999999999999999999999999 && priceList.info[index].price == 0) {
+        priceList.info[index].price = Math.round((price) * 100000000000000000000000000) / 1000000000000000000000000000;
+    }
+    if (price > 0.0000000000000000000000000099999999999999999999999999999999999999999 && priceList.info[index].price == 0) {
+        priceList.info[index].price = Math.round((price) * 1000000000000000000000000000) / 10000000000000000000000000000;
+    }
+    if (price > 0.00000000000000000000000000099999999999999999999999999999999999999999 && priceList.info[index].price == 0) {
+        priceList.info[index].price = Math.round((price) * 10000000000000000000000000000) / 100000000000000000000000000000;
+    }
+    if (price > 0.000000000000000000000000000099999999999999999999999999999999999999999 && priceList.info[index].price == 0) {
+        priceList.info[index].price = Math.round((price) * 100000000000000000000000000000) / 1000000000000000000000000000000;
+    }
+
+
+    // priceList.info[index].price = price;
     priceList.info[index].contract = contract;
     priceList.info[index].supply = supply;
 
@@ -336,6 +429,7 @@ function theGraphe() {
 function contractSpooky() {
     return axios.get(AuthService.getUrl() + `contractSpooky/`)
         .then(response => {
+            console.log('heeey',response.data);
             setListAllContract(response.data)
             return response.data;
         })
@@ -375,6 +469,7 @@ function configContract(configContract) {
         configContract: configContract
     })
         .then(response => {
+            console.log('updatePrice',getPriceList());
             updatePrice(getPriceList())
             return response.data;
         })
@@ -410,12 +505,10 @@ function resolveAfter2Seconds() {
 
 function coinMarketCalcul() {
     for (let i = 0; i < getPriceList().info.length; i++) {
-        getPriceList().info[i].coinMarket = (getPriceList().info[i].price * getPriceList().info[i].supply);
+        getPriceList().info[i].coinMarket = parseInt(getPriceList().info[i].price * getPriceList().info[i].supply);
     }
     priceList = getPriceList();
-
     configContract(priceList);
-
 }
 
 
