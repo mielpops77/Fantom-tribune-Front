@@ -458,7 +458,7 @@ const AllTokens = () => {
 
         </div>
       </div>
-      <table className="table table-hover">
+      <table className="table">
         <thead>
           <tr>
             <th className={style.thPointer} scope="col"> </th>
