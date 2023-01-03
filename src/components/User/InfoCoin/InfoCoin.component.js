@@ -15,7 +15,6 @@ const InfoCoin = () => {
     const [open, setOpen] = React.useState(false);
     const [captcha, setCaptcha] = useState(null);
     const [twitter, setTwitter] = useState(null);
-    
     const user = AuthService.getCurrentUser();
     const handleClose = () => setOpen(false);
     const handleOpen = () => setOpen(true);

@@ -1,6 +1,8 @@
 import tableauLaunchService from '../tableauLaunh/tableauLaunch.service';
 import TableLaunchService from '../tableauLaunh/tableauLaunch.service'
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client'
+import AuthService from "../../services/auth/auth.service";
+import axios from "axios";
 import React from 'react'
 
 class HolderBalance extends React.Component {
@@ -68,19 +70,40 @@ class HolderBalance extends React.Component {
 
 
     componentDidMount() {
-        this.contractList();
-        //La Condition se valide si la liste des contract à déja été récupéré au préalable 
-        if (TableLaunchService.getListAllContract().length !== 0) {
+        var now = new Date();
+        var hour = now.getHours();
+        const url = AuthService.getUrl();
 
-            //On initialise la PriceList suivant le nbr de contract
-            TableLaunchService.initPriceList(TableLaunchService.getListAllContract().length);
 
-            //Ici on lance les request SubgraphSpooky et ftmScan
-            for (let i = 0; i < TableLaunchService.getListAllContract().length; i++) {
-                this.fetchData(i);
-            }
+        fetch(url + 'globalList')
+            .then((res) => res.json())
+            .then((res) => {
+                if (res[0].Subgraph) {
+                    new Promise(async (resolve, reject) => {
+                        this.contractList()
 
-        }
+                            .then(() => {
+                                // if (res[0].Subgraph) {
+                                //La Condition se valide si la liste des contract à déja été récupéré au préalable 
+                                if (TableLaunchService.getListAllContract().length !== 0) {
+
+                                    //On initialise la PriceList suivant le nbr de contract
+                                    TableLaunchService.initPriceList(TableLaunchService.getListAllContract().length);
+
+                                    //Ici on lance les request SubgraphSpooky et ftmScan
+                                    for (let i = 0; i < TableLaunchService.getListAllContract().length; i++) {
+                                        this.fetchData(i);
+                                    }
+
+                                }
+
+                            }).catch(err => console.log("erreur sur le fonction componentDidMount"));
+                    });
+                }
+
+                axios.put(url + `globalSubgraph?hour=${hour}&subgraphHour=${res[0].subgraphHour}`, {
+                })
+            })
     }
 
 

@@ -10,6 +10,8 @@ import HolderBalance from '../src/services/tableauLaunh/HolderBalance';
 const Home = () => {
     const url = AuthService.getUrl();
 
+  
+
     return (
 
         <div className={style.mainDiv}>

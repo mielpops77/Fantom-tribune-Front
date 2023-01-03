@@ -254,13 +254,13 @@ const AllTokens = () => {
     if (user !== null) {
       let verif = false;
       AuthService.getPointsLimitUser(user.id).then((res) => {
-        setData({ id: coinId, name: name, image: image.props.src, points: points, pointsTwentyHour: pointsTwentyHour, pointsCacul: pointsCacul, statistique: statistique, limiteUser: res.data });
-        for (let i = 0; i < res.data.length; i++) {
-          if (res.data[i].id == coinId && res.data[i].type == "vote") {
-            let date2 = new Date(res.data[i].day);
+        setData({ id: coinId, name: name, image: image.props.src, points: points, pointsTwentyHour: pointsTwentyHour, pointsCacul: pointsCacul, statistique: statistique, limiteUser: res });
+        for (let i = 0; i < res.length; i++) {
+          if (res[i].id == coinId && res[i].type == "vote") {
+            let date2 = new Date(res[i].day);
             let diff = date1 - date2;
             let diffJour = diff / (1000 * 3600 * 24);
-            if ((diffJour <= 1 && res.data[i].day.hour <= date.getUTCHours()) || (res.data[i].day == dateUtc)) {
+            if ((diffJour <= 1 && res[i].day.hour <= date.getUTCHours()) || (res[i].day == dateUtc)) {
               verif = true;
               setVerifVoteToday(true);
             }

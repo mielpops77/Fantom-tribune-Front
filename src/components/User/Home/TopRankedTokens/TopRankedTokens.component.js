@@ -27,7 +27,7 @@ const TopRankedTokens = () => {
         pointsTwentyHour: "",
         pointsCacul: "",
         statistique: "",
-        limiteUser:[]
+        limiteUser: []
     });
 
     let date = new Date();
@@ -61,12 +61,12 @@ const TopRankedTokens = () => {
         if (user !== null) {
             let verif = false;
             AuthService.getPointsLimitUser(user.id).then((res) => {
-                for (let i = 0; i < res.data.length; i++) {
-                    if (res.data[i].id == coinId && res.data[i].type == "buy") {
-                        let date2 = new Date(res.data[i].day);
+                for (let i = 0; i < res.length; i++) {
+                    if (res[i].id == coinId && res[i].type == "buy") {
+                        let date2 = new Date(res[i].day);
                         let diff = date1 - date2;
                         let diffJour = diff / (1000 * 3600 * 24);
-                        if ((diffJour <= 1 && res.data[i].day.hour <= date.getUTCHours()) || (res.data[i].day == dateUtc)) {
+                        if ((diffJour <= 1 && res[i].day.hour <= date.getUTCHours()) || (res[i].day == dateUtc)) {
                             verif = true;
                         }
                     }
@@ -77,7 +77,7 @@ const TopRankedTokens = () => {
                     fetch(url + `addPuntos/?id=${user.id}`, {
                         method: "Put",
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ element: element, list: res.data })
+                        body: JSON.stringify({ element: element, list: res })
                     })
                         .then((res) => {
 
@@ -155,24 +155,29 @@ const TopRankedTokens = () => {
 
 
     function vote(coinId, name, image, points, pointsTwentyHour, pointsCacul, statistique) {
+        console.log('statistique',statistique);
         setCaptcha(null);
         setData({ id: coinId, name: name, image: url + image, points: points, pointsTwentyHour: pointsTwentyHour, pointsCacul: pointsCacul, statistique: statistique });
         if (user !== null) {
+
             let verif = false;
+
             AuthService.getPointsLimitUser(user.id).then((res) => {
-                setData({ id: coinId, name: name, image: url + image, points: points, pointsTwentyHour: pointsTwentyHour, pointsCacul: pointsCacul, statistique: statistique,limiteUser: res.data });
-                for (let i = 0; i < res.data.length; i++) {
-                    if (res.data[i].id == coinId && res.data[i].type == "vote") {
-                        let date2 = new Date(res.data[i].day);
+                console.log('res',res);
+                setData({ id: coinId, name: name, image: url + image, points: points, pointsTwentyHour: pointsTwentyHour, pointsCacul: pointsCacul, statistique: statistique, limiteUser: res });
+                for (let i = 0; i < res.length; i++) {
+                    if (res[i].id == coinId && res[i].type == "vote") {
+                        let date2 = new Date(res[i].day);
                         let diff = date1 - date2;
                         let diffJour = diff / (1000 * 3600 * 24);
-                        if ((diffJour <= 1 && res.data[i].day.hour <= date.getUTCHours()) || (res.data[i].day == dateUtc)) {
+                        if ((diffJour <= 1 && res[i].day.hour <= date.getUTCHours()) || (res[i].day == dateUtc)) {
                             verif = true;
                             setVerifVoteToday(true);
                         }
                     }
                 }
                 if (!verif) {
+                    console.log('vérif false',verif);
                     setVerifVoteToday(false);
                 }
             })
@@ -182,24 +187,24 @@ const TopRankedTokens = () => {
     }
 
     const addPoints = () => {
-            let element = { id: data.id, type: "vote", hour: date.getUTCHours(), day: dateUtc, value: 1 }
-            fetch(url + `addPuntos/?id=${user.id}`, {
-                method: "Put",
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ element: element, list: data.limiteUser })
-            })
-                .then((res) => {
-                    res.json()
-                    const requestOptions = {
-                        method: 'PUT',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ points: data.points, pointsCacul: data.pointsCacul, pointsTwentyHour: data.pointsTwentyHour, statistique: data.statistique })
-                    };
-                    fetch(url + `pointCalcul/?id=${data.id}&type=vote`, requestOptions)
-                        .then(response => response.json())
-                        .finally(() => { setElements([]); getTopRankedRequest(); handleClose() })
+        let element = { id: data.id, type: "vote", hour: date.getUTCHours(), day: dateUtc, value: 1 }
+        fetch(url + `addPuntos/?id=${user.id}`, {
+            method: "Put",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ element: element, list: data.limiteUser })
+        })
+            .then((res) => {
+                res.json()
+                const requestOptions = {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ points: data.points, pointsCacul: data.pointsCacul, pointsTwentyHour: data.pointsTwentyHour, statistique: data.statistique })
+                };
+                fetch(url + `pointCalcul/?id=${data.id}&type=vote`, requestOptions)
+                    .then(response => response.json())
+                    .finally(() => { setElements([]); getTopRankedRequest(); handleClose() })
 
-                })
+            })
     };
 
 
@@ -230,7 +235,7 @@ const TopRankedTokens = () => {
                             </table>
                         </div>
                         <div className={style.cardFooter}>
-                            <button onClick={function (event) { Propagation(event); vote(item._id,item.name, item.image, item.points, item.pointsTwentyHour, item.pointsCacul, item.statistique) }} className={style.voteButton}>Vote</button>
+                            <button onClick={function (event) { Propagation(event); vote(item._id, item.name, item.image, item.points, item.pointsTwentyHour, item.pointsCacul, item.statistique) }} className={style.voteButton}>Vote</button>
                             <button onClick={function (event) { Propagation(event); buy(item.contractAddress, item._id, item.points, item.pointsTwentyHour, item.pointsCacul, item.statistique) }} className={style.buyButton}>Buy</button>
                         </div>
                     </div>

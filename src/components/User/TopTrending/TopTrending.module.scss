@@ -1,34 +1,46 @@
 @media all and (max-width: 1024px) {
+  .topTrending_fond {
+    background-color: #050945;
+    // #292931
+    tr:nth-child(2n + 1) {
+      background-color: #131325;
 
-  .topTrending_fond{
-    background-color:#050945;
-  
+      &:hover {
+        background-color: #050945;
+      }
+    }
+    tr:nth-child(2n ) {
+      background-color: #292931;
+      &:hover {
+        background-color: #050945;
+      }
+    }
     .topTrending_mainDiv {
       display: flex;
       flex-direction: column;
       width: 100%;
       /* height: 1000px; */
-  
+
       .topTrending_divSectionTitle {
         margin-top: 5%;
         display: flex;
         justify-content: center;
         align-items: baseline;
         position: inherit;
-  
+
         .topTrending_imgLogoSection {
           max-width: 13vw;
           height: auto;
         }
-  
+
         .topTrending_sectionTitle {
           margin-left: 1%;
           letter-spacing: -1.6px;
-          color:#3888E5;
+          color: #3888e5;
           font-size: 8vw;
           font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         }
-  
+
         .topTrending_tokensTitle {
           color: #30d0b8;
         }
@@ -38,46 +50,44 @@
     .topTrending_filterContainer {
       width: 100%;
       margin-bottom: 5%;
-      padding:1%;
+      padding: 1%;
       border-radius: 15px;
-    
+
       .topTrending_filterOne {
         display: inline-block;
         width: 14%;
         height: 70px;
-        border: #BABBBD solid 2px;
+        border: #babbbd solid 2px;
         border-radius: 10px;
       }
-      .topTrending_filterOneClick
-      {
+      .topTrending_filterOneClick {
         display: inline-block;
         width: 14%;
         height: 70px;
         border: #282931 solid 2px;
         border-radius: 10px;
-        background-color: #3888E5;
+        background-color: #3888e5;
       }
-    
+
       .topTrending_filter {
         display: inline-block;
         width: 14%;
         height: 70px;
-        border: #BABBBD solid 2px;
+        border: #babbbd solid 2px;
         margin-left: 3%;
         border-radius: 10px;
       }
-    
-      .topTrending_filterClick
-      {
+
+      .topTrending_filterClick {
         display: inline-block;
         width: 14%;
         height: 70px;
         border: #282931 solid 2px;
         margin-left: 3%;
         border-radius: 10px;
-        background-color: #3B96FF;
+        background-color: #3b96ff;
       }
-    
+
       .topTrending__filterTitle {
         text-align: center;
         line-height: 70px;
@@ -86,21 +96,21 @@
       }
       .topTrending_filter:hover {
         cursor: pointer;
-        background-color: #3B96FF;
+        background-color: #3b96ff;
       }
-    
+
       .topTrending_filterOne:hover {
         cursor: pointer;
-        background-color: #3B96FF;
+        background-color: #3b96ff;
       }
     }
-    
+
     .topTrending_imgUpArrow {
       margin-bottom: 3px;
       max-width: 10px;
       max-height: 20px;
     }
-    
+
     .topTrending_img {
       width: 100%;
       max-width: 100px;
@@ -114,29 +124,29 @@
     .typo {
       text-align: "center";
     }
-    
+
     .topTrending_container {
       margin: 5% auto;
       font-size: 120%;
       width: 95%;
-      background-color: #131325;
+      background-color: #292931;
       border-radius: 15px;
       box-shadow: 0px 0px 14px 2px rgba(105, 130, 241, 0.555);
-      
-    
+
       .topTrending_thPointer {
         cursor: "pointer";
-        color:#3888E5;
+        color: #3888e5;
         font-size: 1.5vw;
+        background-color: #292931;
       }
       .topTrending_td {
         vertical-align: middle;
-        color:#ffffff;
+        color: #ffffff;
         font-size: 1.1vw;
-        
-        .topTrending_voteButton{
+
+        .topTrending_voteButton {
           color: #ffffff;
-          background: #3B96FF;
+          background: #3b96ff;
           text-decoration: none;
           border-radius: 10px;
           text-align: center;
@@ -147,24 +157,24 @@
           height: 4vw;
           line-height: normal;
 
-          &:hover { 
+          &:hover {
             font-size: 1.6vw;
           }
         }
       }
-    
+
       .topTrending_pagination {
         display: flex;
         justify-content: flex-end;
         align-items: flex-end;
         width: auto;
         height: auto;
-    
+
         .topTrending_paginationPageActuel {
           margin-top: 1%;
           margin-right: 1%;
         }
-    
+
         .topTrending_pagination a {
           color: black;
           float: left;
@@ -182,7 +192,7 @@
         .topTrending_pagination a:hover:not(.active) {
           background-color: #ddd;
         }
-    
+
         .topTrending_pagination {
           margin-top: 1%;
           margin-right: 1%;
@@ -193,37 +203,48 @@
 }
 
 @media all and (min-width: 1024px) {
+  .topTrending_fond {
+    background-color: #050945;
+    // #292931
+    tr:nth-child(2n + 1) {
+      background-color: #131325;
 
-  .topTrending_fond{
-    background-color:#050945;
-  
+      &:hover {
+        background-color: #050945;
+      }
+    }
+    tr:nth-child(2n ) {
+      background-color: #292931;
+      &:hover {
+        background-color: #050945;
+      }
+    }
     .topTrending_mainDiv {
       display: flex;
       flex-direction: column;
       width: 100%;
       /* height: 1000px; */
-  
+
       .topTrending_divSectionTitle {
         margin-top: 4%;
         display: flex;
         justify-content: center;
         align-items: baseline;
         position: inherit;
-  
+
         .topTrending_imgLogoSection {
           max-width: 4vw;
           height: auto;
         }
-  
+
         .topTrending_sectionTitle {
           margin-left: 1%;
           letter-spacing: -1.6px;
-          color:#3888E5;
+          color: #3888e5;
           font-size: 3.2vw;
           font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  
         }
-  
+
         .topTrending_tokensTitle {
           color: #30d0b8;
         }
@@ -233,46 +254,44 @@
     .topTrending_filterContainer {
       width: 100%;
       margin-bottom: 5%;
-      padding:1%;
+      padding: 1%;
       border-radius: 15px;
-    
+
       .topTrending_filterOne {
         display: inline-block;
         width: 14%;
         height: 70px;
-        border: #BABBBD solid 2px;
+        border: #babbbd solid 2px;
         border-radius: 10px;
       }
-      .topTrending_filterOneClick
-      {
+      .topTrending_filterOneClick {
         display: inline-block;
         width: 14%;
         height: 70px;
         border: #282931 solid 2px;
         border-radius: 10px;
-        background-color: #3888E5;
+        background-color: #3888e5;
       }
-    
+
       .topTrending_filter {
         display: inline-block;
         width: 14%;
         height: 70px;
-        border: #BABBBD solid 2px;
+        border: #babbbd solid 2px;
         margin-left: 3%;
         border-radius: 10px;
       }
-    
-      .topTrending_filterClick
-      {
+
+      .topTrending_filterClick {
         display: inline-block;
         width: 14%;
         height: 70px;
         border: #282931 solid 2px;
         margin-left: 3%;
         border-radius: 10px;
-        background-color: #3B96FF;
+        background-color: #3b96ff;
       }
-    
+
       .topTrending__filterTitle {
         text-align: center;
         line-height: 70px;
@@ -280,21 +299,21 @@
       }
       .topTrending_filter:hover {
         cursor: pointer;
-        background-color: #3B96FF;
+        background-color: #3b96ff;
       }
-    
+
       .topTrending_filterOne:hover {
         cursor: pointer;
-        background-color: #3B96FF;
+        background-color: #3b96ff;
       }
     }
-    
+
     .topTrending_imgUpArrow {
       margin-bottom: 3px;
       max-width: 10px;
       max-height: 20px;
     }
-    
+
     .topTrending_img {
       width: 100%;
       max-width: 100px;
@@ -308,29 +327,32 @@
     .typo {
       text-align: "center";
     }
-    
+
     .topTrending_container {
       margin: 5% auto;
       font-size: 120%;
       width: 80%;
-      background-color: #131325;
+      background-color: #292931;
+      //#28232c
       border-radius: 15px;
       box-shadow: 0px 0px 14px 2px rgba(105, 130, 241, 0.555);
-      
-    
+   
+
       .topTrending_thPointer {
         cursor: "pointer";
-        color:#3888E5;
+        color: #3888e5;
         font-size: 1.1vw;
+        background-color: #292931;
+        
       }
       .topTrending_td {
         vertical-align: middle;
-        color:#ffffff;
+        color: #ffffff;
         font-size: 1.1vw;
 
-        .topTrending_voteButton{
+        .topTrending_voteButton {
           color: #ffffff;
-          background: #3B96FF;
+          background: #3b96ff;
           text-decoration: none;
           border-radius: 10px;
           text-align: center;
@@ -341,24 +363,24 @@
           height: 3vw;
           line-height: normal;
 
-          &:hover { 
+          &:hover {
             font-size: 1.2vw;
           }
         }
       }
-    
+
       .topTrending_pagination {
         display: flex;
         justify-content: flex-end;
         align-items: flex-end;
         width: auto;
         height: auto;
-    
+
         .topTrending_paginationPageActuel {
           margin-top: 1%;
           margin-right: 1%;
         }
-    
+
         .topTrending_pagination a {
           color: black;
           float: left;
@@ -376,7 +398,7 @@
         .topTrending_pagination a:hover:not(.active) {
           background-color: #ddd;
         }
-    
+
         .topTrending_pagination {
           margin-top: 1%;
           margin-right: 1%;
