@@ -75,106 +75,106 @@ const Presales = () => {
 
   function getSearchCoinRequest(search) {
     return axios.get(AuthService.getUrl() + `searchCoinPresale?name=${search}`)
-        .then(response => {
-            /* setSearchCoin(response.data); */
-            let result = [
-                {
-                    id: 0,
-                    name: 'vide',
-                    image: 'vide',
-                    symbol: 'vide',
-                    type: 'vide'
-                },
-                {
-                    id: 1,
-                    name: 'vide',
-                    image: 'vide',
-                    symbol: 'vide',
-                    type: 'vide'
+      .then(response => {
+        /* setSearchCoin(response.data); */
+        let result = [
+          {
+            id: 0,
+            name: 'vide',
+            image: 'vide',
+            symbol: 'vide',
+            type: 'vide'
+          },
+          {
+            id: 1,
+            name: 'vide',
+            image: 'vide',
+            symbol: 'vide',
+            type: 'vide'
 
-                },
-                {
-                    id: 2,
-                    name: 'vide',
-                    image: 'vide',
-                    symbol: 'vide',
-                    type: 'vide'
+          },
+          {
+            id: 2,
+            name: 'vide',
+            image: 'vide',
+            symbol: 'vide',
+            type: 'vide'
 
-                },
-                {
-                    id: 3,
-                    name: 'vide',
-                    image: 'vide',
-                    symbol: 'vide',
-                    type: 'vide'
+          },
+          {
+            id: 3,
+            name: 'vide',
+            image: 'vide',
+            symbol: 'vide',
+            type: 'vide'
 
-                },
-                {
-                    id: 4,
-                    name: 'vide',
-                    image: 'vide',
-                    symbol: 'vide',
-                    type: 'vide'
+          },
+          {
+            id: 4,
+            name: 'vide',
+            image: 'vide',
+            symbol: 'vide',
+            type: 'vide'
 
-                }
-                ,
-                {
-                    id: 5,
-                    name: 'vide',
-                    image: 'vide',
-                    symbol: 'vide',
-                    type: 'vide'
+          }
+          ,
+          {
+            id: 5,
+            name: 'vide',
+            image: 'vide',
+            symbol: 'vide',
+            type: 'vide'
 
-                },
-                {
-                    id: 6,
-                    name: 'vide',
-                    image: 'vide',
-                    symbol: 'vide',
-                    type: 'vide'
+          },
+          {
+            id: 6,
+            name: 'vide',
+            image: 'vide',
+            symbol: 'vide',
+            type: 'vide'
 
-                },
-                {
-                    id: 7,
-                    name: 'vide',
-                    image: 'vide',
-                    symbol: 'vide',
-                    type: 'vide'
+          },
+          {
+            id: 7,
+            name: 'vide',
+            image: 'vide',
+            symbol: 'vide',
+            type: 'vide'
 
-                },
-                {
-                    id: 8,
-                    name: 'vide',
-                    image: 'vide',
-                    symbol: 'vide',
-                    type: 'vide'
+          },
+          {
+            id: 8,
+            name: 'vide',
+            image: 'vide',
+            symbol: 'vide',
+            type: 'vide'
 
-                },
-                {
-                    id: 9,
-                    name: 'vide',
-                    image: 'vide',
-                    symbol: 'vide',
-                    type: 'vide'
+          },
+          {
+            id: 9,
+            name: 'vide',
+            image: 'vide',
+            symbol: 'vide',
+            type: 'vide'
 
-                }
-            ]
-            for (let i = 0; i < response.data.length; i++) {
-                result[i].name = response.data[i].name;
-                result[i].id = response.data[i]._id;
-                result[i].image = response.data[i].image;
-                result[i].symbol = response.data[i].symbol;
-                result[i].type = response.data[i].type;
+          }
+        ]
+        for (let i = 0; i < response.data.length; i++) {
+          result[i].name = response.data[i].name;
+          result[i].id = response.data[i]._id;
+          result[i].image = response.data[i].image;
+          result[i].symbol = response.data[i].symbol;
+          result[i].type = response.data[i].type;
 
-            }
+        }
 
-            const result2 = result.filter((person) => person.name !== 'vide')
-            setItems(result2);
+        const result2 = result.filter((person) => person.name !== 'vide')
+        setItems(result2);
 
 
-            return response.data;
-        })
-}
+        return response.data;
+      })
+  }
   const options = [
     "All", "Dex", "Gaming", "Nft", "Lending", "Algo-Stables", "Derivatives", "Yield Aggregatort", "Reflect token", "Yield"
   ];
@@ -391,7 +391,7 @@ const Presales = () => {
 
   const handleOnSelect = (item) => {
     nav(`/infoCoin/${item.id}`);
-    }
+  }
 
   const handleOnFocus = () => {
   }
@@ -399,20 +399,23 @@ const Presales = () => {
 
   const formatResult = (item) => {
     return (
-        <>
-            <span className={style.updateCoin_search}>  <img className={style.updateCoin_img} src={url + item.image} alt='img' />  <span className={style.updateCoin_nameSearch}>{item.name}</span> 	<mat-chip>
-                <label htmlFor="chip-1">{item.symbol}</label>
-            </mat-chip></span>
-        </>
+      <>
+        <span className={style.updateCoin_search}>  <img className={style.updateCoin_img} src={url + item.image} alt='img' />  <span className={style.updateCoin_nameSearch}>{item.name}</span> 	<mat-chip>
+          <label htmlFor="chip-1">{item.symbol}</label>
+        </mat-chip></span>
+      </>
     )
-}
+  }
 
   return (
 
     <div className={style.container}>
-      <Dropdown className={style.controlDropdownRoot} controlClassName={style.controlDropdown} options={options} onChange={changeType} value={options[0]} placeholder="Select an option" />
-      <div className={style.presale_dropDownSearch} style={{ width: " 60%", display: "inline-block", marginBottom: "2%", marginLeft: "3%" }}>
-      <ReactSearchAutocomplete
+      <div className={style.filterContainer}>
+      <div className={style.filterType}>
+        <Dropdown className={style.controlDropdownRoot} controlClassName={style.controlDropdown} options={options} onChange={changeType} value={options[0]} placeholder="Select an option" />
+       </div>
+        <div className={style.presale_dropDownSearch} style={{ width: " 55%", marginLeft:"20%", display: "inline-block" ,marginTop:"1%", marginRight: "1%" }}>
+          <ReactSearchAutocomplete
             styling={
               {
                 border: "1px solid #ccc",
@@ -441,14 +444,16 @@ const Presales = () => {
             }
             resultStringKeyName="name"
           />
-        {/*   <input className= {style.searchInput}
+          {/*   <input className= {style.searchInput}
         type="text"
         name="search-bar"
         id="search-bar"
         placeholder="Search..."
       /> */}
+
+        </div>
       </div>
-      <table className="table table-hover">
+      <table className="table">
         <thead>
           <tr>
             <th className={style.presales_thPointer} scope="col">#</th>

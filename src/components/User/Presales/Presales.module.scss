@@ -1,12 +1,38 @@
 @media all and (max-width: 1024px) {
   .container {
-    background-color: #131325;
+    background-color: #292931;
     margin: 5% auto;
     font-size: 120%;
     width: 95%;
     border-radius: 15px;
     box-shadow: 0px 0px 14px 2px rgba(105, 130, 241, 0.555);
-    padding: 1%;
+    padding-top: 1%;
+    // padding-right: 1%;
+    // padding-left: 1%;
+
+    tr:nth-child(2n + 1) {
+      background-color: #131325;
+
+      &:hover {
+        background-color: #050945;
+      }
+    }
+    tr:nth-child(2n) {
+      background-color: #292931;
+      &:hover {
+        background-color: #050945;
+      }
+    }
+
+    .filterContainer {
+      display: flex;
+      flex-direction: row;
+      .filterType {
+        width: 15%;
+        margin-left: 3%;
+        margin-top: 1%;
+      }
+    }
     .updateCoin_search {
       vertical-align: middle;
     }
@@ -39,6 +65,8 @@
       cursor: "pointer";
       color: #3b96ff;
       font-size: 1.9vw;
+      background-color: #292931;
+
     }
 
     .presales_td {
@@ -126,14 +154,40 @@
 
 @media all and (min-width: 1024px) {
   .container {
-    background-color: #131325;
+    background-color: #292931;
     margin: 5% auto;
     font-size: 120%;
     width: 80%;
     border-radius: 15px;
     box-shadow: 0px 0px 14px 2px rgba(105, 130, 241, 0.555);
-    padding: 1%;
-    
+    // padding: 1%;
+    padding-top: 1%;
+
+    // padding-left: 1%;
+
+    tr:nth-child(2n + 1) {
+      background-color: #131325;
+
+      &:hover {
+        background-color: #050945;
+      }
+    }
+    tr:nth-child(2n) {
+      background-color: #292931;
+      &:hover {
+        background-color: #050945;
+      }
+    }
+
+    .filterContainer {
+      display: flex;
+      flex-direction: row;
+      .filterType {
+        width: 15%;
+        margin-left: 3%;
+        margin-top: 1%;
+      }
+    }
     .updateCoin_search {
       vertical-align: middle;
     }
@@ -153,7 +207,7 @@
     }
     .controlDropdownRoot {
       display: inline-block;
-      width: 20%;
+      width: 100%;
     }
     .controlDropdown {
       background-color: transparent !important;
@@ -165,6 +219,7 @@
       cursor: "pointer";
       color: #3888e5;
       font-size: 1.1vw;
+      background-color: #292931;
     }
 
     .presales_td {

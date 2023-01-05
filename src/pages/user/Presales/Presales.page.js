@@ -11,7 +11,7 @@ const Presales = () => {
             <NavigationUserComponent/>
             <p className={style.presales_sectionTitle}>Presales</p>
             <PresalesComponent/>
-            <div className={style.divFooter}> 
+            <div /* className={style.divFooter} */> 
                 <FooterComponent/>
             </div> 
         </div>
