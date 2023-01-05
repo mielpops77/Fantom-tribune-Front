@@ -41,6 +41,8 @@
     .filterContainer {
       display: flex;
       flex-direction: row;
+      cursor: pointer;
+
 
       .filterType {
         width: 25%;
@@ -209,6 +211,7 @@
     .filterContainer {
       display: flex;
       flex-direction: row;
+      cursor: pointer;
 
       .filterType {
         width: 25%;

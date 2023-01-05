@@ -1,5 +1,6 @@
 @media all and (max-width: 1024px) {
     .filter2_searchFilter {
+        cursor: pointer;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -53,48 +54,47 @@
     }
     .filter_search {
         vertical-align: middle;
-    
-    .filter_img {
-        text-align: left;
-        width: 100%;
-        max-width: 90px;
-        min-width: 15px;
-        height: auto;
-        max-height: 90px;
-        min-height: 15px;
-        object-fit: cover;
-    }
-    
-    .filter_nameSearch
-    {
+
+        .filter_img {
+            text-align: left;
+            width: 100%;
+            max-width: 90px;
+            min-width: 15px;
+            height: auto;
+            max-height: 90px;
+            min-height: 15px;
+            object-fit: cover;
+        }
+
+        .filter_nameSearch {
             margin-left: 5%;
-    }
-    
-    mat-chip {
-        margin-top: 1%;
-        float: right;
-        margin-right: 10%;
-        border-radius: 12px;
-        background-color: #323546;
-        color: #a1a7bb;
-    }
-    mat-chip > label {
-        display: block;
-        padding: 6px;
-        border-radius: 12px;
-    }
+        }
+
+        mat-chip {
+            margin-top: 1%;
+            float: right;
+            margin-right: 10%;
+            border-radius: 12px;
+            background-color: #323546;
+            color: #a1a7bb;
+        }
+        mat-chip > label {
+            display: block;
+            padding: 6px;
+            border-radius: 12px;
+        }
     }
 }
 
 @media all and (min-width: 1024px) {
-
     .filter2_searchFilter {
-        width: 85%;     
+        width: 85%;
         display: flex;
         flex-direction: row;
-
-        .filter2_filter {            
-            width: 68%;       
+        cursor: pointer;
+        
+        .filter2_filter {
+            width: 68%;
             height: 115px;
         }
 
@@ -110,7 +110,7 @@
                 transition-duration: 300ms;
                 background: #308af1;
                 .filter2_imgSearch {
-                transition-duration: 200ms;
+                    transition-duration: 200ms;
                     width: 3.1vw;
                 }
             }
@@ -123,36 +123,34 @@
 
     .filter_search {
         vertical-align: middle;
-    
-    .filter_img {
-        text-align: left;
-        width: 100%;
-        max-width: 90px;
-        min-width: 15px;
-        height: auto;
-        max-height: 90px;
-        min-height: 15px;
-        object-fit: cover;
-    }
-    
-    .filter_nameSearch
-    {
+
+        .filter_img {
+            text-align: left;
+            width: 100%;
+            max-width: 90px;
+            min-width: 15px;
+            height: auto;
+            max-height: 90px;
+            min-height: 15px;
+            object-fit: cover;
+        }
+
+        .filter_nameSearch {
             margin-left: 5%;
-    }
-    
-    mat-chip {
-        margin-top: 1%;
-        float: right;
-        margin-right: 10%;
-        border-radius: 12px;
-        background-color: #323546;
-        color: #a1a7bb;
-    }
-    mat-chip > label {
-        display: block;
-        padding: 6px;
-        border-radius: 12px;
-    }
+        }
+
+        mat-chip {
+            margin-top: 1%;
+            float: right;
+            margin-right: 10%;
+            border-radius: 12px;
+            background-color: #323546;
+            color: #a1a7bb;
+        }
+        mat-chip > label {
+            display: block;
+            padding: 6px;
+            border-radius: 12px;
+        }
     }
 }
-

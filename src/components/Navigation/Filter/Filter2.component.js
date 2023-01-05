@@ -156,7 +156,6 @@ const Filter2 = () => {
                     <ReactSearchAutocomplete
                         styling={
                             {
-
                                 border: "none",
                                 borderRadius: "10px",
                                 fontSize: "40px",
