@@ -1,8 +1,32 @@
 
 .presales_fond{
-  background-color:#050945;
+  background: url("http://localhost:3000/assets/background_without _rocket&Cloud.png") no-repeat;
   min-height: 1000px;
 
+  .divSectionTitle {
+    margin-top: 4%;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    position: inherit;
+
+    .imgLogoSection {
+        max-width: 3vw;
+        height: auto;
+    }
+
+    .sectionTitle {
+        margin-left: 1%;
+        letter-spacing: -1.6px;
+        color: #3888e5;
+        font-size: 3.2vw;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .tokensTitle {
+        color: #30d0b8;
+    }
+}
   .presales_sectionTitle {
       margin-top:3%;
       text-align: center;

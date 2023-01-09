@@ -1,7 +1,10 @@
 @media all and (max-width: 1024px) {
   .allTokens_container {
     background-color: #292931;
-    margin: 5% auto;
+    margin-top: 0%;
+    margin-right: auto;
+    margin-bottom: 5%;
+    margin-left: auto;
     font-size: 120%;
     width: 92%;
     border-radius: 15px;
@@ -171,7 +174,10 @@
 @media all and (min-width: 1024px) {
   .allTokens_container {
     background-color: #292931;
-    margin: 5% auto;
+    margin-top: 2%;
+    margin-right: auto;
+    margin-bottom: 5%;
+    margin-left: auto;
     font-size: 120%;
     width: 80%;
     border-radius: 15px;

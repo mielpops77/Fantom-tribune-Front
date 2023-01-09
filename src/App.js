@@ -4,7 +4,8 @@ import EditionUser from "./pages/admin/Edition/EditionUser/EditionUser.page";
 import NewPassword from './components/Authentification/ForgotPassword/NewPassword.component'
 import ValidationForm from "./pages/user/ValidationFormulaire/ValidationFormulaire.page";
 import Register from './components/Authentification/Register/Register.component';
-import TopTrending from './components/User/TopTrending/TopTrending.component';
+// import TopTrending from './components/User/TopTrending/TopTrending.component';
+import TopTrending from './pages/user/TopTrending/TopTrending.page';
 import EditionCoin from "./pages/admin/Edition/EditionAdmin/EditionAdmin.page";
 import Administration from './pages/admin/Administration/Administration.page';
 import Giveaways from './components/User/Giveaways/Giveaways.component';
