@@ -12,6 +12,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import style from './TopTrending.module.scss';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
+import tableauLaunchService from '../../../services/tableauLaunh/tableauLaunch.service';
 
 
 const TopTrending = () => {
@@ -75,6 +76,8 @@ const TopTrending = () => {
   let userData = [];
 
   function tableLaunch(limit, skip) {
+
+    tableauLaunchService.initTotalPage()
 
     TableLaunchService.getTopTrending(limit, skip).then(function (result) {
       result.map((item, index) => {
@@ -286,11 +289,13 @@ const TopTrending = () => {
 
     TableLaunchService.getEcosystemLenght().then(function (result) {
 
+    console.log('init',result);
+
       if (result / 10 < 1) {
-        TableLaunchService.totalPage = 1;
+        tableauLaunchService.setTotalPage(1)
       }
       if (result / 10 >= 1) {
-        TableLaunchService.totalPage = result % 10 === 0 ? result / 10 : ((result / 10) - ((result % 10) / 10)) + 1
+        tableauLaunchService.setTotalPage(result % 10 === 0 ? result / 10 : ((result / 10) - ((result % 10) / 10)) + 1)
       }
     });
   }
@@ -299,10 +304,10 @@ const TopTrending = () => {
     TableLaunchService.getLaunchDateLenght().then(function (result) {
 
       if (result / 10 < 1) {
-        TableLaunchService.totalPage = 1;
+        tableauLaunchService.setTotalPage(1)
       }
       if (result / 10 >= 1) {
-        TableLaunchService.totalPage = result % 10 === 0 ? result / 10 : ((result / 10) - ((result % 10) / 10)) + 1
+        tableauLaunchService.setTotalPage(result % 10 === 0 ? result / 10 : ((result / 10) - ((result % 10) / 10)) + 1)
       }
     });
   }
@@ -313,10 +318,10 @@ const TopTrending = () => {
     TableLaunchService.getPromotedProjectLenght().then(function (result) {
 
       if (result / 10 < 1) {
-        TableLaunchService.totalPage = 1;
+        tableauLaunchService.setTotalPage(1)
       }
       if (result / 10 >= 1) {
-        TableLaunchService.totalPage = result % 10 === 0 ? result / 10 : ((result / 10) - ((result % 10) / 10)) + 1
+        tableauLaunchService.setTotalPage(result % 10 === 0 ? result / 10 : ((result / 10) - ((result % 10) / 10)) + 1)
       }
     });
   }
@@ -418,7 +423,7 @@ const TopTrending = () => {
   function next() {
     console.log('heeey');
 
-    if (pagination.pageActuel < TableLaunchService.totalPage) {
+    if (pagination.pageActuel < TableLaunchService.getTotalPage()) {
 
       seDatabase([]);
 
@@ -581,13 +586,13 @@ const TopTrending = () => {
         <div className={style.topTrending_pagination}>
           {pagination.pageActuel == 1 &&
             <div className={style.blockPaginationDisable} >
-              <a className={style.topTrending_paginationPageActuelDisable /* > 1 ? "" : "disable" */} >❮</a>
+              <a className={style.topTrending_paginationPageActuelDisable} >❮</a>
             </div>
           }
 
           {pagination.pageActuel > 1 &&
             <div className={style.blockPagination} onClick={previous}>
-              <a className={style.topTrending_paginationPageActuel /* > 1 ? "" : "disable" */}  >❮</a>
+              <a className={style.topTrending_paginationPageActuel}  >❮</a>
             </div>
           }
 
@@ -595,23 +600,21 @@ const TopTrending = () => {
 
           <div className={style.blockPagination2}>
 
-            <span className={style.topTrending_paginationPageActuel}> Page {pagination.pageActuel} of {TableLaunchService.totalPage}</span>
+            <span className={style.topTrending_paginationPageActuel}> Page {pagination.pageActuel} of {TableLaunchService.getTotalPage()}</span>
 
           </div>
-          {pagination.pageActuel < TableLaunchService.totalPage &&
+          {pagination.pageActuel < TableLaunchService.getTotalPage() &&
             <div className={style.blockPagination3} onClick={next}>
-              <a className={style.topTrending_paginationPageActuel /* < TableLaunchService.totalPage ? "" : "disable" */} >❯</a>
+              <a className={style.topTrending_paginationPageActuel} >❯</a>
             </div>}
 
-          {pagination.pageActuel == TableLaunchService.totalPage &&
+          {pagination.pageActuel == TableLaunchService.getTotalPage() &&
             <div className={style.blockPagination3Disable} >
-              <a className={style.topTrending_paginationPageActuelDisable /* < TableLaunchService.totalPage ? "" : "disable" */} >❯</a>
+              <a className={style.topTrending_paginationPageActuelDisable} >❯</a>
             </div>}
 
 
-          {/* <span className={style.topTrending_paginationPageActuel}>1 - {TableLaunchService.totalPage} of {pagination.pageActuel}</span> */}
-          {/* <a className={style.topTrending_paginationPageActuel > 1 ? "" : "disable"} onClick={previous} href="#">❮</a>
-          <a className={style.topTrending_paginationPageActuel < TableLaunchService.totalPage ? "" : "disable"} onClick={next} href="#">❯</a> */}
+
         </div>
 
         <Modal className={styleModal.modalBackground}

@@ -5,7 +5,7 @@ import AuthService from "../auth/auth.service";
 
 
 
-//let totalPage = 1;
+let totalPage = 0;
 let action = 'launchDateAsc';
 
 let typeFilter = 'All';
@@ -18,6 +18,18 @@ let timeChangePrice = true;
 let changePriceDataBase = 1;
 let max = 101;
 let min = -100;
+
+
+function getTotalPage() {
+    return totalPage;
+}
+function setTotalPage(value) {
+    totalPage = value;
+}
+function initTotalPage() {
+    totalPage = 1;
+}
+
 
 function initMin() {
     min = -100;
@@ -429,14 +441,14 @@ function theGraphe() {
 function contractSpooky() {
     return axios.get(AuthService.getUrl() + `contractSpooky/`)
         .then(response => {
-            console.log('heeey',response.data);
+            console.log('heeey', response.data);
             setListAllContract(response.data)
             return response.data;
         })
 }
 
 
-function coinmarketCap(id,slug, coinMarketCapLink,coinMarketCapStatus,idCoinMarketCap) {
+function coinmarketCap(id, slug, coinMarketCapLink, coinMarketCapStatus, idCoinMarketCap) {
     return axios.get(AuthService.getUrl() + `coinmarketCap?id=${id}&slug=${slug}&coinMarketCapLink=${coinMarketCapLink}&coinMarketCapStatus=${coinMarketCapStatus}&idCoinMarketCap=${idCoinMarketCap}`)
         .then(response => {
             /*   if (response.status === 200) {
@@ -469,7 +481,7 @@ function configContract(configContract) {
         configContract: configContract
     })
         .then(response => {
-            console.log('updatePrice',getPriceList());
+            console.log('updatePrice', getPriceList());
             updatePrice(getPriceList())
             return response.data;
         })
@@ -564,5 +576,8 @@ export default {
     setMax,
     initMin,
     getMin,
-    setMin
+    setMin,
+    getTotalPage,
+    setTotalPage,
+    initTotalPage
 };
