@@ -2,21 +2,19 @@ import styleModal from "../../../../styles/modalVote.module.scss";
 import AuthService from "../../../../services/auth/auth.service";
 import React, { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
-import ReCAPTCHA from "react-google-recaptcha";
 import { useNavigate } from 'react-router-dom';
+import ReCAPTCHA from "react-google-recaptcha";
 import style from "../Home.module.scss";
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 
+const url = AuthService.getUrl();
 
-const TopRankedTokens = () => {
 
-    const url = AuthService.getUrl();
+const PromotedToken = () => {
 
-    const [user, setUser] = useState([]);
     const [elements, setElements] = useState([]);
-
-
+    const [user, setUser] = useState([]);
     const [captcha, setCaptcha] = useState(null);
     const [verifVoteToday, setVerifVoteToday] = useState(false);
     const [data, setData] = useState({
@@ -29,7 +27,7 @@ const TopRankedTokens = () => {
         statistique: "",
         limiteUser: []
     });
-    let res4= [];
+
     let date = new Date();
     let mondayUtc = (date.getUTCMonth() + 1)
     mondayUtc = parseInt(mondayUtc);
@@ -47,16 +45,12 @@ const TopRankedTokens = () => {
 
     useEffect(() => {
         setUser(AuthService.getCurrentUser());
-        fetch(url + 'getTopRanked')
+        fetch(url + 'getPromotedProject')
             .then((res) => res.json())
             .then((res) => {
-                for (let i = 0; i <= 3; i++) {
-                    res4.push(res[i])
-                  }
-                setElements(res4);
+                setElements(res);
             })
     }, []);
-
 
 
     function buy(contractAdress, coinId, points, pointsTwentyHour, pointsCacul, statistique) {
@@ -92,7 +86,7 @@ const TopRankedTokens = () => {
                             };
                             fetch(url + `pointCalcul/?id=${coinId}&type=buy`, requestOptions)
                                 .then(response => response.json())
-                                .finally(() => { setElements([]); getTopRankedRequest(); handleClose() })
+                                .finally(() => { setElements([]); getPromotedProjecRequest(); handleClose() })
 
                         })
                 }
@@ -107,15 +101,13 @@ const TopRankedTokens = () => {
     }
 
 
-    function getTopRankedRequest() {
-        fetch(url + 'getTopRanked')
+    function getPromotedProjecRequest() {
+        fetch(url + 'getPromotedProject')
             .then((res) => res.json())
             .then((res) => {
-                for (let i = 0; i <= 3; i++) {
-                    res4.push(res[i])
-                  }
-                setElements(res4);
+                setElements(res);
             })
+
     }
 
     const [open, setOpen] = React.useState(false);
@@ -136,37 +128,37 @@ const TopRankedTokens = () => {
         p: 4,
     };
 
-    /* const history = useHistory(); */
 
     const navigate = useNavigate();
-
-    function login() {
-        /*  history.push(`/login/`) */
-        navigate(`/login/`);
-    }
-
 
     const Propagation = e => {
         e.stopPropagation();
     }
 
+
+    function login() {
+        navigate(`/login/`);
+    }
+
+
+
+
     function nav(url) {
         navigate(url);
     }
+
+
 
     function onChangeCaptcha(value) {
         setCaptcha(value);
     }
 
 
-
     function vote(coinId, name, image, points, pointsTwentyHour, pointsCacul, statistique) {
         setCaptcha(null);
         setData({ id: coinId, name: name, image: url + image, points: points, pointsTwentyHour: pointsTwentyHour, pointsCacul: pointsCacul, statistique: statistique });
         if (user !== null) {
-
             let verif = false;
-
             AuthService.getPointsLimitUser(user.id).then((res) => {
                 setData({ id: coinId, name: name, image: url + image, points: points, pointsTwentyHour: pointsTwentyHour, pointsCacul: pointsCacul, statistique: statistique, limiteUser: res });
                 for (let i = 0; i < res.length; i++) {
@@ -190,6 +182,7 @@ const TopRankedTokens = () => {
     }
 
     const addPoints = () => {
+
         let element = { id: data.id, type: "vote", hour: date.getUTCHours(), day: dateUtc, value: 1 }
         fetch(url + `addPuntos/?id=${user.id}`, {
             method: "Put",
@@ -197,6 +190,7 @@ const TopRankedTokens = () => {
             body: JSON.stringify({ element: element, list: data.limiteUser })
         })
             .then((res) => {
+
                 res.json()
                 const requestOptions = {
                     method: 'PUT',
@@ -205,11 +199,10 @@ const TopRankedTokens = () => {
                 };
                 fetch(url + `pointCalcul/?id=${data.id}&type=vote`, requestOptions)
                     .then(response => response.json())
-                    .finally(() => { setElements([]); getTopRankedRequest(); handleClose() })
+                    .finally(() => { setElements([]); getPromotedProjecRequest(); handleClose() })
 
             })
     };
-
 
 
     return (
@@ -220,8 +213,9 @@ const TopRankedTokens = () => {
                     <div className={style.divAllInfo}>
                         {
                             item.kyc && <p className={style.KYCButton}>KYC</p>}
+
                         <div className={style.imgCrown}></div>
-                        <img src={url + item.image} className={style.imgProjectLogo} alt='img'></img>
+                        <img src={url + item.image} className={style.imgProjectLogo} alt='project_logo'></img>
                         <h1 className={style.projectName}>{item.name}</h1>
                         {item.launchDate >= dateUtc && <p className={style.presaleButton}>PreSale</p>}
                         <div className={style.list}>
@@ -229,7 +223,7 @@ const TopRankedTokens = () => {
                                 <tbody>
                                     <tr><td className={style.pointer}>Type: </td><td className={style.pointedItem}>{item.type}</td></tr>
                                     <tr><td className={style.pointer}>Market Cap: </td><td className={style.pointedItem}>$ {item.marketCap.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</td></tr>
-                                    <tr><td className={style.pointer}>Price: </td><td className={style.pointedItem}>$ {item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</td></tr>
+                                    <tr><td className={style.pointer}>Price: </td><td className={style.pointedItem}>$ {item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}</td></tr>
                                     <tr><td className={style.pointer}>Change in 24h: </td><td className={style.pointedItem}>{item.percent_change_24h} %   {item.percent_change_24h > 0 && <img src={url + "assets/Up-arrow.png"} className={style.imgUpArrow} alt='Up-arrow'></img>}  {item.percent_change_24h < 0 && <img src={url + "assets/Down-arrow.png"} className={style.imgUpArrow} alt='Down-arrow'></img>}</td></tr>
                                     <tr><td className={style.pointer}>Launch: </td><td className={style.pointedItem}>{item.launchDate}</td></tr>
                                     <tr><td className={style.pointer}>Votes: </td><td className={style.pointedItem}>{item.statistique.global.vote}</td></tr>
@@ -282,12 +276,10 @@ const TopRankedTokens = () => {
                 </Box>
             </Modal>
         </div >
-
-
     );
 }
 
-export default TopRankedTokens;
+export default PromotedToken;
 
 
 

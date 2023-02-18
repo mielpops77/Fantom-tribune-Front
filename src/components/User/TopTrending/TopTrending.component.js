@@ -16,11 +16,6 @@ import Box from '@mui/material/Box';
 
 const TopTrending = () => {
 
-  let a = [
-    {}
-  ];
-  console.log('hello world!!', a[0].id);
-
   const url = AuthService.getUrl();
 
   let [database, seDatabase] = useState([])
@@ -421,6 +416,8 @@ const TopTrending = () => {
   }
 
   function next() {
+    console.log('heeey');
+
     if (pagination.pageActuel < TableLaunchService.totalPage) {
 
       seDatabase([]);
@@ -437,6 +434,7 @@ const TopTrending = () => {
   }
 
   function previous() {
+    console.log('heeey');
 
     if (pagination.pageActuel > 1) {
       seDatabase([]);
@@ -520,7 +518,7 @@ const TopTrending = () => {
   return (
     <div className={style.topTrending_fond}>
       {/* <NavigationUserComponent /> */}
-    {/*   <div className={style.topTrending_mainDiv}>
+      {/*   <div className={style.topTrending_mainDiv}>
         <div className={style.topTrending_divSectionTitle}>
           <img src={url + "assets/ranked_arrows.png"} className={style.topTrending_imgLogoSection} alt='ranked_arrow'></img>
           <p className={style.topTrending_sectionTitle}>Top Ranked <span className={style.topTrending_tokensTitle}>Tokens</span> </p>
@@ -567,7 +565,7 @@ const TopTrending = () => {
                 <td className={style.topTrending_td}>$ {row.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}</td>
                 <td className={style.topTrending_td}>$ {row.coinMarket.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</td>
                 <td className={style.topTrending_td}> {row.percent_change_24h} %   {row.percent_change_24h > 0 && <img src={url + "assets/Up-arrow.png"} className={style.topTrending_imgUpArrow} alt='Up-arrow'></img>}  {row.percent_change_24h < 0 && <img src={url + "assets/Down-arrow.png"} className={style.topTrending_imgUpArrow} alt='Down-arrow'></img>} </td>
-                <td className={style.topTrending_td}>{row.pointsTwentyHour}</td>
+                <td className={style.topTrending_td}>{row.statistique.global.vote}</td>
                 <td className={style.topTrending_td}>
                   <button type="button" onClick={function (event) { Propagation(event); vote(row.id, row.name, row.image, row.points, row.pointsTwentyHour, row.pointsCacul, row.statistique) }} className={style.topTrending_voteButton}>Vote</button>
                 </td>
@@ -581,9 +579,39 @@ const TopTrending = () => {
         </table>
 
         <div className={style.topTrending_pagination}>
-          <span className={style.topTrending_paginationPageActuel}>1 - {TableLaunchService.totalPage} of {pagination.pageActuel}</span>
-          <a className={style.topTrending_paginationPageActuel > 1 ? "" : "disable"} onClick={previous} href="#">❮</a>
-          <a className={style.topTrending_paginationPageActuel < TableLaunchService.totalPage ? "" : "disable"} onClick={next} href="#">❯</a>
+          {pagination.pageActuel == 1 &&
+            <div className={style.blockPaginationDisable} >
+              <a className={style.topTrending_paginationPageActuelDisable /* > 1 ? "" : "disable" */} >❮</a>
+            </div>
+          }
+
+          {pagination.pageActuel > 1 &&
+            <div className={style.blockPagination} onClick={previous}>
+              <a className={style.topTrending_paginationPageActuel /* > 1 ? "" : "disable" */}  >❮</a>
+            </div>
+          }
+
+
+
+          <div className={style.blockPagination2}>
+
+            <span className={style.topTrending_paginationPageActuel}> Page {pagination.pageActuel} of {TableLaunchService.totalPage}</span>
+
+          </div>
+          {pagination.pageActuel < TableLaunchService.totalPage &&
+            <div className={style.blockPagination3} onClick={next}>
+              <a className={style.topTrending_paginationPageActuel /* < TableLaunchService.totalPage ? "" : "disable" */} >❯</a>
+            </div>}
+
+          {pagination.pageActuel == TableLaunchService.totalPage &&
+            <div className={style.blockPagination3Disable} >
+              <a className={style.topTrending_paginationPageActuelDisable /* < TableLaunchService.totalPage ? "" : "disable" */} >❯</a>
+            </div>}
+
+
+          {/* <span className={style.topTrending_paginationPageActuel}>1 - {TableLaunchService.totalPage} of {pagination.pageActuel}</span> */}
+          {/* <a className={style.topTrending_paginationPageActuel > 1 ? "" : "disable"} onClick={previous} href="#">❮</a>
+          <a className={style.topTrending_paginationPageActuel < TableLaunchService.totalPage ? "" : "disable"} onClick={next} href="#">❯</a> */}
         </div>
 
         <Modal className={styleModal.modalBackground}

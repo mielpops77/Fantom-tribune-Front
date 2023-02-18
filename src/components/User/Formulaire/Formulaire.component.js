@@ -29,6 +29,7 @@ function Formulaire() {
 
   useEffect(() => {
     setUser(AuthService.getCurrentUser());
+
   }, [])
 
 
@@ -206,6 +207,7 @@ function Formulaire() {
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
+    console.log("name", value);
     setInputs(values => ({ ...values, [name]: value }))
   }
   const prevente = (event) => {
@@ -231,7 +233,6 @@ function Formulaire() {
       if (inputs.coinMarketCapLink === undefined) {
         coinMarketCapLink = 'none';
         coinMarketCapStatus = 'none';
-
       }
       else {
         coinMarketCapStatus = "en cours de validation"
@@ -257,6 +258,15 @@ function Formulaire() {
       }
 
 
+      if (inputs.capMaxToken === undefined) {
+        inputs.capMaxToken = '$';
+      }
+
+      if (inputs.capMinToken === undefined) {
+        inputs.capMinToken = '$';
+      }
+
+
 
       let contractAddress = inputs.contractAddress;
 
@@ -273,7 +283,7 @@ function Formulaire() {
         body: JSON.stringify({
           name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: contractAddress, description: inputs.description, type: type,
           websiteLink: inputs.websiteLink, coinMarketCapLink: coinMarketCapLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, points: 0, pointsTwentyHour: 0, pointsCacul: pointsCacul, price: 0, marketCap: 0, supply: 0, coinMarketCapStatus: coinMarketCapStatus, idCoinMarketCap: 0, listePriceIdCoinMarketCap: listePriceIdCoinMarketCap, percent_change_24h: 0, promotedStatus: false, kyc: kyc,
-          emailCrea: user.email, usernameCrea: user.username, statistique: statistique, kycProof: inputs.kycProof, launchDateHour: inputs.launchDateHour
+          emailCrea: user.email, usernameCrea: user.username, statistique: statistique, kycProof: inputs.kycProof, launchDateHour: inputs.launchDateHour, capMax: inputs.capMax, capMin: inputs.capMin, capMaxToken: inputs.capMaxToken, capMinToken: inputs.capMinToken, presale: prev
         })
       };
       fetch(url + 'launchDate', requestOptions)
@@ -418,6 +428,53 @@ function Formulaire() {
             />
 
           </label>}
+
+
+        {
+          prev === "yes" &&
+          <div className={style.inline}>
+            <label className={style.formLabel2}>Token Sale Hard CapMax Fund Raising Goal:
+              <input className={style.formInput2}
+                type="text"
+                name="capMax"
+                value={inputs.capMax || ""}
+                onChange={handleChange}
+                required="required"
+              /></label>
+            <label className={style.formLabel2}> Token Sale Hard Cap Currency:
+              <select className={style.formInput2}
+                type="text"
+                name="capMaxToken"
+                // value={inputs.websiteLink || ""}
+                onChange={handleChange}
+                required="required"
+              > <option value="$">$</option>
+                <option value="FTM">FTM</option></select></label>
+
+          </div>}
+
+        {
+          prev === "yes" &&
+          <div className={style.inline}>
+            <label className={style.formLabel2}>Token Sale Soft CapMinimum amount required:
+              <input className={style.formInput2}
+                type="text"
+                name="capMin"
+                value={inputs.capMin || ""}
+                onChange={handleChange}
+                required="required"
+              /></label>
+            <label className={style.formLabel2}>Token Sale Soft Cap Currency:
+              <select className={style.formInput2}
+                type="text"
+                name="capMinToken"
+                // value={inputs.websiteLink || ""}
+                onChange={handleChange}
+                required="required"
+              > <option value="$">$</option>
+                <option value="FTM">FTM</option></select></label>
+
+          </div>}
 
         {
           prev === "no" &&

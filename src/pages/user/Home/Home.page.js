@@ -1,13 +1,14 @@
-/* import NavigationUserComponent from './components/Navigation/NavigationUser/NavigationUser.component';
-import PromotedTokenComponent from './components/User/Home/PromotedTokens/PromotedToken.component';
-import TopRankedTokens from './components/User/Home/TopRankedTokens/TopRankedTokens.component';
-import PresaleTokens from './components/User/Home/PresaleTokens/PresaleToken.component';
-import FooterComponent from './components/Navigation/Footer/Footer.component';
-import FilterComponent from './components/Navigation/Filter/Filter2.component';
-import AuthService from "../src/services/auth/auth.service";
-import style from './components/User/Home/Home.module.scss';
-import HolderBalance from '../src/services/tableauLaunh/HolderBalance';
+import NavigationUserComponent from '../../../components/Navigation/NavigationUser/NavigationUser.component';
+import PromotedTokenComponent from '../../../components/User/Home/PromotedTokens/PromotedToken.component';
+import TopRankedTokens from '../../../components/User/Home/TopRankedTokens/TopRankedTokens.component';
+import PresaleTokens from '../../../components/User/Home/PresaleTokens/PresaleToken.component';
+import FooterComponent from '../../../components/Navigation/Footer/Footer.component';
+import FilterComponent from '../../../components/Navigation/Filter/Filter2.component';
+import HolderBalance from '../../../../src/services/tableauLaunh/HolderBalance';
+import AuthService from '../../../../src/services/auth/auth.service';
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import style from './Home.page.module.scss';
 
 const Home = () => {
     const url = AuthService.getUrl();
@@ -21,8 +22,11 @@ const Home = () => {
                 setPromotedNbr(res.length);
             })
     }, []);
+    const navigate = useNavigate();
 
-
+    function nav(path) {
+        navigate(path);
+      }
     return (
 
         <div className={style.mainDiv}>
@@ -47,15 +51,23 @@ const Home = () => {
                 <p className={style.sectionTitle}>Top Ranked <span className={style.tokensTitle}>Tokens</span> </p>
             </div>
             <TopRankedTokens />
+            <div>
+            <button onClick={() => nav(`/topTrending/`)} className={style.infosRubrique}>See more</button>
+
+            </div>
+
             <div className={style.divSectionTitle}>
                 <img src={url + "assets/presale2.png"} className={style.imgLogoSection} alt='ranked_arrow'></img>
                 <p className={style.sectionTitle}>Presale <span className={style.tokensTitle}>Tokens</span> </p>
             </div>
+
             <PresaleTokens />
+            <button onClick={() => nav(`/presales/`)}  className={style.infosRubrique}>See more</button>
+
             <br /><br /><br /><br /><br />
             <FooterComponent />
         </div >
     )
 }
 
-export default Home; */
+export default Home;

@@ -1,15 +1,82 @@
+.blockPagination {
+  border-radius: 7px;
+  text-align: center;
+  background-color: rgba(51, 122, 254, 0.153);
+  width: 50px;
+  // height: 20px;
+  align-self: center;
+  margin-bottom: 1%;
+  &:hover {
+    cursor:pointer;
+    background-color: #050945;
+  }
+}
+
+.blockPaginationDisable {
+  border-radius: 7px;
+  text-align: center;
+  background-color: rgba(51, 122, 254, 0.153);
+  width: 50px;
+  // height: 20px;
+  align-self: center;
+  margin-bottom: 1%;
+}
+
+
+.blockPagination2 {
+  border-radius: 7px;
+  margin-right: 1%;
+  margin-left: 1%;
+  margin-bottom: 1%;
+  color: #c0d3df;
+  background-color: rgba(51, 122, 254, 0.153);
+  width: 150px;
+  // height: 20px;
+  text-align: center;
+  // margin-bottom: 1%;
+  align-self: center;
+
+}
+.blockPagination3 {
+  border-radius: 7px;
+  text-align: center;
+  background-color: rgba(51, 122, 254, 0.153);
+  width: 50px;
+  // height: 20px;
+  align-self: center;
+  margin-right: 1%;
+  margin-bottom: 1%;
+  &:hover {
+    cursor:pointer;
+    background-color: #050945;
+  }
+}
+
+
+.blockPagination3Disable {
+  border-radius: 7px;
+  text-align: center;
+  background-color: rgba(51, 122, 254, 0.153);
+  width: 50px;
+  // height: 20px;
+  align-self: center;
+  margin-right: 1%;
+  margin-bottom: 1%;
+}
+
 @media all and (max-width: 1024px) {
   .topTrending_fond {
     // background-color: #050945;
     // #292931
     tr:nth-child(2n + 1) {
       background-color: #131325;
+      text-align: center;
 
       &:hover {
         background-color: #050945;
       }
     }
-    tr:nth-child(2n ) {
+    tr:nth-child(2n) {
       background-color: #292931;
       &:hover {
         background-color: #050945;
@@ -143,6 +210,7 @@
         vertical-align: middle;
         color: #ffffff;
         font-size: 1.1vw;
+        text-align: center;
 
         .topTrending_voteButton {
           color: #ffffff;
@@ -171,8 +239,11 @@
         height: auto;
 
         .topTrending_paginationPageActuel {
-          margin-top: 1%;
-          margin-right: 1%;
+          color: #c0d3df;
+        }
+        .topTrending_paginationPageActuelDisable {
+          color: #c0d3df;
+          pointer-events: none;
         }
 
         .topTrending_pagination a {
@@ -208,12 +279,13 @@
     // #292931
     tr:nth-child(2n + 1) {
       background-color: #131325;
+      text-align: center;
 
       &:hover {
         background-color: #050945;
       }
     }
-    tr:nth-child(2n ) {
+    tr:nth-child(2n) {
       background-color: #292931;
       &:hover {
         background-color: #050945;
@@ -336,19 +408,18 @@
       //#28232c
       border-radius: 15px;
       box-shadow: 0px 0px 14px 2px rgba(105, 130, 241, 0.555);
-   
 
       .topTrending_thPointer {
         cursor: "pointer";
         color: #3888e5;
         font-size: 1.1vw;
         background-color: #292931;
-        
       }
       .topTrending_td {
         vertical-align: middle;
         color: #ffffff;
         font-size: 1.1vw;
+        text-align: center;
 
         .topTrending_voteButton {
           color: #ffffff;
@@ -377,8 +448,11 @@
         height: auto;
 
         .topTrending_paginationPageActuel {
-          margin-top: 1%;
-          margin-right: 1%;
+          color: #c0d3df;
+        }
+        .topTrending_paginationPageActuelDisable {
+          color: #c0d3df;
+          pointer-events: none;
         }
 
         .topTrending_pagination a {

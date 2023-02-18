@@ -1,73 +1,815 @@
 @import "../../../styles/setting";
 
-@media all and (max-width: 1024px){ 
-  nav { 
+@media (min-width: 0px) and (max-width: 320px) {
+  .versionMobile {
+    .menuLiActive {
+      border-bottom: 3px solid;
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+      color: $color-1;
+      padding-top: 16px;
+      padding-bottom: 12px;
+      padding-left: 0;
+      width: 100%;
+      text-align: left;
+      font-family: "source-sans-pro", helvetica;
+      font-size: 16px;
+      line-height: 21px;
+      &:hover {
+        color: $color-1;
+      }
+    }
+
+    .menuLiInactive {
+      border-bottom: 3px solid;
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+      color: white;
+      padding-top: 16px;
+      padding-bottom: 12px;
+      padding-left: 0;
+      width: 100%;
+      text-align: left;
+      font-family: "source-sans-pro", helvetica;
+      font-size: 16px;
+      line-height: 21px;
+      &:hover {
+        color: $color-1;
+      }
+    }
+  }
+
+  nav {
+    .menuMobile {
+      margin-right: 8%;
+    }
+
+    align-items: center;
+    width: 100%;
+    height: auto;
+
+    .divLoginRegister {
+      display: none;
+    }
+    .fantom_tribune {
+      display: flex;
+      align-items: center;
+      margin-left: 1%;
+      width: 100%;
+
+      .imgLogo {
+        width: 20%;
+        height: auto;
+        float: left;
+        object-fit: cover;
+      }
+
+      .title {
+        font-size: 20px;
+        letter-spacing: -1px;
+        color: #ffffff;
+      }
+    }
+    .ulNavUser {
+      display: none;
+    }
+    .divCurrentUser {
+      display: none;
+    }
+  }
+}
+@media (min-width: 321px) and (max-width: 375px) {
+  .versionMobile {
+    .menuLiActive {
+      border-bottom: 3px solid;
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+      color: $color-1;
+      padding-top: 16px;
+      padding-bottom: 12px;
+      padding-left: 0;
+      width: 100%;
+      text-align: left;
+      font-family: "source-sans-pro", helvetica;
+      font-size: 16px;
+      line-height: 21px;
+      &:hover {
+        color: $color-1;
+      }
+    }
+
+    .menuLiInactive {
+      border-bottom: 3px solid;
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+      color: white;
+      padding-top: 16px;
+      padding-bottom: 12px;
+      padding-left: 0;
+      width: 100%;
+      text-align: left;
+      font-family: "source-sans-pro", helvetica;
+      font-size: 16px;
+      line-height: 21px;
+      &:hover {
+        color: $color-1;
+      }
+    }
+  }
+
+  nav {
+    .menuMobile {
+      margin-right: 11%;
+    }
+
+    .divLoginRegister {
+      display: none;
+    }
+
+    align-items: center;
+    width: 100%;
+    height: auto;
+
+    .fantom_tribune {
+      display: flex;
+      align-items: center;
+      margin-left: 1%;
+      width: 100%;
+
+      .imgLogo {
+        width: 20%;
+        height: auto;
+        float: left;
+        object-fit: cover;
+      }
+
+      .title {
+        font-size: 20px;
+        letter-spacing: -1px;
+        color: #ffffff;
+      }
+    }
+    .ulNavUser {
+      display: none;
+    }
+    .divCurrentUser {
+      display: none;
+    }
+  }
+}
+@media (min-width: 376px) and (max-width: 414px) {
+  .versionMobile {
+    .menuLiActive {
+      border-bottom: 3px solid;
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+      color: $color-1;
+      padding-top: 16px;
+      padding-bottom: 12px;
+      padding-left: 0;
+      width: 100%;
+      text-align: left;
+      font-family: "source-sans-pro", helvetica;
+      font-size: 16px;
+      line-height: 21px;
+      &:hover {
+        color: $color-1;
+      }
+    }
+
+    .menuLiInactive {
+      border-bottom: 3px solid;
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+      color: white;
+      padding-top: 16px;
+      padding-bottom: 12px;
+      padding-left: 0;
+      width: 100%;
+      text-align: left;
+      font-family: "source-sans-pro", helvetica;
+      font-size: 16px;
+      line-height: 21px;
+      &:hover {
+        color: $color-1;
+      }
+    }
+  }
+
+  nav {
+    .menuMobile {
+      margin-right: 16%;
+    }
+
+    align-items: center;
+    width: 100%;
+    height: auto;
+
+    .divLoginRegister {
+      display: none;
+    }
+    
+    .fantom_tribune {
+      display: flex;
+      align-items: center;
+      margin-left: 1%;
+      width: 100%;
+
+      .imgLogo {
+        width: 20%;
+        height: auto;
+        float: left;
+        object-fit: cover;
+      }
+
+      .title {
+        font-size: 20px;
+        letter-spacing: -1px;
+        color: #ffffff;
+      }
+    }
+    .ulNavUser {
+      display: none;
+    }
+    .divCurrentUser {
+      display: none;
+    }
+  }
+}
+
+@media (min-width: 415px) and (max-width: 768px) {
+  .versionMobile {
+    .menuLiActive {
+      border-bottom: 3px solid;
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+      color: $color-1;
+      padding-top: 16px;
+      padding-bottom: 12px;
+      padding-left: 0;
+      width: 100%;
+      text-align: left;
+      font-family: "source-sans-pro", helvetica;
+      font-size: 16px;
+      line-height: 21px;
+      &:hover {
+        color: $color-1;
+      }
+    }
+
+    .menuLiInactive {
+      border-bottom: 3px solid;
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+      color: white;
+      padding-top: 16px;
+      padding-bottom: 12px;
+      padding-left: 0;
+      width: 100%;
+      text-align: left;
+      font-family: "source-sans-pro", helvetica;
+      font-size: 16px;
+      line-height: 21px;
+      &:hover {
+        color: $color-1;
+      }
+    }
+  }
+
+  nav {
+    .menuMobile {
+      margin-right: 16%;
+    }
+
+    align-items: center;
+    width: 100%;
+    height: auto;
+
+    .divLoginRegister {
+      display: none;
+    }
+    .fantom_tribune {
+      display: flex;
+      align-items: center;
+      margin-left: 1%;
+      width: 100%;
+
+      .imgLogo {
+        width: 20%;
+        height: auto;
+        float: left;
+        object-fit: cover;
+      }
+
+      .title {
+        font-size: 20px;
+        letter-spacing: -1px;
+        color: #ffffff;
+      }
+    }
+    .ulNavUser {
+      display: none;
+    }
+    .divCurrentUser {
+      display: none;
+    }
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .ulMobile {
+    display: none;
+  }
+  nav {
+    .menuMobile {
+      display: none;
+    }
     display: flex;
     align-items: center;
     width: 100%;
     height: auto;
 
-    .fantom_tribune{
+    .fantom_tribune {
       display: flex;
       align-items: center;
-      margin-left:1%;
-      width:10%;
-  
-      .imgLogo{
+      margin-left: 1%;
+      width: 10%;
+
+      .imgLogo {
         width: 80%;
         height: auto;
         float: left;
         object-fit: cover;
       }
-  
-      .title{
+
+      .title {
         margin: auto;
         width: 75%;
         letter-spacing: -1px;
-        color: #FFFFFF;
+        color: #ffffff;
         font-size: 2vw;
       }
     }
 
-    .ulNavUser{
+    .ulNavUser {
       display: flex;
       justify-content: space-around;
       width: 75%;
-      margin:auto;
+      margin: auto;
 
       .liNavUser {
         font-size: 1.5vw;
         color: $color-2;
         transition: 0.2s;
-        
+
         letter-spacing: -0.5px;
         cursor: pointer;
         text-align: center;
-    
+
         &:hover {
           color: $color-1;
         }
       }
 
-      #subToken{
-        background-color:#3B96FF;
+      #subToken {
+        background-color: #3b96ff;
         padding: 2px 8px 2px 6px;
         border-radius: 10px;
-      }  
+      }
     }
 
-    .divCurrentUser{
+    .divCurrentUser {
       width: 8%;
       display: flex;
       align-items: center;
 
-      .imgUser{
+      .imgUser {
         max-width: 3vw;
       }
     }
-  } 
+    .divLoginRegister {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+
+      .login {
+        margin: 1%;
+        font-size: 0.8vw;
+        padding: 3%;
+        text-align: center;
+        color: #450ca0;
+        background-color: #52fdfd;
+        border-radius: 100px;
+        height: auto;
+        width: 8vw;
+        right: 100px;
+
+        &:hover {
+          color: $color-3;
+        }
+      }
+
+      .logOut {
+        margin: 7%;
+        font-size: 1.1vw;
+        padding: 5%;
+        text-align: center;
+        color: #fefdff;
+        background-color: #071cff;
+        border-radius: 100px;
+        height: auto;
+        width: 8vw;
+        right: 100px;
+
+        &:hover {
+          color: $color-1;
+        }
+      }
+    }
+
+    .nav-active {
+      &::after {
+        content: "";
+        height: 4px;
+        width: 0;
+        position: absolute;
+        border-radius: 10px;
+        bottom: 0px;
+        left: 50%;
+        transform: translateX(-50%);
+        -webkit-animation: anim 0.3s ease forwards;
+        animation: anim 0.6s ease forwards;
+        z-index: 4;
+
+        @-webkit-keyframes anim {
+          to {
+            width: 100%;
+          }
+        }
+        @keyframes anim {
+          to {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
 }
 
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .ulMobile {
+    display: none;
+  }
+  nav {
+    .menuMobile {
+      display: none;
+    }
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: auto;
+
+    .fantom_tribune {
+      display: flex;
+      align-items: center;
+      margin-left: 1%;
+      width: 10%;
+
+      .imgLogo {
+        width: 80%;
+        height: auto;
+        float: left;
+        object-fit: cover;
+      }
+
+      .title {
+        margin: auto;
+        width: 75%;
+        letter-spacing: -1px;
+        color: #ffffff;
+        font-size: 2vw;
+      }
+    }
+
+    .ulNavUser {
+      display: flex;
+      justify-content: space-around;
+      width: 75%;
+      margin: auto;
+
+      .liNavUser {
+        font-size: 1.5vw;
+        color: $color-2;
+        transition: 0.2s;
+
+        letter-spacing: -0.5px;
+        cursor: pointer;
+        text-align: center;
+
+        &:hover {
+          color: $color-1;
+        }
+      }
+
+      #subToken {
+        background-color: #3b96ff;
+        padding: 2px 8px 2px 6px;
+        border-radius: 10px;
+      }
+    }
+
+    .divCurrentUser {
+      width: 8%;
+      display: flex;
+      align-items: center;
+
+      .imgUser {
+        max-width: 3vw;
+      }
+    }
+    .divLoginRegister {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+
+      .login {
+        margin: 1%;
+        font-size: 0.8vw;
+        padding: 3%;
+        text-align: center;
+        color: #450ca0;
+        background-color: #52fdfd;
+        border-radius: 100px;
+        height: auto;
+        width: 8vw;
+        right: 100px;
+
+        &:hover {
+          color: $color-3;
+        }
+      }
+
+      .logOut {
+        margin: 7%;
+        font-size: 1.1vw;
+        padding: 5%;
+        text-align: center;
+        color: #fefdff;
+        background-color: #071cff;
+        border-radius: 100px;
+        height: auto;
+        width: 8vw;
+        right: 100px;
+
+        &:hover {
+          color: $color-1;
+        }
+      }
+    }
+
+    .nav-active {
+      &::after {
+        content: "";
+        height: 4px;
+        width: 0;
+        position: absolute;
+        border-radius: 10px;
+        bottom: 0px;
+        left: 50%;
+        transform: translateX(-50%);
+        -webkit-animation: anim 0.3s ease forwards;
+        animation: anim 0.6s ease forwards;
+        z-index: 4;
+
+        @-webkit-keyframes anim {
+          to {
+            width: 100%;
+          }
+        }
+        @keyframes anim {
+          to {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1281px) and (max-width: 7000px) {
+  .ulMobile {
+    display: none;
+  }
+
+  nav {
+    .menuMobile {
+      display: none;
+    }
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: auto;
+
+    .fantom_tribune {
+      display: flex;
+      align-items: center;
+      margin-left: 1.5%;
+      width: 28%;
+
+      .imgLogo {
+        width: 100%;
+        max-width: 100px;
+        min-width: 30px;
+        height: auto;
+        max-height: 100px;
+        min-height: 30px;
+        float: left;
+        object-fit: cover;
+      }
+
+      .title {
+        margin-left: 5%;
+        max-width: 75%;
+        vertical-align: middle;
+        letter-spacing: -1.44px;
+        color: #ffffff;
+        font-size: 2vw;
+      }
+    }
+
+    .ulNavUser {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 62%;
+      margin-right: 3%;
+      margin-top: 1%;
+
+      .liNavUser {
+        font-size: 1.1vw;
+        color: $color-2;
+        transition: 0.2s;
+        cursor: pointer;
+
+        &:hover {
+          color: $color-1;
+        }
+      }
+      .liNavUser::selection {
+        background-color: #071cff;
+      }
+
+      #subToken {
+        background-color: #3b96ff;
+        padding: 6px 25px 6px 18px;
+        border-radius: 10px;
+      }
+    }
+
+    .divCurrentUser {
+      width: 4%;
+      display: flex;
+      align-items: center;
+
+      .imgUser {
+        max-width: 5vw;
+
+        margin: auto;
+      }
+    }
+
+    .divLoginRegister {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+
+      .login {
+        margin: 1%;
+        font-size: 0.8vw;
+        padding: 3%;
+        text-align: center;
+        color: #450ca0;
+        background-color: #52fdfd;
+        border-radius: 100px;
+        height: auto;
+        width: 8vw;
+        right: 100px;
+
+        &:hover {
+          color: $color-3;
+        }
+      }
+
+      .logOut {
+        margin: 7%;
+        font-size: 1.1vw;
+        padding: 5%;
+        text-align: center;
+        color: #fefdff;
+        background-color: #071cff;
+        border-radius: 100px;
+        height: auto;
+        width: 8vw;
+        right: 100px;
+
+        &:hover {
+          color: $color-1;
+        }
+      }
+    }
+
+    .nav-active {
+      &::after {
+        content: "";
+        height: 4px;
+        width: 0;
+        position: absolute;
+        border-radius: 10px;
+        bottom: 0px;
+        left: 50%;
+        transform: translateX(-50%);
+        -webkit-animation: anim 0.3s ease forwards;
+        animation: anim 0.6s ease forwards;
+        z-index: 4;
+
+        @-webkit-keyframes anim {
+          to {
+            width: 100%;
+          }
+        }
+        @keyframes anim {
+          to {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+/* 
+@media (max-width: 1024px) {
+  nav {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: auto;
+
+    .fantom_tribune {
+      display: flex;
+      align-items: center;
+      margin-left: 1%;
+      width: 10%;
+
+      .imgLogo {
+        width: 80%;
+        height: auto;
+        float: left;
+        object-fit: cover;
+      }
+
+      .title {
+        margin: auto;
+        width: 75%;
+        letter-spacing: -1px;
+        color: #ffffff;
+        font-size: 2vw;
+      }
+    }
+
+    .ulNavUser {
+      display: flex;
+      justify-content: space-around;
+      width: 75%;
+      margin: auto;
+
+      .liNavUser {
+        font-size: 1.5vw;
+        color: $color-2;
+        transition: 0.2s;
+
+        letter-spacing: -0.5px;
+        cursor: pointer;
+        text-align: center;
+
+        &:hover {
+          color: $color-1;
+        }
+      }
+
+      #subToken {
+        background-color: #3b96ff;
+        padding: 2px 8px 2px 6px;
+        border-radius: 10px;
+      }
+    }
+
+    .divCurrentUser {
+      width: 8%;
+      display: flex;
+      align-items: center;
+
+      .imgUser {
+        max-width: 3vw;
+      }
+    }
+  }
+} */
+/* 
 @media all and (min-width: 1024px){ 
 
   nav {
@@ -215,4 +957,4 @@
       }
     }
   }
-}
+} */

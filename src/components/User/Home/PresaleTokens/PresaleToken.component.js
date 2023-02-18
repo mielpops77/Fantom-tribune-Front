@@ -2,21 +2,19 @@ import styleModal from "../../../../styles/modalVote.module.scss";
 import AuthService from "../../../../services/auth/auth.service";
 import React, { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
-import { useNavigate } from 'react-router-dom';
 import ReCAPTCHA from "react-google-recaptcha";
-import style from "../Home.module.scss";
+import { useNavigate } from 'react-router-dom';
+import style from "./Presale.module.scss";
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 
-const url = AuthService.getUrl();
 
-
-const PromotedToken = () => {
-
-    const [elements, setElements] = useState([]);
-    const [user, setUser] = useState([]);
-    const [captcha, setCaptcha] = useState(null);
+const PresaleTokens = () => {
     const [verifVoteToday, setVerifVoteToday] = useState(false);
+    const [presaleDate, setPresaleDate] = useState({});
+    const [elements, setElements] = useState([]);
+    const [captcha, setCaptcha] = useState(null);
+    const [user, setUser] = useState([]);
     const [data, setData] = useState({
         id: "",
         name: "",
@@ -27,7 +25,7 @@ const PromotedToken = () => {
         statistique: "",
         limiteUser: []
     });
-
+    const url = AuthService.getUrl();
     let date = new Date();
     let mondayUtc = (date.getUTCMonth() + 1)
     mondayUtc = parseInt(mondayUtc);
@@ -43,14 +41,85 @@ const PromotedToken = () => {
 
     let date1 = new Date(dateUtc);
 
+    const now = new Date();
+    const currentTime = now.toLocaleTimeString("fr-FR", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        timeZone: "UTC"
+    });
+
+
     useEffect(() => {
         setUser(AuthService.getCurrentUser());
-        fetch(url + 'getPromotedProject')
+        fetch(url + 'launchDate/?limite=4&skip=0&action=launchDateAsc&type=All')
             .then((res) => res.json())
             .then((res) => {
                 setElements(res);
-            })
+                
+                const dateActuel = dateUtc + " " + currentTime;
+                let updatedValue = {};
+
+                const datePresales = res.slice(0, 4).map((item) => {
+                    const datePresale = item.launchDate + " " + item.launchDateHour + ":00";
+                    return { id: item._id, diff: diffTime(dateActuel, datePresale) };
+                });
+
+                datePresales.forEach((item) => {
+                    updatedValue[item.id] = item.diff;
+                });
+
+                setPresaleDate((presaleDate) => ({ ...presaleDate, ...updatedValue }));
+                setInterval(() => incrementSecond(res, updatedValue), 1000);
+            });
     }, []);
+
+
+
+    const incrementSecond = (res, presaleDateTempo) => {
+        const maxIndex = res.length <= 3 ? res.length : 4;
+        let updatedPresaleDate = { ...presaleDate };
+
+        for (let i = 0; i < maxIndex; i++) {
+            updatedPresaleDate[res[i]._id] = subtractSecond(presaleDateTempo[res[i]._id]);
+        }
+
+        setPresaleDate(updatedPresaleDate);
+    };
+
+
+
+    function subtractSecond(presaleDateTempo) {
+        const { diffDays, diffHours, diffMinutes, diffSeconds } = presaleDateTempo;
+        let newDiffSeconds = diffSeconds - 1;
+
+        let newDiffMinutes = diffMinutes;
+        if (newDiffSeconds < 0) {
+            newDiffMinutes = diffMinutes - 1;
+            newDiffSeconds = 59;
+        }
+
+        let newDiffHours = diffHours;
+        if (newDiffMinutes < 0) {
+            newDiffHours = diffHours - 1;
+            newDiffMinutes = 59;
+        }
+
+        let newDiffDays = diffDays;
+        if (newDiffHours < 0) {
+            newDiffDays = diffDays - 1;
+            newDiffHours = 23;
+        }
+
+        presaleDateTempo.diffDays = newDiffDays;
+        presaleDateTempo.diffHours = newDiffHours;
+        presaleDateTempo.diffMinutes = newDiffMinutes;
+        presaleDateTempo.diffSeconds = newDiffSeconds;
+
+        return presaleDateTempo;
+    }
+
+
 
 
     function buy(contractAdress, coinId, points, pointsTwentyHour, pointsCacul, statistique) {
@@ -86,7 +155,7 @@ const PromotedToken = () => {
                             };
                             fetch(url + `pointCalcul/?id=${coinId}&type=buy`, requestOptions)
                                 .then(response => response.json())
-                                .finally(() => { setElements([]); getPromotedProjecRequest(); handleClose() })
+                                .finally(() => { setElements([]); getTopRankedRequest(); handleClose() })
 
                         })
                 }
@@ -100,9 +169,8 @@ const PromotedToken = () => {
 
     }
 
-
-    function getPromotedProjecRequest() {
-        fetch(url + 'getPromotedProject')
+    function getTopRankedRequest() {
+        fetch(url + 'launchDate/?limite=4&skip=0&action=launchDateAsc&type=All')
             .then((res) => res.json())
             .then((res) => {
                 setElements(res);
@@ -127,37 +195,37 @@ const PromotedToken = () => {
         p: 4,
     };
 
+    /* const history = useHistory(); */
 
     const navigate = useNavigate();
+
+    function login() {
+        /*  history.push(`/login/`) */
+        navigate(`/login/`);
+    }
+
 
     const Propagation = e => {
         e.stopPropagation();
     }
 
-
-    function login() {
-        navigate(`/login/`);
-    }
-
-
-
-
     function nav(url) {
         navigate(url);
     }
-
-
 
     function onChangeCaptcha(value) {
         setCaptcha(value);
     }
 
 
+
     function vote(coinId, name, image, points, pointsTwentyHour, pointsCacul, statistique) {
         setCaptcha(null);
         setData({ id: coinId, name: name, image: url + image, points: points, pointsTwentyHour: pointsTwentyHour, pointsCacul: pointsCacul, statistique: statistique });
         if (user !== null) {
+
             let verif = false;
+
             AuthService.getPointsLimitUser(user.id).then((res) => {
                 setData({ id: coinId, name: name, image: url + image, points: points, pointsTwentyHour: pointsTwentyHour, pointsCacul: pointsCacul, statistique: statistique, limiteUser: res });
                 for (let i = 0; i < res.length; i++) {
@@ -181,7 +249,6 @@ const PromotedToken = () => {
     }
 
     const addPoints = () => {
-
         let element = { id: data.id, type: "vote", hour: date.getUTCHours(), day: dateUtc, value: 1 }
         fetch(url + `addPuntos/?id=${user.id}`, {
             method: "Put",
@@ -189,7 +256,6 @@ const PromotedToken = () => {
             body: JSON.stringify({ element: element, list: data.limiteUser })
         })
             .then((res) => {
-
                 res.json()
                 const requestOptions = {
                     method: 'PUT',
@@ -198,35 +264,87 @@ const PromotedToken = () => {
                 };
                 fetch(url + `pointCalcul/?id=${data.id}&type=vote`, requestOptions)
                     .then(response => response.json())
-                    .finally(() => { setElements([]); getPromotedProjecRequest(); handleClose() })
+                    .finally(() => { setElements([]); getTopRankedRequest(); handleClose() })
 
             })
     };
 
+    function diffTime(startDate, endDate) {
+        const start = new Date(startDate);
+        const end = new Date(endDate);
+
+        const diffTime = end.getTime() - start.getTime();
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        const diffHours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const diffMinutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
+        const diffSeconds = Math.floor((diffTime % (1000 * 60)) / 1000);
+
+        return {
+            diffDays,
+            diffHours,
+            diffMinutes,
+            diffSeconds
+        };
+    }
+
+
+
 
     return (
-        <div className={style.divSingleBlock}>
+        <div className={style.presaleBlock}>
             <div className={style.sectionBackground}></div>
             {elements.map((item, key) => {
                 return <div onClick={() => nav(`/infoCoin/${item._id}`)} key={key} className={style.card}>
                     <div className={style.divAllInfo}>
                         {
                             item.kyc && <p className={style.KYCButton}>KYC</p>}
-
                         <div className={style.imgCrown}></div>
-                        <img src={url + item.image} className={style.imgProjectLogo} alt='project_logo'></img>
+                        <img src={url + item.image} className={style.imgProjectLogo} alt='img'></img>
                         <h1 className={style.projectName}>{item.name}</h1>
                         {item.launchDate >= dateUtc && <p className={style.presaleButton}>PreSale</p>}
+                        {(dateUtc >= item.launchDate && currentTime>item.launchDateHour) && <p className={style.liveButton}>Live</p>}
+
                         <div className={style.list}>
                             <table>
                                 <tbody>
+                                    {!(dateUtc >= item.launchDate && currentTime>item.launchDateHour) &&
+                                    <tr className={style.openai2}>
+                                        <td className={style.openai}><span className={style.span1}>{presaleDate[item._id].diffDays}</span> <br /><span className={style.span1}>DAYS</span></td>
+                                        <td className={style.openai}><span className={style.span1}>{presaleDate[item._id].diffHours}</span> <br /><span className={style.span1}>HR</span></td>
+                                        <td className={style.openai}><span className={style.span1}>{presaleDate[item._id].diffMinutes}</span> <br /><span className={style.span1}>MINS</span></td>
+                                        <td className={style.openai}><span className={style.span1}>{presaleDate[item._id].diffSeconds}</span> <br /><span className={style.span1}>SECS</span></td>
+                                    </tr>}
+
+                                    {(dateUtc >= item.launchDate && currentTime>item.launchDateHour) &&
+                                    <tr className={style.openai2}>
+                                        <td className={style.openai}><span className={style.span1}>0</span> <br /><span className={style.span1}>DAYS</span></td>
+                                        <td className={style.openai}><span className={style.span1}>0</span> <br /><span className={style.span1}>HR</span></td>
+                                        <td className={style.openai}><span className={style.span1}>0</span> <br /><span className={style.span1}>MINS</span></td>
+                                        <td className={style.openai}><span className={style.span1}>0</span> <br /><span className={style.span1}>SECS</span></td>
+                                    </tr>}
+                                    <tr className={style.trTest}><td className={style.hum}> <span className={style.hum2}>Type:</span><span className={style.hum3}>{item.type}</span></td></tr>
+                                    <tr className={style.trTest}><td className={style.hum}> <span className={style.hum2}>Launch:</span><span className={style.hum3}>{item.launchDate}</span></td></tr>
+                                    <tr className={style.trTest}><td className={style.hum}> <span className={style.hum2}>Hard Cap:</span><span className={style.hum3}>{item.capMax} {item.capMaxToken}</span></td></tr>
+                                    <tr className={style.trTest}><td className={style.hum}> <span className={style.hum2}>Soft Cap:</span><span className={style.hum3}>{item.capMin} {item.capMinToken}</span></td></tr>
+                                    <tr className={style.trTest}><td className={style.hum}> <span className={style.hum2}>Votes:</span><span className={style.hum3}>{item.statistique.global.vote}</span></td></tr>
+                                    <tr className={style.trTest}><td className={style.hum}> <span className={style.hum2}>Votes in 24h:</span><span className={style.hum3}>{item.statistique.twentyHour.vote}</span></td></tr>
+
+
+                                    {/*      
+                                    
                                     <tr><td className={style.pointer}>Type: </td><td className={style.pointedItem}>{item.type}</td></tr>
-                                    <tr><td className={style.pointer}>Market Cap: </td><td className={style.pointedItem}>$ {item.marketCap.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</td></tr>
-                                    <tr><td className={style.pointer}>Price: </td><td className={style.pointedItem}>$ {item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}</td></tr>
+                                    <div className={style.testingGroup}>
+                                        <div className={style.testing1}></div>
+                                        <div className={style.testing}></div>
+                                        <div className={style.testing}></div>
+                                        <div className={style.testing}></div>
+                                    </div>
+
+                                    <tr><td className={style.pointer}>Price: </td><td className={style.pointedItem}>$ {item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</td></tr>
                                     <tr><td className={style.pointer}>Change in 24h: </td><td className={style.pointedItem}>{item.percent_change_24h} %   {item.percent_change_24h > 0 && <img src={url + "assets/Up-arrow.png"} className={style.imgUpArrow} alt='Up-arrow'></img>}  {item.percent_change_24h < 0 && <img src={url + "assets/Down-arrow.png"} className={style.imgUpArrow} alt='Down-arrow'></img>}</td></tr>
                                     <tr><td className={style.pointer}>Launch: </td><td className={style.pointedItem}>{item.launchDate}</td></tr>
                                     <tr><td className={style.pointer}>Votes: </td><td className={style.pointedItem}>{item.statistique.global.vote}</td></tr>
-                                    <tr><td className={style.pointer}>Votes in 24h: </td><td className={style.pointedItem}>{item.statistique.twentyHour.vote}</td></tr>
+                                    <tr><td className={style.pointer}>Votes in 24h: </td><td className={style.pointedItem}>{item.statistique.twentyHour.vote}</td></tr> */}
                                 </tbody>
                             </table>
                         </div>
@@ -275,10 +393,12 @@ const PromotedToken = () => {
                 </Box>
             </Modal>
         </div >
+
+
     );
 }
 
-export default PromotedToken;
+export default PresaleTokens;
 
 
 

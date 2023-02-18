@@ -20,18 +20,18 @@ import Presales from './pages/user/Presales/Presales.page';
 import Submit from './pages/user/Submit/Submit.page';
 import { Route, Routes } from 'react-router-dom';
 import React from 'react';
-import Home from './Home';
+import Home from './pages/user/Home/Home.page';
 const App = () => {
   return (
     <div>
       <Routes>
         <Route path="/validationForm/:TypeFormulaire" element={<ValidationForm />} />
-        <Route path="/editionUser/:id" element={<EditionUser/>} />
-        <Route path="/confirm/:confirmationCode" element={<Welcome />} />
         <Route path="/reset-password/:confirmationCode" element={<NewPassword />} />
+        <Route path="/confirm/:confirmationCode" element={<Welcome />} />
         <Route path="/administration" element={<Administration />} />
         <Route path="/forgotPassword" element={<ForgotPassword />} />
         <Route path="/editionCoin/:id" element={<EditionCoin />} />
+        <Route path="/editionUser/:id" element={<EditionUser/>} />
         <Route path="/topTrending" element={<TopTrending />} />
         <Route path="//infoCoin/:id" element={<InfoCoin />} />
         <Route path="/updateCoin" element={<UpdateCoin />} />
