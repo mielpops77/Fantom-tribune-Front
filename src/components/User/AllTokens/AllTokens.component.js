@@ -458,10 +458,10 @@ const AllTokens = () => {
 
         </div>
       </div>
-      <table className="table">
+      <table className="table" style={{ textAlign: 'center' }}>
         <thead>
           <tr>
-            <th className={style.thPointer} scope="col"> </th>
+            <th className={style.thPointer} scope="col">#</th>
             <th className={style.thPointer} scope="col">Name</th>
             <th className={style.thPointer} scope="col">Symbol</th>
             <th className={style.thPointer} scope="col">LaunchDate</th>
@@ -494,11 +494,41 @@ const AllTokens = () => {
 
       </table>
 
-      <div className={style.pagination}>
+      <div className={style.paginationAllToken}>
+        {pagination.pageActuel == 1 &&
+          <div className={style.blockPaginationDisable} >
+            <a className={style.allToken_paginationPageActuelDisable} >❮</a>
+          </div>
+        }
+
+        {pagination.pageActuel > 1 &&
+          <div className={style.blockPagination} onClick={previous}>
+            <a className={style.allToken_paginationPageActuel}  >❮</a>
+          </div>
+        }
+
+        <div className={style.blockPagination2}>
+
+          <span className={style.allToken_paginationPageActuel}> Page {pagination.pageActuel} of {TableLaunchService.getTotalPage()}</span>
+
+        </div>
+        {pagination.pageActuel < TableLaunchService.getTotalPage() &&
+          <div className={style.blockPagination3} onClick={next}>
+            <a className={style.allToken_paginationPageActuel} >❯</a>
+          </div>}
+
+        {pagination.pageActuel == TableLaunchService.getTotalPage() &&
+          <div className={style.blockPagination3Disable} >
+            <a className={style.allToken_paginationPageActuelDisable} >❯</a>
+          </div>}
+
+      </div>
+
+   {/*    <div className={style.pagination}>
         <span className={style.paginationPageActuel}>1 - {TableLaunchService.totalPage} of {pagination.pageActuel}</span>
         <a className={pagination.pageActuel > 1 ? "" : "disable"} onClick={previous} href="#">❮</a>
         <a className={pagination.pageActuel < TableLaunchService.totalPage ? "" : "disable"} onClick={next} href="#">❯</a>
-      </div>
+      </div> */}
 
       <Modal className={styleModal.modalBackground}
         open={open}

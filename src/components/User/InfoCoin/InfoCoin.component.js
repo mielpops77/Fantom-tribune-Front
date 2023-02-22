@@ -102,14 +102,13 @@ const InfoCoin = () => {
             let date1 = new Date(dateUtc);
 
             AuthService.getPointsLimitUser(user.id).then((res) => {
-                let limiteUser = res.data;
-
-                for (let i = 0; i < res.data.length; i++) {
-                    if (res.data[i].id == coinInfo._id && res.data[i].type == type) {
-                        let date2 = new Date(res.data[i].day);
+                let limiteUser = res;
+                for (let i = 0; i < res.length; i++) {
+                    if (res[i].id == coinInfo._id && res[i].type == type) {
+                        let date2 = new Date(res[i].day);
                         let diff = date1 - date2;
                         let diffJour = diff / (1000 * 3600 * 24);
-                        if ((diffJour <= 1 && res.data[i].day.hour <= date.getUTCHours()) || (res.data[i].day == dateUtc)) {
+                        if ((diffJour <= 1 && res[i].day.hour <= date.getUTCHours()) || (res[i].day == dateUtc)) {
                             validation = false;
                         }
                     }
@@ -170,12 +169,12 @@ const InfoCoin = () => {
 
             let verif = false;
             AuthService.getPointsLimitUser(user.id).then((res) => {
-                for (let i = 0; i < res.data.length; i++) {
-                    if (res.data[i].id == coin._id && res.data[i].type == "vote") {
-                        let date2 = new Date(res.data[i].day);
+                for (let i = 0; i < res.length; i++) {
+                    if (res[i].id == coin._id && res[i].type == "vote") {
+                        let date2 = new Date(res[i].day);
                         let diff = date1 - date2;
                         let diffJour = diff / (1000 * 3600 * 24);
-                        if ((diffJour <= 1 && res.data[i].day.hour <= date.getUTCHours()) || (res.data[i].day == dateUtc)) {
+                        if ((diffJour <= 1 && res[i].day.hour <= date.getUTCHours()) || (res[i].day == dateUtc)) {
                             verif = true;
                             setVerifVoteToday(true);
                         }
@@ -224,9 +223,9 @@ const InfoCoin = () => {
                     <Timeline
                         dataSource={{ sourceType: "profile", screenName: `${twitter}` }}
                         options={{ theme: "dark", width: "400", height: "600" }}
-                    />  
-                   
-                    <iframe className={style.iframe} title="Graphical Board" loading="lazy" src={src} width="50%" height="550px" /* frameborder="0" */ ></iframe>
+                    />
+
+                    {/* <iframe className={style.iframe} title="Graphical Board" loading="lazy" src={src} width="50%" height="550px"  ></iframe> */}
                 </div>
                 <p className={style.wrongInfo}>Information incorrect? Please submit an <span className={style.updateRequest} onClick={() => nav(`/updateCoin/`)}>Update Request!</span></p>
             </div>

@@ -52,15 +52,17 @@ const PresaleTokens = () => {
 
     useEffect(() => {
         setUser(AuthService.getCurrentUser());
-        fetch(url + 'launchDate/?limite=4&skip=0&action=launchDateAsc&type=All')
+        fetch(url + 'launchDate/?limite=4&skip=0&action=launchDateAsc&type=All&live=All')
             .then((res) => res.json())
             .then((res) => {
                 setElements(res);
-                
+
                 const dateActuel = dateUtc + " " + currentTime;
                 let updatedValue = {};
 
-                const datePresales = res.slice(0, 4).map((item) => {
+                const tabLength = res.length > 4 ? 4 : res.length;
+
+                const datePresales = res.slice(0, tabLength).map((item) => {
                     const datePresale = item.launchDate + " " + item.launchDateHour + ":00";
                     return { id: item._id, diff: diffTime(dateActuel, datePresale) };
                 });
@@ -302,26 +304,28 @@ const PresaleTokens = () => {
                         <img src={url + item.image} className={style.imgProjectLogo} alt='img'></img>
                         <h1 className={style.projectName}>{item.name}</h1>
                         {item.launchDate >= dateUtc && <p className={style.presaleButton}>PreSale</p>}
-                        {(dateUtc >= item.launchDate && currentTime>item.launchDateHour) && <p className={style.liveButton}>Live</p>}
+                        {(presaleDate[item._id].diffDays < 0 || presaleDate[item._id].diffHours < 0 || presaleDate[item._id].diffMinutes < 0 || presaleDate[item._id].diffSeconds < 0) &&
+                            <p className={style.liveButton}>Live</p>}
 
                         <div className={style.list}>
                             <table>
                                 <tbody>
-                                    {!(dateUtc >= item.launchDate && currentTime>item.launchDateHour) &&
-                                    <tr className={style.openai2}>
-                                        <td className={style.openai}><span className={style.span1}>{presaleDate[item._id].diffDays}</span> <br /><span className={style.span1}>DAYS</span></td>
-                                        <td className={style.openai}><span className={style.span1}>{presaleDate[item._id].diffHours}</span> <br /><span className={style.span1}>HR</span></td>
-                                        <td className={style.openai}><span className={style.span1}>{presaleDate[item._id].diffMinutes}</span> <br /><span className={style.span1}>MINS</span></td>
-                                        <td className={style.openai}><span className={style.span1}>{presaleDate[item._id].diffSeconds}</span> <br /><span className={style.span1}>SECS</span></td>
-                                    </tr>}
+                                    {!(presaleDate[item._id].diffDays < 0 || presaleDate[item._id].diffHours < 0 || presaleDate[item._id].diffMinutes < 0 || presaleDate[item._id].diffSeconds < 0) &&
 
-                                    {(dateUtc >= item.launchDate && currentTime>item.launchDateHour) &&
-                                    <tr className={style.openai2}>
-                                        <td className={style.openai}><span className={style.span1}>0</span> <br /><span className={style.span1}>DAYS</span></td>
-                                        <td className={style.openai}><span className={style.span1}>0</span> <br /><span className={style.span1}>HR</span></td>
-                                        <td className={style.openai}><span className={style.span1}>0</span> <br /><span className={style.span1}>MINS</span></td>
-                                        <td className={style.openai}><span className={style.span1}>0</span> <br /><span className={style.span1}>SECS</span></td>
-                                    </tr>}
+                                        <tr className={style.openai2}>
+                                            <td className={style.openai}><span className={style.span1}>{presaleDate[item._id].diffDays}</span> <br /><span className={style.span1}>DAYS</span></td>
+                                            <td className={style.openai}><span className={style.span1}>{presaleDate[item._id].diffHours}</span> <br /><span className={style.span1}>HR</span></td>
+                                            <td className={style.openai}><span className={style.span1}>{presaleDate[item._id].diffMinutes}</span> <br /><span className={style.span1}>MINS</span></td>
+                                            <td className={style.openai}><span className={style.span1}>{presaleDate[item._id].diffSeconds}</span> <br /><span className={style.span1}>SECS</span></td>
+                                        </tr>}
+
+                                    {(presaleDate[item._id].diffDays < 0 || presaleDate[item._id].diffHours < 0 || presaleDate[item._id].diffMinutes < 0 || presaleDate[item._id].diffSeconds < 0) &&
+                                        <tr className={style.openai2}>
+                                            <td className={style.openai}><span className={style.span1}>0</span> <br /><span className={style.span1}>DAYS</span></td>
+                                            <td className={style.openai}><span className={style.span1}>0</span> <br /><span className={style.span1}>HR</span></td>
+                                            <td className={style.openai}><span className={style.span1}>0</span> <br /><span className={style.span1}>MINS</span></td>
+                                            <td className={style.openai}><span className={style.span1}>0</span> <br /><span className={style.span1}>SECS</span></td>
+                                        </tr>}
                                     <tr className={style.trTest}><td className={style.hum}> <span className={style.hum2}>Type:</span><span className={style.hum3}>{item.type}</span></td></tr>
                                     <tr className={style.trTest}><td className={style.hum}> <span className={style.hum2}>Launch:</span><span className={style.hum3}>{item.launchDate}</span></td></tr>
                                     <tr className={style.trTest}><td className={style.hum}> <span className={style.hum2}>Hard Cap:</span><span className={style.hum3}>{item.capMax} {item.capMaxToken}</span></td></tr>

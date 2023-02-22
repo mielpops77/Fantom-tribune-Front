@@ -1,3 +1,121 @@
+.dayBlock1 {
+  padding-top: 1%;
+  background-color: rgba(255, 255, 255, 0.24);
+  height: 70px;
+  width: 70px;
+  // float: left;
+  display: inline-block;
+  text-align: center;
+  border-radius: 8px;
+  margin: 5px;
+  margin-right: 10px;
+}
+
+.dayBlock {
+  padding-top: 1%;
+  background-color: rgba(255, 255, 255, 0.24);
+  height: 70px;
+  width: 70px;
+  // float: left;
+  display: inline-block;
+  text-align: center;
+  border-radius: 8px;
+  margin: 5px;
+}
+
+.blockPagination {
+  border-radius: 7px;
+  text-align: center;
+  background-color: rgba(51, 122, 254, 0.153);
+  width: 50px;
+  // height: 20px;
+  align-self: center;
+  margin-bottom: 1%;
+  &:hover {
+    cursor: pointer;
+    background-color: #050945;
+  }
+}
+
+.blockPaginationDisable {
+  border-radius: 7px;
+  text-align: center;
+  background-color: rgba(51, 122, 254, 0.153);
+  width: 50px;
+  // height: 20px;
+  align-self: center;
+  margin-bottom: 1%;
+}
+
+.blockPagination2 {
+  border-radius: 7px;
+  margin-right: 1%;
+  margin-left: 1%;
+  margin-bottom: 1%;
+  color: #c0d3df;
+  background-color: rgba(51, 122, 254, 0.153);
+  width: 150px;
+  // height: 20px;
+  text-align: center;
+  // margin-bottom: 1%;
+  align-self: center;
+}
+.blockPagination3 {
+  border-radius: 7px;
+  text-align: center;
+  background-color: rgba(51, 122, 254, 0.153);
+  width: 50px;
+  // height: 20px;
+  align-self: center;
+  margin-right: 1%;
+  margin-bottom: 1%;
+  &:hover {
+    cursor: pointer;
+    background-color: #050945;
+  }
+}
+
+.blockPagination3Disable {
+  border-radius: 7px;
+  text-align: center;
+  background-color: rgba(51, 122, 254, 0.153);
+  width: 50px;
+  // height: 20px;
+  align-self: center;
+  margin-right: 1%;
+  margin-bottom: 1%;
+}
+
+.liveButton {
+  background: #1cb417 0% 0% no-repeat padding-box;
+  color: #ffffff;
+  padding: 0.375rem 0.75rem;
+  letter-spacing: -0.8px;
+  border-radius: 10px;
+  font-size: 0.9vw;
+  display: inline-block;
+  width: 100px;
+
+  /* 
+  border-color: #0d6efd;
+  font-weight: 400;
+  font-size: 0.9vw;
+  line-height: 1.5;
+  text-decoration: none;
+  vertical-align: middle;
+  padding: 0.375rem 0.75rem;
+  border-radius: 10px;
+  text-align: center;
+  font: normal normal medium 20px/29px Poppins;
+  letter-spacing: -0.8px;
+  color: #ffffff;
+  width: 42%;
+  margin: 3%; */
+  /*   right: 1%;
+  top: 1%; */
+  // position: absolute;
+}
+
 @media all and (max-width: 1024px) {
   .container {
     background-color: #292931;
@@ -67,7 +185,6 @@
       color: #3b96ff;
       font-size: 1.9vw;
       background-color: #292931;
-
     }
 
     .presales_td {
@@ -107,18 +224,27 @@
       height: auto;
       max-height: 60px;
       min-height: 30px;
-      float: left;
+      // float: left;
       object-fit: cover;
     }
+
     .paginationPresales {
       display: flex;
       justify-content: flex-end;
       align-items: flex-end;
       width: auto;
       height: auto;
-      color: #ffffff;
+      // color: #ffffff;
 
-      .paginationPresales a {
+      .presale_paginationPageActuel {
+        color: #c0d3df;
+      }
+      .presale_paginationPageActuelDisable {
+        color: #c0d3df;
+        pointer-events: none;
+      }
+
+      .presale_pagination a {
         color: black;
         float: left;
         padding: 8px 16px;
@@ -127,24 +253,18 @@
         border: 1px solid #ddd;
         margin: 0.3%;
       }
-
-      .paginationPresales a.active {
+      .presale_pagination a.active {
         background-color: #4caf50;
         color: white;
         border: 1px solid #4caf50;
       }
-
-      .paginationPresales a:hover:not(.active) {
+      .presale_pagination a:hover:not(.active) {
         background-color: #ddd;
       }
 
-      .paginationPageActuel {
+      .presale_pagination {
         margin-top: 1%;
         margin-right: 1%;
-      }
-      .disable {
-        cursor: not-allowed;
-        background-color: #dddd;
       }
     }
     .typo {
@@ -255,7 +375,7 @@
       height: auto;
       max-height: 100px;
       min-height: 30px;
-      float: left;
+      // float: left;
       object-fit: cover;
     }
     .paginationPresales {
@@ -264,9 +384,17 @@
       align-items: flex-end;
       width: auto;
       height: auto;
-      color: #ffffff;
+      // color: #ffffff;
 
-      .paginationPresales a {
+      .presale_paginationPageActuel {
+        color: #c0d3df;
+      }
+      .presale_paginationPageActuelDisable {
+        color: #c0d3df;
+        pointer-events: none;
+      }
+
+      .presale_pagination a {
         color: black;
         float: left;
         padding: 8px 16px;
@@ -275,24 +403,18 @@
         border: 1px solid #ddd;
         margin: 0.3%;
       }
-
-      .paginationPresales a.active {
+      .presale_pagination a.active {
         background-color: #4caf50;
         color: white;
         border: 1px solid #4caf50;
       }
-
-      .paginationPresales a:hover:not(.active) {
+      .presale_pagination a:hover:not(.active) {
         background-color: #ddd;
       }
 
-      .paginationPageActuel {
+      .presale_pagination {
         margin-top: 1%;
         margin-right: 1%;
-      }
-      .disable {
-        cursor: not-allowed;
-        background-color: #dddd;
       }
     }
     .typo {

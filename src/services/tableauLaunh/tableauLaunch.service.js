@@ -9,6 +9,8 @@ let totalPage = 0;
 let action = 'launchDateAsc';
 
 let typeFilter = 'All';
+let liveFilter = 'All';
+
 let priceList = { info: [] };
 let supply = 0;
 let compteur = 0;
@@ -323,6 +325,18 @@ function setListAllContract(listAllContractValue) {
 }
 
 
+function initLiveFilter() {
+    liveFilter = 'All';
+}
+
+function getLiveFilter() {
+    return liveFilter
+}
+
+function setLiveFilter(liveFilterValue) {
+    liveFilter = liveFilterValue;
+}
+
 function initTypeFilter() {
     typeFilter = 'All';
 }
@@ -337,7 +351,7 @@ function setTypeFilter(typeFilterValue) {
 }
 
 function getLaunchTab(limit, skip) {
-    return axios.get(AuthService.getUrl() + `launchDate/?limite=${limit}&skip=${skip}&action=${action}&type=${typeFilter}`)
+    return axios.get(AuthService.getUrl() + `launchDate/?limite=${limit}&skip=${skip}&action=${action}&type=${typeFilter}&live=${liveFilter}`)
         .then(response => {
             return response.data;
         })
@@ -579,5 +593,9 @@ export default {
     setMin,
     getTotalPage,
     setTotalPage,
-    initTotalPage
+    initTotalPage,
+    initLiveFilter,
+    getLiveFilter,
+    setLiveFilter
+
 };
