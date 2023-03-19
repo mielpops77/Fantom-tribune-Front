@@ -13,9 +13,17 @@ function initFieldOpenFlexible() {
         website: false,
         telegram: false,
         discord: false,
+        facebook: false,
+        medium: false,
+        github: false,
+        whitePaper: false,
+        insta: false,
+        reedit: false,
+        tiktok: false,
         twitter: false,
         coinMarketCapLink: false,
         kyc: false,
+        audit: false,
         comment: false
     };
 }
@@ -57,6 +65,27 @@ function setFieldOpenFlexible(event, bool) {
             case 'Discord-link':
                 fieldOpenFlexible.discord = true;
                 break;
+            case 'Facebook-link':
+                fieldOpenFlexible.facebook = true;
+                break;
+            case 'Medium-link':
+                fieldOpenFlexible.medium = true;
+                break;
+            case 'Github-link':
+                fieldOpenFlexible.github = true;
+                break;
+            case 'WhitePaper-link':
+                fieldOpenFlexible.whitePaper = true;
+                break;
+            case 'Insta-link':
+                fieldOpenFlexible.insta = true;
+                break;
+            case 'Reedit-link':
+                fieldOpenFlexible.reedit = true;
+                break;
+            case 'Tiktok-link':
+                fieldOpenFlexible.tiktok = true;
+                break;
             case 'Twitter-link':
                 fieldOpenFlexible.twitter = true;
                 break;
@@ -65,6 +94,9 @@ function setFieldOpenFlexible(event, bool) {
                 break;
             case 'Kyc':
                 fieldOpenFlexible.kyc = true;
+                break;
+            case 'Audit':
+                fieldOpenFlexible.audit = true;
                 break;
             default:
         }
@@ -85,9 +117,17 @@ function setFieldOpenFlexible(event, bool) {
                     website: fieldOpenFlexible.website,
                     telegram: fieldOpenFlexible.telegram,
                     discord: fieldOpenFlexible.discord,
+                    facebook: fieldOpenFlexible.facebook,
+                    medium: fieldOpenFlexible.medium,
+                    github: fieldOpenFlexible.github,
+                    whitePaper: fieldOpenFlexible.whitePaper,
+                    insta: fieldOpenFlexible.insta,
+                    reedit: fieldOpenFlexible.reedit,
+                    tiktok: fieldOpenFlexible.tiktok,
                     twitter: fieldOpenFlexible.twitter,
                     coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
-                    kyc: fieldOpenFlexible.kyc
+                    kyc: fieldOpenFlexible.kyc,
+                    audit: fieldOpenFlexible.audit
                 };
                 break;
             case 'Name':
@@ -103,9 +143,17 @@ function setFieldOpenFlexible(event, bool) {
                     website: fieldOpenFlexible.website,
                     telegram: fieldOpenFlexible.telegram,
                     discord: fieldOpenFlexible.discord,
+                    facebook: fieldOpenFlexible.facebook,
+                    medium: fieldOpenFlexible.medium,
+                    github: fieldOpenFlexible.github,
+                    whitePaper: fieldOpenFlexible.whitePaper,
+                    insta: fieldOpenFlexible.insta,
+                    reedit: fieldOpenFlexible.reedit,
+                    tiktok: fieldOpenFlexible.tiktok,
                     twitter: fieldOpenFlexible.twitter,
                     coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
-                    kyc: fieldOpenFlexible.kyc
+                    kyc: fieldOpenFlexible.kyc,
+                    audit: fieldOpenFlexible.audit
                 };
                 break;
             case 'Symbol':
@@ -121,9 +169,17 @@ function setFieldOpenFlexible(event, bool) {
                     website: fieldOpenFlexible.website,
                     telegram: fieldOpenFlexible.telegram,
                     discord: fieldOpenFlexible.discord,
+                    facebook: fieldOpenFlexible.facebook,
+                    medium: fieldOpenFlexible.medium,
+                    github: fieldOpenFlexible.github,
+                    whitePaper: fieldOpenFlexible.whitePaper,
+                    insta: fieldOpenFlexible.insta,
+                    reedit: fieldOpenFlexible.reedit,
+                    tiktok: fieldOpenFlexible.tiktok,
                     twitter: fieldOpenFlexible.twitter,
                     coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
-                    kyc: fieldOpenFlexible.kyc
+                    kyc: fieldOpenFlexible.kyc,
+                    audit: fieldOpenFlexible.audit
                 };
                 break;
             case 'Launch-phase':
@@ -139,9 +195,17 @@ function setFieldOpenFlexible(event, bool) {
                     website: fieldOpenFlexible.website,
                     telegram: fieldOpenFlexible.telegram,
                     discord: fieldOpenFlexible.discord,
+                    facebook: fieldOpenFlexible.facebook,
+                    medium: fieldOpenFlexible.medium,
+                    github: fieldOpenFlexible.github,
+                    whitePaper: fieldOpenFlexible.whitePaper,
+                    insta: fieldOpenFlexible.insta,
+                    reedit: fieldOpenFlexible.reedit,
+                    tiktok: fieldOpenFlexible.tiktok,
                     twitter: fieldOpenFlexible.twitter,
                     coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
-                    kyc: fieldOpenFlexible.kyc
+                    kyc: fieldOpenFlexible.kyc,
+                    audit: fieldOpenFlexible.audit
                 };
                 break;
             case 'Contract-address':
@@ -157,9 +221,17 @@ function setFieldOpenFlexible(event, bool) {
                     website: fieldOpenFlexible.website,
                     telegram: fieldOpenFlexible.telegram,
                     discord: fieldOpenFlexible.discord,
+                    facebook: fieldOpenFlexible.facebook,
+                    medium: fieldOpenFlexible.medium,
+                    github: fieldOpenFlexible.github,
+                    whitePaper: fieldOpenFlexible.whitePaper,
+                    insta: fieldOpenFlexible.insta,
+                    reedit: fieldOpenFlexible.reedit,
+                    tiktok: fieldOpenFlexible.tiktok,
                     twitter: fieldOpenFlexible.twitter,
                     coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
-                    kyc: fieldOpenFlexible.kyc
+                    kyc: fieldOpenFlexible.kyc,
+                    audit: fieldOpenFlexible.audit
                 };
                 break;
             case 'Description':
@@ -175,9 +247,17 @@ function setFieldOpenFlexible(event, bool) {
                     website: fieldOpenFlexible.website,
                     telegram: fieldOpenFlexible.telegram,
                     discord: fieldOpenFlexible.discord,
+                    facebook: fieldOpenFlexible.facebook,
+                    medium: fieldOpenFlexible.medium,
+                    github: fieldOpenFlexible.github,
+                    whitePaper: fieldOpenFlexible.whitePaper,
+                    insta: fieldOpenFlexible.insta,
+                    reedit: fieldOpenFlexible.reedit,
+                    tiktok: fieldOpenFlexible.tiktok,
                     twitter: fieldOpenFlexible.twitter,
                     coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
-                    kyc: fieldOpenFlexible.kyc
+                    kyc: fieldOpenFlexible.kyc,
+                    audit: fieldOpenFlexible.audit
                 };
                 break;
             case 'Type':
@@ -193,9 +273,17 @@ function setFieldOpenFlexible(event, bool) {
                     website: fieldOpenFlexible.website,
                     telegram: fieldOpenFlexible.telegram,
                     discord: fieldOpenFlexible.discord,
+                    facebook: fieldOpenFlexible.facebook,
+                    medium: fieldOpenFlexible.medium,
+                    github: fieldOpenFlexible.github,
+                    whitePaper: fieldOpenFlexible.whitePaper,
+                    insta: fieldOpenFlexible.insta,
+                    reedit: fieldOpenFlexible.reedit,
+                    tiktok: fieldOpenFlexible.tiktok,
                     twitter: fieldOpenFlexible.twitter,
                     coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
-                    kyc: fieldOpenFlexible.kyc
+                    kyc: fieldOpenFlexible.kyc,
+                    audit: fieldOpenFlexible.audit
                 };
                 break;
             case 'Website-link':
@@ -211,9 +299,17 @@ function setFieldOpenFlexible(event, bool) {
                     website: false,
                     telegram: fieldOpenFlexible.telegram,
                     discord: fieldOpenFlexible.discord,
+                    facebook: fieldOpenFlexible.facebook,
+                    medium: fieldOpenFlexible.medium,
+                    github: fieldOpenFlexible.github,
+                    whitePaper: fieldOpenFlexible.whitePaper,
+                    insta: fieldOpenFlexible.insta,
+                    reedit: fieldOpenFlexible.reedit,
+                    tiktok: fieldOpenFlexible.tiktok,
                     twitter: fieldOpenFlexible.twitter,
                     coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
-                    kyc: fieldOpenFlexible.kyc
+                    kyc: fieldOpenFlexible.kyc,
+                    audit: fieldOpenFlexible.audit
                 };
                 break;
             case 'Telegram-link':
@@ -229,9 +325,17 @@ function setFieldOpenFlexible(event, bool) {
                     website: fieldOpenFlexible.website,
                     telegram: false,
                     discord: fieldOpenFlexible.discord,
+                    facebook: fieldOpenFlexible.facebook,
+                    medium: fieldOpenFlexible.medium,
+                    github: fieldOpenFlexible.github,
+                    whitePaper: fieldOpenFlexible.whitePaper,
+                    insta: fieldOpenFlexible.insta,
+                    reedit: fieldOpenFlexible.reedit,
+                    tiktok: fieldOpenFlexible.tiktok,
                     twitter: fieldOpenFlexible.twitter,
                     coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
-                    kyc: fieldOpenFlexible.kyc
+                    kyc: fieldOpenFlexible.kyc,
+                    audit: fieldOpenFlexible.audit
                 };
                 break;
             case 'Discord-link':
@@ -247,9 +351,17 @@ function setFieldOpenFlexible(event, bool) {
                     website: fieldOpenFlexible.website,
                     telegram: fieldOpenFlexible.telegram,
                     discord: false,
+                    facebook: fieldOpenFlexible.facebook,
+                    medium: fieldOpenFlexible.medium,
+                    github: fieldOpenFlexible.github,
+                    whitePaper: fieldOpenFlexible.whitePaper,
+                    insta: fieldOpenFlexible.insta,
+                    reedit: fieldOpenFlexible.reedit,
+                    tiktok: fieldOpenFlexible.tiktok,
                     twitter: fieldOpenFlexible.twitter,
                     coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
-                    kyc: fieldOpenFlexible.kyc
+                    kyc: fieldOpenFlexible.kyc,
+                    audit: fieldOpenFlexible.audit
                 };
                 break;
             case 'Twitter-link':
@@ -265,9 +377,17 @@ function setFieldOpenFlexible(event, bool) {
                     website: fieldOpenFlexible.website,
                     telegram: fieldOpenFlexible.telegram,
                     discord: fieldOpenFlexible.discord,
+                    facebook: fieldOpenFlexible.facebook,
+                    medium: fieldOpenFlexible.medium,
+                    github: fieldOpenFlexible.github,
+                    whitePaper: fieldOpenFlexible.whitePaper,
+                    insta: fieldOpenFlexible.insta,
+                    reedit: fieldOpenFlexible.reedit,
+                    tiktok: fieldOpenFlexible.tiktok,
                     twitter: false,
                     coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
-                    kyc: fieldOpenFlexible.kyc
+                    kyc: fieldOpenFlexible.kyc,
+                    audit: fieldOpenFlexible.audit
                 };
                 break;
             case 'Coinmarketcap-link':
@@ -283,9 +403,17 @@ function setFieldOpenFlexible(event, bool) {
                     website: fieldOpenFlexible.website,
                     telegram: fieldOpenFlexible.telegram,
                     discord: fieldOpenFlexible.discord,
+                    facebook: fieldOpenFlexible.facebook,
+                    medium: fieldOpenFlexible.medium,
+                    github: fieldOpenFlexible.github,
+                    whitePaper: fieldOpenFlexible.whitePaper,
+                    insta: fieldOpenFlexible.insta,
+                    reedit: fieldOpenFlexible.reedit,
+                    tiktok: fieldOpenFlexible.tiktok,
                     twitter: fieldOpenFlexible.twitter,
                     coinMarketCapLink: false,
-                    kyc: fieldOpenFlexible.kyc
+                    kyc: fieldOpenFlexible.kyc,
+                    audit: fieldOpenFlexible.audit
                 };
                 break;
             case 'Kyc':
@@ -301,16 +429,234 @@ function setFieldOpenFlexible(event, bool) {
                     website: fieldOpenFlexible.website,
                     telegram: fieldOpenFlexible.telegram,
                     discord: fieldOpenFlexible.discord,
+                    facebook: fieldOpenFlexible.facebook,
+                    medium: fieldOpenFlexible.medium,
+                    github: fieldOpenFlexible.github,
+                    whitePaper: fieldOpenFlexible.whitePaper,
+                    insta: fieldOpenFlexible.insta,
+                    reedit: fieldOpenFlexible.reedit,
+                    tiktok: fieldOpenFlexible.tiktok,
                     twitter: fieldOpenFlexible.twitter,
                     coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
-                    kyc: false
+                    kyc: false,
+                    audit: fieldOpenFlexible.audit
+                }
+                break;
+                case 'Audit':
+                    fieldOpenFlexible =
+                    {
+                        logo: fieldOpenFlexible.logo,
+                        name: fieldOpenFlexible.name,
+                        symbole: fieldOpenFlexible.symbole,
+                        launchPhase: fieldOpenFlexible.launchPhase,
+                        contractAdress: fieldOpenFlexible.contractAdress,
+                        description: fieldOpenFlexible.description,
+                        type: fieldOpenFlexible.type,
+                        website: fieldOpenFlexible.website,
+                        telegram: fieldOpenFlexible.telegram,
+                        discord: fieldOpenFlexible.discord,
+                        facebook: fieldOpenFlexible.facebook,
+                        medium: fieldOpenFlexible.medium,
+                        github: fieldOpenFlexible.github,
+                        whitePaper: fieldOpenFlexible.whitePaper,
+                        insta: fieldOpenFlexible.insta,
+                        reedit: fieldOpenFlexible.reedit,
+                        tiktok: fieldOpenFlexible.tiktok,
+                        twitter: fieldOpenFlexible.twitter,
+                        coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
+                        kyc: fieldOpenFlexible.kyc,
+                        audit: false
+                    }
+                    break;
+            case 'Facebook-link':
+                fieldOpenFlexible =
+                {
+                    logo: fieldOpenFlexible.logo,
+                    name: fieldOpenFlexible.name,
+                    symbole: fieldOpenFlexible.symbole,
+                    launchPhase: fieldOpenFlexible.launchPhase,
+                    contractAdress: fieldOpenFlexible.contractAdress,
+                    description: fieldOpenFlexible.description,
+                    type: fieldOpenFlexible.type,
+                    website: fieldOpenFlexible.website,
+                    telegram: fieldOpenFlexible.telegram,
+                    discord: fieldOpenFlexible.discord,
+                    facebook: false,
+                    medium: fieldOpenFlexible.medium,
+                    github: fieldOpenFlexible.github,
+                    whitePaper: fieldOpenFlexible.whitePaper,
+                    insta: fieldOpenFlexible.insta,
+                    reedit: fieldOpenFlexible.reedit,
+                    tiktok: fieldOpenFlexible.tiktok,
+                    twitter: fieldOpenFlexible.twitter,
+                    coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
+                    kyc: fieldOpenFlexible.kyc,
+                    audit: fieldOpenFlexible.audit
+                };
+                break;
+            case 'Medium-link':
+                fieldOpenFlexible =
+                {
+                    logo: fieldOpenFlexible.logo,
+                    name: fieldOpenFlexible.name,
+                    symbole: fieldOpenFlexible.symbole,
+                    launchPhase: fieldOpenFlexible.launchPhase,
+                    contractAdress: fieldOpenFlexible.contractAdress,
+                    description: fieldOpenFlexible.description,
+                    type: fieldOpenFlexible.type,
+                    website: fieldOpenFlexible.website,
+                    telegram: fieldOpenFlexible.telegram,
+                    discord: fieldOpenFlexible.discord,
+                    facebook: fieldOpenFlexible.facebook,
+                    medium: false,
+                    github: fieldOpenFlexible.github,
+                    whitePaper: fieldOpenFlexible.whitePaper,
+                    insta: fieldOpenFlexible.insta,
+                    reedit: fieldOpenFlexible.reedit,
+                    tiktok: fieldOpenFlexible.tiktok,
+                    twitter: fieldOpenFlexible.twitter,
+                    coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
+                    kyc: fieldOpenFlexible.kyc,
+                    audit: fieldOpenFlexible.audit
+                };
+                break;
+            case 'Github-link':
+                fieldOpenFlexible =
+                {
+                    logo: fieldOpenFlexible.logo,
+                    name: fieldOpenFlexible.name,
+                    symbole: fieldOpenFlexible.symbole,
+                    launchPhase: fieldOpenFlexible.launchPhase,
+                    contractAdress: fieldOpenFlexible.contractAdress,
+                    description: fieldOpenFlexible.description,
+                    type: fieldOpenFlexible.type,
+                    website: fieldOpenFlexible.website,
+                    telegram: fieldOpenFlexible.telegram,
+                    discord: fieldOpenFlexible.discord,
+                    facebook: fieldOpenFlexible.facebook,
+                    medium: fieldOpenFlexible.medium,
+                    github: false,
+                    whitePaper: fieldOpenFlexible.whitePaper,
+                    insta: fieldOpenFlexible.insta,
+                    reedit: fieldOpenFlexible.reedit,
+                    tiktok: fieldOpenFlexible.tiktok,
+                    twitter: fieldOpenFlexible.twitter,
+                    coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
+                    kyc: fieldOpenFlexible.kyc,
+                    audit: fieldOpenFlexible.audit
+                };
+                break;
+            case 'WhitePaper-link':
+                fieldOpenFlexible =
+                {
+                    logo: fieldOpenFlexible.logo,
+                    name: fieldOpenFlexible.name,
+                    symbole: fieldOpenFlexible.symbole,
+                    launchPhase: fieldOpenFlexible.launchPhase,
+                    contractAdress: fieldOpenFlexible.contractAdress,
+                    description: fieldOpenFlexible.description,
+                    type: fieldOpenFlexible.type,
+                    website: fieldOpenFlexible.website,
+                    telegram: fieldOpenFlexible.telegram,
+                    discord: fieldOpenFlexible.discord,
+                    facebook: fieldOpenFlexible.facebook,
+                    medium: fieldOpenFlexible.medium,
+                    github: fieldOpenFlexible.github,
+                    whitePaper: false,
+                    insta: fieldOpenFlexible.insta,
+                    reedit: fieldOpenFlexible.reedit,
+                    tiktok: fieldOpenFlexible.tiktok,
+                    twitter: fieldOpenFlexible.twitter,
+                    coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
+                    kyc: fieldOpenFlexible.kyc,
+                    audit: fieldOpenFlexible.audit
+                };
+                break;
+            case 'Insta-link':
+                fieldOpenFlexible =
+                {
+                    logo: fieldOpenFlexible.logo,
+                    name: fieldOpenFlexible.name,
+                    symbole: fieldOpenFlexible.symbole,
+                    launchPhase: fieldOpenFlexible.launchPhase,
+                    contractAdress: fieldOpenFlexible.contractAdress,
+                    description: fieldOpenFlexible.description,
+                    type: fieldOpenFlexible.type,
+                    website: fieldOpenFlexible.website,
+                    telegram: fieldOpenFlexible.telegram,
+                    discord: fieldOpenFlexible.discord,
+                    facebook: fieldOpenFlexible.facebook,
+                    medium: fieldOpenFlexible.medium,
+                    github: fieldOpenFlexible.github,
+                    whitePaper: fieldOpenFlexible.whitePaper,
+                    insta: false,
+                    reedit: fieldOpenFlexible.reedit,
+                    tiktok: fieldOpenFlexible.tiktok,
+                    twitter: fieldOpenFlexible.twitter,
+                    coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
+                    kyc: fieldOpenFlexible.kyc,
+                    audit: fieldOpenFlexible.audit
+                };
+                break;
+            case 'Reedit-link':
+                fieldOpenFlexible =
+                {
+                    logo: fieldOpenFlexible.logo,
+                    name: fieldOpenFlexible.name,
+                    symbole: fieldOpenFlexible.symbole,
+                    launchPhase: fieldOpenFlexible.launchPhase,
+                    contractAdress: fieldOpenFlexible.contractAdress,
+                    description: fieldOpenFlexible.description,
+                    type: fieldOpenFlexible.type,
+                    website: fieldOpenFlexible.website,
+                    telegram: fieldOpenFlexible.telegram,
+                    discord: fieldOpenFlexible.discord,
+                    facebook: fieldOpenFlexible.facebook,
+                    medium: fieldOpenFlexible.medium,
+                    github: fieldOpenFlexible.github,
+                    whitePaper: fieldOpenFlexible.whitePaper,
+                    insta: fieldOpenFlexible.insta,
+                    reedit: false,
+                    tiktok: fieldOpenFlexible.tiktok,
+                    twitter: fieldOpenFlexible.twitter,
+                    coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
+                    kyc: fieldOpenFlexible.kyc,
+                    audit: fieldOpenFlexible.audit
+                };
+                break;
+            case 'Tiktok-link':
+                fieldOpenFlexible =
+                {
+                    logo: fieldOpenFlexible.logo,
+                    name: fieldOpenFlexible.name,
+                    symbole: fieldOpenFlexible.symbole,
+                    launchPhase: fieldOpenFlexible.launchPhase,
+                    contractAdress: fieldOpenFlexible.contractAdress,
+                    description: fieldOpenFlexible.description,
+                    type: fieldOpenFlexible.type,
+                    website: fieldOpenFlexible.website,
+                    telegram: fieldOpenFlexible.telegram,
+                    discord: fieldOpenFlexible.discord,
+                    facebook: fieldOpenFlexible.facebook,
+                    medium: fieldOpenFlexible.medium,
+                    github: fieldOpenFlexible.github,
+                    whitePaper: fieldOpenFlexible.whitePaper,
+                    insta: fieldOpenFlexible.insta,
+                    reedit: fieldOpenFlexible.reedit,
+                    tiktok: false,
+                    twitter: fieldOpenFlexible.twitter,
+                    coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
+                    kyc: fieldOpenFlexible.kyc,
+                    audit: fieldOpenFlexible.audit
                 };
                 break;
             default:
         }
     }
 
-    if (fieldOpenFlexible.logo || fieldOpenFlexible.name || fieldOpenFlexible.symbole || fieldOpenFlexible.launchPhase || fieldOpenFlexible.contractAdress || fieldOpenFlexible.type || fieldOpenFlexible.website || fieldOpenFlexible.telegram || fieldOpenFlexible.discord || fieldOpenFlexible.twitter || fieldOpenFlexible.coinMarketCapLink || fieldOpenFlexible.kyc) {
+    if (fieldOpenFlexible.logo || fieldOpenFlexible.name || fieldOpenFlexible.symbole || fieldOpenFlexible.launchPhase || fieldOpenFlexible.contractAdress ||
+        fieldOpenFlexible.type || fieldOpenFlexible.website || fieldOpenFlexible.telegram || fieldOpenFlexible.discord || fieldOpenFlexible.twitter ||
+        fieldOpenFlexible.coinMarketCapLink || fieldOpenFlexible.kyc ||fieldOpenFlexible.audit ||  fieldOpenFlexible.facebook || fieldOpenFlexible.medium || fieldOpenFlexible.github || fieldOpenFlexible.whitePaper || fieldOpenFlexible.insta || fieldOpenFlexible.reedit || fieldOpenFlexible.tiktok) {
         fieldOpenFlexible =
         {
             logo: fieldOpenFlexible.logo,
@@ -323,9 +669,18 @@ function setFieldOpenFlexible(event, bool) {
             website: fieldOpenFlexible.website,
             telegram: fieldOpenFlexible.telegram,
             discord: fieldOpenFlexible.discord,
+            facebook: fieldOpenFlexible.facebook,
+            medium: fieldOpenFlexible.medium,
+            github: fieldOpenFlexible.github,
+            whitePaper: fieldOpenFlexible.whitePaper,
+            insta: fieldOpenFlexible.insta,
+            reedit: fieldOpenFlexible.reedit,
+            tiktok: fieldOpenFlexible.tiktok,
             twitter: fieldOpenFlexible.twitter,
             coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
             kyc: fieldOpenFlexible.kyc,
+            audit: fieldOpenFlexible.audit,
+
             comment: true
         };
     }
@@ -342,9 +697,17 @@ function setFieldOpenFlexible(event, bool) {
             website: fieldOpenFlexible.website,
             telegram: fieldOpenFlexible.telegram,
             discord: fieldOpenFlexible.discord,
+            facebook: fieldOpenFlexible.facebook,
+            medium: fieldOpenFlexible.medium,
+            github: fieldOpenFlexible.github,
+            whitePaper: fieldOpenFlexible.whitePaper,
+            insta: fieldOpenFlexible.insta,
+            reedit: fieldOpenFlexible.reedit,
+            tiktok: fieldOpenFlexible.tiktok,
             twitter: fieldOpenFlexible.twitter,
             coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
             kyc: fieldOpenFlexible.kyc,
+            audit: fieldOpenFlexible.audit,
             comment: false
         };
     }

@@ -216,6 +216,8 @@ const TopRankedTokens = () => {
         <div className={style.divSingleBlock}>
             <div className={style.sectionBackground}></div>
             {elements.map((item, key) => {
+                console.log('okokokoko',item );
+                if(item !== undefined){
                 return <div onClick={() => nav(`/infoCoin/${item._id}`)} key={key} className={style.card}>
                     <div className={style.divAllInfo}>
                         {
@@ -242,7 +244,7 @@ const TopRankedTokens = () => {
                             <button onClick={function (event) { Propagation(event); buy(item.contractAddress, item._id, item.points, item.pointsTwentyHour, item.pointsCacul, item.statistique) }} className={style.buyButton}>Buy</button>
                         </div>
                     </div>
-                </div>
+                </div>}
             })}
             <Modal className={styleModal.modalBackground}
                 open={open}

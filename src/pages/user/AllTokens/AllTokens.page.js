@@ -4,6 +4,7 @@ import FooterComponent from '../../../components/Navigation/Footer/Footer.compon
 import AuthService from "../../../services/auth/auth.service";
 import style from './AllTokens.page.module.scss';
 import React from 'react';
+// import TopTrendingComponent from '../../../components/User/TopTrending/TopTrending.component';
 
 const AllTokens = () => {
   const url = AuthService.getUrl();
@@ -17,6 +18,7 @@ const AllTokens = () => {
             </div>
             {/* <p className={style.allTokens_sectionTitle}>All Tokens</p> */}
             <AllTokensComponent />
+
             <div /* className={style.divFooter} */>
                 <FooterComponent />
             </div >

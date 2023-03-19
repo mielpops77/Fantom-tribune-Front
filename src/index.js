@@ -4,12 +4,15 @@ import './styles/index.scss';
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 // import reportWebVitals from "./reportWebVitals";
+import Footer from "./components/Navigation/Footer/Footer.component";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <App />
+    {/* <Footer />  */}
     </BrowserRouter>
+
 );
 
 // reportWebVitals();

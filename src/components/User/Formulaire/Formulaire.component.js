@@ -14,13 +14,17 @@ function Formulaire() {
 
   const url = AuthService.getUrl();
 
-  const [selected, setSelected] = useState('Dex');
-  const [urlUpload, setToggle] = useState('');
-  const [prev, setPrev] = useState('');
-  const [kyc, setKyc] = useState('');
-  const [verifUpl, setVerifUpl] = useState('');
-  const [user, setUser] = useState([]);
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [errors, setErrors] = useState({});
+
   const [urlUpload2, setUrlUpload2] = useState('');
+  const [selected, setSelected] = useState('Dex');
+  const [verifUpl, setVerifUpl] = useState('');
+  const [urlUpload, setToggle] = useState('');
+  const [audit, setAudit] = useState('');
+  const [prev, setPrev] = useState('');
+  const [user, setUser] = useState([]);
+  const [kyc, setKyc] = useState('');
 
 
   const navigate = useNavigate();
@@ -178,45 +182,74 @@ function Formulaire() {
 
   const [inputs, setInputs] = useState({});
 
-  const upload = (event) => {
+  const upload = async (event) => { // ajout du mot clé async pour gérer les promesses
     event.preventDefault();
+
     const inputImg = document.querySelector("input[type=file]");
-    let fileCount = inputImg.files.length;
+    const fileCount = inputImg.files.length; // utilisation de const plutôt que let car la valeur ne sera pas modifiée
+
     if (fileCount > 0) {
+      const formData = new FormData();
+      formData.append('image', inputImg.files.item(0));
 
-
-      let formData = new FormData();
-      formData.append('image', inputImg.files.item(0))
-      axios({
-        method: "post",
-        url: url + "images",
-        data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
-      })
-        .then(function (response) {
-          //handle success
-          setToggle(url + inputImg.files.item(0).name);
-          handleSubmit();
-        })
-        .catch(function (response) {
-          //handle error
+      try { // utilisation de try...catch pour gérer les erreurs
+        const response = await axios({
+          method: "post",
+          url: url + "images",
+          data: formData,
+          headers: { "Content-Type": "multipart/form-data" },
         });
+
+        setToggle(url + inputImg.files.item(0).name);
+        handleSubmit();
+      } catch (error) {
+        console.error(error);
+      }
     }
-  }
+  };
+
 
   const handleChange = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    console.log("name", value);
-    setInputs(values => ({ ...values, [name]: value }))
-  }
+    const { name, value } = event.target;
+
+    // Transforme la première lettre en majuscule pour les champs "name" et "description"
+    // Transforme toutes les lettres en majuscule pour le champ "symbol"
+    const newValue =
+      name === "name" || name === "description"
+        ? value.charAt(0).toUpperCase() + value.slice(1)
+        : name === "symbol"
+          ? value.toUpperCase()
+          : value;
+
+    // Vérifie si les champs "capMax", "capMin", "buyTax" et "sellTax" ne contiennent que des chiffres
+    const isValidNumber =
+      name === "capMax" || name === "capMin" || name === "buyTax" || name === "sellTax"
+        ? /^\d*$/.test(value)
+        : true;
+
+    if (isValidNumber) {
+      // Met à jour les valeurs des champs dans le state "inputs"
+      setInputs((prevState) => ({
+        ...prevState,
+        [name]: newValue,
+      }));
+    }
+
+
+  };
+
+
+
   const prevente = (event) => {
     setPrev(event.target.value);
   }
 
   const kycEdit = (event) => {
-    console.log("event.target.value", event.target.value)
     setKyc(event.target.value);
+  }
+
+  const auditEdit = (event) => {
+    setAudit(event.target.value);
   }
 
   /*   const handleChangeFile = (event) => {
@@ -227,18 +260,38 @@ function Formulaire() {
     }
    */
   function handleSubmit() {
+
+    console.log("heeey");
+
+    setFormSubmitted(true);
+
+    if (!inputs.name) {
+      return;
+    }
+
     if (user !== null) {
       let coinMarketCapLink;
       let coinMarketCapStatus;
+
       if (inputs.coinMarketCapLink === undefined) {
         coinMarketCapLink = 'none';
         coinMarketCapStatus = 'none';
       }
       else {
         coinMarketCapStatus = "en cours de validation"
+
+
         // const searchTerm = '/currencies/'
         // const slug = inputs.coinMarketCapLink.substring(inputs.coinMarketCapLink.lastIndexOf(searchTerm) + 12, inputs.coinMarketCapLink.length - 1)
-        coinMarketCapLink = inputs.coinMarketCapLink;
+        if (!inputs.coinMarketCapLink.endsWith('/')) {
+          coinMarketCapLink = inputs.coinMarketCapLink + '/';
+
+        }
+        else {
+
+          coinMarketCapLink = inputs.coinMarketCapLink;
+
+        }
         // TableLaunchService.coinmarketCap(slug, coinMarketCapLink);
       }
       if (inputs.launchDate === undefined) {
@@ -268,6 +321,16 @@ function Formulaire() {
 
 
 
+      // eslint-disable-next-line no-unused-expressions
+      // audit ? requestOptions.body.auditProof = inputs.auditProof : null;
+
+
+
+
+
+
+
+
       let contractAddress = inputs.contractAddress;
 
       if (inputs.contractAddress !== undefined) {
@@ -275,33 +338,51 @@ function Formulaire() {
       }
       else { contractAddress = "none" }
 
+      const body = {
+        name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: contractAddress, description: inputs.description, type: type,
+        websiteLink: inputs.websiteLink, coinMarketCapLink: coinMarketCapLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord,
+        image: inputs.image, points: 0, pointsTwentyHour: 0, pointsCacul: pointsCacul, price: 0, marketCap: 0, supply: 0, coinMarketCapStatus: coinMarketCapStatus,
+        idCoinMarketCap: 0, listePriceIdCoinMarketCap: listePriceIdCoinMarketCap, percent_change_24h: 0, promotedStatus: false, kyc: kyc,
+        emailCrea: user.email, usernameCrea: user.username, statistique: statistique, kycProof: inputs.kycProof, launchDateHour: inputs.launchDateHour,
+        capMax: inputs.capMax, capMin: inputs.capMin, capMaxToken: inputs.capMaxToken, capMinToken: inputs.capMinToken, presale: prev,
+        facebook: inputs.facebook, medium: inputs.medium, github: inputs.github, whitePaper: inputs.whitePaper, insta: inputs.insta,
+        tiktok: inputs.tiktok, reedit: inputs.reedit, audit: audit, auditProof: inputs.auditProof, buyTax: inputs.buyTax, sellTax: inputs.sellTax
+      };
 
-      /* event.preventDefault(); */
+
+      if (audit == "no") {
+        delete body.auditProof
+      }
+      if (kyc == "no") {
+        delete body.kycProof
+      }
+
+      if (type !== "Reflect token") {
+        delete body.sellTax;
+        delete body.buyTax;
+
+      }
+
+
+
+
       const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, contractAddress: contractAddress, description: inputs.description, type: type,
-          websiteLink: inputs.websiteLink, coinMarketCapLink: coinMarketCapLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, points: 0, pointsTwentyHour: 0, pointsCacul: pointsCacul, price: 0, marketCap: 0, supply: 0, coinMarketCapStatus: coinMarketCapStatus, idCoinMarketCap: 0, listePriceIdCoinMarketCap: listePriceIdCoinMarketCap, percent_change_24h: 0, promotedStatus: false, kyc: kyc,
-          emailCrea: user.email, usernameCrea: user.username, statistique: statistique, kycProof: inputs.kycProof, launchDateHour: inputs.launchDateHour, capMax: inputs.capMax, capMin: inputs.capMin, capMaxToken: inputs.capMaxToken, capMinToken: inputs.capMinToken, presale: prev
-        })
+        body: JSON.stringify(body)
       };
+
+
       fetch(url + 'launchDate', requestOptions)
-        .then((response) => response.json()) //2
+        .then((response) => response.json())
         .then((res) => {
           if (inputs.coinMarketCapLink !== undefined) {
             const searchTerm = '/currencies/'
-            const slug = inputs.coinMarketCapLink.substring(inputs.coinMarketCapLink.lastIndexOf(searchTerm) + 12, inputs.coinMarketCapLink.length - 1);
+            const slug = coinMarketCapLink.substring(coinMarketCapLink.lastIndexOf(searchTerm) + 12, coinMarketCapLink.length - 1);
             TableLaunchService.coinmarketCap(res._id, slug, coinMarketCapLink);
           }
           nav(`/ValidationForm/Submit`);
         });
-
-      /*   .then(response => { console.log(JSON.parse(response.json())) }, nav(`/ValidationForm/Submit`)
-        ) */
-
-      /* .then(data => this.setState({ postId: data.id })); */
-
     }
 
   }
@@ -309,10 +390,95 @@ function Formulaire() {
 
 
   function verifUpload() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-    inputs.image === undefined ? setVerifUpl(false) : setVerifUpl(true)
+    // Scroll au début de la page
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Vérifie si le champ "image" est rempli
+    setVerifUpl(inputs.image !== undefined);
+
+    // Définit l'état "formSubmitted" sur true pour afficher les erreurs
+    setFormSubmitted(true);
+
+    // Vérifie si le champ "Name" est rempli
+    if (!inputs.name) {
+      setErrors(errors => ({ ...errors, name: "Le champ 'Name' est obligatoire" }));
+    } else {
+      // Efface l'erreur précédente du champ "Name" s'il est rempli
+      setErrors(errors => ({ ...errors, name: "" }));
+    }
+
+    // Vérifie si le champ "Symbol" est rempli
+    if (!inputs.symbol) {
+      setErrors(errors => ({ ...errors, symbol: "Le champ 'Symbol' est obligatoire" }));
+    } else {
+      // Efface l'erreur précédente du champ "Symbol" s'il est rempli
+      setErrors(errors => ({ ...errors, symbol: "" }));
+    }
+    if (!inputs.description) {
+      setErrors(errors => ({ ...errors, description: "Le champ 'Description' est obligatoire" }));
+    } else {
+      // Efface l'erreur précédente du champ "Symbol" s'il est rempli
+      setErrors(errors => ({ ...errors, description: "" }));
+    }
+    if (!inputs.twitter) {
+      setErrors(errors => ({ ...errors, twitter: "Le champ 'Twitter link' est obligatoire" }));
+    } else {
+      // Efface l'erreur précédente du champ "Symbol" s'il est rempli
+      setErrors(errors => ({ ...errors, twitter: "" }));
+    }
+
+    if (!inputs.contractAddress) {
+      setErrors(errors => ({ ...errors, contractAddress: "Le champ 'ContractAddress' est obligatoire" }));
+    } else {
+      // Efface l'erreur précédente du champ "Symbol" s'il est rempli
+      setErrors(errors => ({ ...errors, contractAddress: "" }));
+    }
+    if (!inputs.auditProof) {
+      setErrors(errors => ({ ...errors, auditProof: "Le champ 'AuditProof' est obligatoire" }));
+    } else {
+      // Efface l'erreur précédente du champ "Symbol" s'il est rempli
+      setErrors(errors => ({ ...errors, auditProof: "" }));
+    }
+    if (!inputs.kycProof) {
+      setErrors(errors => ({ ...errors, kycProof: "Le champ 'KycProof' est obligatoire" }));
+    } else {
+      // Efface l'erreur précédente du champ "Symbol" s'il est rempli
+      setErrors(errors => ({ ...errors, kycProof: "" }));
+    }
+    if (prev == "") {
+      setErrors(errors => ({ ...errors, question: "Le champ 'Launch phase' est obligatoire" }));
+    } else {
+      // Efface l'erreur précédente du champ "Symbol" s'il est rempli
+      setErrors(errors => ({ ...errors, question: "" }));
+    }
+
+    if (kyc == "") {
+      setErrors(errors => ({ ...errors, questionKyc: "Le champ 'Kyc' est obligatoire" }));
+    } else {
+      // Efface l'erreur précédente du champ "Symbol" s'il est rempli
+      setErrors(errors => ({ ...errors, questionKyc: "" }));
+    }
+
+    if (audit == "") {
+      setErrors(errors => ({ ...errors, questionAudit: "Le champ 'Audit' est obligatoire" }));
+    } else {
+      // Efface l'erreur précédente du champ "Symbol" s'il est rempli
+      setErrors(errors => ({ ...errors, questionAudit: "" }));
+    }
+
+
+
   }
+
+  /*     if(inputs.name)
+      if (formSubmitted && name === "name" && !value) {
+        setErrors((errors) => ({
+          ...errors,
+          name: "Le champ 'Name' est obligatoire",
+        }));
+      } else {
+        setErrors((errors) => ({ ...errors, [name]: "" }));
+      } */
 
 
   // La fonction previewPicture
@@ -356,23 +522,31 @@ function Formulaire() {
         >
         </input>
 
-        <label className={style.formLabel}>Name*:
+        <label className={style.formLabel}>Name* :
           <input className={style.formInput}
             type="text"
             name="name"
             value={inputs.name || ""}
             onChange={handleChange}
             required="required"
+            maxLength={15}
           />
+          {formSubmitted && !inputs.name && errors.name && (
+            <span className={style.errorMessage}>{errors.name}</span>
+          )}
         </label>
-        <label className={style.formLabel}>Symbol*:
+        <label className={style.formLabel}>Symbol* :
           <input className={style.formInput}
             type="text"
             name="symbol"
             value={inputs.symbol || ""}
             onChange={handleChange}
             required="required"
-          ></input>
+            maxLength={10}
+          />
+          {formSubmitted && !inputs.symbol && errors.symbol && (
+            <span className={style.errorMessage}>{errors.symbol}</span>
+          )}
         </label>
 
 
@@ -387,6 +561,9 @@ function Formulaire() {
             <input onChange={prevente} type="radio" name="question" value="no" id="no" required="required"
             /> <label htmlFor="no">no</label>
           </div>
+          {formSubmitted && prev == "" && errors.question && (
+            <span className={style.errorMessage}>{errors.question}</span>
+          )}
         </label>
 
         {
@@ -421,8 +598,6 @@ function Formulaire() {
               type="time"
               name="launchDateHour"
               // value="13:30"
-              // type="text"
-              // name="contractAddress"
               value={inputs.launchDateHour || ""}
               onChange={handleChange}
             />
@@ -439,7 +614,9 @@ function Formulaire() {
                 name="capMax"
                 value={inputs.capMax || ""}
                 onChange={handleChange}
-                required="required"
+                maxLength={20}
+
+
               /></label>
             <label className={style.formLabel2}> Token Sale Hard Cap Currency:
               <select className={style.formInput2}
@@ -447,7 +624,6 @@ function Formulaire() {
                 name="capMaxToken"
                 // value={inputs.websiteLink || ""}
                 onChange={handleChange}
-                required="required"
               > <option value="$">$</option>
                 <option value="FTM">FTM</option></select></label>
 
@@ -462,7 +638,7 @@ function Formulaire() {
                 name="capMin"
                 value={inputs.capMin || ""}
                 onChange={handleChange}
-                required="required"
+                maxLength={20}
               /></label>
             <label className={style.formLabel2}>Token Sale Soft Cap Currency:
               <select className={style.formInput2}
@@ -470,7 +646,6 @@ function Formulaire() {
                 name="capMinToken"
                 // value={inputs.websiteLink || ""}
                 onChange={handleChange}
-                required="required"
               > <option value="$">$</option>
                 <option value="FTM">FTM</option></select></label>
 
@@ -478,16 +653,22 @@ function Formulaire() {
 
         {
           prev === "no" &&
-          <label className={style.formLabel}>Contract Address:
+          <label className={style.formLabel}>Contract Address* :
             <input className={style.formInput}
               type="text"
               name="contractAddress"
               value={inputs.contractAddress || ""}
               onChange={handleChange}
+              maxLength={42}
+              required="required"
+
             />
+            {formSubmitted && !inputs.contractAddress && errors.contractAddress && (
+              <span className={style.errorMessage}>{errors.contractAddress}</span>
+            )}
           </label>}
 
-        <label className={style.formLabel}>Description*:
+        <label className={style.formLabel}>Description* :
           <textarea className={style.formInput} style={{
             maxHeight: "40em",
             minHeight: "8em"
@@ -497,15 +678,28 @@ function Formulaire() {
             value={inputs.description || ""}
             onChange={handleChange}
             required="required"
+            maxLength={500}
           />
+
+          {formSubmitted && !inputs.description && errors.description && (
+            <span className={style.errorMessage}>{errors.description}</span>
+          )}
         </label>
 
         <label className={style.formLabel}>Type*:
           <Select
+
+            styles={{
+              option: (provided) => ({
+                ...provided,
+                color: 'black',
+              }),
+            }}
             className="basic-single"
             classNamePrefix="select"
             /* defaultValue={options[0]} */
             /*  isClearable={true} */
+            color="red"
             defaultValue={options[0]}
             isSearchable={true}
             options={options}
@@ -515,6 +709,33 @@ function Formulaire() {
           />
 
         </label>
+        {
+          selected.value == "Reflect token" &&
+          <label className={style.formLabel}>BuyTax :
+            <input className={style.formInput}
+              type="text"
+              name="buyTax"
+              value={inputs.buyTax || ""}
+              onChange={handleChange}
+              maxLength={20}
+            >
+
+            </input>
+          </label>
+        }
+        {
+          selected.value == "Reflect token" &&
+          <label className={style.formLabel}>SellTax :
+            <input className={style.formInput}
+              type="text"
+              name="sellTax"
+              value={inputs.sellTax || ""}
+              onChange={handleChange}
+              maxLength={20}
+            >
+
+            </input>
+          </label>}
 
         {/*     <label className={style.formLabel}>Type*:
         <MultiSelect
@@ -529,70 +750,198 @@ function Formulaire() {
 
       </label>
  */}
-        <label className={style.formLabel}>Website link*:
+        <label className={style.formLabel}>Website link :
           <input className={style.formInput}
             type="text"
             name="websiteLink"
             value={inputs.websiteLink || ""}
             onChange={handleChange}
-            required="required"
+            maxLength={50}
           />
         </label>
 
         {
           prev === "no" &&
-          <label className={style.formLabel}>coinmarketcap link:
+          <label className={style.formLabel}>coinmarketcap link :
             <input className={style.formInput}
               type="text"
               name="coinMarketCapLink"
               value={inputs.coinMarketCapLink || ""}
-              onChange={handleChange} />
+              onChange={handleChange}
+              maxLength={90} />
+
           </label>}
 
-        <label className={style.formLabel}>Telegram link:
+        <label className={style.formLabel}>Telegram link :
           <input className={style.formInput}
             type="text"
             name="telegram"
             value={inputs.telegram || ""}
-            onChange={handleChange}>
+            onChange={handleChange}
+            maxLength={50}
+          >
+
           </input>
         </label>
 
 
-        <label className={style.formLabel}>Twitter link*:
+        <label className={style.formLabel}>Twitter link* :
           <input className={style.formInput}
             type="text"
             name="twitter"
             value={inputs.twitter || ""}
             onChange={handleChange}
-            required="required" />
+            required="required"
+            maxLength={50}
+          />
+          {formSubmitted && !inputs.twitter && errors.twitter && (
+            <span className={style.errorMessage}>{errors.twitter}</span>
+          )}
+
+        </label>
+
+        <label className={style.formLabel}>Medium link :
+          <input className={style.formInput}
+            type="text"
+            name="medium"
+            value={inputs.medium || ""}
+            onChange={handleChange}
+            maxLength={50}
+          >
+
+          </input>
         </label>
 
 
-        <label className={style.formLabel}>Discord link:
+
+        <label className={style.formLabel}>Facebook link :
+          <input className={style.formInput}
+            type="text"
+            name="facebook"
+            value={inputs.facebook || ""}
+            onChange={handleChange}
+            maxLength={50}
+          >
+
+          </input>
+        </label>
+        <label className={style.formLabel}>Instagram link :
+          <input className={style.formInput}
+            type="text"
+            name="insta"
+            value={inputs.insta || ""}
+            onChange={handleChange}
+            maxLength={50}
+          >
+
+          </input>
+        </label>
+        <label className={style.formLabel}>Reedit link :
+          <input className={style.formInput}
+            type="text"
+            name="reedit"
+            value={inputs.reedit || ""}
+            onChange={handleChange}
+            maxLength={50}
+          >
+
+          </input>
+        </label>
+        <label className={style.formLabel}>Tiktok link :
+          <input className={style.formInput}
+            type="text"
+            name="tiktok"
+            value={inputs.tiktok || ""}
+            onChange={handleChange}
+            maxLength={50}
+          >
+
+          </input>
+
+        </label>
+        <label className={style.formLabel}>Discord link :
           <input className={style.formInput}
             type="text"
             name="discord"
             value={inputs.discord || ""}
+            maxLength={50}
             onChange={handleChange} />
         </label>
+
+        <label className={style.formLabel}>Github :
+          <input className={style.formInput}
+            type="text"
+            name="github"
+            value={inputs.github || ""}
+            maxLength={50}
+            onChange={handleChange} />
+        </label>
+
+        <label className={style.formLabel}>White paper link :
+          <input className={style.formInput}
+            type="text"
+            name="whitePaper"
+            value={inputs.whitePaper || ""}
+            onChange={handleChange}
+            maxLength={50}
+          >
+          </input>
+        </label>
+
+        <label className={style.formLabel}>Audit? *:
+          <div>
+            <input onChange={auditEdit} type="radio" name="questionAudit" value="yes" id="yes" required="required"
+            /> <label style={{ marginRight: "1%" }} htmlFor="yes">yes</label>
+            <input onChange={auditEdit} type="radio" name="questionAudit" value="no" id="no" required="required"
+            /> <label htmlFor="no">no</label>
+          </div>
+          {formSubmitted && audit == "" && errors.questionAudit && (
+            <span className={style.errorMessage}>{errors.questionAudit}</span>
+          )}
+        </label>
+
+        {audit == "yes" &&
+          <label className={style.formLabel}>Audit proof Link * :
+            <input className={style.formInput}
+              type="text"
+              name="auditProof"
+              value={inputs.auditProof || ""}
+              onChange={handleChange}
+              required="required"
+              maxLength={50}
+            />
+            {formSubmitted && !inputs.auditProof && errors.auditProof && (
+              <span className={style.errorMessage}>{errors.auditProof}</span>
+            )}
+          </label>}
+
+
         <label className={style.formLabel}>Kyc? *:
           <div>
             <input onChange={kycEdit} type="radio" name="questionKyc" value="yes" id="yes" required="required"
             /> <label style={{ marginRight: "1%" }} htmlFor="yes">yes</label>
             <input onChange={kycEdit} type="radio" name="questionKyc" value="no" id="no" required="required"
-            /> <label htmlFor="no">no</label>
+            />
+            <label htmlFor="no">no</label>
           </div>
+          {formSubmitted && kyc == "" && errors.questionKyc && (
+            <span className={style.errorMessage}>{errors.questionKyc}</span>
+          )}
         </label>
 
         {kyc == "yes" &&
-          <label className={style.formLabel}>kyc proof Link:
+          <label className={style.formLabel}>kyc proof Link * :
             <input className={style.formInput}
               type="text"
               name="kycProof"
               value={inputs.kycProof || ""}
               onChange={handleChange}
-              required="required" />
+              required="required"
+              maxLength={50}
+            />
+            {formSubmitted && !inputs.kycProof && errors.kycProof && (
+              <span className={style.errorMessage}>{errors.kycProof}</span>
+            )}
           </label>}
         <br />
 

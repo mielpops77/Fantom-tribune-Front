@@ -1,5 +1,4 @@
 import NavigationUserComponent from '../../../components/Navigation/NavigationUser/NavigationUser.component';
-import FooterComponent from '../../../components/Navigation/Footer/Footer.component';
 import style from "./ValidationFormulaire.page.module.scss";
 import { Link } from "react-router-dom";
 import React from "react";
@@ -60,9 +59,7 @@ const ValidationFormulaire = (props) => {
 
                 </div>
             </div>
-            <div className={style.validationFormulaire_divFooter}>
-                <FooterComponent />
-            </div>
+      
         </div>
     );
 };

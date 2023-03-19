@@ -1,42 +1,55 @@
-.updateCoinPage_fond{
-    background-color:#050945;
+.updateCoinPage_fond {
+    background: url("http://localhost:3000/assets/background_without _rocket&Cloud.png") no-repeat;
     min-height: 1000px;
-    .updateCoinPage_divCorpSubmit{
-        background-color:#ffffff;
+    // height: 100%;
+    // background-size: cover;
+    // padding-bottom: 100%;
+    // min-height: 1000px;
+    /* background-color:#050945;
+    min-height: 1000px; */
+    .updateCoinPage_divCorpSubmit {
+        background-color: #ffffff;
         box-shadow: 0px 14px 80px rgb(34 35 58 / 20%);
         border-radius: 15px;
-        width: 80%;   
+        width: 80%;
         max-width: 800px;
         min-width: 100px;
-        margin: 7% auto;
+        margin-top: 7%;
+        margin-right: auto;
+        margin-bottom: 15%;
+        margin-left: auto;
         border-radius: 20px;
-        padding:1%;
+        padding: 1%;
 
-        .updateCoinPage_titleSubmit{
+        .updateCoinPage_titleSubmit {
             font-size: max(2.2vw, 170%);
             text-align: center;
             color: #450ca0;
-            margin:0 auto;
+            margin: 0 auto;
             padding: 2% 0 0 0;
         }
-        
-        .updateCoinPage_subtitleSubmit
-        {
-        /*  font-size: max(2.2vw, 170%); */
+
+        .updateCoinPage_subtitleSubmit {
+            /*  font-size: max(2.2vw, 170%); */
             text-align: center;
             color: #450ca0;
-            margin:0 auto;
-            padding: 2% 0 0 0;  
+            margin: 0 auto;
+            padding: 2% 0 0 0;
         }
-        hr{
-            color:#450ca0;
+        hr {
+            color: #450ca0;
         }
     }
-    .updateCoinPage_divFooter{
-        position:fixed;
-        left:0;
+   /*  .updateCoinPage_divFooter {
+        position: fixed;
+        left: 0;
         bottom: 0;
         width: 100%;
-    }
+    } */
+/*     .divFooter {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+    } */
 }
-

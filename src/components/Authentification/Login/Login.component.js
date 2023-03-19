@@ -122,7 +122,7 @@ const Login = (props) => {
                     </NavLink>
                 </Form>
             </div>
-            <FooterComponent />
+            {/* <FooterComponent /> */}
         </div>
 
 

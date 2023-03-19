@@ -31,14 +31,23 @@ const UpdateCoin = () => {
         telegram: "",
         twitter: "",
         discord: "",
+        facebook: "",
+        medium: "",
+        github: "",
+        whitePaper: "",
+        insta: "",
+        reedit: "",
+        tiktok: "",
         comment: "",
-        kycProof:"",
+        kycProof: "",
+        auditProof: "",
         imageEdit: "",
-       
+
     });
     const [items, setItems] = useState([]);
     const [prev, setPrev] = useState('');
     const [kyc, setKyc] = useState('');
+    const [audit, setAudit] = useState('');
     const [logo, setLogo] = useState('');
     const [idProject, setIdProject] = useState('');
 
@@ -71,7 +80,7 @@ const UpdateCoin = () => {
         name: "",
         symbol: "",
         launchDate: "",
-        launchDateHour:"",
+        launchDateHour: "",
         contractAddress: "",
         description: "",
         websiteLink: "",
@@ -79,6 +88,13 @@ const UpdateCoin = () => {
         telegram: "",
         twitter: "",
         discord: "",
+        facebook: "",
+        medium: "",
+        github: "",
+        whitePaper: "",
+        insta: "",
+        reedit: "",
+        tiktok: "",
         comment: ""
     };
 
@@ -95,9 +111,18 @@ const UpdateCoin = () => {
         { label: "Website link", value: "Website-link" },
         { label: "Telegram link", value: "Telegram-link" },
         { label: "Discord link", value: "Discord-link" },
+        { label: "Facebook link", value: "Facebook-link" },
+        { label: "Medium link", value: "Medium-link" },
+        { label: "Github link", value: "Github-link" },
+        { label: "WhitePaper link", value: "WhitePaper-link" },
+        { label: "Insta link", value: "Insta-link" },
+        { label: "Reedit link", value: "Reedit-link" },
+        { label: "Tiktok link", value: "Tiktok-link" },
         { label: "Twitter link", value: "Twitter-link" },
         { label: " Coinmarketcap link", value: "Coinmarketcap-link" },
         { label: "Kyc?", value: "Kyc" },
+        { label: "Audit?", value: "Audit" },
+
     ];
 
     const optionsType = [
@@ -243,9 +268,11 @@ const UpdateCoin = () => {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    nameEdit: inputs.name, symbolEdit: inputs.symbol, launchDateEdit: inputs.launchDate,launchDateHourEdit: inputs.launchDateHour, contractAddressEdit: inputs.contractAddress,
-                     descriptionEdit: inputs.description, typeEdit: typeEdit, websiteLinkEdit: inputs.websiteLink, coinMarketCapLinkEdit: inputs.coinMarketCapLink, telegramEdit: inputs.telegram,
-                      twitterEdit: inputs.twitter, discordEdit: inputs.discord, kycEdit: kyc, imageEdit: inputs.imageEdit, image: logo, idProject: idProject, kycProofEdit: inputs.kycProof, comment: inputs.comment
+                    nameEdit: inputs.name, symbolEdit: inputs.symbol, launchDateEdit: inputs.launchDate, launchDateHourEdit: inputs.launchDateHour, contractAddressEdit: inputs.contractAddress,
+                    descriptionEdit: inputs.description, typeEdit: typeEdit, websiteLinkEdit: inputs.websiteLink, coinMarketCapLinkEdit: inputs.coinMarketCapLink, telegramEdit: inputs.telegram,
+                    twitterEdit: inputs.twitter, discordEdit: inputs.discord, kycEdit: kyc, auditEdit: audit, imageEdit: inputs.imageEdit, image: logo, idProject: idProject, kycProofEdit: inputs.kycProof, auditProofEdit: inputs.auditProof,
+                    facebookEdit: inputs.facebook, mediumEdit: inputs.medium, githubEdit: inputs.github, whitePaperEdit: inputs.whitePaper, instaEdit: inputs.insta, reeditEdit: inputs.reedit, tiktokEdit: inputs.tiktok, comment: inputs.comment
+
                 })
             };
             fetch(url + 'updateNew', requestOptions)
@@ -255,6 +282,7 @@ const UpdateCoin = () => {
     }
 
     const handleChange = (event) => {
+        console.log('handleChange');
         const name = event.target.name;
         const value = event.target.value;
         setInputs(values => ({ ...values, [name]: value }))
@@ -280,8 +308,16 @@ const UpdateCoin = () => {
             telegram: "",
             twitter: "",
             discord: "",
+            facebook: "",
+            medium: "",
+            github: "",
+            whitePaper: "",
+            insta: "",
+            reedit: "",
+            tiktok: "",
             comment: "",
-            kycProof:"",
+            kycProof: "",
+            auditProof: "",
             imageEdit: ""
         });
         getSearchCoinRequest(string);
@@ -322,9 +358,11 @@ const UpdateCoin = () => {
         const pattern = "projetsValidadOnly"
         return axios.get(AuthService.getUrl() + `searchById?id=${id}&pattern=${pattern}`)
             .then(response => {
+                console.log('response', response)
                 setLogo(response.data[0].image);
                 setUrlUpload("vide");
                 setKyc(response.data[0].kyc.toString());
+                setAudit(response.data[0].audit.toString());
                 prevCheck(response.data[0].launchDate);
                 return response.data;
             })
@@ -421,6 +459,9 @@ const UpdateCoin = () => {
     const kycChange = (event) => {
         setKyc(event.target.value);
     }
+    const auditChange = (event) => {
+        setAudit(event.target.value);
+    }
 
 
     function prevCheck(dateProject) {
@@ -434,6 +475,7 @@ const UpdateCoin = () => {
 
 
     function handleSelect(event) {
+        console.log('ijijijij', event);
         // setSelected({});
         UpdateCoinService.setFieldOpenFlexible(event, true);
         setFieldOpen(UpdateCoinService.getFieldOpenFlexible());
@@ -625,15 +667,15 @@ const UpdateCoin = () => {
                     }
 
 
-                        {prev === "yes" && <label htmlFor="appt-time" className={style.updateCoin_formLabel}>Presale time (UTC)*:
-                            <input className={style.updateCoin_formInput}
-                              id="appt-time"
-                              type="time"
-                              name="launchDateHour"
-                                value={inputs.launchDateHour || initForm.launchDateHour}
-                                onChange={handleChange}
-                            />
-                        </label>
+                    {prev === "yes" && <label htmlFor="appt-time" className={style.updateCoin_formLabel}>Presale time (UTC)*:
+                        <input className={style.updateCoin_formInput}
+                            id="appt-time"
+                            type="time"
+                            name="launchDateHour"
+                            value={inputs.launchDateHour || initForm.launchDateHour}
+                            onChange={handleChange}
+                        />
+                    </label>
                     }
 
                     {fieldOpen.launchPhase &&
@@ -758,6 +800,104 @@ const UpdateCoin = () => {
                     // eslint-disable-next-line jsx-a11y/anchor-is-valid
                     <a className={style.updateCoin_removeField} onClick={function (event) { removeField("Discord-link") }} >Remove this field</a>}
 
+
+                {fieldOpen.facebook &&
+                    <label className={style.updateCoin_formLabel}>Facebook link:
+                        <input className={style.updateCoin_formInput}
+                            type="text"
+                            name="facebook"
+                            value={inputs.facebook || initForm.facebook}
+                            onChange={handleChange} />
+                    </label>
+                }
+                {fieldOpen.facebook &&
+                    // eslint-disable-next-line jsx-a11y/anchor-is-valid
+                    <a className={style.updateCoin_removeField} onClick={function (event) { removeField("Facebook-link") }} >Remove this field</a>}
+
+                {fieldOpen.medium &&
+                    <label className={style.updateCoin_formLabel}>Medium link:
+                        <input className={style.updateCoin_formInput}
+                            type="text"
+                            name="medium"
+                            value={inputs.medium || initForm.medium}
+                            onChange={handleChange} />
+                    </label>
+                }
+                {fieldOpen.medium &&
+                    // eslint-disable-next-line jsx-a11y/anchor-is-valid
+                    <a className={style.updateCoin_removeField} onClick={function (event) { removeField("Medium-link") }} >Remove this field</a>}
+
+
+
+                {fieldOpen.github &&
+                    <label className={style.updateCoin_formLabel}>Github link:
+                        <input className={style.updateCoin_formInput}
+                            type="text"
+                            name="github"
+                            value={inputs.github || initForm.github}
+                            onChange={handleChange} />
+                    </label>
+                }
+                {fieldOpen.github &&
+                    // eslint-disable-next-line jsx-a11y/anchor-is-valid
+                    <a className={style.updateCoin_removeField} onClick={function (event) { removeField("Github-link") }} >Remove this field</a>}
+
+                {fieldOpen.whitePaper &&
+                    <label className={style.updateCoin_formLabel}>WhitePaper link:
+                        <input className={style.updateCoin_formInput}
+                            type="text"
+                            name="whitePaper"
+                            value={inputs.whitePaper || initForm.whitePaper}
+                            onChange={handleChange} />
+                    </label>
+                }
+                {fieldOpen.whitePaper &&
+                    // eslint-disable-next-line jsx-a11y/anchor-is-valid
+                    <a className={style.updateCoin_removeField} onClick={function (event) { removeField("WhitePaper-link") }} >Remove this field</a>}
+
+
+                {fieldOpen.insta &&
+                    <label className={style.updateCoin_formLabel}>Insta link:
+                        <input className={style.updateCoin_formInput}
+                            type="text"
+                            name="insta"
+                            value={inputs.insta || initForm.insta}
+                            onChange={handleChange} />
+                    </label>
+                }
+                {fieldOpen.insta &&
+                    // eslint-disable-next-line jsx-a11y/anchor-is-valid
+                    <a className={style.updateCoin_removeField} onClick={function (event) { removeField("Insta-link") }} >Remove this field</a>}
+
+
+                {fieldOpen.reedit &&
+                    <label className={style.updateCoin_formLabel}>Reedit link:
+                        <input className={style.updateCoin_formInput}
+                            type="text"
+                            name="reedit"
+                            value={inputs.reedit || initForm.reedit}
+                            onChange={handleChange} />
+                    </label>
+                }
+                {fieldOpen.reedit &&
+                    // eslint-disable-next-line jsx-a11y/anchor-is-valid
+                    <a className={style.updateCoin_removeField} onClick={function (event) { removeField("Reedit-link") }} >Remove this field</a>}
+
+                {fieldOpen.tiktok &&
+                    <label className={style.updateCoin_formLabel}>Tiktok link:
+                        <input className={style.updateCoin_formInput}
+                            type="text"
+                            name="tiktok"
+                            value={inputs.tiktok || initForm.tiktok}
+                            onChange={handleChange} />
+                    </label>
+                }
+                {fieldOpen.tiktok &&
+                    // eslint-disable-next-line jsx-a11y/anchor-is-valid
+                    <a className={style.updateCoin_removeField} onClick={function (event) { removeField("Tiktok-link") }} >Remove this field</a>}
+
+
+
                 {fieldOpen.kyc &&
                     <label className={style.updateCoin_formLabel}>Kyc? :
                         <div>
@@ -798,6 +938,51 @@ const UpdateCoin = () => {
                 {fieldOpen.kyc &&
                     // eslint-disable-next-line jsx-a11y/anchor-is-valid
                     <a className={style.updateCoin_removeField} onClick={function (event) { removeField("Kyc") }} >Remove this field</a>}
+
+
+
+                {fieldOpen.audit &&
+                    <label className={style.updateCoin_formLabel}>Audit? :
+                        <div>
+                            {
+                                audit === "true" &&
+                                < input onChange={auditChange} type="radio" name="questionAudit" value="true" id="true" required="required" checked
+                                />}
+                            {
+                                audit === "false" &&
+                                <input onChange={auditChange} type="radio" name="questionAudit" value="true" id="true" required="required"
+                                />}
+                            <label style={{ marginRight: "1%" }} htmlFor="yes">yes</label>
+
+                            {
+                                audit === "false" &&
+                                <input onChange={auditChange} type="radio" name="questionAudit" value="false" id="false" required="required" checked
+                                />
+                            }
+                            {
+                                audit === "true" &&
+                                <input onChange={auditChange} type="radio" name="questionAudit" value="false" id="false" required="required"
+                                />
+                            }
+                            <label htmlFor="no">no</label>
+                        </div>
+                    </label>
+                }
+
+                {fieldOpen.audit && audit === "true" &&
+                    <label className={style.updateCoin_formLabel}>audit proof Link:
+                        <input className={style.updateCoin_formInput}
+                            type="text"
+                            name="auditProof"
+                            value={inputs.auditProof || ""}
+                            onChange={handleChange}
+                            required="required" />
+                    </label>}
+                {fieldOpen.audit &&
+                    // eslint-disable-next-line jsx-a11y/anchor-is-valid
+                    <a className={style.updateCoin_removeField} onClick={function (event) { removeField("Audit") }} >Remove this field</a>}
+
+
 
 
 

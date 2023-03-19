@@ -50,7 +50,7 @@ const NavigationAdmin = () => {
           <li className={style.liNavUser}>API-CONFIG</li>
         </NavLink>
         <NavLink
-          to="/"
+          to="/ "
           className={(nav) => (nav.isActive ? "nav-active" : "")}
         >
           <li className={style.liNavUser}>HOME</li>

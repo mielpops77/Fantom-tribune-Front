@@ -8,11 +8,21 @@
     align-items: center;
 
     .messageError{
-    background-color: #EC412A;
-    border-color: #EC412A;
+    // background-color: #EC412A;
+    font-size: 14px;
+    // border-color: #EC412A;
+    color: red;
+    font-weight: 500;
+    font-family: "Fira Sans", sans-serif;
+
     margin-top: "1rem";
     text-align: center;
     }
+
+    .errorMessage {
+        color: red;
+        font-size: 14px;
+      }
     
     .formLabelFileEmpty {
         width: 100%;

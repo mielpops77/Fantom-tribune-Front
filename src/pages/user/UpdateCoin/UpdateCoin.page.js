@@ -15,8 +15,11 @@ const UpdateCoin = () => {
                 <hr></hr>
                 <UpdateCoinComponent/>
             </div>
-            <div><FooterComponent/></div>
-                
+            <div 
+            // className={style.divFooter}
+            >
+                <FooterComponent />
+            </div >
         </div >
     );
 };

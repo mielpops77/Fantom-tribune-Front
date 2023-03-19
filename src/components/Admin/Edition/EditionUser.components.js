@@ -1,6 +1,5 @@
 import TableLaunchService from "../../../services/tableauLaunh/tableauLaunch.service";
 import editionService from "../../../services/admin/editionAdmin.service";
-import FooterComponent from '../../Navigation/Footer/Footer.component';
 import AuthService from "../../../services/auth/auth.service";
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -21,9 +20,17 @@ const EditionUser = () => {
         contractAddress: "",
         descriptionEdit: "",
         discordEdit: "",
+        facebookEdit: "",
+        mediumEdit: "",
+        githubEdit: "",
+        whitePaperEdit: "",
+        instaEdit: "",
+        reeditEdit: "",
+        tiktokEdit: "",
         idProject: "",
         imageEdit: "",
         kycEdit: "",
+        auditEdit: "",
         launchDateEdit: "",
         launchDateHourEdit: "",
         nameEdit: "",
@@ -32,11 +39,14 @@ const EditionUser = () => {
         twitterEdit: "",
         typeEdit: "",
         websiteLinkEdit: "",
-        kycProofEdit: ""
+        kycProofEdit: "",
+        auditProofEdit: ""
+
     });
     const [urlUpload, setToggle] = useState('');
     const [prev, setPrev] = useState('');
     const [kyc, setKyc] = useState('');
+    const [audit, setAudit] = useState('');
     const [stat, setStat] = useState({
         name: "",
         symbol: "",
@@ -49,7 +59,16 @@ const EditionUser = () => {
         telegram: "",
         twitter: "",
         discord: "",
-        kycProof: ""
+        facebook: "",
+        medium: "",
+        github: "",
+        whitePaper: "",
+        insta: "",
+        reedit: "",
+        tiktok: "",
+        kycProof: "",
+        auditProof: ""
+
     });
 
     const [statType, setStatType] = useState("");
@@ -157,7 +176,9 @@ const EditionUser = () => {
     const kycChange = (event) => {
         setKyc(event.target.value);
     }
-
+    const auditChange = (event) => {
+        setAudit(event.target.value);
+    }
 
     function prevCheck(dateProject) {
         if (dateProject >= dateUtc) {
@@ -227,11 +248,10 @@ const EditionUser = () => {
 
             }
             else {
-                console.log('wesh');
                 editionService.setMarketCapStatus("en cours de validation");
                 const searchTerm = '/currencies/'
                 const slug = inputs.coinMarketCapLink.substring(inputs.coinMarketCapLink.lastIndexOf(searchTerm) + 12, inputs.coinMarketCapLink.length - 1)
-                TableLaunchService.coinmarketCap(editionService.getIdProject(), slug, editionService.getCoinMarketCapLink(),editionService.getCoin().coinMarketCapStatus,editionService.getCoin().idCoinMarketCap);
+                TableLaunchService.coinmarketCap(editionService.getIdProject(), slug, editionService.getCoinMarketCapLink(), editionService.getCoin().coinMarketCapStatus, editionService.getCoin().idCoinMarketCap);
             }
 
         }
@@ -249,12 +269,15 @@ const EditionUser = () => {
             type = selected;
         }
 
+
         const requestOptions = {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate,launchDateHour: inputs.launchDateHour, contractAddress: inputs.contractAddress, description: inputs.description, type: type.value,
-                websiteLink: inputs.websiteLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, coinMarketCapLink: inputs.coinMarketCapLink, coinMarketCapStatus: editionService.getMarketCapStatus(), kyc: kyc, kycProof: inputs.kycProof
+                name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, launchDateHour: inputs.launchDateHour, contractAddress: inputs.contractAddress,
+                description: inputs.description, type: type.value, websiteLink: inputs.websiteLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord,
+                image: inputs.image, coinMarketCapLink: inputs.coinMarketCapLink, coinMarketCapStatus: editionService.getMarketCapStatus(), kyc: kyc, kycProof: inputs.kycProof, audit: audit, auditProof: inputs.auditProof,
+                facebook: inputs.facebook, medium: inputs.medium, github: inputs.github, whitePaper: inputs.whitePaper, insta: inputs.insta, reedit: inputs.reedit, tiktok: inputs.tiktok
             })
         };
         let imageDelete = ""
@@ -276,7 +299,7 @@ const EditionUser = () => {
     function searchUpdateById(id) {
         return axios.get(AuthService.getUrl() + `updateSearchById?id=${id}`)
             .then(response => {
-                console.log("response.data[0]",response.data[0]);
+                console.log('herf',response.data)
                 setInputsEdit(response.data[0]);
                 editionService.initIdProject();
                 editionService.setIdProject(response.data[0].idProject);
@@ -301,8 +324,10 @@ const EditionUser = () => {
                 editionService.initMarketCapStatus();
                 editionService.setMarketCapStatus(editionService.getCoin().coinMarketCapStatus);
 
+                console.log("haaaaaaaaaaaaaaaaaaaaaaa", editionService.getCoin());
                 prevCheck(editionService.getCoin().launchDate);
                 setKyc(editionService.getCoin().kyc.toString());
+                setAudit(editionService.getCoin().audit.toString());
                 return response.data;
             })
     }
@@ -318,6 +343,7 @@ const EditionUser = () => {
 
 
     useEffect(() => {
+        console.log('inputsEdit',inputsEdit.auditEdit.toString())
         searchUpdateById(id);
     }, [id]);
 
@@ -468,18 +494,18 @@ const EditionUser = () => {
                                 />
                             </label>
                         }
-         {
-          prev === "yes" &&
-                            <label  htmlFor="appt-time" className={style.formLabel}>Presale time (UTC)*:
-                            <input className={style.formInput}
-                               id="appt-time"
-                               type="time"
-                               name="launchDateHour"
-                                value={inputs.launchDateHour || stat.launchDateHour}
-                                onChange={handleChange}
-                            />
+                        {
+                            prev === "yes" &&
+                            <label htmlFor="appt-time" className={style.formLabel}>Presale time (UTC)*:
+                                <input className={style.formInput}
+                                    id="appt-time"
+                                    type="time"
+                                    name="launchDateHour"
+                                    value={inputs.launchDateHour || stat.launchDateHour}
+                                    onChange={handleChange}
+                                />
 
-                        </label>}
+                            </label>}
 
 
                         {inputsEdit.launchDateEdit !== "" &&
@@ -495,16 +521,16 @@ const EditionUser = () => {
 
 
                         {
-          inputsEdit.launchDateHourEdit !== "" &&
-                            <label  htmlFor="appt-time" className={style.formLabel}>Presale time (UTC)*:
-                            <input className={style.formInputUpdate}
-                               id="appt-time"
-                               type="time"
-                               name="launchDateHourEdit"
-                               defaultValue={inputsEdit.launchDateHourEdit}
-                            />
+                            inputsEdit.launchDateHourEdit !== "" &&
+                            <label htmlFor="appt-time" className={style.formLabel}>Presale time (UTC)*:
+                                <input className={style.formInputUpdate}
+                                    id="appt-time"
+                                    type="time"
+                                    name="launchDateHourEdit"
+                                    defaultValue={inputsEdit.launchDateHourEdit}
+                                />
 
-                        </label>}
+                            </label>}
 
 
 
@@ -681,6 +707,126 @@ const EditionUser = () => {
                                 />
                             </label>}
 
+
+                        {/*       facebook: "",
+                        medium: "",
+                        github: "",
+                        whitePaper: "",
+                        insta: "",
+                        reedit: "",
+                        tiktok: "", */}
+                        <label className={style.formLabel}>Facebook link:
+                            <input className={style.formInput}
+                                type="text"
+                                name="facebook"
+                                value={inputs.facebook || stat.facebook}
+                                onChange={handleChange} />
+                        </label>
+                        {inputsEdit.facebookEdit !== "" &&
+                            <label className={style.formLabel}>Facebook link:
+                                <input className={style.formInputUpdate}
+                                    type="text"
+                                    name="facebook"
+                                    defaultValue={inputsEdit.facebookEdit}
+                                />
+                            </label>}
+
+                        <label className={style.formLabel}>Medium link:
+                            <input className={style.formInput}
+                                type="text"
+                                name="medium"
+                                value={inputs.medium || stat.medium}
+                                onChange={handleChange} />
+                        </label>
+                        {inputsEdit.mediumEdit !== "" &&
+                            <label className={style.formLabel}>Medium link:
+                                <input className={style.formInputUpdate}
+                                    type="text"
+                                    name="medium"
+                                    defaultValue={inputsEdit.mediumEdit}
+                                />
+                            </label>}
+
+                        <label className={style.formLabel}>github link:
+                            <input className={style.formInput}
+                                type="text"
+                                name="github"
+                                value={inputs.github || stat.github}
+                                onChange={handleChange} />
+                        </label>
+                        {inputsEdit.githubEdit !== "" &&
+                            <label className={style.formLabel}>Github link:
+                                <input className={style.formInputUpdate}
+                                    type="text"
+                                    name="github"
+                                    defaultValue={inputsEdit.githubEdit}
+                                />
+                            </label>}
+
+                        <label className={style.formLabel}>WhitePaper link:
+                            <input className={style.formInput}
+                                type="text"
+                                name="whitePaper"
+                                value={inputs.whitePaper || stat.whitePaper}
+                                onChange={handleChange} />
+                        </label>
+                        {inputsEdit.whitePaperEdit !== "" &&
+                            <label className={style.formLabel}>WhitePaper link:
+                                <input className={style.formInputUpdate}
+                                    type="text"
+                                    name="whitePaper"
+                                    defaultValue={inputsEdit.whitePaperEdit}
+                                />
+                            </label>}
+
+                        <label className={style.formLabel}>Insta link:
+                            <input className={style.formInput}
+                                type="text"
+                                name="insta"
+                                value={inputs.insta || stat.insta}
+                                onChange={handleChange} />
+                        </label>
+                        {inputsEdit.instaEdit !== "" &&
+                            <label className={style.formLabel}>Insta link:
+                                <input className={style.formInputUpdate}
+                                    type="text"
+                                    name="insta"
+                                    defaultValue={inputsEdit.instaEdit}
+                                />
+                            </label>}
+
+                        <label className={style.formLabel}>Reedit link:
+                            <input className={style.formInput}
+                                type="text"
+                                name="reedit"
+                                value={inputs.reedit || stat.reedit}
+                                onChange={handleChange} />
+                        </label>
+                        {inputsEdit.reeditEdit !== "" &&
+                            <label className={style.formLabel}>Reedit link:
+                                <input className={style.formInputUpdate}
+                                    type="text"
+                                    name="reedit"
+                                    defaultValue={inputsEdit.reeditEdit}
+                                />
+                            </label>}
+
+                        <label className={style.formLabel}>Tiktok link:
+                            <input className={style.formInput}
+                                type="text"
+                                name="tiktok"
+                                value={inputs.tiktok || stat.tiktok}
+                                onChange={handleChange} />
+                        </label>
+                        {inputsEdit.tiktokEdit !== "" &&
+                            <label className={style.formLabel}>Tiktok link:
+                                <input className={style.formInputUpdate}
+                                    type="text"
+                                    name="tiktok"
+                                    defaultValue={inputsEdit.tiktokEdit}
+                                />
+                            </label>}
+
                         <label className={style.formLabel}>Kyc? *:
                             <div>
                                 {
@@ -744,7 +890,7 @@ const EditionUser = () => {
                                     value={inputs.kycProof || stat.kycProof}
                                     onChange={handleChange} />
                             </label>}
-                            
+
                         {inputsEdit.kycProofEdit !== "" &&
                             <label className={style.formLabel}>kyc proof Link
                                 <input className={style.formInputUpdate}
@@ -754,12 +900,101 @@ const EditionUser = () => {
                                 />
                             </label>}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <label className={style.formLabel}>Audit? *:
+                            <div>
+                                {
+                                    audit === "true" &&
+                                    < input onChange={auditChange} type="radio" name="questionAudit" value="true" id="true" required="required" checked
+                                    />}
+                                {
+                                    audit === "false" &&
+                                    <input onChange={auditChange} type="radio" name="questionAudit" value="true" id="true" required="required"
+                                    />}
+                                <label style={{ marginRight: "1%" }} htmlFor="yes">yes</label>
+
+                                {
+                                    audit === "false" &&
+                                    <input onChange={auditChange} type="radio" name="questionAudit" value="false" id="false" required="required" checked
+                                    />
+                                }
+                                {
+                                    audit === "true" &&
+                                    <input onChange={auditChange} type="radio" name="questionAudit" value="false" id="false" required="required"
+                                    />
+                                }
+                                <label htmlFor="no">no</label>
+                            </div>
+                        </label>
+                        <p>{console.log("heeeeeeeeey",inputsEdit) }</p>
+
+                        {inputsEdit.auditEdit.toString() !== audit &&
+                            <label className={style.formLabel}>audit? *:
+                                <div>
+                                    {
+                                        inputsEdit.auditEdit.toString() === "true" &&
+                                        < input readOnly type="radio" name="questionAuditEdit" value="true" id="true" required="required" checked
+                                        />}
+                                    {
+                                        inputsEdit.auditEdit.toString() === "false" &&
+                                        <input readOnly type="radio" name="questionAuditEdit" value="true" id="true" required="required"
+                                        />}
+                                    <label style={{ marginRight: "1%", color: "red" }} htmlFor="yes">yes</label>
+
+                                    {
+                                        inputsEdit.auditEdit.toString() === "false" &&
+                                        <input readOnly type="radio" name="questionAuditEdit" value="false" id="false" required="required" checked
+                                        />
+                                    }
+                                    {
+                                        inputsEdit.auditEdit.toString() === "true" &&
+                                        <input readOnly type="radio" name="questionAuditEdit" value="false" id="false" required="required"
+                                        />
+                                    }
+                                    <label style={{ color: "red" }} htmlFor="no">no</label>
+                                </div>
+                            </label>}
+
+
+                        {
+                            audit === "true" &&
+                            <label className={style.formLabel}>Audit proof Link
+                                <input className={style.formInput}
+                                    type="text"
+                                    name="auditProof"
+                                    value={inputs.auditProof || stat.auditProof}
+                                    onChange={handleChange} />
+                            </label>}
+
+                        {inputsEdit.auditProofEdit !== "" &&
+                            <label className={style.formLabel}>audit proof Link
+                                <input className={style.formInputUpdate}
+                                    type="text"
+                                    name="auditProofEdit"
+                                    defaultValue={inputsEdit.auditProofEdit}
+                                />
+                            </label>}
+
+
                         <br />
                         <input className="btn btn-primary btn-block" id="submitInput" type="submit" />
                     </form >
                 </div>
             </div>
-            <FooterComponent />
+            {/* <FooterComponent /> */}
         </div >
 
 

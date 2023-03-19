@@ -194,11 +194,190 @@ const InfoCoin = () => {
         setCaptcha(value);
     }
 
+
+
+    function addNewLine(text) {
+        if (typeof text !== 'string' || text.trim() === '') {
+            return '';
+        }
+        return text.replace(/\. +/g, ".\n\n").replace(/\n\n+/g, "\n\n").trim();
+    }
+
+
+
     return (
 
         <div className={style.infoCoin_page}>
             <div className={style.container}>
-                <img className={style.img} src={url + coin.image} alt='img' />
+                <div className={style.block}>
+                    <div className={style.blockLeft}>
+                        <div className={style.blockLogo}>
+                            <div className={style.blockLogoContainer}>
+                                <div className={style.left} ><img className={style.img} src={url + coin.image} alt='img' /></div>
+                                <div className={style.center} >
+                                    <div className={style.ligne1}>
+                                        <p className={style.textLigne1}><span className={style.popularity}><img className={style.imgStar} src={url + "assets/star2.png"} alt='img' />Popularity:</span> On <span className={style.popularity}>23</span> watchlist</p>
+                                        <p className={style.addWhitelist}><img className={style.imgStarEmpty} src={url + "assets/starEmpty.png"} alt='img' /> Add to watchlist</p>
+
+                                    </div>
+                                    <div className={style.ligne2}>
+                                        <p className={style.name}>{coin.name}  - {coin.symbol} </p>
+                                    </div>
+                                    <div className={style.ligne3}>
+
+                                        <p className={style.ftmAdress}>FTM Contract adress: {coin.contractAddress}<img className={style.img} src={url + "assets/copy.png"} alt='img' /> </p>
+
+
+                                    </div>
+                                    <div className={style.ligne4}>
+
+                                        <a href={coin.websiteLink} target="_blank"><img className={style.img} src={url + "assets/web.png"} alt='img' onClick={() => addPoints('website', coin)} /></a>
+                                        <a href={coin.twitter} target="_blank"><img className={style.img} src={url + "assets/twitter.png"} alt='img' onClick={() => addPoints('twitter', coin)} /></a>
+                                        <a href={coin.telegram} target="_blank"><img className={style.img} src={url + "assets/telegram.png"} alt='img'  onClick={() => addPoints('telegram', coin)}/></a>
+                                        <img className={style.img} src={url + "assets/medium.png"} alt='img' />
+                                        <a href={coin.discord} target="_blank"><img className={style.img} src={url + "assets/discord.png"} alt='img'  onClick={() => addPoints('discord', coin)}/></a> 
+                                        <img className={style.img} src={url + "assets/facebook.png"} alt='img' />
+                                        <img className={style.img} src={url + "assets/github.png"} alt='img' />
+                                        <img className={style.img} src={url + "assets/reddit.png"} alt='img' />
+
+
+                                    </div>
+
+                                </div>
+                                <div className={style.right} ></div>
+                            </div>
+
+
+
+
+                        </div>
+                        <div className={style.blockPrice}>
+                            <div className={style.left}>
+
+                                <div className={style.ligne1}>
+                                    {coin.price !== undefined && (
+                                        <p className={style.price}>Price(USD)</p>
+                                    )}
+                                </div>
+                                <div className={style.ligne2}>
+
+                                    <p className={style.price}>${coin.price}  <mat-chip> <label htmlFor="chip-1">{coin.percent_change_24h}%</label></mat-chip>  </p>
+                                </div>
+
+
+                            </div>
+
+                            <div className={style.right}>
+
+                                <div className={style.ligne1}>
+                                    <p className={style.price}>Cap. Marché</p>
+                                </div>
+                                <div className={style.ligne2}>
+                                    {coin.marketCap !== undefined && (
+                                        <p className={style.price}>${coin.marketCap.toLocaleString('fr-FR', { useGrouping: true }).replace(/\s/g, ',')} </p>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                        <div className={style.blockChart}>
+                            <iframe className={style.iframe} title="Graphical Board" loading="lazy" src={src} width="100%" height="100%" borderRadius="15px"  ></iframe>
+                        </div>
+                        <div className={style.blockDescription}>
+                            <div className={style.ligne1}>
+                                <p className={style.descriptionTitle}>Description</p>
+                            </div>
+                            <div className={style.ligne2}>
+                                <p className={style.descriptionText}>
+                                    {coin.description && addNewLine(coin.description).slice(0, -1)}
+                                </p>
+                            </div>
+
+
+                        </div>
+
+                        <p className={style.wrongInfo}>Information incorrect? Please submit an <span className={style.updateRequest} onClick={() => nav(`/updateCoin/`)}>Update Request!</span></p> 
+
+                    </div>
+                    <div className={style.blockRight}>
+                        <div className={style.blockInfo}>
+
+                            <div className={style.ligne1}>
+                                <p className={style.informationTitle}>Coin information</p>
+
+                            </div>
+
+                            <div className={style.ligne2}>
+                                <p className={style.descriptionTitle}>Type:</p>
+                                {coin.type !== undefined && (
+                                    <p className={style.descriptionTitle}>{coin.type}</p>
+                                )}
+                            </div>
+
+                            <div className={style.ligne3}>
+                                <p className={style.descriptionTitle}>KYC:</p>
+                                {coin.kyc !== undefined && (
+                                    <p className={style.descriptionTitle}>{coin.kyc.toString()}</p>
+                                )}
+                            </div>
+
+                            <div className={style.ligne4}>
+                                <p className={style.descriptionTitle}>Audit:</p>
+                                {coin.kyc !== undefined && (
+                                    <p className={style.descriptionTitle}>{coin.kyc.toString()}</p>
+                                )}
+                            </div>
+
+                            <div className={style.ligne5}>
+                                <p className={style.descriptionTitle}>Launch:</p>
+                                {coin.launchDate !== undefined && (
+                                    <p className={style.descriptionTitle}>{coin.launchDate}</p>
+                                )}
+                            </div>
+
+                            <div className={style.ligne6}>
+                                <p className={style.descriptionTitle}>Vote</p>
+                                {coin.statistique !== undefined && (
+                                    <p className={style.descriptionTitle}>{coin.statistique.global.vote}</p>
+                                )}
+                            </div>
+
+                            <div className={style.ligne7}>
+                                <p className={style.descriptionTitle}>Votes today:</p>
+                                {coin.statistique !== undefined && (
+                                    <p className={style.descriptionTitle}>{coin.statistique.twentyHour.vote}</p>
+                                )}
+                            </div>
+
+                            <div className={style.ligne8}>
+                                {/* <p className={style.descriptionTitle}>BUY ON   </p> */}
+
+                                <span className={style.buyOn}>BUY ON</span>  <button type="button" onClick={() => addPoints('buy', coin)} className={style.buttonBuy}> <img className={style.img} src={url + "assets/boo.png"} alt='img' />Spookyswap  </button>
+
+                            </div>
+                            <div className={style.ligne9}>
+                                <button type="button" onClick={() => vote()} className={style.voteButton}>Vote for {coin.name} </button>
+                                {/* <p className={style.descriptionTitle}>Vote for {coin.symbol} </p> */}
+                            </div>
+
+                        </div>
+
+                        <div className={style.blockTwitter}>
+
+                            <Timeline
+                                dataSource={{ sourceType: "profile", screenName: `${twitter}` }}
+                                options={{ theme: "dark", width: "100%", height: "640px" }}
+                            />
+                        </div>
+                    </div>
+
+                    {/* <div className={style.blockDescription}></div> */}
+                    {/*  <div className={style.block2}>
+
+                </div>
+                <div className={style.block3}>
+
+                </div> */}
+                    {/*  <img className={style.img} src={url + coin.image} alt='img' />
                 <p className={style.name}>{coin.name}  - {coin.symbol} </p>
                 <button type="button" onClick={() => vote()} className={style.voteButton}>Vote</button>
                 <button type="button" onClick={() => addPoints('buy', coin)} className={style.voteButton}>Buy</button>
@@ -225,9 +404,17 @@ const InfoCoin = () => {
                         options={{ theme: "dark", width: "400", height: "600" }}
                     />
 
-                    {/* <iframe className={style.iframe} title="Graphical Board" loading="lazy" src={src} width="50%" height="550px"  ></iframe> */}
+                    <iframe className={style.iframe} title="Graphical Board" loading="lazy" src={src} width="50%" height="550px"  ></iframe>
+                </div> */}
+                    {/*      <div  className={style.block4}>
+                <iframe className={style.iframe} title="Graphical Board" loading="lazy" src={src} width="100%" height="100%" borderRadius="15px"  ></iframe>
+                </div> */}
                 </div>
-                <p className={style.wrongInfo}>Information incorrect? Please submit an <span className={style.updateRequest} onClick={() => nav(`/updateCoin/`)}>Update Request!</span></p>
+
+
+
+
+
             </div>
 
 

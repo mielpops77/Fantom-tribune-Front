@@ -191,7 +191,7 @@ const Register = (props) => {
                     </NavLink>
                 </Form>
             </div>
-            <FooterComponent />
+            {/* <FooterComponent /> */}
         </div>
     );
 };

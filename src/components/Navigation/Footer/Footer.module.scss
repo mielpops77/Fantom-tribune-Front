@@ -1,64 +1,151 @@
-@import "../../../styles/setting";
-
-.footerContainer{
-    background: url("http://localhost:3000/assets/fond_bandeau2.png") no-repeat padding-box;
+.footerContainer {
+    background-image: url(http://localhost:3000/assets/fond_bandeau2.png);
+    background-repeat: repeat-x;
     background-size: cover;
+    color: #fff;
+    font-size: 14px;
+    padding: 40px 0;
+
+  }
+  
+  .footerContent {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 1100px;
+  }
+  
+  .footerContent img {
+    height: 50px;
+    margin-right: 20px;
+  }
+  
+  .footerContent nav ul {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .footerContent nav ul li {
+    margin-right: 20px;
+  }
+  
+  .footerContent nav ul li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .footerContent nav ul li a:hover {
+    text-decoration: underline;
+  }
+  
+  .socialMedia {
+    display: flex;
+  }
+  
+  .socialMedia img {
+    height: 25px;
+    margin-right: 10px;
+  }
+  
+  .footerBottom {
+    margin-top: 40px;
+    text-align: center;
+  }
+  
+  .footerBottom hr {
+    border: 0;
+    border-top: 1px solid #fff;
+    margin-bottom: 20px;
+  }
+  
+  .footerBottom ul {
+    display: flex;
     justify-content: center;
-    align-items: stretch;
-    margin: auto;
-    width: 100%;
-    height: auto;
-    max-height: 100px;
-    padding: 1.3%;
-    bottom:0px;
-    right:0px;
-    left:0px;
-    position: relative;
-    
-    .imgFtmTribune{
-        height: 4.5vw;
-        width: 4.5vw;
-        background-color: rgba(158, 172, 255, 0.07);
-        box-shadow: 0px 2px 8px rgba(0, 9, 170, 0.221);
-        border-radius: 50px;
-        margin-bottom: 0.5%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .footerBottom ul li {
+    margin-right: 20px;
+  }
+  
+  .footerBottom ul li:last-child {
+    margin-right: 0;
+  }
+
+
+
+
+  @media screen and (max-width: 1024px) {
+    .footerContent {
+    flex-direction: column;
+    text-align: center;
     }
-    .divAllLogo{
-        display: flex;
-        justify-content: space-around;
-        width: 100%;
-
-        .divLinks{
-       
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-            align-items: center;
-            width: 50%;
-            font-size: 1.4vw;
-            margin-bottom: 1vw;
-
-            .divLink{
-                display: flex;
-                align-items: center;
-
-                .imgLogo{
-                    height: 2.5vw;
-                    width: 2.5vw;
-                }
-                .link{
-                    color: #ffffff;
-                    font-family: 'Roboto', sans-serif;
-                    font-size: 1.2vw;
-                    
-                    &:hover{
-                        color: $color-1
-                    }
-                }
-            }
+    .socialMedia {
+    margin-top: 20px;
+    justify-content: center;
+    }
+    }
+    
+    @media (max-width: 767px) {
+        .footerContent {
+        flex-direction: column;
+        text-align: center;
         }
-    }    
-}
-
+        
+        .footerContent img {
+        margin-right: 0;
+        margin-bottom: 20px;
+        }
+        
+        .footerContent nav {
+        margin-bottom: 20px;
+        }
+        
+        .footerBottom ul {
+        flex-direction: column;
+        align-items: center;
+        }
+        
+        .footerBottom ul li {
+        margin-right: 0;
+        margin-bottom: 10px;
+        }
+        }
+        @media only screen and (max-width: 480px) {
+            .footerContent {
+              flex-direction: column;
+              align-items: center;
+            }
+          
+            .footerContent img {
+              margin-right: 0;
+              margin-bottom: 20px;
+            }
+          
+            .footerContent nav {
+              margin-bottom: 20px;
+            }
+          
+            .socialMedia {
+              justify-content: center;
+            }
+          
+            .footerBottom ul {
+              flex-wrap: wrap;
+              justify-content: center;
+            }
+          
+            .footerBottom ul li {
+              margin-right: 10px;
+              margin-bottom: 10px;
+            }
+          
+            .footerBottom ul li:last-child {
+              margin-right: 0;
+            }
+          }

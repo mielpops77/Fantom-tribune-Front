@@ -11,7 +11,7 @@ const InfoCoin = () => {
             <NavigationUserComponent />
             {/* <p className={style.sectionTitle}>Presales</p> */}
             <InfoCoinComponent />
-            <div className={style.divFooter}>
+            <div >
                 <FooterComponent />
             </div>
         </div>

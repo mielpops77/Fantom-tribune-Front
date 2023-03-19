@@ -1,10 +1,39 @@
 @import "./setting";
-@import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800');
-
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800");
 
 @font-face {
   font-family: "dozen";
-  src: local("dozen"),
-   url("../front//Dozen/dozen-regular.otf") format("truetype");
+  src: local("dozen"), url("../front//Dozen/dozen-regular.otf") format("truetype");
   font-weight: bold;
-  }
+}
+
+@font-face {
+  font-family: "poppins";
+  src: local("poppins"), url("../front//Poppins/Poppins-Regular.ttf") format("truetype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "poppinsMedium";
+  src: local("poppins"), url("../front//Poppins/Poppins-Medium.ttf") format("truetype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "poppinsBlack";
+  src: local("poppins"), url("../front//Poppins/Poppins-Black.ttf") format("truetype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "inter";
+  src: local("inter"), url("../front//Inter/Inter-Regular.ttf") format("truetype");
+  font-weight: bold;
+}
+
+
+@font-face {
+  font-family: "interBlack";
+  src: local("inter"), url("../front//Inter/Inter-Black.ttf") format("truetype");
+  font-weight: bold;
+}

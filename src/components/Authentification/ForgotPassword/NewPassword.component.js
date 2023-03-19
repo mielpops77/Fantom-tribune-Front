@@ -141,7 +141,7 @@ const NewPassword = (props) => {
 
                     </Form>
                 </div>
-                <FooterComponent />
+                {/* <FooterComponent /> */}
             </div >}
         </div>
 

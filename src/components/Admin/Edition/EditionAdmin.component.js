@@ -1,6 +1,6 @@
 import TableLaunchService from "../../../services/tableauLaunh/tableauLaunch.service";
 import editionService from "../../../services/admin/editionAdmin.service";
-import FooterComponent from '../../Navigation/Footer/Footer.component';
+// import FooterComponent from '../../Navigation/Footer/Footer.component';
 import AuthService from "../../../services/auth/auth.service";
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -15,6 +15,8 @@ const EditionAdmin = () => {
     const [urlUpload, setToggle] = useState('');
     const [prev, setPrev] = useState('');
     const [kyc, setKyc] = useState('');
+    const [audit, setAudit] = useState('');
+
     const [stat, setStat] = useState({
         name: "",
         symbol: "",
@@ -27,7 +29,17 @@ const EditionAdmin = () => {
         telegram: "",
         twitter: "",
         discord: "",
-        kycProof: ""
+        facebook: "",
+        medium: "",
+        github: "",
+        whitePaper: "",
+        insta: "",
+        reedit: "",
+        tiktok: "",
+        kycProof: "",
+        auditProof: ""
+
+
     });
 
     const [statType, setStatType] = useState("");
@@ -105,7 +117,9 @@ const EditionAdmin = () => {
     const kycChange = (event) => {
         setKyc(event.target.value);
     }
-
+    const auditChange = (event) => {
+        setAudit(event.target.value);
+    }
 
     function prevCheck(dateProject) {
         if (dateProject >= dateUtc) {
@@ -181,7 +195,7 @@ const EditionAdmin = () => {
                 editionService.setMarketCapStatus("en cours de validation");
                 const searchTerm = '/currencies/'
                 const slug = inputs.coinMarketCapLink.substring(inputs.coinMarketCapLink.lastIndexOf(searchTerm) + 12, inputs.coinMarketCapLink.length - 1)
-                TableLaunchService.coinmarketCap(id, slug, editionService.getCoinMarketCapLink(), editionService.getCoin().coinMarketCapStatus,editionService.getCoin().idCoinMarketCap);
+                TableLaunchService.coinmarketCap(id, slug, editionService.getCoinMarketCapLink(), editionService.getCoin().coinMarketCapStatus, editionService.getCoin().idCoinMarketCap);
             }
 
         }
@@ -210,8 +224,10 @@ const EditionAdmin = () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, launchDateHour: inputs.launchDateHour, contractAddress: inputs.contractAddress, description: inputs.description, type: type.value,
-                websiteLink: inputs.websiteLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, coinMarketCapLink: inputs.coinMarketCapLink, coinMarketCapStatus: editionService.getMarketCapStatus(), kyc: kyc, kycProof: inputs.kycProof
+                websiteLink: inputs.websiteLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, coinMarketCapLink: inputs.coinMarketCapLink, coinMarketCapStatus: editionService.getMarketCapStatus(),
+                kyc: kyc, kycProof: inputs.kycProof, audit: audit, auditProof: inputs.auditProof,  facebook: inputs.facebook, medium: inputs.medium, github: inputs.github, whitePaper: inputs.whitePaper, insta: inputs.insta, reedit: inputs.reedit, tiktok: inputs.tiktok
             })
+
         };
         fetch(url + `adminEdit?id=${id}&imageDelete=${imageDelete}`, requestOptions)
             .then(response => response.json())
@@ -263,6 +279,8 @@ const EditionAdmin = () => {
 
                 prevCheck(editionService.getCoin().launchDate);
                 setKyc(editionService.getCoin().kyc.toString());
+                setAudit(editionService.getCoin().audit.toString());
+
             });
     }, [id]);
 
@@ -413,13 +431,12 @@ const EditionAdmin = () => {
 
                         </label>
 
-                        <label className={style.formLabel}>Website link*:
+                        <label className={style.formLabel}>Website link:
                             <input className={style.formInput}
                                 type="text"
                                 name="websiteLink"
                                 value={inputs.websiteLink || stat.websiteLink}
                                 onChange={handleChange}
-                                required="required"
                             />
                         </label>
 
@@ -461,6 +478,68 @@ const EditionAdmin = () => {
                                 value={inputs.discord || stat.discord}
                                 onChange={handleChange} />
                         </label>
+
+                        
+                        <label className={style.formLabel}>Facebook link:
+                            <input className={style.formInput}
+                                type="text"
+                                name="facebook"
+                                value={inputs.facebook || stat.facebook}
+                                onChange={handleChange} />
+                        </label>
+
+                        <label className={style.formLabel}>Medium link:
+                            <input className={style.formInput}
+                                type="text"
+                                name="medium"
+                                value={inputs.medium || stat.medium}
+                                onChange={handleChange} />
+                        </label>
+
+                        <label className={style.formLabel}>Github link:
+                            <input className={style.formInput}
+                                type="text"
+                                name="github"
+                                value={inputs.github || stat.github}
+                                onChange={handleChange} />
+                        </label>
+
+                        <label className={style.formLabel}>WhitePaper link:
+                            <input className={style.formInput}
+                                type="text"
+                                name="whitePaper"
+                                value={inputs.whitePaper || stat.whitePaper}
+                                onChange={handleChange} />
+                        </label>
+
+                        <label className={style.formLabel}>Insta link:
+                            <input className={style.formInput}
+                                type="text"
+                                name="insta"
+                                value={inputs.insta || stat.insta}
+                                onChange={handleChange} />
+                        </label>
+
+                        <label className={style.formLabel}>Reedit link:
+                            <input className={style.formInput}
+                                type="text"
+                                name="reedit"
+                                value={inputs.reedit || stat.reedit}
+                                onChange={handleChange} />
+                        </label>
+
+                        <label className={style.formLabel}>Tiktok link:
+                            <input className={style.formInput}
+                                type="text"
+                                name="tiktok"
+                                value={inputs.tiktok || stat.tiktok}
+                                onChange={handleChange} />
+                        </label>
+
+
+
+
+
                         <label className={style.formLabel}>Kyc? *:
                             <div>
                                 {
@@ -496,12 +575,51 @@ const EditionAdmin = () => {
                                     onChange={handleChange}
                                     required="required" />
                             </label>}
+
+                            
+
+
+                        <label className={style.formLabel}>Audit? *:
+                            <div>
+                                {
+                                    audit === "true" &&
+                                    < input onChange={auditChange} type="radio" name="questionAudit" value="true" id="true" required="required" checked
+                                    />}
+                                {
+                                    audit === "false" &&
+                                    <input onChange={auditChange} type="radio" name="questionAudit" value="true" id="true" required="required"
+                                    />}
+                                <label style={{ marginRight: "1%" }} htmlFor="yes">yes</label>
+
+                                {
+                                    audit === "false" &&
+                                    <input onChange={auditChange} type="radio" name="questionAudit" value="false" id="false" required="required" checked
+                                    />
+                                }
+                                {
+                                    audit === "true" &&
+                                    <input onChange={auditChange} type="radio" name="questionAudit" value="false" id="false" required="required"
+                                    />
+                                }
+                                <label htmlFor="no">no</label>
+                            </div>
+                        </label>
+
+                        {audit == "true" &&
+                            <label className={style.formLabel}>Audit proof Link:
+                                <input className={style.formInput}
+                                    type="text"
+                                    name="auditProof"
+                                    value={inputs.auditProof || stat.auditProof}
+                                    onChange={handleChange}
+                                    required="required" />
+                            </label>}
                         <br />
                         <input className="btn btn-primary btn-block" id="submitInput" type="submit" />
                     </form >
                 </div>
             </div>
-            <FooterComponent />
+            {/* <FooterComponent /> */}
         </div >
 
     )

@@ -108,7 +108,7 @@ const ForgotPassword = (props) => {
 
                 </Form>
             </div>
-            <FooterComponent />
+            {/* <FooterComponent /> */}
         </div>
 
 
