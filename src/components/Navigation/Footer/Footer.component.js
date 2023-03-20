@@ -1,14 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import style from "./Footer.module.scss";
+import AuthService from "../../../services/auth/auth.service";
 
 const Footer = () => {
     console.log('url');
+    const url = AuthService.getUrl();
+    console.log("url,", url)
 
     return (
         <footer class={style.footerContainer}>
             <div class={style.footerContent}>
-                <img src="http://localhost:3000/assets/logo.png" alt="Logo" />
+                <img src={`${url}assets/logo.png`}alt="Logo" />
                 <nav>
                     <ul>
                         <li><Link to="/">HOME</Link></li>
@@ -24,10 +27,10 @@ const Footer = () => {
                 </nav>
                 <div class={style.socialMedia}>
                     <a href="https://twitter.com/fantomtribune" target="_blank">
-                        <img src="http://localhost:3000/assets/logo_twitter.png" alt="Twitter" />
+                        <img src={`${url}assets/logo_twitter.png`} alt="Twitter" />
                     </a>
                     <a href="#">
-                        <img src="http://localhost:3000/assets/logo_telegram.png" alt="Telegram" />
+                        <img src={`${url}assets/logo_telegram.png`} alt="Telegram" />
                     </a>
                 </div>
             </div>
@@ -35,9 +38,9 @@ const Footer = () => {
                 <hr />
                 <ul>
                     <li>&copy; 2023 fantomtribune.com</li>
-                    <li><a href="#">Cookie Statement</a></li>
-                    <li><a href="#">Terms &amp; Conditions</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
+                    {/* <li><a href="#">Cookie Statement</a></li> */}
+                    <li><Link to="/terms-and-conditions">Terms &amp; Conditions</Link></li>
+                    {/* <li><a href="#">Privacy Policy</a></li> */}
                 </ul>
             </div>
         </footer>

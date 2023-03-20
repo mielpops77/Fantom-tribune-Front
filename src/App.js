@@ -15,6 +15,7 @@ import Profile from "./components/Authentification/Profile/Profile";
 import UpdateCoin from "./pages/user/UpdateCoin/UpdateCoin.page";
 import ApiConfig from './pages/admin/ApiConfig/ApiConfig.page';
 import AllTokens from "./pages/user/AllTokens/AllTokens.page";
+import TermsAndCondition from "./pages/legal/Terms&Conditions/Terms&Conditions.page";
 import Welcome from "./components/Authentification/Welcome";
 import Presales from './pages/user/Presales/Presales.page';
 import Submit from './pages/user/Submit/Submit.page';
@@ -38,6 +39,7 @@ const App = () => {
         <Route path="/apiConfig/" element={<ApiConfig />} />
         <Route path="/giveaways" element={<Giveaways />} />
         <Route path="/allTokens" element={<AllTokens />} />
+        <Route path="/terms-and-conditions" element={<TermsAndCondition />} />
         {/* <Route path="/coinDetail/" element={<Welcome />} /> */}
         <Route path="/presales" element={<Presales />} />
         <Route path="/register" element={<Register />} />
