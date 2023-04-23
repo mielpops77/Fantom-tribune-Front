@@ -36,7 +36,7 @@ const UpdateCoin = () => {
         github: "",
         whitePaper: "",
         insta: "",
-        reedit: "",
+        reddit: "",
         tiktok: "",
         comment: "",
         kycProof: "",
@@ -93,7 +93,7 @@ const UpdateCoin = () => {
         github: "",
         whitePaper: "",
         insta: "",
-        reedit: "",
+        reddit: "",
         tiktok: "",
         comment: ""
     };
@@ -116,7 +116,7 @@ const UpdateCoin = () => {
         { label: "Github link", value: "Github-link" },
         { label: "WhitePaper link", value: "WhitePaper-link" },
         { label: "Insta link", value: "Insta-link" },
-        { label: "Reedit link", value: "Reedit-link" },
+        { label: "Reddit link", value: "Reddit-link" },
         { label: "Tiktok link", value: "Tiktok-link" },
         { label: "Twitter link", value: "Twitter-link" },
         { label: " Coinmarketcap link", value: "Coinmarketcap-link" },
@@ -271,7 +271,7 @@ const UpdateCoin = () => {
                     nameEdit: inputs.name, symbolEdit: inputs.symbol, launchDateEdit: inputs.launchDate, launchDateHourEdit: inputs.launchDateHour, contractAddressEdit: inputs.contractAddress,
                     descriptionEdit: inputs.description, typeEdit: typeEdit, websiteLinkEdit: inputs.websiteLink, coinMarketCapLinkEdit: inputs.coinMarketCapLink, telegramEdit: inputs.telegram,
                     twitterEdit: inputs.twitter, discordEdit: inputs.discord, kycEdit: kyc, auditEdit: audit, imageEdit: inputs.imageEdit, image: logo, idProject: idProject, kycProofEdit: inputs.kycProof, auditProofEdit: inputs.auditProof,
-                    facebookEdit: inputs.facebook, mediumEdit: inputs.medium, githubEdit: inputs.github, whitePaperEdit: inputs.whitePaper, instaEdit: inputs.insta, reeditEdit: inputs.reedit, tiktokEdit: inputs.tiktok, comment: inputs.comment
+                    facebookEdit: inputs.facebook, mediumEdit: inputs.medium, githubEdit: inputs.github, whitePaperEdit: inputs.whitePaper, instaEdit: inputs.insta, redditEdit: inputs.reddit, tiktokEdit: inputs.tiktok, comment: inputs.comment
 
                 })
             };
@@ -313,7 +313,7 @@ const UpdateCoin = () => {
             github: "",
             whitePaper: "",
             insta: "",
-            reedit: "",
+            reddit: "",
             tiktok: "",
             comment: "",
             kycProof: "",
@@ -709,6 +709,8 @@ const UpdateCoin = () => {
                             value={inputs.description || initForm.description}
                             onChange={handleChange}
                             required="required"
+                            maxLength={500}
+                            
                         />
                     </label>}
 
@@ -870,18 +872,18 @@ const UpdateCoin = () => {
                     <a className={style.updateCoin_removeField} onClick={function (event) { removeField("Insta-link") }} >Remove this field</a>}
 
 
-                {fieldOpen.reedit &&
-                    <label className={style.updateCoin_formLabel}>Reedit link:
+                {fieldOpen.reddit &&
+                    <label className={style.updateCoin_formLabel}>Reddit link:
                         <input className={style.updateCoin_formInput}
                             type="text"
-                            name="reedit"
-                            value={inputs.reedit || initForm.reedit}
+                            name="reddit"
+                            value={inputs.reddit || initForm.reddit}
                             onChange={handleChange} />
                     </label>
                 }
-                {fieldOpen.reedit &&
+                {fieldOpen.reddit &&
                     // eslint-disable-next-line jsx-a11y/anchor-is-valid
-                    <a className={style.updateCoin_removeField} onClick={function (event) { removeField("Reedit-link") }} >Remove this field</a>}
+                    <a className={style.updateCoin_removeField} onClick={function (event) { removeField("Reddit-link") }} >Remove this field</a>}
 
                 {fieldOpen.tiktok &&
                     <label className={style.updateCoin_formLabel}>Tiktok link:

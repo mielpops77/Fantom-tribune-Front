@@ -1,0 +1,186 @@
+.formulaireNeftSubmit {
+    background-color: #131325;
+    margin: 0 auto;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .messageError {
+        // background-color: #EC412A;
+        font-size: 14px;
+        // border-color: #EC412A;
+        color: red;
+        font-weight: 500;
+        font-family: "Fira Sans", sans-serif;
+
+        margin-top: "1rem";
+        text-align: center;
+    }
+
+    .errorMessage {
+        color: red;
+        font-size: 14px;
+    }
+
+    .errorMessagePaintswap {
+        color: red;
+        font-size: 14px;
+    }
+
+    .searchButton {
+        margin-left: 0.5rem;
+        padding: 0.5rem;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .searchButton:hover {
+        background-color: #0069d9;
+    }
+
+    .inputWrapper {
+        display: flex;
+        align-items: center;
+    }
+
+    .formInputContract {
+        width: 100%;
+        padding: 0.5rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .formLabelFileEmpty {
+        width: 100%;
+        display: inline;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        flex-direction: column;
+        color: #450ca0;
+        font-size: max(0.84vw, 11px);
+        text-shadow: -0.05em 0.03em 0.25em #c7f5ca;
+        font-weight: 500;
+        font-family: "Fira Sans", sans-serif;
+    }
+    .formLabel {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        color: #e9f0ff;
+        font-size: max(0.84vw, 11px);
+        text-shadow: -0.05em 0.07em 0.3em rgba(105, 130, 241, 0.856);
+        font-weight: 500;
+        font-family: "Fira Sans", sans-serif;
+        border-color: #cedeff;
+
+        .formInput {
+            width: 100%;
+            font-family: "Roboto", sans-serif;
+            color: rgb(37, 0, 122);
+            font-size: 1vw;
+            margin: 0 auto;
+            // padding: 0.2rem 1rem 0.2rem 1rem;
+            border-color: #cedeff;
+            transition: all 0.3s;
+            box-shadow: 0px 0px 18px 1px rgba(105, 130, 241, 0.555);
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    }
+
+    .formLabel2 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 100%;
+        /*  width: 100%;
+        display: flex; */
+        flex-direction: column;
+        color: #e9f0ff;
+        font-size: max(0.84vw, 11px);
+        text-shadow: -0.05em 0.07em 0.3em rgba(105, 130, 241, 0.856);
+        font-weight: 500;
+        font-family: "Fira Sans", sans-serif;
+        border-color: #cedeff;
+    }
+    .formInput2 {
+        background-color: #ffffff;
+        width: 80%;
+        font-family: "Roboto", sans-serif;
+        color: rgb(37, 0, 122);
+        font-size: 1vw;
+        // margin: 0 auto;
+        padding: 0.2rem 1rem 0.2rem 1rem;
+        border-radius: 0.3vw;
+        border: 0.1rem solid;
+        border-color: #cedeff;
+        transition: all 0.3s;
+        box-shadow: 0px 0px 18px 1px rgba(105, 130, 241, 0.555);
+        display: inline-block;
+    }
+
+    .formInput3 {
+        background-color: #ffffff;
+        width: 20%;
+        font-family: "Roboto", sans-serif;
+        color: rgb(37, 0, 122);
+        font-size: 1vw;
+        // margin: 0 auto;
+        padding: 0.2rem 1rem 0.2rem 1rem;
+        border-radius: 0.3vw;
+        border: 0.1rem solid;
+        border-color: #cedeff;
+        transition: all 0.3s;
+        box-shadow: 0px 0px 18px 1px rgba(105, 130, 241, 0.555);
+        display: inline-block;
+    }
+    .inline {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .file {
+        visibility: hidden;
+        width: 0;
+        height: 0;
+    }
+
+    .blueButton {
+        display: inline-block;
+        color: #ffffff;
+        background-color: #3085e6;
+        font-weight: 400;
+        font-size: 0.9vw;
+        font-family: "Fira Sans", sans-serif;
+        line-height: 1.5;
+        text-align: center;
+        text-decoration: none;
+        vertical-align: middle;
+        border: 1px solid transparent;
+        padding: 0.375rem 0.75rem;
+        border-radius: 0.25rem;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+            box-shadow 0.15s ease-in-out;
+
+        &:hover {
+            color: #fff;
+            background-color: #0b5ed7;
+            border-color: #0a58ca;
+        }
+        &:focus {
+            color: #fff;
+            background-color: #0b5ed7;
+            border-color: #0a58ca;
+            box-shadow: 0 0 0 0.1rem rgba(49, 132, 253, 0.5);
+        }
+    }
+}

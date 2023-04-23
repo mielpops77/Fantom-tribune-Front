@@ -169,7 +169,6 @@ function Formulaire() {
   const options = [
     { label: "Dex", value: "Dex" },
     { label: "Gaming", value: "Gaming" },
-    { label: "Nft", value: "Nft" },
     { label: "Lending", value: "Lending" },
     { label: "Algo-Stables", value: "Algo-Stables" },
     { label: "Derivatives", value: "Derivatives" },
@@ -346,7 +345,7 @@ function Formulaire() {
         emailCrea: user.email, usernameCrea: user.username, statistique: statistique, kycProof: inputs.kycProof, launchDateHour: inputs.launchDateHour,
         capMax: inputs.capMax, capMin: inputs.capMin, capMaxToken: inputs.capMaxToken, capMinToken: inputs.capMinToken, presale: prev,
         facebook: inputs.facebook, medium: inputs.medium, github: inputs.github, whitePaper: inputs.whitePaper, insta: inputs.insta,
-        tiktok: inputs.tiktok, reedit: inputs.reedit, audit: audit, auditProof: inputs.auditProof, buyTax: inputs.buyTax, sellTax: inputs.sellTax
+        tiktok: inputs.tiktok, reddit: inputs.reddit, audit: audit, auditProof: inputs.auditProof, buyTax: inputs.buyTax, sellTax: inputs.sellTax, category: "token"
       };
 
 
@@ -836,11 +835,11 @@ function Formulaire() {
 
           </input>
         </label>
-        <label className={style.formLabel}>Reedit link :
+        <label className={style.formLabel}>Reddit link :
           <input className={style.formInput}
             type="text"
-            name="reedit"
-            value={inputs.reedit || ""}
+            name="reddit"
+            value={inputs.reddit || ""}
             onChange={handleChange}
             maxLength={50}
           >

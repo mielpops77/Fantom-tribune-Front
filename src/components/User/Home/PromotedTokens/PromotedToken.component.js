@@ -215,7 +215,12 @@ const PromotedToken = () => {
                             item.kyc && <p className={style.KYCButton}>KYC</p>}
 
                         <div className={style.imgCrown}></div>
-                        <img src={url + item.image} className={style.imgProjectLogo} alt='project_logo'></img>
+                        {item.category === "nft" && item.paintswap === true ? (
+                            <img src={item.thumbnail} className={style.imgProjectLogo} alt="project_logo" />
+                        ) : (
+                            <img src={url + item.image} className={style.imgProjectLogo} alt="project_logo" />
+                        )}
+
                         <h1 className={style.projectName}>{item.name}</h1>
                         {item.launchDate >= dateUtc && <p className={style.presaleButton}>PreSale</p>}
                         <div className={style.list}>

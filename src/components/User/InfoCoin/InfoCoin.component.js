@@ -12,9 +12,11 @@ import axios from "axios";
 
 const InfoCoin = () => {
     const [verifVoteToday, setVerifVoteToday] = useState(false);
+    const [presaleDate, setPresaleDate] = useState({});
     const [open, setOpen] = React.useState(false);
     const [captcha, setCaptcha] = useState(null);
     const [twitter, setTwitter] = useState(null);
+    const [copyAdd, setCopyAdd] = useState(false);
     const user = AuthService.getCurrentUser();
     const handleClose = () => setOpen(false);
     const handleOpen = () => setOpen(true);
@@ -24,6 +26,25 @@ const InfoCoin = () => {
     const navigate = useNavigate();
 
 
+    let date = new Date();
+    let mondayUtc = (date.getUTCMonth() + 1)
+    mondayUtc = parseInt(mondayUtc);
+    let dayUtc = date.getUTCDate()
+    dayUtc = parseInt(dayUtc);
+    if (mondayUtc < 10) {
+        mondayUtc = '0' + mondayUtc.toString()
+    }
+    if (dayUtc < 10) {
+        dayUtc = '0' + dayUtc.toString()
+    }
+    let dateUtc = date.getFullYear() + '-' + mondayUtc + '-' + dayUtc;
+    const now = new Date();
+    const currentTime = now.toLocaleTimeString("fr-FR", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        timeZone: "UTC"
+    });
     //Version Distant
     /* const id = path.substring(50, path.length); */
 
@@ -53,9 +74,85 @@ const InfoCoin = () => {
                 setTwitter(res[0].twitter.substr(20))
                 addPoints("page", res[0]);
 
+                console.log('res', res);
+
+                const dateActuel = dateUtc + " " + currentTime;
+                let updatedValue = {};
+
+                const tabLength = res.length > 4 ? 4 : res.length;
+
+                const datePresales = res.slice(0, tabLength).map((item) => {
+                    const datePresale = item.launchDate + " " + item.launchDateHour + ":00";
+                    return { id: item._id, diff: diffTime(dateActuel, datePresale) };
+                });
+
+                datePresales.forEach((item) => {
+                    updatedValue[item.id] = item.diff;
+                });
+
+                setPresaleDate((presaleDate) => ({ ...presaleDate, ...updatedValue }));
+                setInterval(() => incrementSecond(res, updatedValue), 1000);
+
             })
 
     }, [])
+
+    const incrementSecond = (res, presaleDateTempo) => {
+        const maxIndex = res.length <= 3 ? res.length : 4;
+        let updatedPresaleDate = { ...presaleDate };
+
+        for (let i = 0; i < maxIndex; i++) {
+            updatedPresaleDate[res[i]._id] = subtractSecond(presaleDateTempo[res[i]._id]);
+        }
+
+        setPresaleDate(updatedPresaleDate);
+    };
+    function subtractSecond(presaleDateTempo) {
+        const { diffDays, diffHours, diffMinutes, diffSeconds } = presaleDateTempo;
+        let newDiffSeconds = diffSeconds - 1;
+
+        let newDiffMinutes = diffMinutes;
+        if (newDiffSeconds < 0) {
+            newDiffMinutes = diffMinutes - 1;
+            newDiffSeconds = 59;
+        }
+
+        let newDiffHours = diffHours;
+        if (newDiffMinutes < 0) {
+            newDiffHours = diffHours - 1;
+            newDiffMinutes = 59;
+        }
+
+        let newDiffDays = diffDays;
+        if (newDiffHours < 0) {
+            newDiffDays = diffDays - 1;
+            newDiffHours = 23;
+        }
+
+        presaleDateTempo.diffDays = newDiffDays;
+        presaleDateTempo.diffHours = newDiffHours;
+        presaleDateTempo.diffMinutes = newDiffMinutes;
+        presaleDateTempo.diffSeconds = newDiffSeconds;
+
+        return presaleDateTempo;
+    }
+    function diffTime(startDate, endDate) {
+        const start = new Date(startDate);
+        const end = new Date(endDate);
+
+        const diffTime = end.getTime() - start.getTime();
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        const diffHours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const diffMinutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
+        const diffSeconds = Math.floor((diffTime % (1000 * 60)) / 1000);
+
+        return {
+            diffDays,
+            diffHours,
+            diffMinutes,
+            diffSeconds
+        };
+    }
 
     function getSearchCoinById() {
         const pattern = "projetsValidadOnly"
@@ -203,6 +300,19 @@ const InfoCoin = () => {
         return text.replace(/\. +/g, ".\n\n").replace(/\n\n+/g, "\n\n").trim();
     }
 
+    const copy = (contractAddress) => {
+        setCopyAdd(contractAddress !== "none" ? true : false);
+        navigator.clipboard.writeText(contractAddress)
+            .then(() => {
+
+                setTimeout(() => {
+                    setCopyAdd(false);
+                }, 1000);
+            })
+            .catch(error => {
+                console.error('Failed to copy to clipboard: ', error);
+            });
+    }
 
 
     return (
@@ -225,21 +335,60 @@ const InfoCoin = () => {
                                     </div>
                                     <div className={style.ligne3}>
 
-                                        <p className={style.ftmAdress}>FTM Contract adress: {coin.contractAddress}<img className={style.img} src={url + "assets/copy.png"} alt='img' /> </p>
-
+                                        <p className={style.ftmAdress} onClick={() => copy(coin.contractAddress)}>
+                                            FTM Contract adress: {coin.contractAddress}
+                                            {!copyAdd && <img className={style.img} src={url + "assets/copy.png"} alt='img' />}
+                                            {copyAdd && <img className={style.img} src={url + "assets/copyFull.png"} alt='img' />}
+                                            {copyAdd && <span className={style.copy}>copied!</span>}</p>
 
                                     </div>
                                     <div className={style.ligne4}>
+                                        {(coin.websiteLink !== "" && coin.websiteLink !== undefined) &&
+                                            <a href={coin.websiteLink.startsWith('http') ? coin.websiteLink : `http://${coin.websiteLink}`} target="_blank" rel="noopener noreferrer">
+                                                <img className={style.img} src={url + "assets/web.png"} alt='img' onClick={() => addPoints('website', coin)} />
+                                            </a>
+                                        }
 
-                                        <a href={coin.websiteLink} target="_blank"><img className={style.img} src={url + "assets/web.png"} alt='img' onClick={() => addPoints('website', coin)} /></a>
-                                        <a href={coin.twitter} target="_blank"><img className={style.img} src={url + "assets/twitter.png"} alt='img' onClick={() => addPoints('twitter', coin)} /></a>
-                                        <a href={coin.telegram} target="_blank"><img className={style.img} src={url + "assets/telegram.png"} alt='img'  onClick={() => addPoints('telegram', coin)}/></a>
-                                        <img className={style.img} src={url + "assets/medium.png"} alt='img' />
-                                        <a href={coin.discord} target="_blank"><img className={style.img} src={url + "assets/discord.png"} alt='img'  onClick={() => addPoints('discord', coin)}/></a> 
-                                        <img className={style.img} src={url + "assets/facebook.png"} alt='img' />
-                                        <img className={style.img} src={url + "assets/github.png"} alt='img' />
-                                        <img className={style.img} src={url + "assets/reddit.png"} alt='img' />
-
+                                        {(coin.twitter !== "" && coin.twitter !== undefined) &&
+                                            <a href={coin.twitter.startsWith('http') ? coin.twitter : `http://${coin.twitter}`} target="_blank" rel="noopener noreferrer">
+                                                <img className={style.img} src={url + "assets/twitter.png"} alt='img' onClick={() => addPoints('twitter', coin)} />
+                                            </a>
+                                        }
+                                        {(coin.telegram !== "" && coin.telegram !== undefined) &&
+                                            <a href={coin.telegram.startsWith('http') ? coin.telegram : `http://${coin.telegram}`} target="_blank" rel="noopener noreferrer">
+                                                <img className={style.img} src={url + "assets/telegram.png"} alt='img' onClick={() => addPoints('telegram', coin)} />
+                                            </a>
+                                        }
+                                        {(coin.medium !== "" && coin.medium !== undefined) &&
+                                            <a href={coin.medium.startsWith('http') ? coin.medium : `http://${coin.medium}`} target="_blank" rel="noopener noreferrer">
+                                                <img className={style.img} src={url + "assets/medium.png"} alt='img' onClick={() => addPoints('medium', coin)} />
+                                            </a>
+                                        }
+                                        {(coin.discord !== "" && coin.discord !== undefined) &&
+                                            <a href={coin.discord.startsWith('http') ? coin.discord : `http://${coin.discord}`} target="_blank" rel="noopener noreferrer">
+                                                <img className={style.img} src={url + "assets/discord.png"} alt='img' onClick={() => addPoints('discord', coin)} />
+                                            </a>
+                                        }
+                                        {(coin.facebook !== "" && coin.facebook !== undefined) &&
+                                            <a href={coin.facebook.startsWith('http') ? coin.facebook : `http://${coin.facebook}`} target="_blank" rel="noopener noreferrer">
+                                                <img className={style.img} src={url + "assets/facebook.png"} alt='img' onClick={() => addPoints('facebook', coin)} />
+                                            </a>
+                                        }
+                                        {(coin.github !== "" && coin.github !== undefined) &&
+                                            <a href={coin.github.startsWith('http') ? coin.github : `http://${coin.github}`} target="_blank" rel="noopener noreferrer">
+                                                <img className={style.img} src={url + "assets/github.png"} alt='img' onClick={() => addPoints('github', coin)} />
+                                            </a>
+                                        }
+                                        {(coin.reddit !== "" && coin.reddit !== undefined) &&
+                                            <a href={coin.reddit.startsWith('http') ? coin.reddit : `http://${coin.reddit}`} target="_blank" rel="noopener noreferrer">
+                                                <img className={style.img} src={url + "assets/reddit.png"} alt='img' onClick={() => addPoints('reddit', coin)} />
+                                            </a>
+                                        }
+                                        {(coin.insta !== "" && coin.insta !== undefined) &&
+                                            <a href={coin.insta.startsWith('http') ? coin.insta : `http://${coin.insta}`} target="_blank" rel="noopener noreferrer">
+                                                <img className={style.img} src={url + "assets/instagram.png"} alt='img' onClick={() => addPoints('instagram', coin)} />
+                                            </a>
+                                        }
 
                                     </div>
 
@@ -252,36 +401,59 @@ const InfoCoin = () => {
 
                         </div>
                         <div className={style.blockPrice}>
-                            <div className={style.left}>
+                            {presaleDate[coin._id] !== undefined && coin.presale == "yes" && <div className={style.openai2}>
+                                {coin.presale == "yes" && !(presaleDate[coin._id].diffDays < 0 || presaleDate[coin._id].diffHours < 0 || presaleDate[coin._id].diffMinutes < 0 || presaleDate[coin._id].diffSeconds < 0) &&
+                                    <tr className={style.openai2}>
+                                        <span className={style.statusPresale}>
+                                            The presale starts  <span className={style.statusSoon}>SOON</span> 
+                                        </span>
+                                        <td className={style.openai}><span className={style.span1}>{presaleDate[coin._id].diffDays}</span> <br /><span className={style.span1}>DAYS</span></td>
+                                        <td className={style.openai}><span className={style.span1}>{presaleDate[coin._id].diffHours}</span> <br /><span className={style.span1}>HR</span></td>
+                                        <td className={style.openai}><span className={style.span1}>{presaleDate[coin._id].diffMinutes}</span> <br /><span className={style.span1}>MINS</span></td>
+                                        <td className={style.openai}><span className={style.span1}>{presaleDate[coin._id].diffSeconds}</span> <br /><span className={style.span1}>SECS</span></td>
+                                    </tr>
+                                }
 
-                                <div className={style.ligne1}>
-                                    {coin.price !== undefined && (
-                                        <p className={style.price}>Price(USD)</p>
-                                    )}
-                                </div>
-                                <div className={style.ligne2}>
 
-                                    <p className={style.price}>${coin.price}  <mat-chip> <label htmlFor="chip-1">{coin.percent_change_24h}%</label></mat-chip>  </p>
-                                </div>
+                                {coin.presale == "yes" && (presaleDate[coin._id].diffDays < 0 || presaleDate[coin._id].diffHours < 0 || presaleDate[coin._id].diffMinutes < 0 || presaleDate[coin._id].diffSeconds < 0) &&
+                                    <tr className={style.openai2}>
+                                        <span className={style.statusPresale}>The presale is <span className={style.statusLive}>LIVE</span></span>
+                                        <td className={style.openai}><span className={style.span1}>0</span> <br /><span className={style.span1}>DAYS</span></td>
+                                        <td className={style.openai}><span className={style.span1}>0</span> <br /><span className={style.span1}>HR</span></td>
+                                        <td className={style.openai}><span className={style.span1}>0</span> <br /><span className={style.span1}>MINS</span></td>
+                                        <td className={style.openai}><span className={style.span1}>0</span> <br /><span className={style.span1}>SECS</span></td>
+                                    </tr>}
+                            </div>}
+                            {coin.presale !== "yes" &&
+                                <div className={style.left}>
+                                    <div className={style.ligne1}>
+                                        {coin.price !== undefined && (
+                                            <p className={style.price}>Price(USD)</p>
+                                        )}
+                                    </div>
+                                    <div className={style.ligne2}>
 
+                                        <p className={style.price}>${coin.price}  <mat-chip> <label htmlFor="chip-1">{coin.percent_change_24h}%</label></mat-chip>  </p>
+                                    </div>
+                                </div>}
+                            {coin.presale !== "yes" &&
 
-                            </div>
+                                <div className={style.right}>
 
-                            <div className={style.right}>
-
-                                <div className={style.ligne1}>
-                                    <p className={style.price}>Cap. Marché</p>
-                                </div>
-                                <div className={style.ligne2}>
-                                    {coin.marketCap !== undefined && (
-                                        <p className={style.price}>${coin.marketCap.toLocaleString('fr-FR', { useGrouping: true }).replace(/\s/g, ',')} </p>
-                                    )}
-                                </div>
-                            </div>
+                                    <div className={style.ligne1}>
+                                        <p className={style.price}>Cap. Marché</p>
+                                    </div>
+                                    <div className={style.ligne2}>
+                                        {coin.marketCap !== undefined && (
+                                            <p className={style.price}>${coin.marketCap.toLocaleString('fr-FR', { useGrouping: true }).replace(/\s/g, ',')} </p>
+                                        )}
+                                    </div>
+                                </div>}
                         </div>
-                        <div className={style.blockChart}>
-                            <iframe className={style.iframe} title="Graphical Board" loading="lazy" src={src} width="100%" height="100%" borderRadius="15px"  ></iframe>
-                        </div>
+                        {coin.presale !== "yes" &&
+                            <div className={style.blockChart}>
+                                <iframe className={style.iframe} title="Graphical Board" loading="lazy" src={src} width="100%" height="100%" borderRadius="15px"  ></iframe>
+                            </div>}
                         <div className={style.blockDescription}>
                             <div className={style.ligne1}>
                                 <p className={style.descriptionTitle}>Description</p>
@@ -295,7 +467,7 @@ const InfoCoin = () => {
 
                         </div>
 
-                        <p className={style.wrongInfo}>Information incorrect? Please submit an <span className={style.updateRequest} onClick={() => nav(`/updateCoin/`)}>Update Request!</span></p> 
+                        <p className={style.wrongInfo}>Information incorrect? Please submit an <span className={style.updateRequest} onClick={() => nav(`/updateCoin/`)}>Update Request!</span></p>
 
                     </div>
                     <div className={style.blockRight}>
@@ -315,16 +487,49 @@ const InfoCoin = () => {
 
                             <div className={style.ligne3}>
                                 <p className={style.descriptionTitle}>KYC:</p>
-                                {coin.kyc !== undefined && (
-                                    <p className={style.descriptionTitle}>{coin.kyc.toString()}</p>
-                                )}
+                                {/*   {coin.kyc !== undefined && (
+                                     color: #ffffff;
+                                     background: #4685ff 0% 0% no-repeat padding-box;
+                                     border-color: #0d6efd;
+                                     font-weight: 400;
+                                     font-size: 0.9vw;
+                                     font-family: "Fira Sans", sans-serif;
+                                     line-height: 1.5;
+                                     text-decoration: none;
+                                     vertical-align: middle;
+                                     padding: 0.375rem 0.75rem;
+                                     border-radius: 4px;
+                                     width: 15%;
+                                     margin: 3%;
+                                     left: 1%;
+                                     top: 1%;
+                                     position: absolute; */}
+                                {
+                                    coin.kyc &&
+                                    <p className={style.descriptionTitle}><span className={style.kyc}>KYC</span></p>
+                                }
+                                {
+                                    !coin.kyc &&
+                                    <p className={style.descriptionTitle}>unspecified</p>
+                                }
                             </div>
 
                             <div className={style.ligne4}>
                                 <p className={style.descriptionTitle}>Audit:</p>
+
+                                {
+                                    coin.audit &&
+                                    <p className={style.descriptionTitle}><span className={style.audit}>AUDIT</span></p>
+                                }
+                                {
+                                    !coin.audit &&
+                                    <p className={style.descriptionTitle}>unspecified</p>
+                                }
+
+                                {/*  <p className={style.descriptionTitle}>Audit:</p>
                                 {coin.kyc !== undefined && (
                                     <p className={style.descriptionTitle}>{coin.kyc.toString()}</p>
-                                )}
+                                )} */}
                             </div>
 
                             <div className={style.ligne5}>
@@ -350,8 +555,19 @@ const InfoCoin = () => {
 
                             <div className={style.ligne8}>
                                 {/* <p className={style.descriptionTitle}>BUY ON   </p> */}
+                                {coin.presale !== "yes" &&
+                                    <span className={style.buyOn}>BUY ON </span>}
 
-                                <span className={style.buyOn}>BUY ON</span>  <button type="button" onClick={() => addPoints('buy', coin)} className={style.buttonBuy}> <img className={style.img} src={url + "assets/boo.png"} alt='img' />Spookyswap  </button>
+                                {coin.presale !== "yes" &&
+                                    <button type="button" onClick={() => addPoints('buy', coin)} className={style.buttonBuy}> <img className={style.img} src={url + "assets/boo.png"} alt='img' />Spookyswap  </button>
+                                }
+
+
+
+
+                                {coin.presale !== "no" &&
+                                    <button type="button" onClick={() => addPoints('buy', coin)} className={style.buttonBuy}> View presale </button>
+                                }
 
                             </div>
                             <div className={style.ligne9}>
@@ -362,11 +578,19 @@ const InfoCoin = () => {
                         </div>
 
                         <div className={style.blockTwitter}>
+                            {coin.presale !== "yes" &&
+                                <Timeline
+                                    dataSource={{ sourceType: "profile", screenName: `${twitter}` }}
+                                    options={{ theme: "dark", width: "100%", height: "640px" }}
+                                />
+                            }
 
-                            <Timeline
-                                dataSource={{ sourceType: "profile", screenName: `${twitter}` }}
-                                options={{ theme: "dark", width: "100%", height: "640px" }}
-                            />
+                            {coin.presale == "yes" &&
+                                <Timeline
+                                    dataSource={{ sourceType: "profile", screenName: `${twitter}` }}
+                                    options={{ theme: "dark", width: "100%", height: "400px" }}
+                                />
+                            }
                         </div>
                     </div>
 

@@ -230,7 +230,7 @@ const AllTokens = () => {
 
         let data = TableLaunchService.getDatabase()
         for (let i = 0; i < totalReactPackages.length; i++) {
-          data.rows.push(({ image: <img className={style.topTrending_img} alt='img' style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, price: totalReactPackages[i].price, coinMarket: totalReactPackages[i].marketCap, supply: totalReactPackages[i].supply, percent_change_24h: totalReactPackages[i].percent_change_24h, vote: totalReactPackages[i].statistique.global.vote, points: totalReactPackages[i].points, pointsTwentyHour: totalReactPackages[i].pointsTwentyHour, pointsCacul: totalReactPackages[i].pointsCacul, statistique: totalReactPackages[i].statistique }))
+          data.rows.push(({ image: <img className={style.topTrending_img} alt='img' style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, price: totalReactPackages[i].price, coinMarket: totalReactPackages[i].marketCap, supply: totalReactPackages[i].supply, percent_change_24h: totalReactPackages[i].percent_change_24h, vote: totalReactPackages[i].statistique.global.vote, points: totalReactPackages[i].points, pointsTwentyHour: totalReactPackages[i].pointsTwentyHour, pointsCacul: totalReactPackages[i].pointsCacul, statistique: totalReactPackages[i].statistique, type: totalReactPackages[i].type }))
         }
         seDatabase(TableLaunchService.getDatabase());
       }
@@ -381,7 +381,7 @@ const AllTokens = () => {
     tableLaunch(pagination.limit, pagination.skip, "type", event.value, TableLaunchService.getMin(), TableLaunchService.getMax());
   }
   const options = [
-    "All", "Dex", "Gaming", "Nft", "Lending", "Algo-Stables", "Derivatives", "Yield Aggregatort", "Reflect token", "Yield"
+    "All", "Dex", "Gaming", "Lending", "Algo-Stables", "Derivatives", "Yield Aggregatort", "Reflect token", "Yield"
   ];
 
 
@@ -464,6 +464,7 @@ const AllTokens = () => {
             <th className={style.thPointer} scope="col">#</th>
             <th className={style.thPointer} scope="col">Name</th>
             <th className={style.thPointer} scope="col">Symbol</th>
+            <th className={style.thPointer} scope="col">Type</th>
             <th className={style.thPointer} scope="col">LaunchDate</th>
             <th className={style.thPointer} scope="col">Price</th>
             <th className={style.thPointer} scope="col">MarketCap</th>
@@ -478,6 +479,7 @@ const AllTokens = () => {
               <td className={style.td} value={row.id}><img className={style.img} src={row.image.props.src} alt='img' /></td>
               <td className={style.td}>{row.name}</td>
               <td className={style.td}>{row.symbol}</td>
+              <td className={style.td}>{row.type}</td>
               <td className={style.td}>{row.launchDate}</td>
               <td className={style.td}>$ {row.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}</td>
               <td className={style.td}>$ {row.coinMarket.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</td>

@@ -14,21 +14,57 @@
         border-radius: 20px;
         padding:1%;
 
+
+        .tabs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            background-color: #1c1c31;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            width: 70%;
+            margin: 0 auto;
+          }
+          
+          .tab {
+            color: #3b96ff;
+            cursor: pointer;
+            font-size: 24px;
+            font-weight: 600;
+            padding: 15px 30px;
+            transition: all 0.2s ease-in-out;
+          
+            &:hover {
+              background-color: #3b96ff;
+              color: #fff;
+            }
+          }
+          
+          .active {
+            background-color: #3b96ff;
+            color: #fff;
+            border-radius: 5px;
+          }
+          
         .titleSubmit{
             font-size: max(2.2vw, 170%);
             text-align: center;
-            color:#3B96FF;
+            color: #fff;
             margin:0 auto;
             padding: 2% 0 0 0;
+            font-size: 20px;
         }
         
         .subtitleSubmit
         {
         /*  font-size: max(2.2vw, 170%); */
             text-align: center;
-            color:#3B96FF;
+            color: #fff;
             margin:0 auto;
             padding: 2% 0 0 0;  
+            font-size: 16px;
+
         }
 
         hr{

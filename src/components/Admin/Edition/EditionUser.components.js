@@ -25,7 +25,7 @@ const EditionUser = () => {
         githubEdit: "",
         whitePaperEdit: "",
         instaEdit: "",
-        reeditEdit: "",
+        redditEdit: "",
         tiktokEdit: "",
         idProject: "",
         imageEdit: "",
@@ -64,7 +64,7 @@ const EditionUser = () => {
         github: "",
         whitePaper: "",
         insta: "",
-        reedit: "",
+        reddit: "",
         tiktok: "",
         kycProof: "",
         auditProof: ""
@@ -277,7 +277,7 @@ const EditionUser = () => {
                 name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, launchDateHour: inputs.launchDateHour, contractAddress: inputs.contractAddress,
                 description: inputs.description, type: type.value, websiteLink: inputs.websiteLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord,
                 image: inputs.image, coinMarketCapLink: inputs.coinMarketCapLink, coinMarketCapStatus: editionService.getMarketCapStatus(), kyc: kyc, kycProof: inputs.kycProof, audit: audit, auditProof: inputs.auditProof,
-                facebook: inputs.facebook, medium: inputs.medium, github: inputs.github, whitePaper: inputs.whitePaper, insta: inputs.insta, reedit: inputs.reedit, tiktok: inputs.tiktok
+                facebook: inputs.facebook, medium: inputs.medium, github: inputs.github, whitePaper: inputs.whitePaper, insta: inputs.insta, reddit: inputs.reddit, tiktok: inputs.tiktok
             })
         };
         let imageDelete = ""
@@ -299,7 +299,7 @@ const EditionUser = () => {
     function searchUpdateById(id) {
         return axios.get(AuthService.getUrl() + `updateSearchById?id=${id}`)
             .then(response => {
-                console.log('herf',response.data)
+                console.log('herf', response.data)
                 setInputsEdit(response.data[0]);
                 editionService.initIdProject();
                 editionService.setIdProject(response.data[0].idProject);
@@ -343,7 +343,7 @@ const EditionUser = () => {
 
 
     useEffect(() => {
-        console.log('inputsEdit',inputsEdit.auditEdit.toString())
+        console.log('inputsEdit', inputsEdit.auditEdit.toString())
         searchUpdateById(id);
     }, [id]);
 
@@ -589,6 +589,7 @@ const EditionUser = () => {
                                 }}
                                     type="text"
                                     name="description"
+                                    maxLength={500}
                                     value={inputs.description || stat.description}
                                     onChange={handleChange}
                                     required="required"
@@ -603,6 +604,7 @@ const EditionUser = () => {
                                 }}
                                     type="text"
                                     name="description"
+                                    maxLength={500}
                                     defaultValue={inputsEdit.descriptionEdit}
                                     required="required"
                                 />
@@ -713,7 +715,7 @@ const EditionUser = () => {
                         github: "",
                         whitePaper: "",
                         insta: "",
-                        reedit: "",
+                        reddit: "",
                         tiktok: "", */}
                         <label className={style.formLabel}>Facebook link:
                             <input className={style.formInput}
@@ -795,19 +797,19 @@ const EditionUser = () => {
                                 />
                             </label>}
 
-                        <label className={style.formLabel}>Reedit link:
+                        <label className={style.formLabel}>Reddit link:
                             <input className={style.formInput}
                                 type="text"
-                                name="reedit"
-                                value={inputs.reedit || stat.reedit}
+                                name="reddit"
+                                value={inputs.reddit || stat.reddit}
                                 onChange={handleChange} />
                         </label>
-                        {inputsEdit.reeditEdit !== "" &&
-                            <label className={style.formLabel}>Reedit link:
+                        {inputsEdit.redditEdit !== "" &&
+                            <label className={style.formLabel}>Reddit link:
                                 <input className={style.formInputUpdate}
                                     type="text"
-                                    name="reedit"
-                                    defaultValue={inputsEdit.reeditEdit}
+                                    name="reddit"
+                                    defaultValue={inputsEdit.redditEdit}
                                 />
                             </label>}
 
@@ -939,7 +941,7 @@ const EditionUser = () => {
                                 <label htmlFor="no">no</label>
                             </div>
                         </label>
-                        <p>{console.log("heeeeeeeeey",inputsEdit) }</p>
+                        <p>{console.log("heeeeeeeeey", inputsEdit)}</p>
 
                         {inputsEdit.auditEdit.toString() !== audit &&
                             <label className={style.formLabel}>audit? *:

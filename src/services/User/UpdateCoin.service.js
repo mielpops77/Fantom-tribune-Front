@@ -18,7 +18,7 @@ function initFieldOpenFlexible() {
         github: false,
         whitePaper: false,
         insta: false,
-        reedit: false,
+        reddit: false,
         tiktok: false,
         twitter: false,
         coinMarketCapLink: false,
@@ -80,8 +80,8 @@ function setFieldOpenFlexible(event, bool) {
             case 'Insta-link':
                 fieldOpenFlexible.insta = true;
                 break;
-            case 'Reedit-link':
-                fieldOpenFlexible.reedit = true;
+            case 'Reddit-link':
+                fieldOpenFlexible.reddit = true;
                 break;
             case 'Tiktok-link':
                 fieldOpenFlexible.tiktok = true;
@@ -122,7 +122,7 @@ function setFieldOpenFlexible(event, bool) {
                     github: fieldOpenFlexible.github,
                     whitePaper: fieldOpenFlexible.whitePaper,
                     insta: fieldOpenFlexible.insta,
-                    reedit: fieldOpenFlexible.reedit,
+                    reddit: fieldOpenFlexible.reddit,
                     tiktok: fieldOpenFlexible.tiktok,
                     twitter: fieldOpenFlexible.twitter,
                     coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
@@ -148,7 +148,7 @@ function setFieldOpenFlexible(event, bool) {
                     github: fieldOpenFlexible.github,
                     whitePaper: fieldOpenFlexible.whitePaper,
                     insta: fieldOpenFlexible.insta,
-                    reedit: fieldOpenFlexible.reedit,
+                    reddit: fieldOpenFlexible.reddit,
                     tiktok: fieldOpenFlexible.tiktok,
                     twitter: fieldOpenFlexible.twitter,
                     coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
@@ -174,7 +174,7 @@ function setFieldOpenFlexible(event, bool) {
                     github: fieldOpenFlexible.github,
                     whitePaper: fieldOpenFlexible.whitePaper,
                     insta: fieldOpenFlexible.insta,
-                    reedit: fieldOpenFlexible.reedit,
+                    reddit: fieldOpenFlexible.reddit,
                     tiktok: fieldOpenFlexible.tiktok,
                     twitter: fieldOpenFlexible.twitter,
                     coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
@@ -200,7 +200,7 @@ function setFieldOpenFlexible(event, bool) {
                     github: fieldOpenFlexible.github,
                     whitePaper: fieldOpenFlexible.whitePaper,
                     insta: fieldOpenFlexible.insta,
-                    reedit: fieldOpenFlexible.reedit,
+                    reddit: fieldOpenFlexible.reddit,
                     tiktok: fieldOpenFlexible.tiktok,
                     twitter: fieldOpenFlexible.twitter,
                     coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
@@ -226,7 +226,7 @@ function setFieldOpenFlexible(event, bool) {
                     github: fieldOpenFlexible.github,
                     whitePaper: fieldOpenFlexible.whitePaper,
                     insta: fieldOpenFlexible.insta,
-                    reedit: fieldOpenFlexible.reedit,
+                    reddit: fieldOpenFlexible.reddit,
                     tiktok: fieldOpenFlexible.tiktok,
                     twitter: fieldOpenFlexible.twitter,
                     coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
@@ -252,7 +252,7 @@ function setFieldOpenFlexible(event, bool) {
                     github: fieldOpenFlexible.github,
                     whitePaper: fieldOpenFlexible.whitePaper,
                     insta: fieldOpenFlexible.insta,
-                    reedit: fieldOpenFlexible.reedit,
+                    reddit: fieldOpenFlexible.reddit,
                     tiktok: fieldOpenFlexible.tiktok,
                     twitter: fieldOpenFlexible.twitter,
                     coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
@@ -278,7 +278,7 @@ function setFieldOpenFlexible(event, bool) {
                     github: fieldOpenFlexible.github,
                     whitePaper: fieldOpenFlexible.whitePaper,
                     insta: fieldOpenFlexible.insta,
-                    reedit: fieldOpenFlexible.reedit,
+                    reddit: fieldOpenFlexible.reddit,
                     tiktok: fieldOpenFlexible.tiktok,
                     twitter: fieldOpenFlexible.twitter,
                     coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
@@ -304,7 +304,7 @@ function setFieldOpenFlexible(event, bool) {
                     github: fieldOpenFlexible.github,
                     whitePaper: fieldOpenFlexible.whitePaper,
                     insta: fieldOpenFlexible.insta,
-                    reedit: fieldOpenFlexible.reedit,
+                    reddit: fieldOpenFlexible.reddit,
                     tiktok: fieldOpenFlexible.tiktok,
                     twitter: fieldOpenFlexible.twitter,
                     coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
@@ -330,7 +330,7 @@ function setFieldOpenFlexible(event, bool) {
                     github: fieldOpenFlexible.github,
                     whitePaper: fieldOpenFlexible.whitePaper,
                     insta: fieldOpenFlexible.insta,
-                    reedit: fieldOpenFlexible.reedit,
+                    reddit: fieldOpenFlexible.reddit,
                     tiktok: fieldOpenFlexible.tiktok,
                     twitter: fieldOpenFlexible.twitter,
                     coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
@@ -356,7 +356,7 @@ function setFieldOpenFlexible(event, bool) {
                     github: fieldOpenFlexible.github,
                     whitePaper: fieldOpenFlexible.whitePaper,
                     insta: fieldOpenFlexible.insta,
-                    reedit: fieldOpenFlexible.reedit,
+                    reddit: fieldOpenFlexible.reddit,
                     tiktok: fieldOpenFlexible.tiktok,
                     twitter: fieldOpenFlexible.twitter,
                     coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
@@ -382,7 +382,7 @@ function setFieldOpenFlexible(event, bool) {
                     github: fieldOpenFlexible.github,
                     whitePaper: fieldOpenFlexible.whitePaper,
                     insta: fieldOpenFlexible.insta,
-                    reedit: fieldOpenFlexible.reedit,
+                    reddit: fieldOpenFlexible.reddit,
                     tiktok: fieldOpenFlexible.tiktok,
                     twitter: false,
                     coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
@@ -408,7 +408,7 @@ function setFieldOpenFlexible(event, bool) {
                     github: fieldOpenFlexible.github,
                     whitePaper: fieldOpenFlexible.whitePaper,
                     insta: fieldOpenFlexible.insta,
-                    reedit: fieldOpenFlexible.reedit,
+                    reddit: fieldOpenFlexible.reddit,
                     tiktok: fieldOpenFlexible.tiktok,
                     twitter: fieldOpenFlexible.twitter,
                     coinMarketCapLink: false,
@@ -434,7 +434,7 @@ function setFieldOpenFlexible(event, bool) {
                     github: fieldOpenFlexible.github,
                     whitePaper: fieldOpenFlexible.whitePaper,
                     insta: fieldOpenFlexible.insta,
-                    reedit: fieldOpenFlexible.reedit,
+                    reddit: fieldOpenFlexible.reddit,
                     tiktok: fieldOpenFlexible.tiktok,
                     twitter: fieldOpenFlexible.twitter,
                     coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
@@ -460,7 +460,7 @@ function setFieldOpenFlexible(event, bool) {
                         github: fieldOpenFlexible.github,
                         whitePaper: fieldOpenFlexible.whitePaper,
                         insta: fieldOpenFlexible.insta,
-                        reedit: fieldOpenFlexible.reedit,
+                        reddit: fieldOpenFlexible.reddit,
                         tiktok: fieldOpenFlexible.tiktok,
                         twitter: fieldOpenFlexible.twitter,
                         coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
@@ -486,7 +486,7 @@ function setFieldOpenFlexible(event, bool) {
                     github: fieldOpenFlexible.github,
                     whitePaper: fieldOpenFlexible.whitePaper,
                     insta: fieldOpenFlexible.insta,
-                    reedit: fieldOpenFlexible.reedit,
+                    reddit: fieldOpenFlexible.reddit,
                     tiktok: fieldOpenFlexible.tiktok,
                     twitter: fieldOpenFlexible.twitter,
                     coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
@@ -512,7 +512,7 @@ function setFieldOpenFlexible(event, bool) {
                     github: fieldOpenFlexible.github,
                     whitePaper: fieldOpenFlexible.whitePaper,
                     insta: fieldOpenFlexible.insta,
-                    reedit: fieldOpenFlexible.reedit,
+                    reddit: fieldOpenFlexible.reddit,
                     tiktok: fieldOpenFlexible.tiktok,
                     twitter: fieldOpenFlexible.twitter,
                     coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
@@ -538,7 +538,7 @@ function setFieldOpenFlexible(event, bool) {
                     github: false,
                     whitePaper: fieldOpenFlexible.whitePaper,
                     insta: fieldOpenFlexible.insta,
-                    reedit: fieldOpenFlexible.reedit,
+                    reddit: fieldOpenFlexible.reddit,
                     tiktok: fieldOpenFlexible.tiktok,
                     twitter: fieldOpenFlexible.twitter,
                     coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
@@ -564,7 +564,7 @@ function setFieldOpenFlexible(event, bool) {
                     github: fieldOpenFlexible.github,
                     whitePaper: false,
                     insta: fieldOpenFlexible.insta,
-                    reedit: fieldOpenFlexible.reedit,
+                    reddit: fieldOpenFlexible.reddit,
                     tiktok: fieldOpenFlexible.tiktok,
                     twitter: fieldOpenFlexible.twitter,
                     coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
@@ -590,7 +590,7 @@ function setFieldOpenFlexible(event, bool) {
                     github: fieldOpenFlexible.github,
                     whitePaper: fieldOpenFlexible.whitePaper,
                     insta: false,
-                    reedit: fieldOpenFlexible.reedit,
+                    reddit: fieldOpenFlexible.reddit,
                     tiktok: fieldOpenFlexible.tiktok,
                     twitter: fieldOpenFlexible.twitter,
                     coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
@@ -598,7 +598,7 @@ function setFieldOpenFlexible(event, bool) {
                     audit: fieldOpenFlexible.audit
                 };
                 break;
-            case 'Reedit-link':
+            case 'Reddit-link':
                 fieldOpenFlexible =
                 {
                     logo: fieldOpenFlexible.logo,
@@ -616,7 +616,7 @@ function setFieldOpenFlexible(event, bool) {
                     github: fieldOpenFlexible.github,
                     whitePaper: fieldOpenFlexible.whitePaper,
                     insta: fieldOpenFlexible.insta,
-                    reedit: false,
+                    reddit: false,
                     tiktok: fieldOpenFlexible.tiktok,
                     twitter: fieldOpenFlexible.twitter,
                     coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
@@ -642,7 +642,7 @@ function setFieldOpenFlexible(event, bool) {
                     github: fieldOpenFlexible.github,
                     whitePaper: fieldOpenFlexible.whitePaper,
                     insta: fieldOpenFlexible.insta,
-                    reedit: fieldOpenFlexible.reedit,
+                    reddit: fieldOpenFlexible.reddit,
                     tiktok: false,
                     twitter: fieldOpenFlexible.twitter,
                     coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
@@ -656,7 +656,7 @@ function setFieldOpenFlexible(event, bool) {
 
     if (fieldOpenFlexible.logo || fieldOpenFlexible.name || fieldOpenFlexible.symbole || fieldOpenFlexible.launchPhase || fieldOpenFlexible.contractAdress ||
         fieldOpenFlexible.type || fieldOpenFlexible.website || fieldOpenFlexible.telegram || fieldOpenFlexible.discord || fieldOpenFlexible.twitter ||
-        fieldOpenFlexible.coinMarketCapLink || fieldOpenFlexible.kyc ||fieldOpenFlexible.audit ||  fieldOpenFlexible.facebook || fieldOpenFlexible.medium || fieldOpenFlexible.github || fieldOpenFlexible.whitePaper || fieldOpenFlexible.insta || fieldOpenFlexible.reedit || fieldOpenFlexible.tiktok) {
+        fieldOpenFlexible.coinMarketCapLink || fieldOpenFlexible.kyc ||fieldOpenFlexible.audit ||  fieldOpenFlexible.facebook || fieldOpenFlexible.medium || fieldOpenFlexible.github || fieldOpenFlexible.whitePaper || fieldOpenFlexible.insta || fieldOpenFlexible.reddit || fieldOpenFlexible.tiktok) {
         fieldOpenFlexible =
         {
             logo: fieldOpenFlexible.logo,
@@ -674,7 +674,7 @@ function setFieldOpenFlexible(event, bool) {
             github: fieldOpenFlexible.github,
             whitePaper: fieldOpenFlexible.whitePaper,
             insta: fieldOpenFlexible.insta,
-            reedit: fieldOpenFlexible.reedit,
+            reddit: fieldOpenFlexible.reddit,
             tiktok: fieldOpenFlexible.tiktok,
             twitter: fieldOpenFlexible.twitter,
             coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,
@@ -702,7 +702,7 @@ function setFieldOpenFlexible(event, bool) {
             github: fieldOpenFlexible.github,
             whitePaper: fieldOpenFlexible.whitePaper,
             insta: fieldOpenFlexible.insta,
-            reedit: fieldOpenFlexible.reedit,
+            reddit: fieldOpenFlexible.reddit,
             tiktok: fieldOpenFlexible.tiktok,
             twitter: fieldOpenFlexible.twitter,
             coinMarketCapLink: fieldOpenFlexible.coinMarketCapLink,

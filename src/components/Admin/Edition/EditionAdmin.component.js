@@ -34,7 +34,7 @@ const EditionAdmin = () => {
         github: "",
         whitePaper: "",
         insta: "",
-        reedit: "",
+        reddit: "",
         tiktok: "",
         kycProof: "",
         auditProof: ""
@@ -225,7 +225,7 @@ const EditionAdmin = () => {
             body: JSON.stringify({
                 name: inputs.name, symbol: inputs.symbol, launchDate: inputs.launchDate, launchDateHour: inputs.launchDateHour, contractAddress: inputs.contractAddress, description: inputs.description, type: type.value,
                 websiteLink: inputs.websiteLink, telegram: inputs.telegram, twitter: inputs.twitter, discord: inputs.discord, image: inputs.image, coinMarketCapLink: inputs.coinMarketCapLink, coinMarketCapStatus: editionService.getMarketCapStatus(),
-                kyc: kyc, kycProof: inputs.kycProof, audit: audit, auditProof: inputs.auditProof,  facebook: inputs.facebook, medium: inputs.medium, github: inputs.github, whitePaper: inputs.whitePaper, insta: inputs.insta, reedit: inputs.reedit, tiktok: inputs.tiktok
+                kyc: kyc, kycProof: inputs.kycProof, audit: audit, auditProof: inputs.auditProof, facebook: inputs.facebook, medium: inputs.medium, github: inputs.github, whitePaper: inputs.whitePaper, insta: inputs.insta, reddit: inputs.reddit, tiktok: inputs.tiktok
             })
 
         };
@@ -257,7 +257,7 @@ const EditionAdmin = () => {
     }
 
     useEffect(() => {
-        fetch(url + 'launchDateAdmin/')
+        fetch(url + 'launchDateAdminById/?id=' + id)
             .then((res) => res.json())
             .then((res) => {
                 editionService.initCoin();
@@ -411,6 +411,8 @@ const EditionAdmin = () => {
                             }}
                                 type="text"
                                 name="description"
+                                maxLength={500}
+
                                 value={inputs.description || stat.description}
                                 onChange={handleChange}
                                 required="required"
@@ -479,7 +481,7 @@ const EditionAdmin = () => {
                                 onChange={handleChange} />
                         </label>
 
-                        
+
                         <label className={style.formLabel}>Facebook link:
                             <input className={style.formInput}
                                 type="text"
@@ -520,11 +522,11 @@ const EditionAdmin = () => {
                                 onChange={handleChange} />
                         </label>
 
-                        <label className={style.formLabel}>Reedit link:
+                        <label className={style.formLabel}>Reddit link:
                             <input className={style.formInput}
                                 type="text"
-                                name="reedit"
-                                value={inputs.reedit || stat.reedit}
+                                name="reddit"
+                                value={inputs.reddit || stat.reddit}
                                 onChange={handleChange} />
                         </label>
 
@@ -576,7 +578,7 @@ const EditionAdmin = () => {
                                     required="required" />
                             </label>}
 
-                            
+
 
 
                         <label className={style.formLabel}>Audit? *:

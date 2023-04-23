@@ -29,8 +29,11 @@ const Footer = () => {
                     <a href="https://twitter.com/fantomtribune" target="_blank">
                         <img src={`${url}assets/logo_twitter.png`} alt="Twitter" />
                     </a>
-                    <a href="#">
+                    <a href="https://t.me/FantomTribune" >
                         <img src={`${url}assets/logo_telegram.png`} alt="Telegram" />
+                    </a>
+                    <a href="https://medium.com/@fantomtribune" >
+                        <img src={`${url}assets/logo_medium.png`} alt="Medium" />
                     </a>
                 </div>
             </div>

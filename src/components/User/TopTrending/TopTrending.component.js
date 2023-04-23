@@ -1,7 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import NavigationUserComponent from '../../Navigation/NavigationUser/NavigationUser.component';
-import TableLaunchService from '../../../services/tableauLaunh/tableauLaunch.service'
-import FooterComponent from '../../../components/Navigation/Footer/Footer.component';
+import tableauLaunchService from '../../../services/tableauLaunh/tableauLaunch.service';
 import styleModal from "../../../styles/modalVote.module.scss";
 import AuthService from "../../../services/auth/auth.service";
 import React, { useState, useEffect } from 'react';
@@ -12,7 +10,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import style from './TopTrending.module.scss';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
-import tableauLaunchService from '../../../services/tableauLaunh/tableauLaunch.service';
 
 
 const TopTrending = () => {
@@ -79,7 +76,7 @@ const TopTrending = () => {
 
     tableauLaunchService.initTotalPage()
 
-    TableLaunchService.getTopTrending(limit, skip).then(function (result) {
+    tableauLaunchService.getTopTrending(limit, skip).then(function (result) {
       result.map((item, index) => {
         item.id = (
           {/* <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div> */ }
@@ -92,17 +89,17 @@ const TopTrending = () => {
       });
       totalReactPackages = userData;
 
-      TableLaunchService.setDatabase(userData)
+      tableauLaunchService.setDatabase(userData)
       if (totalReactPackages != null) {
-        TableLaunchService.initDatabase();
+        tableauLaunchService.initDatabase();
 
-        let data = TableLaunchService.getDatabase()
+        let data = tableauLaunchService.getDatabase()
         for (let i = 0; i < totalReactPackages.length; i++) {
           data.rows.push(({ image: <img className={style.topTrending_img} alt='img' style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, price: totalReactPackages[i].price, coinMarket: totalReactPackages[i].marketCap, supply: totalReactPackages[i].supply, rank: i + 1 + skip, percent_change_24h: totalReactPackages[i].percent_change_24h, vote: totalReactPackages[i].statistique.global.vote, points: totalReactPackages[i].points, pointsTwentyHour: totalReactPackages[i].pointsTwentyHour, pointsCacul: totalReactPackages[i].pointsCacul, statistique: totalReactPackages[i].statistique }))
 
         }
 
-        seDatabase(TableLaunchService.getDatabase());
+        seDatabase(tableauLaunchService.getDatabase());
       }
 
 
@@ -118,7 +115,7 @@ const TopTrending = () => {
   function getTopTrending(limit, skip) {
 
     seDatabase([]);
-    TableLaunchService.getTopTrending(limit, skip).then(function (result) {
+    tableauLaunchService.getTopTrending(limit, skip).then(function (result) {
       result.map((item, index) => {
         item.id = (
           {/* <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div> */ }
@@ -131,18 +128,18 @@ const TopTrending = () => {
       });
       totalReactPackages = userData;
 
-      TableLaunchService.setDatabase(userData)
+      tableauLaunchService.setDatabase(userData)
       if (totalReactPackages != null) {
-        TableLaunchService.initDatabase();
+        tableauLaunchService.initDatabase();
 
-        let data = TableLaunchService.getDatabase()
+        let data = tableauLaunchService.getDatabase()
         for (let i = 0; i < totalReactPackages.length; i++) {
           data.rows.push(({ image: <img className={style.topTrending_img} alt='img' style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, price: totalReactPackages[i].price, coinMarket: totalReactPackages[i].marketCap, supply: totalReactPackages[i].supply, rank: i + 1 + skip, percent_change_24h: totalReactPackages[i].percent_change_24h, vote: totalReactPackages[i].statistique.global.vote, points: totalReactPackages[i].points, pointsTwentyHour: totalReactPackages[i].pointsTwentyHour, pointsCacul: totalReactPackages[i].pointsCacul, statistique: totalReactPackages[i].statistique }))
 
         }
 
 
-        seDatabase(TableLaunchService.getDatabase());
+        seDatabase(tableauLaunchService.getDatabase());
       }
 
 
@@ -159,7 +156,7 @@ const TopTrending = () => {
   function getTopTrendingToday(limit, skip) {
 
     seDatabase([]);
-    TableLaunchService.getTopTrendingToday(limit, skip).then(function (result) {
+    tableauLaunchService.getTopTrendingToday(limit, skip).then(function (result) {
       result.map((item, index) => {
         item.id = (
           {/* <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div> */ }
@@ -172,18 +169,18 @@ const TopTrending = () => {
       });
       totalReactPackages = userData;
 
-      TableLaunchService.setDatabase(userData)
+      tableauLaunchService.setDatabase(userData)
       if (totalReactPackages != null) {
-        TableLaunchService.initDatabase();
+        tableauLaunchService.initDatabase();
 
-        let data = TableLaunchService.getDatabase()
+        let data = tableauLaunchService.getDatabase()
         for (let i = 0; i < totalReactPackages.length; i++) {
           data.rows.push(({ image: <img className={style.topTrending_img} alt='img' style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, price: totalReactPackages[i].price, coinMarket: totalReactPackages[i].marketCap, supply: totalReactPackages[i].supply, rank: i + 1 + skip, percent_change_24h: totalReactPackages[i].percent_change_24h, vote: totalReactPackages[i].statistique.global.vote, points: totalReactPackages[i].points, pointsTwentyHour: totalReactPackages[i].pointsTwentyHour, pointsCacul: totalReactPackages[i].pointsCacul, statistique: totalReactPackages[i].statistique }))
 
 
         }
 
-        seDatabase(TableLaunchService.getDatabase());
+        seDatabase(tableauLaunchService.getDatabase());
       }
 
 
@@ -201,7 +198,7 @@ const TopTrending = () => {
   function getLaunchDateTrending(limit, skip) {
 
     seDatabase([]);
-    TableLaunchService.getLaunchDateTrending(limit, skip).then(function (result) {
+    tableauLaunchService.getLaunchDateTrending(limit, skip).then(function (result) {
       result.map((item, index) => {
         item.id = (
           {/* <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div> */ }
@@ -214,18 +211,18 @@ const TopTrending = () => {
       });
       totalReactPackages = userData;
 
-      TableLaunchService.setDatabase(userData)
+      tableauLaunchService.setDatabase(userData)
       if (totalReactPackages != null) {
-        TableLaunchService.initDatabase();
+        tableauLaunchService.initDatabase();
 
-        let data = TableLaunchService.getDatabase()
+        let data = tableauLaunchService.getDatabase()
         for (let i = 0; i < totalReactPackages.length; i++) {
           data.rows.push(({ image: <img className={style.topTrending_img} alt='img' style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, price: totalReactPackages[i].price, coinMarket: totalReactPackages[i].marketCap, supply: totalReactPackages[i].supply, rank: i + 1 + skip, percent_change_24h: totalReactPackages[i].percent_change_24h, vote: totalReactPackages[i].statistique.global.vote, points: totalReactPackages[i].points, pointsTwentyHour: totalReactPackages[i].pointsTwentyHour, pointsCacul: totalReactPackages[i].pointsCacul, statistique: totalReactPackages[i].statistique }))
 
 
         }
 
-        seDatabase(TableLaunchService.getDatabase());
+        seDatabase(tableauLaunchService.getDatabase());
       }
 
 
@@ -243,7 +240,7 @@ const TopTrending = () => {
   function getPromotedProject() {
 
     seDatabase([]);
-    TableLaunchService.getPromotedProject().then(function (result) {
+    tableauLaunchService.getPromotedProject().then(function (result) {
       result.map((item, index) => {
         item.id = (
           {/* <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>{item._id}</div> */ }
@@ -256,17 +253,17 @@ const TopTrending = () => {
       });
       totalReactPackages = userData;
 
-      TableLaunchService.setDatabase(userData)
+      tableauLaunchService.setDatabase(userData)
       if (totalReactPackages != null) {
-        TableLaunchService.initDatabase();
+        tableauLaunchService.initDatabase();
 
-        let data = TableLaunchService.getDatabase()
+        let data = tableauLaunchService.getDatabase()
         for (let i = 0; i < totalReactPackages.length; i++) {
           data.rows.push(({ image: <img className={style.topTrending_img} alt='img' style={{ height: "100%", width: "95px", float: "left" }} src={totalReactPackages[i].image.props.src} />, name: totalReactPackages[i].name, symbol: totalReactPackages[i].symbol, launchDate: totalReactPackages[i].launchDate, id: totalReactPackages[i]._id, price: totalReactPackages[i].price, coinMarket: totalReactPackages[i].marketCap, supply: totalReactPackages[i].supply, rank: i + 1, percent_change_24h: totalReactPackages[i].percent_change_24h, vote: totalReactPackages[i].statistique.global.vote, points: totalReactPackages[i].points, pointsTwentyHour: totalReactPackages[i].pointsTwentyHour, pointsCacul: totalReactPackages[i].pointsCacul, statistique: totalReactPackages[i].statistique }))
 
         }
 
-        seDatabase(TableLaunchService.getDatabase());
+        seDatabase(tableauLaunchService.getDatabase());
       }
 
 
@@ -287,7 +284,7 @@ const TopTrending = () => {
 
   function getEcosystemLenght() {
 
-    TableLaunchService.getEcosystemLenght().then(function (result) {
+    tableauLaunchService.getEcosystemLenght().then(function (result) {
 
     console.log('init',result);
 
@@ -301,7 +298,7 @@ const TopTrending = () => {
   }
   function getLaunchDateLenght() {
 
-    TableLaunchService.getLaunchDateLenght().then(function (result) {
+    tableauLaunchService.getLaunchDateLenght().then(function (result) {
 
       if (result / 10 < 1) {
         tableauLaunchService.setTotalPage(1)
@@ -315,7 +312,7 @@ const TopTrending = () => {
 
   function getPromotedProjectLenght() {
 
-    TableLaunchService.getPromotedProjectLenght().then(function (result) {
+    tableauLaunchService.getPromotedProjectLenght().then(function (result) {
 
       if (result / 10 < 1) {
         tableauLaunchService.setTotalPage(1)
@@ -336,20 +333,20 @@ const TopTrending = () => {
     seDatabase([]);
 
     if (toggle1) {
-      TableLaunchService.pageActuel = 1;
+      tableauLaunchService.pageActuel = 1;
       tableLaunch(limit, skip);
     }
 
     if (toggle2) {
-      TableLaunchService.pageActuel = 1;
+      tableauLaunchService.pageActuel = 1;
       getTopTrendingToday(limit, skip);
     }
     if (toggle3) {
-      TableLaunchService.pageActuel = 1;
+      tableauLaunchService.pageActuel = 1;
       getLaunchDateTrending(limit, skip);
     }
     if (toggle4) {
-      TableLaunchService.pageActuel = 1;
+      tableauLaunchService.pageActuel = 1;
       getPromotedProject();
     }
   }
@@ -423,7 +420,7 @@ const TopTrending = () => {
   function next() {
     console.log('heeey');
 
-    if (pagination.pageActuel < TableLaunchService.getTotalPage()) {
+    if (pagination.pageActuel < tableauLaunchService.getTotalPage()) {
 
       seDatabase([]);
 
@@ -600,15 +597,15 @@ const TopTrending = () => {
 
           <div className={style.blockPagination2}>
 
-            <span className={style.topTrending_paginationPageActuel}> Page {pagination.pageActuel} of {TableLaunchService.getTotalPage()}</span>
+            <span className={style.topTrending_paginationPageActuel}> Page {pagination.pageActuel} of {tableauLaunchService.getTotalPage()}</span>
 
           </div>
-          {pagination.pageActuel < TableLaunchService.getTotalPage() &&
+          {pagination.pageActuel < tableauLaunchService.getTotalPage() &&
             <div className={style.blockPagination3} onClick={next}>
               <a className={style.topTrending_paginationPageActuel} >❯</a>
             </div>}
 
-          {pagination.pageActuel == TableLaunchService.getTotalPage() &&
+          {pagination.pageActuel == tableauLaunchService.getTotalPage() &&
             <div className={style.blockPagination3Disable} >
               <a className={style.topTrending_paginationPageActuelDisable} >❯</a>
             </div>}

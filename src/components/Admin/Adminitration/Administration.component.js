@@ -427,6 +427,10 @@ function Administration() {
                                     color: "blue",
                                 }} onClick={() => nav(`/editionCoin/${posts[index]._id}`)} />}
 
+                                {toggle2 && <AiFillEdit size={32} style={{
+                                    cursor: "pointer",
+                                    color: "blue",
+                                }} onClick={() => nav(`/editionCoin/${posts[index]._id}`)} />}
 
                                 {toggle2 && <div>{!posts[index].promotedStatus && <AiFillStar size={32}
                                     style={{
@@ -445,6 +449,7 @@ function Administration() {
                                         cursor: "pointer",
                                         color: "yellow",
                                     }} onClick={() => promotedChangeRequest(posts[index]._id, posts[index].promotedStatus)} />}</div>}
+
 
 
                                 {toggle3 && <FaTrashRestore size={32} style={{
@@ -500,10 +505,18 @@ function Administration() {
 
 
                 );
-                item.image = (
-                    <img style={{ height: "100%", width: "95px", float: "left" }} src={url + posts[index].image} alt="img" />
-                );
 
+                item.image = (
+                    <img
+                        style={{ height: "100%", width: "95px", float: "left" }}
+                        src={
+                            posts[index].category === "nft" && posts[index].paintswap === true
+                                ? posts[index].thumbnail
+                                : url + posts[index].image
+                        }
+                        alt="img"
+                    />
+                );
 
 
 
@@ -561,6 +574,12 @@ function Administration() {
                 field: 'name',
                 sort: 'asc',
                 width: 200
+            },
+            {
+                label: 'Category',
+                field: 'category',
+                sort: 'asc',
+                width: 100
             },
             {
                 label: 'Symbol',

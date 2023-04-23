@@ -1,5 +1,24 @@
-/* .administration_fond
-{
-    background-color:#050945;
-    min-height: 1000px;
-} */
+.administration_fond {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .content_wrapper {
+    flex: 1;
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    min-height: calc(100vh - 40px);
+    box-sizing: border-box;
+  }
+  
+  .footer {
+    position: relative;
+    height: 40px;
+    width: 100%;
+    clear: both;
+    box-sizing: border-box;
+    bottom: 0;
+    left: 0;
+  }
+  
