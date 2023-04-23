@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3000/api/auth/";
+const API_URL = "https://fantomtribune.osc-fr1.scalingo.io/api/auth/";
 
-const getUrl = () => "http://localhost:3000/";
+const getUrl = () => "https://fantomtribune.osc-fr1.scalingo.io/";
 
 const register = (username, email, password) => axios.post(API_URL + "signup", { username, email, password, });
 
